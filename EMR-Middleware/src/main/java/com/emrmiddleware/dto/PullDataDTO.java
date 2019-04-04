@@ -12,7 +12,44 @@ public class PullDataDTO {
 	private ArrayList<VisitDTO> visitlist;
 	private ArrayList<EncounterDTO> encounterlist;
 	private ArrayList<ObsDTO> obslist;
+	private ArrayList<LocationDTO> locationlist;
+	private ArrayList<ProviderDTO> providerlist;
+	private ArrayList<ProviderAttributeTypeDTO> providerAttributeTypeList;
+	private ArrayList<ProviderAttributeDTO> providerAttributeList;
 	
+	
+	public ArrayList<ProviderAttributeDTO> getProviderAttributeList() {
+		return providerAttributeList;
+	}
+
+	public void setProviderAttributeList(ArrayList<ProviderAttributeDTO> providerAttributeList) {
+		this.providerAttributeList = providerAttributeList;
+	}
+
+	public ArrayList<ProviderAttributeTypeDTO> getProviderAttributeTypeList() {
+		return providerAttributeTypeList;
+	}
+
+	public void setProviderAttributeTypeList(ArrayList<ProviderAttributeTypeDTO> providerAttributeTypeList) {
+		this.providerAttributeTypeList = providerAttributeTypeList;
+	}
+
+	public ArrayList<ProviderDTO> getProviderlist() {
+		return providerlist;
+	}
+
+	public void setProviderlist(ArrayList<ProviderDTO> providerlist) {
+		this.providerlist = providerlist;
+	}
+
+	public ArrayList<LocationDTO> getLocationlist() {
+		return locationlist;
+	}
+
+	public void setLocationlist(ArrayList<LocationDTO> locationlist) {
+		this.locationlist = locationlist;
+	}
+
 	public ArrayList<PatientAttributeDTO> getPatientAttributesList() {
 		return patientAttributesList;
 	}

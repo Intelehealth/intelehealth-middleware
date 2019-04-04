@@ -19,10 +19,18 @@ public class PatientDTO {
 	private String country;
 	private String gender;
 	private String sdw;
+	private int dead;
 	private String occupation;
 	private String patient_photo;
 	private String economicstatus;
 	private String caste;
+	
+	public int getDead() {
+		return dead;
+	}
+	public void setDead(int dead) {
+		this.dead = dead;
+	}
 	public String getOpenmrs_uuid() {
 		return openmrs_uuid;
 	}

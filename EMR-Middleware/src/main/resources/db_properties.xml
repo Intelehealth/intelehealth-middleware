@@ -24,5 +24,7 @@
     <mapper class="com.emrmiddleware.dmo.VisitDMO" />
     <mapper class="com.emrmiddleware.dmo.EncounterDMO" />
     <mapper class="com.emrmiddleware.dmo.ObsDMO" />
+    <mapper class="com.emrmiddleware.dmo.LocationDMO" />
+    <mapper class="com.emrmiddleware.dmo.ProviderDMO" />
    </mappers>
 </configuration>
