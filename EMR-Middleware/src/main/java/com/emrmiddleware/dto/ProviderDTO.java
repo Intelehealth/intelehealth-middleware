@@ -2,16 +2,17 @@ package com.emrmiddleware.dto;
 
 public class ProviderDTO {
 	
-	private String openmrs_provideruuid;
+	private String uuid;
 	private String identifier;
 	private String given_name;
 	private String family_name;
 	private int voided;
-	public String getOpenmrs_provideruuid() {
-		return openmrs_provideruuid;
+	
+	public String getUuid() {
+		return uuid;
 	}
-	public void setOpenmrs_provideruuid(String openmrs_provideruuid) {
-		this.openmrs_provideruuid = openmrs_provideruuid;
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
 	}
 	public String getIdentifier() {
 		return identifier;

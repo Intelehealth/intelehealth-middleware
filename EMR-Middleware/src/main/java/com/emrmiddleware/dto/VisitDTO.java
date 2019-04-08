@@ -4,30 +4,34 @@ import java.util.Date;
 
 public class VisitDTO {
 	
-	private String openmrs_patientuuid;
-	private String openmrs_visituuid;
-	private int visit_type_id;
+	private String patientuuid;
+	private String uuid;
+	
+	private String visit_type_uuid;
 	private Date startdate;
 	private Date enddate;
 	private String locationuuid;
 	private int creator;
-	public String getOpenmrs_patientuuid() {
-		return openmrs_patientuuid;
+	
+	public String getVisit_type_uuid() {
+		return visit_type_uuid;
 	}
-	public void setOpenmrs_patientuuid(String openmrs_patientuuid) {
-		this.openmrs_patientuuid = openmrs_patientuuid;
+	public void setVisit_type_uuid(String visit_type_uuid) {
+		this.visit_type_uuid = visit_type_uuid;
 	}
-	public String getOpenmrs_visituuid() {
-		return openmrs_visituuid;
+	
+	
+	public String getPatientuuid() {
+		return patientuuid;
 	}
-	public void setOpenmrs_visituuid(String openmrs_visituuid) {
-		this.openmrs_visituuid = openmrs_visituuid;
+	public void setPatientuuid(String patientuuid) {
+		this.patientuuid = patientuuid;
 	}
-	public int getVisit_type_id() {
-		return visit_type_id;
+	public String getUuid() {
+		return uuid;
 	}
-	public void setVisit_type_id(int visit_type_id) {
-		this.visit_type_id = visit_type_id;
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
 	}
 	public Date getStartdate() {
 		return startdate;

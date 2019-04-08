@@ -2,23 +2,24 @@ package com.emrmiddleware.dto;
 
 public class ObsDTO {
 	
-	private String openmrs_obsuuid;
-	private String openmrs_encounteruuid;
+	private String uuid;
+	private String encounteruuid;
 	private int conceptid;
 	private String value;
 	private int creator;
 	
-	public String getOpenmrs_obsuuid() {
-		return openmrs_obsuuid;
+	
+	public String getUuid() {
+		return uuid;
 	}
-	public void setOpenmrs_obsuuid(String openmrs_obsuuid) {
-		this.openmrs_obsuuid = openmrs_obsuuid;
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
 	}
-	public String getOpenmrs_encounteruuid() {
-		return openmrs_encounteruuid;
+	public String getEncounteruuid() {
+		return encounteruuid;
 	}
-	public void setOpenmrs_encounteruuid(String openmrs_encounteruuid) {
-		this.openmrs_encounteruuid = openmrs_encounteruuid;
+	public void setEncounteruuid(String encounteruuid) {
+		this.encounteruuid = encounteruuid;
 	}
 	public int getConceptid() {
 		return conceptid;

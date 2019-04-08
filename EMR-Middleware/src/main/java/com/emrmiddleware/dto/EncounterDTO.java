@@ -1,20 +1,21 @@
 package com.emrmiddleware.dto;
 
 public class EncounterDTO {
-	private String openmrs_encounteruuid;
-	private String openmrs_visituuid;
+	private String uuid;
+	private String visituuid;
 	private String encounter_type;
-	public String getOpenmrs_encounteruuid() {
-		return openmrs_encounteruuid;
+	
+	public String getUuid() {
+		return uuid;
 	}
-	public void setOpenmrs_encounteruuid(String openmrs_encounteruuid) {
-		this.openmrs_encounteruuid = openmrs_encounteruuid;
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
 	}
-	public String getOpenmrs_visituuid() {
-		return openmrs_visituuid;
+	public String getVisituuid() {
+		return visituuid;
 	}
-	public void setOpenmrs_visituuid(String openmrs_visituuid) {
-		this.openmrs_visituuid = openmrs_visituuid;
+	public void setVisituuid(String visituuid) {
+		this.visituuid = visituuid;
 	}
 	public String getEncounter_type() {
 		return encounter_type;

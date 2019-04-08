@@ -1,14 +1,15 @@
 package com.emrmiddleware.dto;
 
 public class PatientAttributeTypeDTO {
-	private String openmrs_uuid;
+	private String uuid;
     private String name;
 	
-	public String getOpenmrs_uuid() {
-		return openmrs_uuid;
+	
+	public String getUuid() {
+		return uuid;
 	}
-	public void setOpenmrs_uuid(String openmrs_uuid) {
-		this.openmrs_uuid = openmrs_uuid;
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
 	}
 	public String getName() {
 		return name;

@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class PatientDTO {
 	
-	private String openmrs_uuid;
+	private String uuid;
 	private String openmrs_id;
 	private String firstname;
 	private String middlename;
@@ -31,11 +31,12 @@ public class PatientDTO {
 	public void setDead(int dead) {
 		this.dead = dead;
 	}
-	public String getOpenmrs_uuid() {
-		return openmrs_uuid;
+	
+	public String getUuid() {
+		return uuid;
 	}
-	public void setOpenmrs_uuid(String openmrs_uuid) {
-		this.openmrs_uuid = openmrs_uuid;
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
 	}
 	public String getOpenmrs_id() {
 		return openmrs_id;

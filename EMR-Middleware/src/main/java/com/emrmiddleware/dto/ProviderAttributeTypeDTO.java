@@ -2,14 +2,21 @@ package com.emrmiddleware.dto;
 
 public class ProviderAttributeTypeDTO {
 	
-	private String openmrs_uuid;
+	private String uuid;
 	private String name;
 	private int retired;
-	public String getOpenmrs_providerAttributeTypeuuid() {
-		return openmrs_uuid;
+	
+	public String getUuid() {
+		return uuid;
 	}
-	public void setOpenmrs_providerAttributeTypeuuid(String openmrs_providerAttributeTypeuuid) {
-		this.openmrs_uuid = openmrs_providerAttributeTypeuuid;
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
+	}
+	public int getRetired() {
+		return retired;
+	}
+	public void setRetired(int retired) {
+		this.retired = retired;
 	}
 	public String getName() {
 		return name;
