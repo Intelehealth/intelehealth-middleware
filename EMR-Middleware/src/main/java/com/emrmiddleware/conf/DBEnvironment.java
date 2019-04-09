@@ -16,5 +16,19 @@ public class DBEnvironment {
 		
 		return DBEnvironment;
 	}
+	
+	public String getAPIBaseURL(){
+		String Base_URL = "";
+		if (Resources.DEV_MODE){
+			Base_URL = "http://142.93.221.37:8080/openmrs/ws/rest/v1/";
+		}
+		else{
+			Base_URL = "staging";
+			//DBEnvironment = "ProtoType_Env";
+		}
+		
+		return Base_URL;
+		
+	}
 
 }

@@ -1,0 +1,37 @@
+package com.emrmiddleware.api;
+import com.emrmiddleware.conf.DBEnvironment;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+
+import retrofit2.Retrofit;
+
+
+
+public class APIClient {
+	
+	 private static Retrofit retrofit = null;
+
+	    public static Retrofit getClient() {
+
+	        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+	        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+	        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new BasicAuthInterceptor("admin", "Admin123")).build();
+            DBEnvironment dbenv = new DBEnvironment();
+	        Gson gson = new GsonBuilder()
+	                .setLenient()
+	                .create();
+	        retrofit = new Retrofit.Builder()
+	                .baseUrl(dbenv.getAPIBaseURL())
+	                .addConverterFactory(retrofit2.converter.gson.GsonConverterFactory.create(gson))
+	                .client(client)
+	                .build();
+
+
+
+	        return retrofit;
+	    }
+
+}

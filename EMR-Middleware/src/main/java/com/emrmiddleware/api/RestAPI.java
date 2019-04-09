@@ -1,0 +1,26 @@
+package com.emrmiddleware.api;
+
+import java.util.List;
+
+import com.emrmiddleware.api.dto.PersonDTO;
+import com.emrmiddleware.dto.PatientDTO;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.http.Body;
+import retrofit2.http.Header;
+import retrofit2.http.POST;
+import retrofit2.http.Query;
+
+public interface RestAPI {
+	
+	@POST("patients")
+	Call<PatientDTO> addPatient(@Body PatientDTO patientdto);
+	
+  // @POST("person")
+   //Call<ResponseBody> addPerson(@Header("Authorization") String credentials,@Body PersonDTO persondto);
+   
+   @POST("person")
+   Call<ResponseBody> addPerson(@Body PersonDTO persondto);
+
+}
