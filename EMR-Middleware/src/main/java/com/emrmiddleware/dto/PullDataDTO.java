@@ -6,6 +6,7 @@ import java.util.Date;
 public class PullDataDTO {
 
 	private String pullexecutedtime;//This will be used for sync purpose in android device
+	private ArrayList<PersonDTO> personList;
 	private ArrayList<PatientDTO> patientlist;
 	private ArrayList<PatientAttributeTypeDTO> patientAttributeTypeListMaster;
 	private ArrayList<PatientAttributeDTO> patientAttributesList;
@@ -18,6 +19,14 @@ public class PullDataDTO {
 	private ArrayList<ProviderAttributeDTO> providerAttributeList;
 	
 	
+	public ArrayList<PersonDTO> getPersonList() {
+		return personList;
+	}
+
+	public void setPersonList(ArrayList<PersonDTO> personList) {
+		this.personList = personList;
+	}
+
 	public ArrayList<ProviderAttributeDTO> getProviderAttributeList() {
 		return providerAttributeList;
 	}

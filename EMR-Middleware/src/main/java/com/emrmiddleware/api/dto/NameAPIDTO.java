@@ -1,6 +1,6 @@
 package com.emrmiddleware.api.dto;
 
-public class NameDTO {
+public class NameAPIDTO {
 	
 	private String givenName;
 	private String middleName;

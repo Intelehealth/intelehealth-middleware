@@ -2,13 +2,13 @@ package com.emrmiddleware.api.dto;
 
 import java.util.ArrayList;
 
-public class PersonDTO {
+public class PersonAPIDTO {
 
 	private String uuid;
-	private ArrayList<NameDTO> names = new ArrayList<NameDTO>();
+	private ArrayList<NameAPIDTO> names = new ArrayList<NameAPIDTO>();
 	private String birthdate;
-	ArrayList < Object > attributes = new ArrayList < Object > ();
-	private ArrayList<AddressDTO> addresses = new ArrayList<AddressDTO>();
+	ArrayList < AttributeAPIDTO > attributes = new ArrayList < AttributeAPIDTO > ();
+	private ArrayList<AddressAPIDTO> addresses = new ArrayList<AddressAPIDTO>();
 	private String gender;
 	
 	
@@ -24,10 +24,10 @@ public class PersonDTO {
 	public void setUuid(String uuid) {
 		this.uuid = uuid;
 	}
-	public ArrayList<NameDTO> getNames() {
+	public ArrayList<NameAPIDTO> getNames() {
 		return names;
 	}
-	public void setNames(ArrayList<NameDTO> names) {
+	public void setNames(ArrayList<NameAPIDTO> names) {
 		this.names = names;
 	}
 	public String getBirthdate() {
@@ -36,24 +36,25 @@ public class PersonDTO {
 	public void setBirthdate(String birthdate) {
 		this.birthdate = birthdate;
 	}
-	public ArrayList<Object> getAttributes() {
+	
+	public ArrayList<AttributeAPIDTO> getAttributes() {
 		return attributes;
 	}
-	public void setAttributes(ArrayList<Object> attributes) {
+	public void setAttributes(ArrayList<AttributeAPIDTO> attributes) {
 		this.attributes = attributes;
 	}
-	public ArrayList<AddressDTO> getAddresses() {
+	public ArrayList<AddressAPIDTO> getAddresses() {
 		return addresses;
 	}
-	public void setAddresses(ArrayList<AddressDTO> addresses) {
+	public void setAddresses(ArrayList<AddressAPIDTO> addresses) {
 		this.addresses = addresses;
 	}
 	
-	public void addAddresses(AddressDTO addressdto){
+	public void addAddresses(AddressAPIDTO addressdto){
 		this.addresses.add(addressdto);
 			
 	}
-	public void addName(NameDTO namedto){
+	public void addName(NameAPIDTO namedto){
 		this.names.add(namedto);
 	}
 }

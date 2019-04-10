@@ -26,5 +26,6 @@
     <mapper class="com.emrmiddleware.dmo.ObsDMO" />
     <mapper class="com.emrmiddleware.dmo.LocationDMO" />
     <mapper class="com.emrmiddleware.dmo.ProviderDMO" />
+    <mapper class="com.emrmiddleware.dmo.PersonDMO" />
    </mappers>
 </configuration>

@@ -1,6 +1,6 @@
 package com.emrmiddleware.api.dto;
 
-public class AddressDTO {
+public class AddressAPIDTO {
 	
 	private String address1;
 	private String address2;

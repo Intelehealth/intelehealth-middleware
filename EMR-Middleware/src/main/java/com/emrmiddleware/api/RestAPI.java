@@ -2,7 +2,7 @@ package com.emrmiddleware.api;
 
 import java.util.List;
 
-import com.emrmiddleware.api.dto.PersonDTO;
+import com.emrmiddleware.api.dto.PersonAPIDTO;
 import com.emrmiddleware.dto.PatientDTO;
 
 import okhttp3.ResponseBody;
@@ -10,6 +10,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface RestAPI {
@@ -21,6 +22,9 @@ public interface RestAPI {
    //Call<ResponseBody> addPerson(@Header("Authorization") String credentials,@Body PersonDTO persondto);
    
    @POST("person")
-   Call<ResponseBody> addPerson(@Body PersonDTO persondto);
+   Call<ResponseBody> addPerson(@Body PersonAPIDTO persondto);
+   
+   @POST("person/{uuid}")
+   Call<ResponseBody> editPerson(@Path("uuid") String uuid,@Body PersonAPIDTO persondto);
 
 }

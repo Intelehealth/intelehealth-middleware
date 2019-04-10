@@ -15,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.emrmiddleware.action.PushDataAction;
+import com.emrmiddleware.dto.PullDataDTO;
 import com.emrmiddleware.dto.PushDataDTO;
 import com.emrmiddleware.dto.ResponseDTO;
 import com.emrmiddleware.exception.ActionException;
@@ -38,10 +39,13 @@ public class PushData {
 		ResponseDTO responsedto = new ResponseDTO();
 		Gson gson = new Gson();
 		PushDataAction pushdataaction = new PushDataAction();
+		PullDataDTO pulldatadto = new PullDataDTO();
 		//PushDataDTO pushdatadto = new PushDataDTO();
 		//pushdatadto = gson.fromJson(pushdata,PushDataDTO.class);
 		try {
-			pushdataaction.pushData(pushdatadto);
+			pulldatadto=pushdataaction.pushData(pushdatadto);
+			responsedto.setStatus(Resources.OK);
+			responsedto.setData(pulldatadto);
 		} catch (DAOException e) {
 			logger.error(Resources.DAOEXCEPTION, e);
 			responsedto.setStatusMessage(Resources.ERROR, Resources.SERVER_ERROR, Resources.UNABLETOPROCESS);

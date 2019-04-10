@@ -5,7 +5,10 @@ import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.emrmiddleware.api.dto.PersonAPIDTO;
 import com.emrmiddleware.dto.PatientDTO;
+import com.emrmiddleware.dto.PersonDTO;
+import com.emrmiddleware.dto.PullDataDTO;
 import com.emrmiddleware.dto.PushDataDTO;
 import com.emrmiddleware.exception.DAOException;
 import com.emrmiddleware.exception.ActionException;
@@ -15,20 +18,22 @@ public class PushDataAction {
 
 	private final Logger logger = LoggerFactory.getLogger(PushData.class);
 
-	public PushDataDTO pushData(PushDataDTO pushdatadto) throws DAOException, ActionException {
+	public PullDataDTO pushData(PushDataDTO pushdatadto) throws DAOException, ActionException {
 
-		ArrayList<PatientDTO> patientList = pushdatadto.getPatients();
+		ArrayList<PersonAPIDTO> personList = pushdatadto.getPersons();
+		PullDataDTO pulldatadto = new PullDataDTO();
 		try {
-			PatientAction patientaction = new PatientAction();
-			patientaction.setPatients(patientList);
+			PersonAction personaction = new PersonAction();
+			//patientaction.setPatients(patientList);
+			  ArrayList<PersonDTO> persons=personaction.setPersons(personList);
+			  pulldatadto.setPersonList(persons);
+			
 
-		} /*
-			 * catch (DAOException e) { throw new DAOException(e.getMessage(),
-			 * e); }
-			 */catch (Exception e) {
+		} catch (Exception e) {
 			throw new ActionException(e.getMessage(), e);
+				
 		}
-		return pushdatadto;
+		return pulldatadto;
 	}
 
 }
