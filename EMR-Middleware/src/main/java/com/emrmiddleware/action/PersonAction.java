@@ -27,7 +27,6 @@ import com.emrmiddleware.exception.ActionException;
 public class PersonAction {
 
 	private final Logger logger = LoggerFactory.getLogger(PersonAction.class);
-	//RestAPI restapiintf = APIClient.getClient().create(RestAPI.class);
 	APIClient apiclient = new APIClient();
 	RestAPI restapiintf = apiclient.getClient().create(RestAPI.class);
 
@@ -37,12 +36,9 @@ public class PersonAction {
 		PersonAPIDTO personforerror = new PersonAPIDTO();
 		boolean isPersonSet=true;
 		Gson gson = new Gson();
-		int i=0;
 		try {
 			for ( PersonAPIDTO person : personList) {
-				// processPerson(person);
 				personforerror=person;
-				logger.info("counter : "+i++);
 				if (isPersonExists(person.getUuid())) {
 					isPersonSet=editPersonOpenMRS(person);
 				} else {
@@ -76,7 +72,7 @@ public class PersonAction {
 	private boolean addPersonOpenMRS(PersonAPIDTO persondto) {
 		Gson gson = new Gson();
 		String val = "";
-		logger.info("patient value : " + gson.toJson(persondto));
+		logger.info("add person value : " + gson.toJson(persondto));
 		
 		try {
 			Call<ResponseBody> callperson = restapiintf.addPerson(persondto);
@@ -103,7 +99,7 @@ public class PersonAction {
 	private boolean editPersonOpenMRS(PersonAPIDTO persondto) {
 		Gson gson = new Gson();
 		String val = "";
-		logger.info("edit patient value : " + gson.toJson(persondto));
+		logger.info("edit person value : " + gson.toJson(persondto));
 		
 		try {
 			Call<ResponseBody> callperson = restapiintf.editPerson(persondto.getUuid(), persondto);
