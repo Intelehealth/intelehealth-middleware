@@ -73,28 +73,6 @@ public class PersonAction {
 
 	}
 
-	/*
-	 * private PersonAPIDTO getPersonFromPatient(PatientDTO patientdto){
-	 * PersonAPIDTO persondto = new PersonAPIDTO(); NameAPIDTO namedto = new
-	 * NameAPIDTO(); AddressAPIDTO addressdto = new AddressAPIDTO();
-	 * persondto.setUuid(patientdto.getUuid());
-	 * namedto.setGivenName(patientdto.getFirstname());
-	 * namedto.setMiddleName(patientdto.getMiddlename());
-	 * namedto.setFamilyName(patientdto.getLastname());
-	 * persondto.addName(namedto);
-	 * addressdto.setAddress1(patientdto.getAddress1());
-	 * addressdto.setAddress2(patientdto.getAddress2());
-	 * addressdto.setCityVillage(patientdto.getCityvillage());
-	 * addressdto.setCountry(patientdto.getCountry());
-	 * addressdto.setPostalCode(patientdto.getPostalcode());
-	 * addressdto.setStateProvince(patientdto.getStateprovince());
-	 * persondto.addAddresses(addressdto); persondto.setBirthdate("1996-02-06");
-	 * persondto.setGender(patientdto.getGender());
-	 * 
-	 * return persondto;
-	 * 
-	 * }
-	 */
 	private boolean addPersonOpenMRS(PersonAPIDTO persondto) {
 		Gson gson = new Gson();
 		String val = "";
