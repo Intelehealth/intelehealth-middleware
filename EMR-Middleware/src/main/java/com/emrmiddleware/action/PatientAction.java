@@ -50,6 +50,7 @@ public class PatientAction {
 				patientdto = new PatientDTO();
 				patientdto.setUuid(patient.getPerson());
 				patientdto.setSyncd(isPatientSet);
+				patientdto.setOpenmrs_id(openMrsId);
 				patients.add(patientdto);
 			}
 		} catch (Exception e) {
