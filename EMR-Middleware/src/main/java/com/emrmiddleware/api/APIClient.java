@@ -18,7 +18,7 @@ public class APIClient {
 
 	        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
 	        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-	        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new BasicAuthInterceptor("admin", "Admin123")).build();
+	        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new BasicAuthInterceptor("admin", "Admin123")).build();//Hardcode of username and password will go in final release
             DBEnvironment dbenv = new DBEnvironment();
 	        Gson gson = new GsonBuilder()
 	                .setLenient()
@@ -38,7 +38,7 @@ public class APIClient {
 
 	        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
 	        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-	        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new BasicAuthInterceptor("admin", "Admin123")).build();
+	        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new BasicAuthInterceptor("admin", "Admin123")).build();//Hardcode of username and password will go in final release
             DBEnvironment dbenv = new DBEnvironment();
 	        Gson gson = new GsonBuilder()
 	                .setLenient()

@@ -12,7 +12,15 @@ public class VisitDTO {
 	private Date enddate;
 	private String locationuuid;
 	private int creator;
+	private boolean syncd;
 	
+	
+	public boolean isSyncd() {
+		return syncd;
+	}
+	public void setSyncd(boolean syncd) {
+		this.syncd = syncd;
+	}
 	public String getVisit_type_uuid() {
 		return visit_type_uuid;
 	}

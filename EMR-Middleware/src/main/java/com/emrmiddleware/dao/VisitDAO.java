@@ -32,6 +32,23 @@ public class VisitDAO {
 			session.close();
 		}
 	}
+	
+	public VisitDTO getVisit(String visituuid) throws DAOException {
+
+		SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
+		SqlSession session = sessionfactory.openSession();
+		VisitDTO visitdto = new VisitDTO();
+		try {
+
+			VisitDMO patientdmo = session.getMapper(VisitDMO.class);
+			visitdto = patientdmo.getVisit(visituuid);
+			return visitdto;
+		} catch (PersistenceException e) {
+			throw new DAOException(e.getMessage(), e);
+		} finally {
+			session.close();
+		}
+	}
 
 }
 

@@ -4,15 +4,25 @@ import java.util.ArrayList;
 
 import com.emrmiddleware.api.dto.PatientAPIDTO;
 import com.emrmiddleware.api.dto.PersonAPIDTO;
+import com.emrmiddleware.api.dto.VisitAPIDTO;
 
 public class PushDataDTO {
 	
 	private ArrayList<PatientAPIDTO> patients;
 	private ArrayList<PersonAPIDTO> persons;
+	private ArrayList<VisitAPIDTO> visits;
 	private boolean syncd=true;
 	
 
 	
+	public ArrayList<VisitAPIDTO> getVisits() {
+		return visits;
+	}
+
+	public void setVisits(ArrayList<VisitAPIDTO> visits) {
+		this.visits = visits;
+	}
+
 	public ArrayList<PersonAPIDTO> getPersons() {
 		return persons;
 	}

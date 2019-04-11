@@ -5,6 +5,7 @@ import java.util.List;
 import com.emrmiddleware.api.dto.IDGenAPIDTO;
 import com.emrmiddleware.api.dto.PatientAPIDTO;
 import com.emrmiddleware.api.dto.PersonAPIDTO;
+import com.emrmiddleware.api.dto.VisitAPIDTO;
 import com.emrmiddleware.dto.PatientDTO;
 
 import okhttp3.ResponseBody;
@@ -38,5 +39,11 @@ public interface RestAPI {
    
    @GET("generateIdentifier.form")
    Call<ResponseBody> getOpenMrsId(@Query("source") String source,@Query("username") String username,@Query("password") String password);
+   
+   @POST("visit")
+   Call<ResponseBody> addVisit(@Body VisitAPIDTO visitapidto);
+   
+   @POST("visit/{uuid}")
+   Call<ResponseBody> editVisit(@Path("uuid") String uuid,@Body VisitAPIDTO visitapidto);
 
 }
