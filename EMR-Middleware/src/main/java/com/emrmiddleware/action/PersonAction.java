@@ -27,7 +27,9 @@ import com.emrmiddleware.exception.ActionException;
 public class PersonAction {
 
 	private final Logger logger = LoggerFactory.getLogger(PersonAction.class);
-	RestAPI restapiintf = APIClient.getClient().create(RestAPI.class);
+	//RestAPI restapiintf = APIClient.getClient().create(RestAPI.class);
+	APIClient apiclient = new APIClient();
+	RestAPI restapiintf = apiclient.getClient().create(RestAPI.class);
 
 	public ArrayList<PersonDTO> setPersons(ArrayList<PersonAPIDTO> personList) throws DAOException, ActionException {
 		ArrayList<PersonDTO> persons = new ArrayList<PersonDTO>();

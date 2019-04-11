@@ -24,7 +24,15 @@ public class PatientDTO {
 	private String patient_photo;
 	private String economicstatus;
 	private String caste;
+	private boolean syncd=true;
 	
+	
+	public boolean isSyncd() {
+		return syncd;
+	}
+	public void setSyncd(boolean syncd) {
+		this.syncd = syncd;
+	}
 	public int getDead() {
 		return dead;
 	}

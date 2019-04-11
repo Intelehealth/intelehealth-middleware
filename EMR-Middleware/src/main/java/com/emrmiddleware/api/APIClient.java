@@ -12,9 +12,9 @@ import retrofit2.Retrofit;
 
 public class APIClient {
 	
-	 private static Retrofit retrofit = null;
+	 private  Retrofit retrofit = null;
 
-	    public static Retrofit getClient() {
+	    public  Retrofit getClient() {
 
 	        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
 	        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -33,5 +33,27 @@ public class APIClient {
 
 	        return retrofit;
 	    }
+	    
+	    public  Retrofit getIdClient() {
+
+	        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+	        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+	        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new BasicAuthInterceptor("admin", "Admin123")).build();
+            DBEnvironment dbenv = new DBEnvironment();
+	        Gson gson = new GsonBuilder()
+	                .setLenient()
+	                .create();
+	        retrofit = new Retrofit.Builder()
+	                .baseUrl(dbenv.getIdGenUrl())
+	                .addConverterFactory(retrofit2.converter.gson.GsonConverterFactory.create(gson))
+	                .client(client)
+	                .build();
+
+
+
+	        return retrofit;
+	    }
+	    
+	    
 
 }

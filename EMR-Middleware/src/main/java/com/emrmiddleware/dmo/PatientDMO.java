@@ -22,4 +22,7 @@ public interface PatientDMO {
     
     @Select("select person_attribute.uuid as uuid,person.uuid as patientuuid,person_attribute.value, person_attribute_type.uuid as person_attribute_type_uuid from person_attribute,patient_identifier,person,person_attribute_type ,location where person_attribute.person_id=person.person_id and patient_identifier.location_id=location.location_id and person_attribute.person_attribute_type_id=person_attribute_type.person_attribute_type_id and patient_identifier.patient_id=person.person_id and  COALESCE(person_attribute.date_changed,person_attribute.date_created) >=#{lastchangedtime} and location.uuid=#{locationuuid}")
     public ArrayList<PatientAttributeDTO> getPatientAttributes(@Param("lastchangedtime") Date lastchangedtime,@Param("locationuuid") String locationuuid);
+    
+    @Select("select person.uuid from patient_identifier,person where person.person_id=patient_identifier.patient_id and person.uuid=#{uuid}")
+    public PatientDTO getPatient(@Param("uuid") String uuid);
 }

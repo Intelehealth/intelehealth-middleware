@@ -31,4 +31,15 @@ public class DBEnvironment {
 		
 	}
 
+	public String getIdGenUrl(){
+		String ID_URL ="";
+		if (Resources.DEV_MODE){
+			ID_URL = "http://142.93.221.37:8080/openmrs/module/idgen/";
+		}
+		else{
+			ID_URL = "staging";
+			//DBEnvironment = "ProtoType_Env";
+		}
+		return ID_URL;
+	}
 }

@@ -2,11 +2,12 @@ package com.emrmiddleware.dto;
 
 import java.util.ArrayList;
 
+import com.emrmiddleware.api.dto.PatientAPIDTO;
 import com.emrmiddleware.api.dto.PersonAPIDTO;
 
 public class PushDataDTO {
 	
-	private ArrayList<PatientDTO> patients;
+	private ArrayList<PatientAPIDTO> patients;
 	private ArrayList<PersonAPIDTO> persons;
 	private boolean syncd=true;
 	
@@ -20,11 +21,13 @@ public class PushDataDTO {
 		this.persons = persons;
 	}
 
-	public ArrayList<PatientDTO> getPatients() {
+	
+
+	public ArrayList<PatientAPIDTO> getPatients() {
 		return patients;
 	}
 
-	public void setPatients(ArrayList<PatientDTO> patients) {
+	public void setPatients(ArrayList<PatientAPIDTO> patients) {
 		this.patients = patients;
 	}
 
