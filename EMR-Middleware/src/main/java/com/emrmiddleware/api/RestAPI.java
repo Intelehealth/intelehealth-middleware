@@ -2,6 +2,7 @@ package com.emrmiddleware.api;
 
 import java.util.List;
 
+import com.emrmiddleware.api.dto.EncounterAPIDTO;
 import com.emrmiddleware.api.dto.IDGenAPIDTO;
 import com.emrmiddleware.api.dto.PatientAPIDTO;
 import com.emrmiddleware.api.dto.PersonAPIDTO;
@@ -45,5 +46,11 @@ public interface RestAPI {
    
    @POST("visit/{uuid}")
    Call<ResponseBody> editVisit(@Path("uuid") String uuid,@Body VisitAPIDTO visitapidto);
+   
+   @POST("encounter")
+   Call<ResponseBody> addEncounter(@Body EncounterAPIDTO encounterapidto);
+   
+   @POST("encounter/{uuid}")
+   Call<ResponseBody> editEncounter(@Path("uuid") String uuid,@Body EncounterAPIDTO visitapidto);
 
 }

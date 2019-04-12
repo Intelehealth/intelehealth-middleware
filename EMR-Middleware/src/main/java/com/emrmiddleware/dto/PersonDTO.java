@@ -3,7 +3,7 @@ package com.emrmiddleware.dto;
 public class PersonDTO {
 	
 	private String uuid;
-	private boolean syncd;
+	private boolean syncd=true;
 	
     
 	public boolean isSyncd() {

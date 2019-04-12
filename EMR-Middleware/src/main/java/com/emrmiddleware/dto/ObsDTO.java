@@ -4,11 +4,18 @@ public class ObsDTO {
 	
 	private String uuid;
 	private String encounteruuid;
-	private int conceptid;
+	private String conceptuuid;
 	private String value;
 	private int creator;
+	private int voided;
 	
 	
+	public int getVoided() {
+		return voided;
+	}
+	public void setVoided(int voided) {
+		this.voided = voided;
+	}
 	public String getUuid() {
 		return uuid;
 	}
@@ -21,11 +28,12 @@ public class ObsDTO {
 	public void setEncounteruuid(String encounteruuid) {
 		this.encounteruuid = encounteruuid;
 	}
-	public int getConceptid() {
-		return conceptid;
+	
+	public String getConceptuuid() {
+		return conceptuuid;
 	}
-	public void setConceptid(int conceptid) {
-		this.conceptid = conceptid;
+	public void setConceptuuid(String conceptuuid) {
+		this.conceptuuid = conceptuuid;
 	}
 	public String getValue() {
 		return value;

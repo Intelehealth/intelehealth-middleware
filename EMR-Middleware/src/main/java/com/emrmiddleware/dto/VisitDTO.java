@@ -12,7 +12,7 @@ public class VisitDTO {
 	private Date enddate;
 	private String locationuuid;
 	private int creator;
-	private boolean syncd;
+	private boolean syncd=true;
 	
 	
 	public boolean isSyncd() {

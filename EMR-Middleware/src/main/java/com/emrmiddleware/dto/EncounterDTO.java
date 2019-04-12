@@ -4,7 +4,15 @@ public class EncounterDTO {
 	private String uuid;
 	private String visituuid;
 	private String encounter_type;
+	private boolean syncd=true;
 	
+	
+	public boolean isSyncd() {
+		return syncd;
+	}
+	public void setSyncd(boolean syncd) {
+		this.syncd = syncd;
+	}
 	public String getUuid() {
 		return uuid;
 	}

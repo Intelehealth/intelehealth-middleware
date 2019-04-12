@@ -33,4 +33,21 @@ public class EncounterDAO {
 			session.close();
 		}
 	}
+	
+	public EncounterDTO getEncounter(String encounteruuid) throws DAOException {
+
+		SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
+		SqlSession session = sessionfactory.openSession();
+		EncounterDTO encounterdto = new EncounterDTO();
+		try {
+
+			EncounterDMO encounterdmo = session.getMapper(EncounterDMO.class);
+			encounterdto = encounterdmo.getEncounter(encounteruuid);
+			return encounterdto;
+		} catch (PersistenceException e) {
+			throw new DAOException(e.getMessage(), e);
+		} finally {
+			session.close();
+		}
+	}
 }

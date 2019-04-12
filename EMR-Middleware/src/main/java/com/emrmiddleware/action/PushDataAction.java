@@ -5,9 +5,11 @@ import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.emrmiddleware.api.dto.EncounterAPIDTO;
 import com.emrmiddleware.api.dto.PatientAPIDTO;
 import com.emrmiddleware.api.dto.PersonAPIDTO;
 import com.emrmiddleware.api.dto.VisitAPIDTO;
+import com.emrmiddleware.dto.EncounterDTO;
 import com.emrmiddleware.dto.PatientDTO;
 import com.emrmiddleware.dto.PersonDTO;
 import com.emrmiddleware.dto.PullDataDTO;
@@ -26,15 +28,17 @@ public class PushDataAction {
 		ArrayList<PersonAPIDTO> personList = new ArrayList<PersonAPIDTO>();
 		ArrayList<PatientAPIDTO> patientList;
 		ArrayList<VisitAPIDTO> visitList;
+		ArrayList<EncounterAPIDTO> encounterList;
 		PullDataDTO pulldatadto = new PullDataDTO();
 		try {
 			personList = pushdatadto.getPersons();
 			patientList = pushdatadto.getPatients();
 			visitList = pushdatadto.getVisits();
-			// PullDataDTO pulldatadto = new PullDataDTO();
+			encounterList = pushdatadto.getEncounters();
 			PersonAction personaction = new PersonAction();
 			PatientAction patientaction = new PatientAction();
 			VisitAction visitaction = new VisitAction();
+			EncounterAction encounteraction = new EncounterAction();
 			// patientaction.setPatients(patientList);
 			if (personList != null) {
 				ArrayList<PersonDTO> persons = personaction.setPersons(personList);
@@ -47,6 +51,10 @@ public class PushDataAction {
             if (visitList!=null){
             	ArrayList<VisitDTO> visits = visitaction.setVisits(visitList);
             	pulldatadto.setVisitlist(visits);
+            }
+            if (encounterList!=null){
+            	ArrayList<EncounterDTO> encounters = encounteraction.setEncounters(encounterList);
+            	pulldatadto.setEncounterlist(encounters);
             }
 
 		} catch (Exception e) {
