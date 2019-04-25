@@ -6,6 +6,7 @@ import javax.annotation.security.RolesAllowed;
 import javax.servlet.ServletContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -18,6 +19,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.emrmiddleware.action.PullDataAction;
+import com.emrmiddleware.authentication.AuthenticationUtil;
 import com.emrmiddleware.dto.PullDataDTO;
 import com.emrmiddleware.dto.ResponseDTO;
 import com.emrmiddleware.exception.ActionException;
@@ -40,12 +42,20 @@ public class PullData {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	public Response getData(@PathParam("locationuuid") String locationuuid,
-			@PathParam("lastpulldate") String lastpulldatatime) {
+			@PathParam("lastpulldate") String lastpulldatatime,@HeaderParam("authorization") String authString) {
 
 		ResponseDTO responsedto = new ResponseDTO();
 		PullDataDTO pulldatadto = new PullDataDTO();
+		
 		Gson gson = new Gson();
 		try {
+			AuthenticationUtil authutil = new AuthenticationUtil();
+			boolean isAuthenticated=authutil.isUserAuthenticated(authString);
+			if (isAuthenticated==false){
+				logger.error("No Authorization");
+				responsedto.setStatusMessage(Resources.ERROR, Resources.AUTHERROR, Resources.UNABLETOPROCESS);
+				return Response.status(403).entity(gson.toJson(responsedto)).build();
+			}
 			PullDataAction pulldataaction = new PullDataAction();
 			Timestamp lastdatapulltime = EmrUtils.getFormatDate(lastpulldatatime);
 			pulldatadto = pulldataaction.getPullData(lastdatapulltime, locationuuid);

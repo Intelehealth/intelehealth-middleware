@@ -4,6 +4,7 @@ import javax.servlet.ServletContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -34,11 +35,11 @@ public class PushData {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	
-	public Response setData(PushDataDTO pushdatadto){
+	public Response setData(PushDataDTO pushdatadto,@HeaderParam("authorization") String authString){
 		
 		ResponseDTO responsedto = new ResponseDTO();
 		Gson gson = new Gson();
-		PushDataAction pushdataaction = new PushDataAction();
+		PushDataAction pushdataaction = new PushDataAction(authString);
 		PullDataDTO pulldatadto = new PullDataDTO();
 		//PushDataDTO pushdatadto = new PushDataDTO();
 		//pushdatadto = gson.fromJson(pushdata,PushDataDTO.class);

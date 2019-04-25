@@ -22,6 +22,11 @@ import com.emrmiddleware.rest.PushData;
 public class PushDataAction {
 
 	private final Logger logger = LoggerFactory.getLogger(PushData.class);
+	String authString;
+
+	public PushDataAction(String auth) {
+		authString = auth;
+	}
 
 	public PullDataDTO pushData(PushDataDTO pushdatadto) throws DAOException, ActionException {
 
@@ -35,27 +40,27 @@ public class PushDataAction {
 			patientList = pushdatadto.getPatients();
 			visitList = pushdatadto.getVisits();
 			encounterList = pushdatadto.getEncounters();
-			PersonAction personaction = new PersonAction();
-			PatientAction patientaction = new PatientAction();
-			VisitAction visitaction = new VisitAction();
-			EncounterAction encounteraction = new EncounterAction();
+			PersonAction personaction = new PersonAction(authString);
+			PatientAction patientaction = new PatientAction(authString);
+			VisitAction visitaction = new VisitAction(authString);
+			EncounterAction encounteraction = new EncounterAction(authString);
 			// patientaction.setPatients(patientList);
 			if (personList != null) {
 				ArrayList<PersonDTO> persons = personaction.setPersons(personList);
 				pulldatadto.setPersonList(persons);
 			}
-            if (patientList !=null){
-			    ArrayList<PatientDTO>patients =  patientaction.setPatients(patientList);
-			    pulldatadto.setPatientlist(patients);
-            }
-            if (visitList!=null){
-            	ArrayList<VisitDTO> visits = visitaction.setVisits(visitList);
-            	pulldatadto.setVisitlist(visits);
-            }
-            if (encounterList!=null){
-            	ArrayList<EncounterDTO> encounters = encounteraction.setEncounters(encounterList);
-            	pulldatadto.setEncounterlist(encounters);
-            }
+			if (patientList != null) {
+				ArrayList<PatientDTO> patients = patientaction.setPatients(patientList);
+				pulldatadto.setPatientlist(patients);
+			}
+			if (visitList != null) {
+				ArrayList<VisitDTO> visits = visitaction.setVisits(visitList);
+				pulldatadto.setVisitlist(visits);
+			}
+			if (encounterList != null) {
+				ArrayList<EncounterDTO> encounters = encounteraction.setEncounters(encounterList);
+				pulldatadto.setEncounterlist(encounters);
+			}
 
 		} catch (Exception e) {
 			throw new ActionException(e.getMessage(), e);

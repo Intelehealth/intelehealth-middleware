@@ -22,23 +22,30 @@ import retrofit2.Response;
 public class VisitAction {
 
 	private final Logger logger = LoggerFactory.getLogger(VisitAction.class);
-	APIClient apiclient = new APIClient();
-	RestAPI restapiintf = apiclient.getClient().create(RestAPI.class);
+	APIClient apiclient;
+	RestAPI restapiintf;
+	String authString;
+
+	public VisitAction(String auth) {
+		authString = auth;
+		apiclient = new APIClient(authString);
+		restapiintf = apiclient.getClient().create(RestAPI.class);
+	}
 
 	public ArrayList<VisitDTO> setVisits(ArrayList<VisitAPIDTO> visitList) throws DAOException, ActionException {
 		ArrayList<VisitDTO> visits = new ArrayList<VisitDTO>();
-		VisitDTO visitdto ;
+		VisitDTO visitdto;
 		VisitAPIDTO visitforerror = new VisitAPIDTO();
-		boolean isVisitSet=true;
+		boolean isVisitSet = true;
 		Gson gson = new Gson();
-		int i=0;
+		int i = 0;
 		try {
-			for ( VisitAPIDTO visit : visitList) {
-				visitforerror=visit;
+			for (VisitAPIDTO visit : visitList) {
+				visitforerror = visit;
 				if (isVisitExists(visit.getUuid())) {
-					isVisitSet=editVisitOpenMRS(visit);
+					isVisitSet = editVisitOpenMRS(visit);
 				} else {
-					isVisitSet=addVisitOpenMRS(visit);
+					isVisitSet = addVisitOpenMRS(visit);
 				}
 				visitdto = new VisitDTO();
 				visitdto.setUuid(visit.getUuid());
@@ -46,9 +53,9 @@ public class VisitAction {
 				visits.add(visitdto);
 			}
 		} catch (Exception e) {
-			 logger.error("Error occurred for json string : "+gson.toJson(visitforerror));
-			 logger.error(e.getMessage(),e);
-			//throw new ActionException(e.getMessage(), e);
+			logger.error("Error occurred for json string : " + gson.toJson(visitforerror));
+			logger.error(e.getMessage(), e);
+			// throw new ActionException(e.getMessage(), e);
 		}
 		return visits;
 
@@ -65,12 +72,11 @@ public class VisitAction {
 
 	}
 
-	
 	private boolean addVisitOpenMRS(VisitAPIDTO visitapidto) {
 		Gson gson = new Gson();
 		String val = "";
 		logger.info("visit value : " + gson.toJson(visitapidto));
-		
+
 		try {
 			Call<ResponseBody> callvisit = restapiintf.addVisit(visitapidto);
 			Response<ResponseBody> response = callvisit.execute();
@@ -86,7 +92,7 @@ public class VisitAction {
 			// TODO Auto-generated catch block
 			logger.error(e.getMessage(), e);
 			return false;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 			return false;
 		}
@@ -97,9 +103,10 @@ public class VisitAction {
 		Gson gson = new Gson();
 		String val = "";
 		logger.info("edit visit value : " + gson.toJson(visitapidto));
-		
+
 		try {
-			visitapidto.setPatient(null);//Not allowed to be set in edit for visit in openmrs
+			visitapidto.setPatient(null);// Not allowed to be set in edit for
+											// visit in openmrs
 			Call<ResponseBody> callvisit = restapiintf.editVisit(visitapidto.getUuid(), visitapidto);
 			Response<ResponseBody> response = callvisit.execute();
 			if (response.isSuccessful()) {

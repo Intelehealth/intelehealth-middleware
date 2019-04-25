@@ -19,7 +19,6 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
 
-
 /* This class also handles obs .In Openmrs if we pass obs with uuid in a new encounter , the obs gets created
  *  .If obs with existing uuid is sent with an encounter where encounteruuid already exists , a new obs uuid gets
  *   generated and the old uuid gets voided.Not coding for obs individually for now , as openmrs is handling and there is 
@@ -28,9 +27,16 @@ import retrofit2.Response;
 
 public class EncounterAction {
 	private final Logger logger = LoggerFactory.getLogger(EncounterAction.class);
-	APIClient apiclient = new APIClient();
-	RestAPI restapiintf = apiclient.getClient().create(RestAPI.class);
- 
+	APIClient apiclient;
+	RestAPI restapiintf;
+	String authString;
+
+	public EncounterAction(String auth) {
+		authString = auth;
+		apiclient = new APIClient(authString);
+		restapiintf = apiclient.getClient().create(RestAPI.class);
+	}
+
 	public ArrayList<EncounterDTO> setEncounters(ArrayList<EncounterAPIDTO> encounterList)
 			throws DAOException, ActionException {
 		ArrayList<EncounterDTO> encounters = new ArrayList<EncounterDTO>();
@@ -41,7 +47,7 @@ public class EncounterAction {
 		try {
 			for (EncounterAPIDTO encounter : encounterList) {
 				encounterforerror = encounter;
-				logger.info("Encounter json : "+gson.toJson(encounter));
+				logger.info("Encounter json : " + gson.toJson(encounter));
 				if (isEncounterExists(encounter.getUuid())) {
 					isEncounterSet = editEncounterOpenMRS(encounter);
 				} else {
@@ -102,7 +108,7 @@ public class EncounterAction {
 		Gson gson = new Gson();
 		String val = "";
 		logger.info("edit encounter value : " + gson.toJson(encounterapidto));
-       
+
 		try {
 
 			Call<ResponseBody> callencounter = restapiintf.editEncounter(encounterapidto.getUuid(), encounterapidto);

@@ -22,9 +22,18 @@ import retrofit2.Response;
 
 public class PatientAction {
 	private final Logger logger = LoggerFactory.getLogger(PersonAction.class);
-	APIClient apiclient = new APIClient();
-	RestAPI restapiintf = apiclient.getClient().create(RestAPI.class);
-	RestAPI restIdapiintf = apiclient.getIdClient().create(RestAPI.class);
+
+	RestAPI restIdapiintf;
+	APIClient apiclient;
+	RestAPI restapiintf;
+	String authString;
+
+	public PatientAction(String auth) {
+		authString = auth;
+		apiclient = new APIClient(authString);
+		restapiintf = apiclient.getClient().create(RestAPI.class);
+		restIdapiintf = apiclient.getIdClient().create(RestAPI.class);
+	}
 
 	public ArrayList<PatientDTO> setPatients(ArrayList<PatientAPIDTO> patientList)
 			throws DAOException, ActionException {
