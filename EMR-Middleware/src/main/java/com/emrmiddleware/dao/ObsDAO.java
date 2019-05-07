@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.emrmiddleware.conf.DBconfig;
 import com.emrmiddleware.dmo.EncounterDMO;
@@ -16,6 +18,7 @@ import com.emrmiddleware.exception.DAOException;
 
 public class ObsDAO {
 
+	private final Logger logger = LoggerFactory.getLogger(ObsDAO.class);
 	public ArrayList<ObsDTO> getObs(Timestamp lastdatapulltime, String locationuuid) throws DAOException {
 
 		SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
@@ -28,6 +31,7 @@ public class ObsDAO {
 			
 			return obslist;
 		} catch (PersistenceException e) {
+			logger.error(e.getMessage(),e);
 			throw new DAOException(e.getMessage(), e);
 		} finally {
 			session.close();

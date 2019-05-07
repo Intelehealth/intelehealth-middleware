@@ -10,9 +10,9 @@
       <dataSource type="POOLED">
        <property name="poolMaximumActiveConnections"     value="6"/>
         <property name="poolMaximumIdleConnections"       value="3"/>
-        <property name="poolMaximumCheckoutTime"          value="25000"/> 
+        <property name="poolMaximumCheckoutTime"          value="40000"/> 
         <property name="driver" value="com.mysql.cj.jdbc.Driver"/>  
-       <property name="url" value="jdbc:mysql://142.93.221.37:3306/openmrs?stringtype=unspecified"/>
+       <property name="url" value="jdbc:mysql://142.93.221.37:3306/openmrs?autoReconnect=true"/>
         <property name="username" value="root"/>
         <property name="password" value="!nt3L@20!9"/>
       </dataSource>
@@ -22,14 +22,38 @@
       <dataSource type="POOLED">
        <property name="poolMaximumActiveConnections"     value="6"/>
         <property name="poolMaximumIdleConnections"       value="3"/>
-        <property name="poolMaximumCheckoutTime"          value="25000"/> 
+        <property name="poolMaximumCheckoutTime"          value="40000"/> 
         <property name="driver" value="com.mysql.cj.jdbc.Driver"/>  
-       <property name="url" value="jdbc:mysql://localhost:3306/openmrs?stringtype=unspecified"/>
+       <property name="url" value="jdbc:mysql://localhost:3306/openmrs?autoReconnect=true"/>
         <property name="username" value="root"/>
         <property name="password" value="i10hi1c"/>
       </dataSource>
     </environment>
-   
+    
+    <environment id="filedevelopment">
+      <transactionManager type="JDBC"/>
+      <dataSource type="POOLED">
+       <property name="poolMaximumActiveConnections"     value="6"/>
+        <property name="poolMaximumIdleConnections"       value="3"/>
+        <property name="poolMaximumCheckoutTime"          value="40000"/> 
+        <property name="driver" value="com.mysql.cj.jdbc.Driver"/>  
+       <property name="url" value="jdbc:mysql://142.93.221.37:3306/openmrsimage?autoReconnect=true"/>
+        <property name="username" value="root"/>
+        <property name="password" value="!nt3L@20!9"/>
+      </dataSource>
+    </environment>
+    <environment id="intelehealthfiledevelopment">
+      <transactionManager type="JDBC"/>
+      <dataSource type="POOLED">
+       <property name="poolMaximumActiveConnections"     value="6"/>
+        <property name="poolMaximumIdleConnections"       value="3"/>
+        <property name="poolMaximumCheckoutTime"          value="40000"/> 
+        <property name="driver" value="com.mysql.cj.jdbc.Driver"/>  
+       <property name="url" value="jdbc:mysql://142.93.221.37:3306/openmrsimage?autoReconnect=true"/>
+        <property name="username" value="root"/>
+        <property name="password" value="!nt3L@20!9"/>
+      </dataSource>
+    </environment>
   </environments>
   <mappers>
     <mapper class="com.emrmiddleware.dmo.PatientDMO" />
@@ -40,5 +64,6 @@
     <mapper class="com.emrmiddleware.dmo.ProviderDMO" />
     <mapper class="com.emrmiddleware.dmo.PersonDMO" />
     <mapper class="com.emrmiddleware.dmo.UserCredentialsDMO" />
+    <mapper class="com.emrmiddleware.dmo.FileDMO" />
    </mappers>
 </configuration>

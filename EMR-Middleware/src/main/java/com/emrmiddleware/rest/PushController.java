@@ -1,64 +1,50 @@
 package com.emrmiddleware.rest;
 
-import java.sql.Timestamp;
-
-import javax.annotation.security.RolesAllowed;
 import javax.servlet.ServletContext;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
+import org.glassfish.jersey.media.multipart.FormDataParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.emrmiddleware.action.PullDataAction;
-import com.emrmiddleware.authentication.AuthenticationUtil;
+import com.emrmiddleware.action.PushDataAction;
 import com.emrmiddleware.dto.PullDataDTO;
+import com.emrmiddleware.dto.PushDataDTO;
 import com.emrmiddleware.dto.ResponseDTO;
 import com.emrmiddleware.exception.ActionException;
 import com.emrmiddleware.exception.DAOException;
 import com.emrmiddleware.resource.Resources;
-import com.emrmiddleware.utils.EmrUtils;
 import com.google.gson.Gson;
 
-import io.swagger.annotations.Api;
-
-@Api("PULL DATA")
-@Path("pull")
-public class PullData {
-	private final Logger logger = LoggerFactory.getLogger(PullData.class);
+@Path("push")
+public class PushController {
+	private final Logger logger = LoggerFactory.getLogger(PushController.class);
 	@Context
 	ServletContext context;
-
-	@Path("pulldata/{locationuuid}/{lastpulldate}")
-	@GET
+	
+	@Path("pushdata")
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	public Response getData(@PathParam("locationuuid") String locationuuid,
-			@PathParam("lastpulldate") String lastpulldatatime,@HeaderParam("authorization") String authString) {
-
-		ResponseDTO responsedto = new ResponseDTO();
-		PullDataDTO pulldatadto = new PullDataDTO();
+	
+	public Response setData(PushDataDTO pushdatadto,@HeaderParam("authorization") String authString){
 		
+		ResponseDTO responsedto = new ResponseDTO();
 		Gson gson = new Gson();
+		PushDataAction pushdataaction = new PushDataAction(authString);
+		PullDataDTO pulldatadto = new PullDataDTO();
+		//PushDataDTO pushdatadto = new PushDataDTO();
+		//pushdatadto = gson.fromJson(pushdata,PushDataDTO.class);
 		try {
-			AuthenticationUtil authutil = new AuthenticationUtil();
-			boolean isAuthenticated=authutil.isUserAuthenticated(authString);
-			if (isAuthenticated==false){
-				logger.error("No Authorization");
-				responsedto.setStatusMessage(Resources.ERROR, Resources.AUTHERROR, Resources.UNABLETOPROCESS);
-				return Response.status(403).entity(gson.toJson(responsedto)).build();
-			}
-			PullDataAction pulldataaction = new PullDataAction();
-			Timestamp lastdatapulltime = EmrUtils.getFormatDate(lastpulldatatime);
-			pulldatadto = pulldataaction.getPullData(lastdatapulltime, locationuuid);
+			pulldatadto=pushdataaction.pushData(pushdatadto);
 			responsedto.setStatus(Resources.OK);
 			responsedto.setData(pulldatadto);
 		} catch (DAOException e) {
@@ -70,9 +56,7 @@ public class PullData {
 			responsedto.setStatusMessage(Resources.ERROR, Resources.SERVER_ERROR, Resources.UNABLETOPROCESS);
 			return Response.status(500).entity(gson.toJson(responsedto)).build();
 		}
-
 		return Response.status(200).entity(gson.toJson(responsedto)).build();
-
 	}
 
 }

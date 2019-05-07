@@ -5,7 +5,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
 
 import com.emrmiddleware.authentication.AuthenticationUtil;
-import com.emrmiddleware.conf.DBEnvironment;
+import com.emrmiddleware.conf.ResourcesEnvironment;
 import com.emrmiddleware.dto.UserCredentialDTO;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -34,7 +34,7 @@ public class APIClient {
 				.addInterceptor(
 						new BasicAuthInterceptor(userCredentialdto.getUsername(), userCredentialdto.getPassword()))
 				.build();
-		DBEnvironment dbenv = new DBEnvironment();
+		ResourcesEnvironment dbenv = new ResourcesEnvironment();
 		Gson gson = new GsonBuilder().setLenient().create();
 		retrofit = new Retrofit.Builder().baseUrl(dbenv.getAPIBaseURL())
 				.addConverterFactory(retrofit2.converter.gson.GsonConverterFactory.create(gson)).client(client).build();
@@ -52,7 +52,7 @@ public class APIClient {
 				.addInterceptor(
 						new BasicAuthInterceptor(userCredentialdto.getUsername(), userCredentialdto.getPassword()))
 				.build();
-		DBEnvironment dbenv = new DBEnvironment();
+		ResourcesEnvironment dbenv = new ResourcesEnvironment();
 		Gson gson = new GsonBuilder().setLenient().create();
 		retrofit = new Retrofit.Builder().baseUrl(dbenv.getIdGenUrl())
 				.addConverterFactory(retrofit2.converter.gson.GsonConverterFactory.create(gson)).client(client).build();

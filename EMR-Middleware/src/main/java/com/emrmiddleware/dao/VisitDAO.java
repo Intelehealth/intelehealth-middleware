@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.emrmiddleware.conf.DBconfig;
 import com.emrmiddleware.dmo.VisitDMO;
@@ -16,6 +18,7 @@ import com.emrmiddleware.exception.DAOException;
 
 public class VisitDAO {
 
+	private final Logger logger = LoggerFactory.getLogger(VisitDAO.class);
 	public ArrayList<VisitDTO> getVisits(Timestamp lastdatapulltime, String locationuuid) throws DAOException {
 
 		SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
@@ -27,6 +30,7 @@ public class VisitDAO {
 			visitlist = patientdmo.getVisits(lastdatapulltime, locationuuid);
 			return visitlist;
 		} catch (PersistenceException e) {
+			logger.error(e.getMessage(),e);
 			throw new DAOException(e.getMessage(), e);
 		} finally {
 			session.close();
@@ -44,6 +48,7 @@ public class VisitDAO {
 			visitdto = patientdmo.getVisit(visituuid);
 			return visitdto;
 		} catch (PersistenceException e) {
+			logger.error(e.getMessage(),e);
 			throw new DAOException(e.getMessage(), e);
 		} finally {
 			session.close();

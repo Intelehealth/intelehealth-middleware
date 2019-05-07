@@ -6,7 +6,10 @@ import java.util.ArrayList;
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import com.emrmiddleware.action.EncounterAction;
 import com.emrmiddleware.conf.DBconfig;
 import com.emrmiddleware.dmo.EncounterDMO;
 import com.emrmiddleware.dmo.VisitDMO;
@@ -17,6 +20,7 @@ import com.emrmiddleware.exception.DAOException;
 
 public class EncounterDAO {
 
+	private final Logger logger = LoggerFactory.getLogger(EncounterDAO.class);
 	public ArrayList<EncounterDTO> getEncounters(Timestamp lastdatapulltime, String locationuuid) throws DAOException {
 
 		SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
@@ -28,6 +32,7 @@ public class EncounterDAO {
 			encounterlist = encounterdmo.getEncounters(lastdatapulltime, locationuuid);
 			return encounterlist;
 		} catch (PersistenceException e) {
+			logger.error(e.getMessage(), e);
 			throw new DAOException(e.getMessage(), e);
 		} finally {
 			session.close();
@@ -45,6 +50,7 @@ public class EncounterDAO {
 			encounterdto = encounterdmo.getEncounter(encounteruuid);
 			return encounterdto;
 		} catch (PersistenceException e) {
+			logger.error(e.getMessage(), e);
 			throw new DAOException(e.getMessage(), e);
 		} finally {
 			session.close();

@@ -10,8 +10,10 @@ import com.emrmiddleware.api.APIClient;
 import com.emrmiddleware.api.RestAPI;
 import com.emrmiddleware.api.dto.IDGenAPIDTO;
 import com.emrmiddleware.api.dto.PatientAPIDTO;
+import com.emrmiddleware.authentication.AuthenticationUtil;
 import com.emrmiddleware.dao.PatientDAO;
 import com.emrmiddleware.dto.PatientDTO;
+import com.emrmiddleware.dto.UserCredentialDTO;
 import com.emrmiddleware.exception.ActionException;
 import com.emrmiddleware.exception.DAOException;
 import com.google.gson.Gson;
@@ -38,7 +40,7 @@ public class PatientAction {
 	public ArrayList<PatientDTO> setPatients(ArrayList<PatientAPIDTO> patientList)
 			throws DAOException, ActionException {
 		ArrayList<PatientDTO> patients = new ArrayList<PatientDTO>();
-		PatientDTO patientdto;
+		PatientDTO patientdto = null;
 		PatientAPIDTO patientforerror = new PatientAPIDTO();
 		boolean isPatientSet = true;
 		Gson gson = new Gson();
@@ -46,39 +48,32 @@ public class PatientAction {
 		try {
 			for (PatientAPIDTO patient : patientList) {
 				patientforerror = patient;
-				logger.info("counter : " + i++);
-				String openMrsId = patient.getIdentifiers().get(0).getIdentifier();
-				if ((openMrsId == null) || (openMrsId.equals(""))) {
+				String openMrsId = "";
+				PatientDAO patientdao = new PatientDAO();
+				PatientDTO patientDTO = patientdao.getPatient(patient.getPerson());
+				if (patientDTO == null) {
 					openMrsId = getOpenMrsId();
 					patient.getIdentifiers().get(0).setIdentifier(openMrsId);
-				}
-				if (isPatientExists(patient.getPerson()) == false) {
-					// isPatientSet=editPersonOpenMRS(person);
 					isPatientSet = addPatientOpenMRS(patient);
-				} // Need to do if patient exists
+				} else {
+					openMrsId = patientDTO.getOpenmrs_id();
+				}
+
 				patientdto = new PatientDTO();
 				patientdto.setUuid(patient.getPerson());
 				patientdto.setSyncd(isPatientSet);
-				patientdto.setOpenmrs_id(openMrsId);
+				if (isPatientSet == true)
+					patientdto.setOpenmrs_id(openMrsId);
 				patients.add(patientdto);
 			}
 		} catch (Exception e) {
+			//patientdto.setOpenmrs_id("");// Set OpenMRS ID to blank in case of
+											// exception
 			logger.error("Error occurred for json string : " + gson.toJson(patientforerror));
 			logger.error(e.getMessage(), e);
 			// throw new ActionException(e.getMessage(), e);
-		}
+		} 
 		return patients;
-
-	}
-
-	private boolean isPatientExists(String personuuid) throws DAOException {
-		boolean isPatientExists = false;
-		PatientDAO patientdao = new PatientDAO();
-		PatientDTO patientdto = patientdao.getPatient(personuuid);
-		if (patientdto != null) {
-			isPatientExists = true;
-		}
-		return isPatientExists;
 
 	}
 
@@ -88,7 +83,10 @@ public class PatientAction {
 		Gson gson = new Gson();
 
 		try {
-			Call<ResponseBody> call = restIdapiintf.getOpenMrsId("1", "admin", "Admin123");
+			AuthenticationUtil authenticationUtil = new AuthenticationUtil();
+			UserCredentialDTO userCredentialdto = authenticationUtil.getAuthHeader(authString);
+			Call<ResponseBody> call = restIdapiintf.getOpenMrsId("1", userCredentialdto.getUsername(),
+					userCredentialdto.getPassword());
 			Response<ResponseBody> response = call.execute();
 			// IDGenAPIDTO idgenapidto = call.execute();
 			if (response.isSuccessful()) {

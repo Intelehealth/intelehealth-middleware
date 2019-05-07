@@ -12,17 +12,17 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.session.TransactionIsolationLevel;
 
-public class DBconfig {
+public class DBFileConfig {
 
 	private SqlSessionFactory sqlSessionFactory=null;
     ResourcesEnvironment dbenvironment = new ResourcesEnvironment();
-	private static final DBconfig dbconfig = new DBconfig();
+	private static final DBFileConfig dbfileconfig = new DBFileConfig();
 	final Logger logger = LoggerFactory.getLogger(DBconfig.class);
 
-	private DBconfig() {
+	private DBFileConfig() {
 	
 		String resource = "/db_properties.xml";
-		String environment = dbenvironment.getDBEnvironment();
+		String environment = dbenvironment.getFileDBEnvironment();
 		InputStream inputStream = null;
 		try {
 			inputStream = Resources.getResourceAsStream(resource);
@@ -37,23 +37,23 @@ public class DBconfig {
 	}
 
 	public static final SqlSessionFactory getSessionFactory() {
-		return dbconfig.sqlSessionFactory;
+		return dbfileconfig.sqlSessionFactory;
 	}
 
 	public static final SqlSession openSession() {
-		return dbconfig.sqlSessionFactory.openSession();
+		return dbfileconfig.sqlSessionFactory.openSession();
 	}
 
 	public static final SqlSession openSession(ExecutorType e) {
-		return dbconfig.sqlSessionFactory.openSession(e);
+		return dbfileconfig.sqlSessionFactory.openSession(e);
 	}
 
 	public static final SqlSession openSession(ExecutorType e, TransactionIsolationLevel tl) {
-		return dbconfig.sqlSessionFactory.openSession(e, tl);
+		return dbfileconfig.sqlSessionFactory.openSession(e, tl);
 	}
 
 	public static final SqlSession openSession(ExecutorType e, boolean autoCommit) {
-		return dbconfig.sqlSessionFactory.openSession(e, autoCommit);
+		return dbfileconfig.sqlSessionFactory.openSession(e, autoCommit);
 	}
 
 }

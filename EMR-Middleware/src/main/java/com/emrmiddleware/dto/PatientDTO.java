@@ -25,8 +25,16 @@ public class PatientDTO {
 	private String economicstatus;
 	private String caste;
 	private boolean syncd=true;
+	private int voided;
 	
 	
+	
+	public int getVoided() {
+		return voided;
+	}
+	public void setVoided(int voided) {
+		this.voided = voided;
+	}
 	public boolean isSyncd() {
 		return syncd;
 	}

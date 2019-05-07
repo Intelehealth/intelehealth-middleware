@@ -19,6 +19,8 @@ public class AuthenticationUtil {
 	public boolean isUserAuthenticated(String authString) throws DAOException{
         
         boolean isAuthenticated=false;
+        if (authString==null)
+        	return false;
         String[] authParts = authString.split("\\s+");
         String authInfo = authParts[1];
         // Decode the data back to original string

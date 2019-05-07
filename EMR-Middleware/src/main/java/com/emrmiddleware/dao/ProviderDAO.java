@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.emrmiddleware.conf.DBconfig;
 import com.emrmiddleware.dmo.PatientDMO;
@@ -17,7 +19,7 @@ import com.emrmiddleware.dto.ProviderDTO;
 import com.emrmiddleware.exception.DAOException;
 
 public class ProviderDAO {
-	
+	private final Logger logger = LoggerFactory.getLogger(ProviderDAO.class);
 	public ArrayList<ProviderDTO> getProviders(Timestamp lastdatapulltime) throws DAOException {
 
 		SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
@@ -29,6 +31,7 @@ public class ProviderDAO {
 			providerlist = providerdmo.getProviders(lastdatapulltime);
 			return providerlist;
 		} catch (PersistenceException e) {
+			logger.error(e.getMessage(),e);
 			throw new DAOException(e.getMessage(), e);
 		} finally {
 			session.close();
@@ -46,6 +49,7 @@ public class ProviderDAO {
 			providerAttributeTypeList = providerdmo.getProviderAttributeTypeMaster(lastdatapulltime);
 			return providerAttributeTypeList;
 		} catch (PersistenceException e) {
+			logger.error(e.getMessage(),e);
 			throw new DAOException(e.getMessage(), e);
 		} finally {
 			session.close();
@@ -64,6 +68,7 @@ public class ProviderDAO {
 			providerAttributeList = providerdmo.getProviderAttributes(lastdatapulltime);
 			return providerAttributeList;
 		} catch (PersistenceException e) {
+			logger.error(e.getMessage(),e);
 			throw new DAOException(e.getMessage(), e);
 		} finally {
 			session.close();

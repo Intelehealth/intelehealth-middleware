@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.emrmiddleware.conf.DBconfig;
 import com.emrmiddleware.dmo.PatientDMO;
@@ -18,6 +20,7 @@ import com.emrmiddleware.exception.DAOException;
 
 public class PatientDAO {
 
+	private final Logger logger = LoggerFactory.getLogger(PatientDAO.class);
 	public ArrayList<PatientDTO> getPatients(Timestamp lastdatapulltime, String locationuuid) throws DAOException {
 
 		SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
@@ -29,6 +32,7 @@ public class PatientDAO {
 			patientlist = patientdmo.getPatients(lastdatapulltime, locationuuid);
 			return patientlist;
 		} catch (PersistenceException e) {
+			logger.error(e.getMessage(),e);
 			throw new DAOException(e.getMessage(), e);
 		} finally {
 			session.close();
@@ -47,6 +51,7 @@ public class PatientDAO {
 			patientAttributeTypeList = patientdmo.getPatientAttributeMaster(lastdatapulltime);
 			return patientAttributeTypeList;
 		} catch (PersistenceException e) {
+			logger.error(e.getMessage(),e);
 			throw new DAOException(e.getMessage(), e);
 		} finally {
 			session.close();
@@ -65,6 +70,7 @@ public class PatientDAO {
 			patientAttributesList = patientdmo.getPatientAttributes(lastdatapulltime, locationuuid);
 			return patientAttributesList;
 		} catch (PersistenceException e) {
+			logger.error(e.getMessage(),e);
 			throw new DAOException(e.getMessage(), e);
 		} finally {
 			session.close();
@@ -81,6 +87,7 @@ public class PatientDAO {
 			patientdto = patientdmo.getPatient(personuuid);
 			return patientdto;
 		} catch (PersistenceException e) {
+			logger.error(e.getMessage(),e);
 			throw new DAOException(e.getMessage(), e);
 		} finally {
 			session.close();

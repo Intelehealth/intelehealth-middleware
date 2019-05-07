@@ -17,11 +17,11 @@ import com.emrmiddleware.dto.PushDataDTO;
 import com.emrmiddleware.dto.VisitDTO;
 import com.emrmiddleware.exception.DAOException;
 import com.emrmiddleware.exception.ActionException;
-import com.emrmiddleware.rest.PushData;
+import com.emrmiddleware.rest.PushController;
 
 public class PushDataAction {
 
-	private final Logger logger = LoggerFactory.getLogger(PushData.class);
+	private final Logger logger = LoggerFactory.getLogger(PushController.class);
 	String authString;
 
 	public PushDataAction(String auth) {

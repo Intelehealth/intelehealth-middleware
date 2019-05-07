@@ -4,9 +4,18 @@ public class VisitAPIDTO {
 	
 	private String uuid;
 	private String startDatetime;
+	private String stopDatetime;
 	private String visitType;
 	private String patient;
 	private String location;
+	
+	
+	public String getStopDatetime() {
+		return stopDatetime;
+	}
+	public void setStopDatetime(String stopDatetime) {
+		this.stopDatetime = stopDatetime;
+	}
 	public String getUuid() {
 		return uuid;
 	}

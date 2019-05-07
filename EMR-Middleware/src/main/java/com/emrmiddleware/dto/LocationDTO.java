@@ -5,6 +5,8 @@ public class LocationDTO {
 	private String name;
 	private String locationuuid;
 	private int retired;
+	
+	
 	public String getName() {
 		return name;
 	}
