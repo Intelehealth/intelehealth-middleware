@@ -24,6 +24,8 @@ import com.emrmiddleware.dto.ProviderAttributeDTO;
 import com.emrmiddleware.dto.ProviderAttributeTypeDTO;
 import com.emrmiddleware.dto.ProviderDTO;
 import com.emrmiddleware.dto.PullDataDTO;
+import com.emrmiddleware.dto.VisitAttributeDTO;
+import com.emrmiddleware.dto.VisitAttributeTypeDTO;
 import com.emrmiddleware.dto.VisitDTO;
 import com.emrmiddleware.exception.ActionException;
 import com.emrmiddleware.exception.DAOException;
@@ -50,11 +52,15 @@ public class PullDataAction {
 		ArrayList<ProviderDTO> providerlist = new ArrayList<ProviderDTO>();
 		ArrayList<ProviderAttributeTypeDTO> providerAttributeTypeList = new ArrayList<ProviderAttributeTypeDTO>();
 		ArrayList<ProviderAttributeDTO>  providerAttributeList = new ArrayList<ProviderAttributeDTO>();
+		ArrayList<VisitAttributeTypeDTO> visitAttributeTypeList = new ArrayList<VisitAttributeTypeDTO>();
+		ArrayList<VisitAttributeDTO> visitAttributesList = new ArrayList<VisitAttributeDTO>();
 		try {
 			patientlist = patientdao.getPatients(lastdatapulltime, locationuuid);
 			patientAttributeTypeList = patientdao.getPatientAttributeType(lastdatapulltime, locationuuid);
 			patientAttributesList = patientdao.getPatientAttributes(lastdatapulltime, locationuuid);
 			visitlist = visitdao.getVisits(lastdatapulltime, locationuuid);
+			visitAttributeTypeList = visitdao.getVisitAttributeTypeMaster(lastdatapulltime);
+			visitAttributesList = visitdao.getVisitAttributes(lastdatapulltime, locationuuid);
 			encounterlist = encounterdao.getEncounters(lastdatapulltime, locationuuid);
 			obslist = obsdao.getObs(lastdatapulltime, locationuuid);
 			locationlist = locationdao.getLocations(lastdatapulltime);
@@ -69,6 +75,8 @@ public class PullDataAction {
 			pulldata.setProviderAttributeTypeList(providerAttributeTypeList);
 			pulldata.setProviderAttributeList(providerAttributeList);
 			pulldata.setVisitlist(visitlist);
+			pulldata.setVisitAttributeTypeList(visitAttributeTypeList);
+			pulldata.setVisitAttributeList(visitAttributesList);
 			pulldata.setEncounterlist(encounterlist);
 			pulldata.setObslist(obslist);
 			

@@ -65,6 +65,13 @@ public class FileAction {
 	
 	public String getFilePath(String uuid) throws ActionException,DAOException{
 		String filePath="";
+		try{
+			FileDAO filedao = new FileDAO();
+			filePath = filedao.getFilePath(uuid);
+		}catch(Exception e){
+			logger.error(e.getMessage(),e);
+			throw new ActionException(e.getMessage(),e);
+		}
 		return filePath;
 	}
 

@@ -84,6 +84,11 @@ public class FileController {
 		try {
 			FileAction fileaction = new FileAction();
 			String filePath = fileaction.getFilePath(uuid);
+			if (filePath==""){
+				//logger.error(e.getMessage(), e);
+				responsedto.setStatusMessage(Resources.ERROR, Resources.SERVER_ERROR, "No File found");
+				return Response.status(500).entity(gson.toJson(responsedto)).build();
+			}
 			File file = new File(filePath);
 			response = Response.ok((Object) file);
 		} catch (Exception e) {

@@ -71,7 +71,7 @@ public class ResourcesEnvironment {
 			FILE_PATH = "C://openmrsimages//";
 		}
 		if (Resources.environment.equalsIgnoreCase("mahitidev")) {
-			FILE_PATH = "//openmrsimages//";
+			FILE_PATH = "/home/mahadmin/OpenMrs_images/";
 		} 
 		if (Resources.environment.equalsIgnoreCase("intelehealthdev")) {
 			FILE_PATH = "//openmrsimages//";

@@ -17,8 +17,27 @@ public class PullDataDTO {
 	private ArrayList<ProviderDTO> providerlist;
 	private ArrayList<ProviderAttributeTypeDTO> providerAttributeTypeList;
 	private ArrayList<ProviderAttributeDTO> providerAttributeList;
+	private ArrayList<VisitAttributeTypeDTO> visitAttributeTypeList;
+	private ArrayList<VisitAttributeDTO> visitAttributeList;
 	
 	
+
+	public ArrayList<VisitAttributeTypeDTO> getVisitAttributeTypeList() {
+		return visitAttributeTypeList;
+	}
+
+	public void setVisitAttributeTypeList(ArrayList<VisitAttributeTypeDTO> visitAttributeTypeList) {
+		this.visitAttributeTypeList = visitAttributeTypeList;
+	}
+
+	public ArrayList<VisitAttributeDTO> getVisitAttributeList() {
+		return visitAttributeList;
+	}
+
+	public void setVisitAttributeList(ArrayList<VisitAttributeDTO> visitAttributeList) {
+		this.visitAttributeList = visitAttributeList;
+	}
+
 	public ArrayList<PersonDTO> getPersonList() {
 		return personList;
 	}

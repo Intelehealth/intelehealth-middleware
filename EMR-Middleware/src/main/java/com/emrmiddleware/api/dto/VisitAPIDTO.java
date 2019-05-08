@@ -1,13 +1,17 @@
 package com.emrmiddleware.api.dto;
 
+import java.util.ArrayList;
+
 public class VisitAPIDTO {
 	
 	private String uuid;
 	private String startDatetime;
 	private String stopDatetime;
 	private String visitType;
+	ArrayList < AttributeAPIDTO > attributes;
 	private String patient;
 	private String location;
+	
 	
 	
 	public String getStopDatetime() {
@@ -45,6 +49,12 @@ public class VisitAPIDTO {
 	}
 	public void setLocation(String location) {
 		this.location = location;
+	}
+	public ArrayList<AttributeAPIDTO> getAttributes() {
+		return attributes;
+	}
+	public void setAttributes(ArrayList<AttributeAPIDTO> attributes) {
+		this.attributes = attributes;
 	}
 	
 	
