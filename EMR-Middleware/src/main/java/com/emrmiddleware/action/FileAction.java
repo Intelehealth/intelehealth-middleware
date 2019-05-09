@@ -56,11 +56,9 @@ public class FileAction {
 
 			logger.error("Exception", e);
 			isWritenToFile = false;
-			throw new ActionException(e.getMessage(), e) ;
+			throw new ActionException(e.getMessage(), e);
 		}
 		
-		
-
 	}
 	
 	public String getFilePath(String uuid) throws ActionException,DAOException{
