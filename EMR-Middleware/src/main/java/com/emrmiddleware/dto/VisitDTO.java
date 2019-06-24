@@ -11,7 +11,7 @@ public class VisitDTO {
 	private Date startdate;
 	private Date enddate;
 	private String locationuuid;
-	private int creator;
+	private String creator_uuid;
 	private boolean syncd=true;
 	private int voided;
 	
@@ -68,12 +68,13 @@ public class VisitDTO {
 	public void setLocationuuid(String locationuuid) {
 		this.locationuuid = locationuuid;
 	}
-	public int getCreator() {
-		return creator;
+	public String getCreator_uuid() {
+		return creator_uuid;
 	}
-	public void setCreator(int creator) {
-		this.creator = creator;
+	public void setCreator_uuid(String creator_uuid) {
+		this.creator_uuid = creator_uuid;
 	}
+	
 	
 
 }

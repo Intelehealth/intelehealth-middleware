@@ -4,10 +4,18 @@ public class EncounterDTO {
 	private String uuid;
 	private String visituuid;
 	private String encounter_type_uuid;
+	private String provider_uuid;
 	private boolean syncd=true;
 	private int voided;
 	
 	
+	
+	public String getProvider_uuid() {
+		return provider_uuid;
+	}
+	public void setProvider_uuid(String provider_uuid) {
+		this.provider_uuid = provider_uuid;
+	}
 	public boolean isSyncd() {
 		return syncd;
 	}
