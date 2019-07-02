@@ -12,6 +12,7 @@ import com.emrmiddleware.dto.PatientDTO;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
@@ -52,5 +53,8 @@ public interface RestAPI {
    
    @POST("encounter/{uuid}")
    Call<ResponseBody> editEncounter(@Path("uuid") String uuid,@Body EncounterAPIDTO visitapidto);
+   
+   @DELETE("encounter/{uuid}")
+   Call<ResponseBody> deleteEncounter(@Path("uuid") String uuid);
 
 }

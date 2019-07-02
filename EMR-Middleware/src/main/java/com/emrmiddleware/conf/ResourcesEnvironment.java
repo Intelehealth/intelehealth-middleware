@@ -15,6 +15,9 @@ public class ResourcesEnvironment {
 		if (Resources.environment.equalsIgnoreCase("intelehealthdev")) {
 			DBEnvironment = "intelehealthdevelopment";
 		}
+		if (Resources.environment.equalsIgnoreCase("intelehealthAwsTest")) {
+			DBEnvironment = "intelehealthAwsTest";
+		}
 
 		return DBEnvironment;
 	}
@@ -44,7 +47,11 @@ public class ResourcesEnvironment {
 		}
 		if (Resources.environment.equalsIgnoreCase("intelehealthdev")) {
 			Base_URL = "http://localhost:8080/openmrs/ws/rest/v1/";
-			// DBEnvironment = "ProtoType_Env";
+			
+		}
+		if (Resources.environment.equalsIgnoreCase("intelehealthAwsTest")) {
+			Base_URL = "http://localhost:8080/openmrs/ws/rest/v1/";
+			
 		}
 
 		return Base_URL;
@@ -60,6 +67,9 @@ public class ResourcesEnvironment {
 			ID_URL = "http://142.93.221.37:8080/openmrs/module/idgen/";
 		} 
 		if (Resources.environment.equalsIgnoreCase("intelehealthdev")) {
+			ID_URL = "http://localhost:8080/openmrs/module/idgen/";
+		}
+		if (Resources.environment.equalsIgnoreCase("intelehealthAwsTest")) {
 			ID_URL = "http://localhost:8080/openmrs/module/idgen/";
 		}
 		return ID_URL;

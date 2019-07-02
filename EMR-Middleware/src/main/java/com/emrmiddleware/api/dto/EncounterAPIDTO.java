@@ -12,8 +12,15 @@ public class EncounterAPIDTO {
 	private ArrayList<ObsAPIDTO> obs;
 	private ArrayList<EncounterProvidersAPIDTO> encounterProviders;
 	private String location;
+	private String voided;
 	
 	
+	public String getVoided() {
+		return voided;
+	}
+	public void setVoided(String voided) {
+		this.voided = voided;
+	}
 	public String getPatient() {
 		return patient;
 	}
