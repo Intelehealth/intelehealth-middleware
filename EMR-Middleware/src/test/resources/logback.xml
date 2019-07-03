@@ -2,7 +2,7 @@
   <shutdownHook/>
   <property name="appenderType" value="STDOUT" />
   <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-    <file>${catalina.base}/logs/MahindraAgri.log</file>
+    <file>${catalina.base}/logs/EmrMiddlewarelog.log</file>
     <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">    	
      		<!-- daily rollover -->
      		<fileNamePattern>${catalina.base}/logs/EmrMiddlewarelog.%d{yyyy-MM-dd}.log</fileNamePattern>
