@@ -46,8 +46,8 @@
         <property name="poolPingQuery" value="select 1"/> 
         <property name="driver" value="com.mysql.cj.jdbc.Driver"/>  
        <property name="url" value="jdbc:mysql://localhost:3306/openmrs?autoReconnect=true"/>
-        <property name="username" value="mrsuser"/>
-        <property name="password" value="mr5u53r"/>
+        <property name="username" value="root"/>
+        <property name="password" value="i10hi1c"/>
       </dataSource>
     </environment>
     <!--  

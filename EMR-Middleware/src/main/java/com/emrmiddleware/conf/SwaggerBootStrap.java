@@ -11,6 +11,7 @@ import io.swagger.models.Info;
 import io.swagger.models.License;
 import io.swagger.models.Swagger;
 import io.swagger.models.auth.ApiKeyAuthDefinition;
+import io.swagger.models.auth.BasicAuthDefinition;
 import io.swagger.models.auth.In;
 import io.swagger.models.auth.SecuritySchemeDefinition;
 
@@ -20,23 +21,23 @@ public class SwaggerBootStrap extends HttpServlet {
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
-
+		ResourcesEnvironment resourcesEnv = new ResourcesEnvironment();
 		BeanConfig beanConfig = new BeanConfig();
 		beanConfig.setVersion("1.0.2");
 		beanConfig.setSchemes(new String[] { "http" });
-		beanConfig.setHost("139.59.88.232:8080/MahindraAgri");
+		beanConfig.setHost(resourcesEnv.getHostPath());
 		beanConfig.setBasePath("/webapi");
-		beanConfig.setResourcePackage("com.mahindraagri.rest");
-		Info info = new Info().title("Mahindra Agri")
-				.description("Mahindra Agri is the best way to keep you updated with your crop growth for best yeild ")
-				.termsOfService("http://MahindraAgri/terms/").contact(new Contact().email("admins@mahindraAgri.com"))
-				.license(new License().name("Apache 2.0").url("http://www.apache.org/licenses/LICENSE-2.0.html"));
-
+		beanConfig.setResourcePackage("com.emrmiddleware.rest");
+		Info info = new Info().title("Intelehealth")
+				.description("Intelehealth API");
+				
 		Swagger swagger = new Swagger().info(info);
 
-		swagger.securityDefinition("Bearer",
+		/*swagger.securityDefinition("basic",
 				(SecuritySchemeDefinition) new ApiKeyAuthDefinition("Authorization", In.HEADER));
-
+         */
+		 swagger.securityDefinition("basicAuth", new BasicAuthDefinition());
+		  //  new SwaggerContextService().withServletConfig(servletConfig).updateSwagger(swagger);
 		beanConfig.setScan(true);
 
 		new SwaggerContextService().withServletConfig(config).updateSwagger(swagger);

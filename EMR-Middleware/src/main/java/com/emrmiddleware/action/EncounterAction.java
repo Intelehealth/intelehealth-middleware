@@ -48,18 +48,36 @@ public class EncounterAction {
 		try {
 			for (EncounterAPIDTO encounter : encounterList) {
 				int voided = 0;
+				if (isEncounterVoided(encounter)==true){
+					voided=1;
+				}else{
+					voided=0;
+				}
 				encounterforerror = encounter;
 				logger.info("Encounter json : " + gson.toJson(encounter));
+				EncounterDTO encounterdto_voidcheck = new EncounterDTO();
+				encounterdto_voidcheck = getEncounter(encounter.getUuid());
+				if (encounterdto_voidcheck != null) {
+					isEncounterPresent = true;
+				} else {
+					isEncounterPresent = false;
+				}
 				// to prevent multiple hit to DB
-				isEncounterPresent = isEncounterExists(encounter.getUuid());
+
+				// isEncounterPresent = isEncounterExists(encounter.getUuid());
 				if ((isEncounterPresent) && (isEncounterVoided(encounter) == false)) {
 					isEncounterSet = editEncounterOpenMRS(encounter);
 				}
 
 				if ((isEncounterPresent) && (isEncounterVoided(encounter) == true)) {
-					isEncounterSet = deleteEncounterOpenMRS(encounter);
-					if (isEncounterSet == true)
+					//check if  encounter already is voided in openMRS
+					if (encounterdto_voidcheck.getVoided() == 1) {
 						voided = 1;
+					} else {
+						isEncounterSet = deleteEncounterOpenMRS(encounter);
+						if (isEncounterSet == true)
+							voided = 1;
+					}
 				}
 				if ((isEncounterPresent == false) && (isEncounterVoided(encounter) == false)) {
 					isEncounterSet = addEncounterOpenMRS(encounter);
@@ -79,6 +97,8 @@ public class EncounterAction {
 	}
 
 	private boolean isEncounterVoided(EncounterAPIDTO encounterapidto) {
+		//This is done as voided is a string type , a null check has to be done
+		//voided need not be mandatory or else Integer.parseInt would have been used
 		boolean isVoided = false;
 		if (encounterapidto.getVoided() != null) {
 			if (encounterapidto.getVoided().equals("1"))
@@ -95,6 +115,15 @@ public class EncounterAction {
 			isEncounterExists = true;
 		}
 		return isEncounterExists;
+
+	}
+
+	private EncounterDTO getEncounter(String encounteruuid) throws DAOException {
+		// boolean isEncounterExists = false;
+		EncounterDAO encounterdao = new EncounterDAO();
+		EncounterDTO encounterdto = encounterdao.getEncounter(encounteruuid);
+
+		return encounterdto;
 
 	}
 

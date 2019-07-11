@@ -5,11 +5,12 @@ import java.util.ArrayList;
 public class EncounterAPIDTO {
 	
 	private String uuid;
+	private ArrayList<ObsAPIDTO> obs;
 	private String encounterDatetime;
 	private String encounterType;
 	private String visit;
 	private String patient;
-	private ArrayList<ObsAPIDTO> obs;
+	
 	private ArrayList<EncounterProvidersAPIDTO> encounterProviders;
 	private String location;
 	private String voided;

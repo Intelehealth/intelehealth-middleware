@@ -90,4 +90,21 @@ public class ResourcesEnvironment {
 		
 		
 	}
+	public String getHostPath(){
+		String basepath="";
+		if (Resources.environment.equalsIgnoreCase("localdev")) {
+			basepath = "localhost:8080/EMR-Middleware";
+		}
+		if (Resources.environment.equalsIgnoreCase("mahitidev")) {
+			basepath = "142.93.221.37:8080/EMR-Middleware";
+		} 
+		if (Resources.environment.equalsIgnoreCase("intelehealthdev")) {
+			basepath = "localhost:8080/EMR-Middleware";
+		}
+		if (Resources.environment.equalsIgnoreCase("intelehealthAwsTest")) {
+			basepath = "13.233.110.169:8080:8080/EMR-Middleware";
+		}
+		return basepath;
+		
+	}
 }

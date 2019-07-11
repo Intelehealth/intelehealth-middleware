@@ -102,11 +102,6 @@
          <version>3.3.1</version>
       </dependency>
       <dependency>
-         <groupId>org.bitbucket.b_c</groupId>
-         <artifactId>jose4j</artifactId>
-         <version>0.5.0</version>
-      </dependency>
-      <dependency>
          <groupId>org.mybatis</groupId>
          <artifactId>mybatis</artifactId>
          <version>3.4.2</version>
@@ -159,6 +154,7 @@
          <artifactId>swagger-jersey2-jaxrs</artifactId>
          <version>1.5.13</version>
       </dependency>
+     
 	<dependency>
 		<groupId>org.quartz-scheduler</groupId>
 		<artifactId>quartz</artifactId>
