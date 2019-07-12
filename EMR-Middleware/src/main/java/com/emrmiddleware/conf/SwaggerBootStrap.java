@@ -32,10 +32,13 @@ public class SwaggerBootStrap extends HttpServlet {
 				.description("Intelehealth API");
 				
 		Swagger swagger = new Swagger().info(info);
-
+         
 		/*swagger.securityDefinition("basic",
 				(SecuritySchemeDefinition) new ApiKeyAuthDefinition("Authorization", In.HEADER));
+				
          */
+		//swagger.setSchemes(new String[] { "http" });
+		
 		 swagger.securityDefinition("basicAuth", new BasicAuthDefinition());
 		  //  new SwaggerContextService().withServletConfig(servletConfig).updateSwagger(swagger);
 		beanConfig.setScan(true);

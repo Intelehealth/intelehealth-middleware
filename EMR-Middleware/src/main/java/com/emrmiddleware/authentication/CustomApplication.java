@@ -28,7 +28,7 @@ public class CustomApplication extends ResourceConfig
        register(JsonProcessingFeature.class);
         property(JsonGenerator.PRETTY_PRINTING, true);
         /*-------------------------------*/
-      // register( com.mahindraagri.conf.ValidationConfigurationContextResolver.class);
+      
        
         
     }

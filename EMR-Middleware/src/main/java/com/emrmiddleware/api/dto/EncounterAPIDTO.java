@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class EncounterAPIDTO {
 	
 	private String uuid;
-	private ArrayList<ObsAPIDTO> obs;
+	
 	private String encounterDatetime;
 	private String encounterType;
 	private String visit;
@@ -13,6 +13,7 @@ public class EncounterAPIDTO {
 	
 	private ArrayList<EncounterProvidersAPIDTO> encounterProviders;
 	private String location;
+	private ArrayList<ObsAPIDTO> obs=new ArrayList<ObsAPIDTO>();
 	private String voided;
 	
 	

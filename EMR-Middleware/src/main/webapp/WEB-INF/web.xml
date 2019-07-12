@@ -43,11 +43,10 @@
       <param-name>api.version</param-name>
       <param-value>1.0.0</param-value>
     </init-param>
-    <init-param>
+     <init-param>
       <param-name>swagger.api.basepath</param-name>
-      <!-- <param-value>http://139.59.88.232:8080/MahindraAgri/webapi</param-value> -->
       <param-value>http://localhost:8080/EMR-Middleware/webapi</param-value>
-    </init-param>
+    </init-param> 
     <load-on-startup>2</load-on-startup>
   </servlet>
 	<servlet-mapping>
@@ -88,9 +87,5 @@
     </servlet>
 	
 
-	<!-- <context-param>
-		<param-name>profilepics</param-name>
-		<param-value>${catalina.base}/wtpwebapps/mahindraagri/static/profile_pics</param-value>
-	</context-param>
-   -->
+	
 </web-app>

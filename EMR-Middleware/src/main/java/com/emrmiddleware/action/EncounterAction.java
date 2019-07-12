@@ -42,36 +42,40 @@ public class EncounterAction {
 		ArrayList<EncounterDTO> encounters = new ArrayList<EncounterDTO>();
 		EncounterDTO encounterdto;
 		EncounterAPIDTO encounterforerror = new EncounterAPIDTO();
-		boolean isEncounterSet = true;
+		
 		Gson gson = new Gson();
 		boolean isEncounterPresent = false;
 		try {
 			for (EncounterAPIDTO encounter : encounterList) {
 				int voided = 0;
-				if (isEncounterVoided(encounter)==true){
-					voided=1;
-				}else{
-					voided=0;
+				boolean isEncounterSet = true;
+				if (isEncounterVoided(encounter) == true) {
+					voided = 1;
+				} else {
+					voided = 0;
 				}
 				encounterforerror = encounter;
 				logger.info("Encounter json : " + gson.toJson(encounter));
-				EncounterDTO encounterdto_voidcheck = new EncounterDTO();
-				encounterdto_voidcheck = getEncounter(encounter.getUuid());
-				if (encounterdto_voidcheck != null) {
+				EncounterDTO encounterdto_present = new EncounterDTO();
+				encounterdto_present = getEncounter(encounter.getUuid());
+				// to prevent multiple hit to DB
+				if (encounterdto_present != null) {
 					isEncounterPresent = true;
 				} else {
 					isEncounterPresent = false;
 				}
-				// to prevent multiple hit to DB
-
+				
 				// isEncounterPresent = isEncounterExists(encounter.getUuid());
+				//Edit Encounter
 				if ((isEncounterPresent) && (isEncounterVoided(encounter) == false)) {
 					isEncounterSet = editEncounterOpenMRS(encounter);
 				}
 
+				//delete encounter
 				if ((isEncounterPresent) && (isEncounterVoided(encounter) == true)) {
-					//check if  encounter already is voided in openMRS
-					if (encounterdto_voidcheck.getVoided() == 1) {
+					// check if encounter already is voided in openMRS
+					if (encounterdto_present.getVoided() == 1) {
+						isEncounterSet = true;
 						voided = 1;
 					} else {
 						isEncounterSet = deleteEncounterOpenMRS(encounter);
@@ -79,6 +83,7 @@ public class EncounterAction {
 							voided = 1;
 					}
 				}
+				//Add Encounter
 				if ((isEncounterPresent == false) && (isEncounterVoided(encounter) == false)) {
 					isEncounterSet = addEncounterOpenMRS(encounter);
 				}
@@ -97,8 +102,9 @@ public class EncounterAction {
 	}
 
 	private boolean isEncounterVoided(EncounterAPIDTO encounterapidto) {
-		//This is done as voided is a string type , a null check has to be done
-		//voided need not be mandatory or else Integer.parseInt would have been used
+		// This is done as voided is a string type , a null check has to be done
+		// voided need not be mandatory or else Integer.parseInt would have been
+		// used
 		boolean isVoided = false;
 		if (encounterapidto.getVoided() != null) {
 			if (encounterapidto.getVoided().equals("1"))
@@ -107,7 +113,7 @@ public class EncounterAction {
 		return isVoided;
 	}
 
-	private boolean isEncounterExists(String encounteruuid) throws DAOException {
+	/*private boolean isEncounterExists(String encounteruuid) throws DAOException {
 		boolean isEncounterExists = false;
 		EncounterDAO encounterdao = new EncounterDAO();
 		EncounterDTO encounterdto = encounterdao.getEncounter(encounteruuid);
@@ -116,10 +122,9 @@ public class EncounterAction {
 		}
 		return isEncounterExists;
 
-	}
+	}*/
 
 	private EncounterDTO getEncounter(String encounteruuid) throws DAOException {
-		// boolean isEncounterExists = false;
 		EncounterDAO encounterdao = new EncounterDAO();
 		EncounterDTO encounterdto = encounterdao.getEncounter(encounteruuid);
 
@@ -130,12 +135,13 @@ public class EncounterAction {
 	private boolean addEncounterOpenMRS(EncounterAPIDTO encounterapidto) {
 		Gson gson = new Gson();
 		String val = "";
-		logger.info("encounter value : " + gson.toJson(encounterapidto));
+		
 
 		try {
 			encounterapidto.setVoided(null);// Setting voided to null as OpenMrs
 											// does not accept voided in the
 											// json structure
+			logger.info("encounter value : " + gson.toJson(encounterapidto));
 			Call<ResponseBody> callencounter = restapiintf.addEncounter(encounterapidto);
 			Response<ResponseBody> response = callencounter.execute();
 			if (response.isSuccessful()) {
@@ -200,7 +206,7 @@ public class EncounterAction {
 				logger.error("REST failed : " + val);
 				return false;
 			}
-			logger.info("Response is : " + val);
+			logger.info("Encounter : "+encounterapidto.getUuid()+" deleted");
 		} catch (IOException | NullPointerException e) {
 			// TODO Auto-generated catch block
 			logger.error(e.getMessage(), e);
