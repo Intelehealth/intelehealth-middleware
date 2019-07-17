@@ -23,13 +23,9 @@ public class EmrUtils {
 		return ts;
 	}
 	public static String getCurrentTime() {
-		/*Date date = new Date();
-		long milis = date.getTime();
-		Timestamp ts = new Timestamp(milis);
-		return ts;*/
+		
 		Date date = new Date();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		//dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
 		return dateFormat.format(date);
 	}
 	

@@ -5,6 +5,12 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 	<servlet>
+        <servlet-name>BootStrapServlet</servlet-name>
+        <servlet-class>com.emrmiddleware.conf.BootStrapServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+	
+	<servlet>
 		<servlet-name>Jersey Web Application</servlet-name>
 		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
 		  <init-param>
@@ -28,7 +34,7 @@
             
         </param-value>
 		</init-param>
-		<load-on-startup>1</load-on-startup>
+		<load-on-startup>2</load-on-startup>
 	</servlet>
 	 
 	<!-- <servlet>
@@ -39,14 +45,14 @@
      <servlet>
     <servlet-name>Jersey2Config</servlet-name>
     <servlet-class>io.swagger.jersey.config.JerseyJaxrsConfig</servlet-class>
-    <init-param>
+  <!--    <init-param>
       <param-name>api.version</param-name>
       <param-value>1.0.0</param-value>
     </init-param>
-     <init-param>
+       <init-param>
       <param-name>swagger.api.basepath</param-name>
       <param-value>http://localhost:8080/EMR-Middleware/webapi</param-value>
-    </init-param> 
+    </init-param> -->
     <load-on-startup>2</load-on-startup>
   </servlet>
 	<servlet-mapping>
@@ -80,12 +86,7 @@
 </filter-mapping>
 
 	  
-	 <servlet>
-        <servlet-name>SwaggerBootstrap</servlet-name>
-        <servlet-class>com.emrmiddleware.conf.SwaggerBootStrap</servlet-class>
-        <load-on-startup>2</load-on-startup>
-    </servlet>
-	
+	 
 
 	
 </web-app>

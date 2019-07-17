@@ -31,8 +31,8 @@
         <property name="poolPingQuery" value="select 1"/> 
         <property name="driver" value="com.mysql.cj.jdbc.Driver"/>  
        <property name="url" value="jdbc:mysql://localhost:3306/openmrs?autoReconnect=true"/>
-        <property name="username" value="root"/>
-        <property name="password" value="i10hi1c"/>
+        <property name="username" value="xxxxx"/>
+        <property name="password" value="xxxxxxxxxx"/>
       </dataSource>
     </environment>
     <environment id="intelehealthAwsTest">
@@ -46,8 +46,8 @@
         <property name="poolPingQuery" value="select 1"/> 
         <property name="driver" value="com.mysql.cj.jdbc.Driver"/>  
        <property name="url" value="jdbc:mysql://localhost:3306/openmrs?autoReconnect=true"/>
-        <property name="username" value="root"/>
-        <property name="password" value="i10hi1c"/>
+        <property name="username" value="xxxxxxxxx"/>
+        <property name="password" value="xxxxxxxxx"/>
       </dataSource>
     </environment>
     <!--  

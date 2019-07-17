@@ -54,11 +54,7 @@ public class PullController {
 		try {
 			AuthenticationUtil authutil = new AuthenticationUtil();	
 			authString= httpHeaders.getHeaderString("authorization");
-			/*final MultivaluedMap<String, String> headers = httpHeaders.getRequestHeaders();
-			 for(String header : httpHeaders.getRequestHeaders().keySet()){
-					System.out.println(header);
-				}*/
-			//authString = httpHeaders.getRequestHeader("authorization").get(0);
+			//logger.info("Authorization header is : "+authString);
 			boolean isAuthenticated = authutil.isUserAuthenticated(authString);
 			if ((isAuthenticated == false) || (authString == null)) {
 				logger.error("No Authorization");

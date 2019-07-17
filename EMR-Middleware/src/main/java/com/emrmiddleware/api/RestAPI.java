@@ -24,9 +24,6 @@ public interface RestAPI {
 	@POST("patients")
 	Call<PatientDTO> addPatient(@Body PatientDTO patientdto);
 	
-  // @POST("person")
-   //Call<ResponseBody> addPerson(@Header("Authorization") String credentials,@Body PersonDTO persondto);
-   
    @POST("person")
    Call<ResponseBody> addPerson(@Body PersonAPIDTO persondto);
    

@@ -102,7 +102,7 @@ public class ResourcesEnvironment {
 			basepath = "localhost:8080/EMR-Middleware";
 		}
 		if (Resources.environment.equalsIgnoreCase("intelehealthAwsTest")) {
-			basepath = "13.233.110.169:8080:8080/EMR-Middleware";
+			basepath = "13.233.110.169:8080/EMR-Middleware";
 		}
 		return basepath;
 		
