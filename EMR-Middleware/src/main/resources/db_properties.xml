@@ -17,7 +17,7 @@
         <property name="driver" value="com.mysql.cj.jdbc.Driver"/>  
        <property name="url" value="jdbc:mysql://142.93.221.37:3306/openmrs?autoReconnect=true"/>
         <property name="username" value="xxxx"/>
-        <property name="password" value="xxxxxxx"/>
+        <property name="password" value="xxxxxxxx"/>
       </dataSource>
     </environment>
     <environment id="intelehealthAwsTest">
