@@ -14,6 +14,7 @@ public class ConfigProperties {
 	private String mybatisDBEnvironment;
 	private String serverhost;
 	private String swaggerhost;
+	private String port;
 	InputStream inputStream;
 	private final Logger logger = LoggerFactory.getLogger(ConfigProperties.class);
 	
@@ -41,6 +42,7 @@ public class ConfigProperties {
 			mybatisDBEnvironment = prop.getProperty("MybatisEnvironmentId");
 			serverhost = prop.getProperty("serverhost");
 			swaggerhost = prop.getProperty("swaggerhost");
+			port = prop.getProperty("port");
 			
 		} catch (Exception e) {
 			logger.error("Exception: " + e);
@@ -60,6 +62,9 @@ public class ConfigProperties {
 	
 	public String getSwaggerHost(){
 		return swaggerhost;
+	}
+	public String getPort(){
+		return port;
 	}
 
 }

@@ -1,23 +1,14 @@
 package com.emrmiddleware.conf;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 import com.emrmiddleware.resource.Resources;
 
 public class ResourcesEnvironment {
     ConfigProperties configProperties = new ConfigProperties();
 	public String getDBEnvironment() {
 		String DBEnvironment = "";
-		/*if (Resources.environment.equalsIgnoreCase("localdev")) {
-			DBEnvironment = "development";
-		}
-		if (Resources.environment.equalsIgnoreCase("mahitidev")) {
-			DBEnvironment = "development";
-		}
-		if (Resources.environment.equalsIgnoreCase("intelehealthdev")) {
-			DBEnvironment = "intelehealthdevelopment";
-		}
-		if (Resources.environment.equalsIgnoreCase("intelehealthAwsTest")) {
-			DBEnvironment = "intelehealthAwsTest";
-		}*/
         DBEnvironment = configProperties.getDBEnvironment();
 		return DBEnvironment;
 	}
@@ -26,21 +17,8 @@ public class ResourcesEnvironment {
 
 	public String getAPIBaseURL() {
 		String Base_URL = "";
-		String host = "http://"+configProperties.getServer();
-		/*if (Resources.environment.equalsIgnoreCase("localdev")) {
-			Base_URL = "http://142.93.221.37:8080/openmrs/ws/rest/v1/";
-		}
-		if (Resources.environment.equalsIgnoreCase("mahitidev")) {
-			Base_URL = "http://142.93.221.37:8080/openmrs/ws/rest/v1/";
-		}
-		if (Resources.environment.equalsIgnoreCase("intelehealthdev")) {
-			Base_URL = "http://localhost:8080/openmrs/ws/rest/v1/";
-			
-		}
-		if (Resources.environment.equalsIgnoreCase("intelehealthAwsTest")) {
-			Base_URL = "http://localhost:8080/openmrs/ws/rest/v1/";
-			
-		}*/
+		
+		String host = "http://"+configProperties.getServer()+":"+configProperties.getPort();
 		Base_URL=host+"/openmrs/ws/rest/v1/";
 
 		return Base_URL;
@@ -49,19 +27,7 @@ public class ResourcesEnvironment {
 
 	public String getIdGenUrl() {
 		String ID_URL = "";
-		String host = "http://"+configProperties.getServer();
-		/*if (Resources.environment.equalsIgnoreCase("localdev")) {
-			ID_URL = "http://142.93.221.37:8080/openmrs/module/idgen/";
-		}
-		if (Resources.environment.equalsIgnoreCase("mahitidev")) {
-			ID_URL = "http://142.93.221.37:8080/openmrs/module/idgen/";
-		} 
-		if (Resources.environment.equalsIgnoreCase("intelehealthdev")) {
-			ID_URL = "http://localhost:8080/openmrs/module/idgen/";
-		}
-		if (Resources.environment.equalsIgnoreCase("intelehealthAwsTest")) {
-			ID_URL = "http://localhost:8080/openmrs/module/idgen/";
-		}*/
+		String host = "http://"+configProperties.getServer()+":"+configProperties.getPort();	
 		ID_URL=host+"/openmrs/module/idgen/";
 		return ID_URL;
 	}
@@ -69,19 +35,17 @@ public class ResourcesEnvironment {
 	
 	public String getHostPath(){
 		String basepath="";
-		String host = "http://"+configProperties.getSwaggerHost();
-		/*if (Resources.environment.equalsIgnoreCase("localdev")) {
-			basepath = "localhost:8080/EMR-Middleware";
+		InetAddress thisIp = null;
+		try {
+			thisIp = InetAddress.getLocalHost();
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		if (Resources.environment.equalsIgnoreCase("mahitidev")) {
-			basepath = "142.93.221.37:8080/EMR-Middleware";
-		} 
-		if (Resources.environment.equalsIgnoreCase("intelehealthdev")) {
-			basepath = "localhost:8080/EMR-Middleware";
-		}
-		if (Resources.environment.equalsIgnoreCase("intelehealthAwsTest")) {
-			basepath = "13.233.110.169:8080/EMR-Middleware";
-		}*/
+        String thisIpAddress = thisIp.getHostAddress().toString();
+		//String host = "http://"+configProperties.getSwaggerHost();
+        String host = "http://"+thisIpAddress+":"+configProperties.getPort();
+		
 		basepath = host+"/EMR-Middleware";
 		return basepath;
 		
