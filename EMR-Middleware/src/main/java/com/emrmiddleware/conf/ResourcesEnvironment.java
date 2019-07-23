@@ -35,17 +35,8 @@ public class ResourcesEnvironment {
 	
 	public String getHostPath(){
 		String basepath="";
-		InetAddress thisIp = null;
-		try {
-			thisIp = InetAddress.getLocalHost();
-		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        String thisIpAddress = thisIp.getHostAddress().toString();
-		//String host = "http://"+configProperties.getSwaggerHost();
-        String host = "http://"+thisIpAddress+":"+configProperties.getPort();
 		
+		String host = "http://"+configProperties.getSwaggerHost()+":"+configProperties.getPort(); 
 		basepath = host+"/EMR-Middleware";
 		return basepath;
 		
