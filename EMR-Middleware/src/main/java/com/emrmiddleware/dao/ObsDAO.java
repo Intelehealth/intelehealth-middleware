@@ -19,7 +19,7 @@ import com.emrmiddleware.exception.DAOException;
 public class ObsDAO {
 
 	private final Logger logger = LoggerFactory.getLogger(ObsDAO.class);
-	public ArrayList<ObsDTO> getObs(Timestamp lastdatapulltime, String locationuuid) throws DAOException {
+	public ArrayList<ObsDTO> getObsList(String lastpulldatatime, String locationuuid) throws DAOException {
 
 		SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
 		SqlSession session = sessionfactory.openSession();
@@ -27,9 +27,27 @@ public class ObsDAO {
 		try {
 
 			ObsDMO obsdmo = session.getMapper(ObsDMO.class);
-			obslist = obsdmo.getObs(lastdatapulltime, locationuuid);
+			
+			obslist = obsdmo.getObsList(lastpulldatatime, locationuuid);
 			
 			return obslist;
+		} catch (PersistenceException e) {
+			logger.error(e.getMessage(),e);
+			throw new DAOException(e.getMessage(), e);
+		} finally {
+			session.close();
+		}
+	}
+	
+	public ObsDTO getObs(String obsuuid) throws DAOException {
+
+		SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
+		SqlSession session = sessionfactory.openSession();
+		ObsDTO obs = new ObsDTO();
+		try {
+			ObsDMO obsdmo = session.getMapper(ObsDMO.class);
+			obs = obsdmo.getObs(obsuuid);
+			return obs;
 		} catch (PersistenceException e) {
 			logger.error(e.getMessage(),e);
 			throw new DAOException(e.getMessage(), e);

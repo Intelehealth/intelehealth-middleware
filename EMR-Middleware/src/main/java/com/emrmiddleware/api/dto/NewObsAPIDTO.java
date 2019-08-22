@@ -2,15 +2,13 @@ package com.emrmiddleware.api.dto;
 
 import com.google.gson.annotations.SerializedName;
 
-public class ObsAPIDTO {
+public class NewObsAPIDTO {
 	
-	private String uuid;
 	private String concept;
 	private String value;
 	private String encounter;
 	private String obsDatetime;
 	private String person;
-	
 	
 	public String getEncounter() {
 		return encounter;
@@ -30,12 +28,7 @@ public class ObsAPIDTO {
 	public void setPerson(String person) {
 		this.person = person;
 	}
-	public String getUuid() {
-		return uuid;
-	}
-	public void setUuid(String uuid) {
-		this.uuid = uuid;
-	}
+	
 	public String getConcept() {
 		return concept;
 	}

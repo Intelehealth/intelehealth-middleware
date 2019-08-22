@@ -12,5 +12,5 @@ import com.emrmiddleware.dto.LocationDTO;
 public interface LocationDMO {
 
 	@Select("select name,uuid as locationuuid,retired from location where COALESCE(date_changed,date_created)>=#{lastchangedtime}")
-	public ArrayList<LocationDTO> getLocations(@Param("lastchangedtime") Date lastchangedtime);
+	public ArrayList<LocationDTO> getLocations(@Param("lastchangedtime") String lastpulldatatime);
 }

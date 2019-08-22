@@ -21,7 +21,7 @@ import com.emrmiddleware.exception.DAOException;
 public class PatientDAO {
 
 	private final Logger logger = LoggerFactory.getLogger(PatientDAO.class);
-	public ArrayList<PatientDTO> getPatients(Timestamp lastdatapulltime, String locationuuid) throws DAOException {
+	public ArrayList<PatientDTO> getPatients(String lastpulldatatime, String locationuuid) throws DAOException {
 
 		SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
 		SqlSession session = sessionfactory.openSession();
@@ -29,7 +29,7 @@ public class PatientDAO {
 		try {
 
 			PatientDMO patientdmo = session.getMapper(PatientDMO.class);
-			patientlist = patientdmo.getPatients(lastdatapulltime, locationuuid);
+			patientlist = patientdmo.getPatients(lastpulldatatime, locationuuid);
 			return patientlist;
 		} catch (PersistenceException e) {
 			logger.error(e.getMessage(),e);
@@ -39,7 +39,7 @@ public class PatientDAO {
 		}
 	}
 
-	public ArrayList<PatientAttributeTypeDTO> getPatientAttributeType(Timestamp lastdatapulltime, String locationuuid)
+	public ArrayList<PatientAttributeTypeDTO> getPatientAttributeType(String lastpulldatatime, String locationuuid)
 			throws DAOException {
 
 		SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
@@ -48,7 +48,7 @@ public class PatientDAO {
 		try {
 
 			PatientDMO patientdmo = session.getMapper(PatientDMO.class);
-			patientAttributeTypeList = patientdmo.getPatientAttributeMaster(lastdatapulltime);
+			patientAttributeTypeList = patientdmo.getPatientAttributeMaster(lastpulldatatime);
 			return patientAttributeTypeList;
 		} catch (PersistenceException e) {
 			logger.error(e.getMessage(),e);
@@ -58,7 +58,7 @@ public class PatientDAO {
 		}
 	}
 
-	public ArrayList<PatientAttributeDTO> getPatientAttributes(Timestamp lastdatapulltime, String locationuuid)
+	public ArrayList<PatientAttributeDTO> getPatientAttributes(String lastpulldatatime, String locationuuid)
 			throws DAOException {
 
 		SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
@@ -67,7 +67,7 @@ public class PatientDAO {
 		try {
 
 			PatientDMO patientdmo = session.getMapper(PatientDMO.class);
-			patientAttributesList = patientdmo.getPatientAttributes(lastdatapulltime, locationuuid);
+			patientAttributesList = patientdmo.getPatientAttributes(lastpulldatatime, locationuuid);
 			return patientAttributesList;
 		} catch (PersistenceException e) {
 			logger.error(e.getMessage(),e);

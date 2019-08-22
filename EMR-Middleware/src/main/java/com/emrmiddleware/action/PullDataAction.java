@@ -33,7 +33,7 @@ import com.emrmiddleware.utils.EmrUtils;
 
 public class PullDataAction {
 
-	public PullDataDTO getPullData(Timestamp lastdatapulltime, String locationuuid) throws ActionException, DAOException {
+	public PullDataDTO getPullData(String lastpulldatatime, String locationuuid) throws ActionException, DAOException {
 
 		PullDataDTO pulldata = new PullDataDTO();
 		PatientDAO patientdao = new PatientDAO();
@@ -55,18 +55,19 @@ public class PullDataAction {
 		ArrayList<VisitAttributeTypeDTO> visitAttributeTypeList = new ArrayList<VisitAttributeTypeDTO>();
 		ArrayList<VisitAttributeDTO> visitAttributesList = new ArrayList<VisitAttributeDTO>();
 		try {
-			patientlist = patientdao.getPatients(lastdatapulltime, locationuuid);
-			patientAttributeTypeList = patientdao.getPatientAttributeType(lastdatapulltime, locationuuid);
-			patientAttributesList = patientdao.getPatientAttributes(lastdatapulltime, locationuuid);
-			visitlist = visitdao.getVisits(lastdatapulltime, locationuuid);
-			visitAttributeTypeList = visitdao.getVisitAttributeTypeMaster(lastdatapulltime);
-			visitAttributesList = visitdao.getVisitAttributes(lastdatapulltime, locationuuid);
-			encounterlist = encounterdao.getEncounters(lastdatapulltime, locationuuid);
-			obslist = obsdao.getObs(lastdatapulltime, locationuuid);
-			locationlist = locationdao.getLocations(lastdatapulltime);
-			providerlist = providerdao.getProviders(lastdatapulltime);
-			providerAttributeTypeList = providerdao.getProviderAttributeTypeMaster(lastdatapulltime);
-			providerAttributeList = providerdao.getProviderAttributes(lastdatapulltime);
+			pulldata.setPullexecutedtime(visitdao.getDBCurrentTime());//Used by device for syncing purpose
+			patientlist = patientdao.getPatients(lastpulldatatime, locationuuid);
+			patientAttributeTypeList = patientdao.getPatientAttributeType(lastpulldatatime, locationuuid);
+			patientAttributesList = patientdao.getPatientAttributes(lastpulldatatime, locationuuid);
+			visitlist = visitdao.getVisits(lastpulldatatime, locationuuid);
+			visitAttributeTypeList = visitdao.getVisitAttributeTypeMaster(lastpulldatatime);
+			visitAttributesList = visitdao.getVisitAttributes(lastpulldatatime, locationuuid);
+			encounterlist = encounterdao.getEncounters(lastpulldatatime, locationuuid);
+			obslist = obsdao.getObsList(lastpulldatatime, locationuuid);
+			locationlist = locationdao.getLocations(lastpulldatatime);
+			providerlist = providerdao.getProviders(lastpulldatatime);
+			providerAttributeTypeList = providerdao.getProviderAttributeTypeMaster(lastpulldatatime);
+			providerAttributeList = providerdao.getProviderAttributes(lastpulldatatime);
 			pulldata.setLocationlist(locationlist);
 			pulldata.setPatientlist(patientlist);
 			pulldata.setPatientAttributeTypeListMaster(patientAttributeTypeList);
@@ -80,7 +81,7 @@ public class PullDataAction {
 			pulldata.setEncounterlist(encounterlist);
 			pulldata.setObslist(obslist);
 			
-			pulldata.setPullexecutedtime(EmrUtils.getCurrentTime());//Used by device for syncing purpose
+			
 		} catch (DAOException e) {
 			throw new DAOException(e.getMessage(), e);
 		} catch (Exception e) {

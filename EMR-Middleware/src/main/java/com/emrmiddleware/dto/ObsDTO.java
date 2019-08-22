@@ -7,9 +7,16 @@ public class ObsDTO {
 	private String conceptuuid;
 	private String value;
 	private int creator;
+	private String obsServerModifiedDate;
 	private int voided;
 	
 	
+	public String getObsServerModifiedDate() {
+		return obsServerModifiedDate;
+	}
+	public void setObsServerModifiedDate(String obsServerModifiedDate) {
+		this.obsServerModifiedDate = obsServerModifiedDate;
+	}
 	public int getVoided() {
 		return voided;
 	}

@@ -21,7 +21,7 @@ import com.emrmiddleware.exception.DAOException;
 public class VisitDAO {
 
 	private final Logger logger = LoggerFactory.getLogger(VisitDAO.class);
-	public ArrayList<VisitDTO> getVisits(Timestamp lastdatapulltime, String locationuuid) throws DAOException {
+	public ArrayList<VisitDTO> getVisits(String lastpulldatatime, String locationuuid) throws DAOException {
 
 		SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
 		SqlSession session = sessionfactory.openSession();
@@ -29,7 +29,7 @@ public class VisitDAO {
 		try {
 
 			VisitDMO patientdmo = session.getMapper(VisitDMO.class);
-			visitlist = patientdmo.getVisits(lastdatapulltime, locationuuid);
+			visitlist = patientdmo.getVisits(lastpulldatatime, locationuuid);
 			return visitlist;
 		} catch (PersistenceException e) {
 			logger.error(e.getMessage(),e);
@@ -57,7 +57,25 @@ public class VisitDAO {
 		}
 	}
 	
-	public ArrayList<VisitAttributeTypeDTO> getVisitAttributeTypeMaster(Timestamp lastdatapulltime) throws DAOException {
+	public String getDBCurrentTime() throws DAOException {
+
+		SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
+		SqlSession session = sessionfactory.openSession();
+		String currentTime=null;
+		try {
+
+			VisitDMO visitdmo = session.getMapper(VisitDMO.class);
+			currentTime = visitdmo.getDBCurrentTime();
+			return currentTime;
+		} catch (PersistenceException e) {
+			logger.error(e.getMessage(),e);
+			throw new DAOException(e.getMessage(), e);
+		} finally {
+			session.close();
+		}
+	}
+	
+	public ArrayList<VisitAttributeTypeDTO> getVisitAttributeTypeMaster(String lastpulldatatime) throws DAOException {
 
 		SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
 		SqlSession session = sessionfactory.openSession();
@@ -65,7 +83,7 @@ public class VisitDAO {
 		try {
 
 			VisitDMO visitdmo = session.getMapper(VisitDMO.class);
-			visitAttributeMasterList = visitdmo.getVisitAttributeMaster(lastdatapulltime);
+			visitAttributeMasterList = visitdmo.getVisitAttributeMaster(lastpulldatatime);
 			return visitAttributeMasterList;
 		} catch (PersistenceException e) {
 			logger.error(e.getMessage(),e);
@@ -75,7 +93,7 @@ public class VisitDAO {
 		}
 	}
 	
-	public ArrayList<VisitAttributeDTO> getVisitAttributes(Timestamp lastdatapulltime,String locationuuid) throws DAOException {
+	public ArrayList<VisitAttributeDTO> getVisitAttributes(String lastpulldatatime,String locationuuid) throws DAOException {
 
 		SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
 		SqlSession session = sessionfactory.openSession();
@@ -83,7 +101,7 @@ public class VisitDAO {
 		try {
 
 			VisitDMO visitdmo = session.getMapper(VisitDMO.class);
-			visitAttributesList = visitdmo.getVisitAttributes(lastdatapulltime, locationuuid);
+			visitAttributesList = visitdmo.getVisitAttributes(lastpulldatatime, locationuuid);
 			return visitAttributesList;
 		} catch (PersistenceException e) {
 			logger.error(e.getMessage(),e);

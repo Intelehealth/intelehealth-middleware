@@ -62,8 +62,8 @@ public class PullController {
 				return Response.status(403).entity(gson.toJson(responsedto)).build();
 			}
 			PullDataAction pulldataaction = new PullDataAction();
-			Timestamp lastdatapulltime = EmrUtils.getFormatDate(lastpulldatatime);
-			pulldatadto = pulldataaction.getPullData(lastdatapulltime, locationuuid);
+			//Timestamp lastdatapulltime = EmrUtils.getFormatDate(lastpulldatatime);
+			pulldatadto = pulldataaction.getPullData(lastpulldatatime, locationuuid);
 			responsedto.setStatus(Resources.OK);
 			responsedto.setData(pulldatadto);
 		} catch (DAOException e) {

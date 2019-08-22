@@ -19,7 +19,7 @@ import com.emrmiddleware.exception.DAOException;
 public class LocationDAO {
 
 	private final Logger logger = LoggerFactory.getLogger(LocationDAO.class);
-	public ArrayList<LocationDTO> getLocations(Timestamp lastdatapulltime) throws DAOException {
+	public ArrayList<LocationDTO> getLocations(String lastpulldatatime) throws DAOException {
 
 		SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
 		SqlSession session = sessionfactory.openSession();
@@ -27,7 +27,7 @@ public class LocationDAO {
 		try {
 
 			LocationDMO locationdmo = session.getMapper(LocationDMO.class);
-			locationlist = locationdmo.getLocations(lastdatapulltime);
+			locationlist = locationdmo.getLocations(lastpulldatatime);
 			return locationlist;
 		} catch (PersistenceException e) {
 			logger.error(e.getMessage(),e);

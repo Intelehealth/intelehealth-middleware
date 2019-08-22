@@ -20,7 +20,7 @@ import com.emrmiddleware.exception.DAOException;
 
 public class ProviderDAO {
 	private final Logger logger = LoggerFactory.getLogger(ProviderDAO.class);
-	public ArrayList<ProviderDTO> getProviders(Timestamp lastdatapulltime) throws DAOException {
+	public ArrayList<ProviderDTO> getProviders(String lastpulldatatime) throws DAOException {
 
 		SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
 		SqlSession session = sessionfactory.openSession();
@@ -28,7 +28,7 @@ public class ProviderDAO {
 		try {
 
 			ProviderDMO providerdmo = session.getMapper(ProviderDMO.class);
-			providerlist = providerdmo.getProviders(lastdatapulltime);
+			providerlist = providerdmo.getProviders(lastpulldatatime);
 			return providerlist;
 		} catch (PersistenceException e) {
 			logger.error(e.getMessage(),e);
@@ -38,7 +38,7 @@ public class ProviderDAO {
 		}
 	}
 	
-	public ArrayList<ProviderAttributeTypeDTO> getProviderAttributeTypeMaster(Timestamp lastdatapulltime) throws DAOException {
+	public ArrayList<ProviderAttributeTypeDTO> getProviderAttributeTypeMaster(String lastpulldatatime) throws DAOException {
 
 		SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
 		SqlSession session = sessionfactory.openSession();
@@ -46,7 +46,7 @@ public class ProviderDAO {
 		try {
 
 			ProviderDMO providerdmo = session.getMapper(ProviderDMO.class);
-			providerAttributeTypeList = providerdmo.getProviderAttributeTypeMaster(lastdatapulltime);
+			providerAttributeTypeList = providerdmo.getProviderAttributeTypeMaster(lastpulldatatime);
 			return providerAttributeTypeList;
 		} catch (PersistenceException e) {
 			logger.error(e.getMessage(),e);
@@ -57,7 +57,7 @@ public class ProviderDAO {
 	}
 
 
-	public ArrayList<ProviderAttributeDTO> getProviderAttributes(Timestamp lastdatapulltime) throws DAOException {
+	public ArrayList<ProviderAttributeDTO> getProviderAttributes(String lastpulldatatime) throws DAOException {
 
 		SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
 		SqlSession session = sessionfactory.openSession();
@@ -65,7 +65,7 @@ public class ProviderDAO {
 		try {
 
 			ProviderDMO providerdmo = session.getMapper(ProviderDMO.class);
-			providerAttributeList = providerdmo.getProviderAttributes(lastdatapulltime);
+			providerAttributeList = providerdmo.getProviderAttributes(lastpulldatatime);
 			return providerAttributeList;
 		} catch (PersistenceException e) {
 			logger.error(e.getMessage(),e);

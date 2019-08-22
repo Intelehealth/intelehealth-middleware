@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import com.emrmiddleware.api.APIClient;
 import com.emrmiddleware.api.RestAPI;
 import com.emrmiddleware.api.dto.EncounterAPIDTO;
+import com.emrmiddleware.api.dto.ObsAPIDTO;
 import com.emrmiddleware.dao.EncounterDAO;
 import com.emrmiddleware.dto.EncounterDTO;
 import com.emrmiddleware.exception.ActionException;
@@ -19,11 +20,6 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
 
-/* This class also handles obs .In Openmrs if we pass obs with uuid in a new encounter , the obs gets created
- *  .If obs with existing uuid is sent with an encounter where encounteruuid already exists , a new obs uuid gets
- *   generated and the old uuid gets voided.Not coding for obs individually for now , as openmrs is handling and there is 
- *   safety that it is happening as a transaction in openmrs.Either both encounter and obs works or nothing works.There is also 
- *   no need of multiple api calls from middleware to openmrs.This will have to be taken into consideration in the mobile*/
 
 public class EncounterAction {
 	private final Logger logger = LoggerFactory.getLogger(EncounterAction.class);
@@ -113,17 +109,7 @@ public class EncounterAction {
 		return isVoided;
 	}
 
-	/*private boolean isEncounterExists(String encounteruuid) throws DAOException {
-		boolean isEncounterExists = false;
-		EncounterDAO encounterdao = new EncounterDAO();
-		EncounterDTO encounterdto = encounterdao.getEncounter(encounteruuid);
-		if (encounterdto != null) {
-			isEncounterExists = true;
-		}
-		return isEncounterExists;
-
-	}*/
-
+	
 	private EncounterDTO getEncounter(String encounteruuid) throws DAOException {
 		EncounterDAO encounterdao = new EncounterDAO();
 		EncounterDTO encounterdto = encounterdao.getEncounter(encounteruuid);
@@ -166,12 +152,12 @@ public class EncounterAction {
 	private boolean editEncounterOpenMRS(EncounterAPIDTO encounterapidto) {
 		Gson gson = new Gson();
 		String val = "";
-		logger.info("edit encounter value : " + gson.toJson(encounterapidto));
-
+		
 		try {
 			encounterapidto.setVoided(null);// Setting voided to null as OpenMrs
 											// does not accept voided in the
 											// json structure
+			logger.info("edit encounter value : " + gson.toJson(encounterapidto));
 			Call<ResponseBody> callencounter = restapiintf.editEncounter(encounterapidto.getUuid(), encounterapidto);
 			Response<ResponseBody> response = callencounter.execute();
 			if (response.isSuccessful()) {
@@ -192,7 +178,7 @@ public class EncounterAction {
 		}
 		return true;
 	}
-
+	
 	private boolean deleteEncounterOpenMRS(EncounterAPIDTO encounterapidto) {
 		Gson gson = new Gson();
 		String val = "";
@@ -217,5 +203,51 @@ public class EncounterAction {
 		}
 		return true;
 	}
+/*
+	
+	private boolean editEncounterOpenMRS(EncounterAPIDTO encounterapidto) {
+		Gson gson = new Gson();
+		boolean isInsertUpdateObsList=false;
+		String val = "";
+		logger.info("edit encounter value : " + gson.toJson(encounterapidto));
 
+		try {
+			encounterapidto.setVoided(null);// Setting voided to null as OpenMrs
+											// does not accept voided in the
+											// json structure
+			ArrayList<ObsAPIDTO> obsApidDtoList = encounterapidto.getObs();
+			isInsertUpdateObsList = insertUpdateObs(obsApidDtoList,encounterapidto.getUuid(),encounterapidto.getPatient());
+			//if (isInsertUpdateObsList==false)
+			//	return false;//Encounter not syncd
+			encounterapidto.setObs();//All obs set, just update encounter without obs now
+			Call<ResponseBody> callencounter = restapiintf.editEncounter(encounterapidto.getUuid(), encounterapidto);
+			Response<ResponseBody> response = callencounter.execute();
+			if (response.isSuccessful()) {
+				val = response.body().string();
+			} else {
+				val = response.errorBody().string();
+				logger.error("REST failed : " + val);
+				return false;
+			}
+			logger.info("Response for edit is : " + val);
+		} catch (NullPointerException e) {
+			
+			logger.error(e.getMessage(), e);
+			return false;
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+			return false;
+		}
+		return isInsertUpdateObsList;
+	}
+	
+	private boolean insertUpdateObs(ArrayList<ObsAPIDTO> obsApiDtoList,String encounteruuid,String person) throws DAOException, ActionException{
+		boolean isProcessed = true;
+		ObsAction obsaction = new ObsAction(authString);
+		isProcessed = obsaction.setObs(obsApiDtoList,encounteruuid,person);
+		return isProcessed;
+	}
+	
+	
+*/
 }
