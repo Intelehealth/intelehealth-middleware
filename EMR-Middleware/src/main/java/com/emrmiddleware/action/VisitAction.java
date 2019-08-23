@@ -102,11 +102,12 @@ public class VisitAction {
 	private boolean editVisitOpenMRS(VisitAPIDTO visitapidto) {
 		Gson gson = new Gson();
 		String val = "";
-		logger.info("edit visit value : " + gson.toJson(visitapidto));
+		
 
 		try {
 			visitapidto.setPatient(null);// Not allowed to be set in edit for
 											// visit in openmrs
+			logger.info("edit visit value : " + gson.toJson(visitapidto));
 			Call<ResponseBody> callvisit = restapiintf.editVisit(visitapidto.getUuid(), visitapidto);
 			Response<ResponseBody> response = callvisit.execute();
 			if (response.isSuccessful()) {

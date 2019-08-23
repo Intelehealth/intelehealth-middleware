@@ -4,8 +4,6 @@ import java.util.List;
 
 import com.emrmiddleware.api.dto.EncounterAPIDTO;
 import com.emrmiddleware.api.dto.IDGenAPIDTO;
-import com.emrmiddleware.api.dto.NewObsAPIDTO;
-import com.emrmiddleware.api.dto.ObsAPIDTO;
 import com.emrmiddleware.api.dto.PatientAPIDTO;
 import com.emrmiddleware.api.dto.PersonAPIDTO;
 import com.emrmiddleware.api.dto.VisitAPIDTO;
@@ -56,12 +54,6 @@ public interface RestAPI {
    @DELETE("encounter/{uuid}")
    Call<ResponseBody> deleteEncounter(@Path("uuid") String uuid);
    
-   @POST("latestobs")
-   Call<ResponseBody> addObs(@Body ObsAPIDTO obsapidto);
-   
-   
-   @POST("latestobs/{obsuuid}")
-   Call<ResponseBody> editObs(@Path("obsuuid") String obsuuid,@Body NewObsAPIDTO newobsapidto);
    
    
 

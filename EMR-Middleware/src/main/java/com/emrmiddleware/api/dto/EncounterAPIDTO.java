@@ -13,7 +13,6 @@ public class EncounterAPIDTO {
 	
 	private ArrayList<EncounterProvidersAPIDTO> encounterProviders;
 	private String location;
-	private ArrayList<ObsAPIDTO> obs=new ArrayList<ObsAPIDTO>();
 	private String voided;
 	
 	
@@ -52,12 +51,6 @@ public class EncounterAPIDTO {
 	}
 	public void setVisit(String visit) {
 		this.visit = visit;
-	}
-	public ArrayList<ObsAPIDTO> getObs() {
-		return obs;
-	}
-	public void setObs(ArrayList<ObsAPIDTO> obs) {
-		this.obs = obs;
 	}
 	public ArrayList<EncounterProvidersAPIDTO> getEncounterProviders() {
 		return encounterProviders;
