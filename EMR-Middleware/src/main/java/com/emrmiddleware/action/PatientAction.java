@@ -137,19 +137,5 @@ public class PatientAction {
 		}
 		return true;
 	}
-	/*
-	 * private boolean editPatientOpenMRS(PersonAPIDTO persondto) { Gson gson =
-	 * new Gson(); String val = ""; logger.info("edit patient value : " +
-	 * gson.toJson(persondto));
-	 * 
-	 * try { Call<ResponseBody> callperson =
-	 * restapiintf.editPerson(persondto.getUuid(), persondto);
-	 * Response<ResponseBody> response = callperson.execute(); if
-	 * (response.isSuccessful()) { val = response.body().string(); } else { val
-	 * = response.errorBody().string(); logger.error("REST failed : " + val);
-	 * return false; } logger.info("Response for edit is : " + val); } catch
-	 * (IOException | NullPointerException e) { // TODO Auto-generated catch
-	 * block logger.error(e.getMessage(), e); return false; } catch (Exception
-	 * e) { logger.error(e.getMessage(), e); return false; } return true; }
-	 */
+	
 }
