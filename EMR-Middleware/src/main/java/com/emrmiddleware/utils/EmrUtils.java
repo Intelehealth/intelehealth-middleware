@@ -1,21 +1,15 @@
 package com.emrmiddleware.utils;
 
 import java.math.BigInteger;
-import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Timestamp;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.TimeZone;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class EmrUtils {
 
-	private static final Logger logger = LoggerFactory.getLogger(EmrUtils.class);
+	
 	public static Timestamp getFormatDate(String date){
 		
 		java.sql.Timestamp ts = java.sql.Timestamp.valueOf( date ) ;

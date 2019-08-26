@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServlet;
 
 import io.swagger.jaxrs.config.BeanConfig;
 import io.swagger.jaxrs.config.SwaggerContextService;
-import io.swagger.models.Info;
 import io.swagger.models.Swagger;
 import io.swagger.models.auth.BasicAuthDefinition;
 

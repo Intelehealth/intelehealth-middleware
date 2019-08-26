@@ -1,8 +1,6 @@
 package com.emrmiddleware.dao;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
-
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -10,9 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.emrmiddleware.conf.DBconfig;
-import com.emrmiddleware.dmo.EncounterDMO;
 import com.emrmiddleware.dmo.LocationDMO;
-import com.emrmiddleware.dto.EncounterDTO;
 import com.emrmiddleware.dto.LocationDTO;
 import com.emrmiddleware.exception.DAOException;
 

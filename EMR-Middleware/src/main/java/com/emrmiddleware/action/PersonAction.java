@@ -8,18 +8,14 @@ import org.slf4j.LoggerFactory;
 
 import com.emrmiddleware.api.APIClient;
 import com.emrmiddleware.api.RestAPI;
-import com.emrmiddleware.api.dto.AddressAPIDTO;
-import com.emrmiddleware.api.dto.NameAPIDTO;
 import com.emrmiddleware.api.dto.PersonAPIDTO;
 import com.emrmiddleware.dao.PersonDAO;
-import com.emrmiddleware.dto.PatientDTO;
 import com.emrmiddleware.dto.PersonDTO;
 import com.emrmiddleware.exception.DAOException;
 import com.google.gson.Gson;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 
 import com.emrmiddleware.exception.ActionException;

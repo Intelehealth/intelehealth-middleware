@@ -13,7 +13,6 @@ public class ConfigProperties {
 	String result = "";
 	private String mybatisDBEnvironment;
 	private String serverhost;
-	private String apiserverhost;
 	private String swaggerhost;
 	private String port;
 	InputStream inputStream;

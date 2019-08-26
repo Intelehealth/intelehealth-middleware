@@ -44,7 +44,6 @@ public class PatientAction {
 		PatientAPIDTO patientforerror = new PatientAPIDTO();
 		boolean isPatientSet = true;
 		Gson gson = new Gson();
-		int i = 0;
 		try {
 			for (PatientAPIDTO patient : patientList) {
 				patientforerror = patient;

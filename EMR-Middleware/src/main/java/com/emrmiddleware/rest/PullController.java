@@ -1,21 +1,15 @@
 package com.emrmiddleware.rest;
 
-import java.sql.Timestamp;
 
-import javax.annotation.security.RolesAllowed;
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
-import javax.ws.rs.HeaderParam;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 
 import org.slf4j.Logger;
@@ -25,10 +19,8 @@ import com.emrmiddleware.action.PullDataAction;
 import com.emrmiddleware.authentication.AuthenticationUtil;
 import com.emrmiddleware.dto.PullDataDTO;
 import com.emrmiddleware.dto.ResponseDTO;
-import com.emrmiddleware.exception.ActionException;
 import com.emrmiddleware.exception.DAOException;
 import com.emrmiddleware.resource.Resources;
-import com.emrmiddleware.utils.EmrUtils;
 import com.google.gson.Gson;
 
 import io.swagger.annotations.Api;

@@ -38,7 +38,6 @@ public class VisitAction {
 		VisitAPIDTO visitforerror = new VisitAPIDTO();
 		boolean isVisitSet = true;
 		Gson gson = new Gson();
-		int i = 0;
 		try {
 			for (VisitAPIDTO visit : visitList) {
 				visitforerror = visit;

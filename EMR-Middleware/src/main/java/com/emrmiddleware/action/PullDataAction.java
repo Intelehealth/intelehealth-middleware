@@ -1,13 +1,7 @@
 package com.emrmiddleware.action;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 
-import org.apache.ibatis.exceptions.PersistenceException;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-
-import com.emrmiddleware.conf.DBconfig;
 import com.emrmiddleware.dao.EncounterDAO;
 import com.emrmiddleware.dao.LocationDAO;
 import com.emrmiddleware.dao.ObsDAO;
@@ -29,7 +23,6 @@ import com.emrmiddleware.dto.VisitAttributeTypeDTO;
 import com.emrmiddleware.dto.VisitDTO;
 import com.emrmiddleware.exception.ActionException;
 import com.emrmiddleware.exception.DAOException;
-import com.emrmiddleware.utils.EmrUtils;
 
 public class PullDataAction {
 

@@ -1,9 +1,5 @@
 package com.emrmiddleware.api;
 
-import javax.servlet.ServletContext;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.HttpHeaders;
-
 import com.emrmiddleware.authentication.AuthenticationUtil;
 import com.emrmiddleware.conf.ResourcesEnvironment;
 import com.emrmiddleware.dto.UserCredentialDTO;

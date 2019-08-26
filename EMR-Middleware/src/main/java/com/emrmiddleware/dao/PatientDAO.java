@@ -1,6 +1,5 @@
 package com.emrmiddleware.dao;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import org.apache.ibatis.exceptions.PersistenceException;
@@ -11,11 +10,9 @@ import org.slf4j.LoggerFactory;
 
 import com.emrmiddleware.conf.DBconfig;
 import com.emrmiddleware.dmo.PatientDMO;
-import com.emrmiddleware.dmo.PersonDMO;
 import com.emrmiddleware.dto.PatientAttributeDTO;
 import com.emrmiddleware.dto.PatientAttributeTypeDTO;
 import com.emrmiddleware.dto.PatientDTO;
-import com.emrmiddleware.dto.PersonDTO;
 import com.emrmiddleware.exception.DAOException;
 
 public class PatientDAO {

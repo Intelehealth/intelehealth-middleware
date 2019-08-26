@@ -2,9 +2,6 @@ package com.emrmiddleware.action;
 
 import java.util.ArrayList;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.emrmiddleware.api.dto.EncounterAPIDTO;
 import com.emrmiddleware.api.dto.PatientAPIDTO;
 import com.emrmiddleware.api.dto.PersonAPIDTO;
@@ -17,11 +14,10 @@ import com.emrmiddleware.dto.PushDataDTO;
 import com.emrmiddleware.dto.VisitDTO;
 import com.emrmiddleware.exception.DAOException;
 import com.emrmiddleware.exception.ActionException;
-import com.emrmiddleware.rest.PushController;
+
 
 public class PushDataAction {
 
-	private final Logger logger = LoggerFactory.getLogger(PushController.class);
 	String authString;
 
 	public PushDataAction(String auth) {

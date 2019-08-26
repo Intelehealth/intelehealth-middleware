@@ -1,11 +1,7 @@
 package com.emrmiddleware.authentication;
 
-import java.io.IOException;
 
 import java.util.Base64;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.emrmiddleware.dao.UserCredentialsDAO;
 import com.emrmiddleware.dto.UserCredentialDTO;
@@ -15,7 +11,6 @@ import com.emrmiddleware.utils.EmrUtils;
 
 
 public class AuthenticationUtil {
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	public boolean isUserAuthenticated(String authString) throws DAOException{
         
         boolean isAuthenticated=false;

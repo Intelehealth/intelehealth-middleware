@@ -2,9 +2,7 @@ package com.emrmiddleware.dao;
 
 
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
-
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;

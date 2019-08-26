@@ -1,9 +1,5 @@
 package com.emrmiddleware.conf;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-
-import com.emrmiddleware.resource.Resources;
 
 public class ResourcesEnvironment {
     ConfigProperties configProperties = new ConfigProperties();

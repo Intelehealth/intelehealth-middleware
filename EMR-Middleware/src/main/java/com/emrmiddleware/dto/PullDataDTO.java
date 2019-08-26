@@ -1,7 +1,6 @@
 package com.emrmiddleware.dto;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class PullDataDTO {
 
