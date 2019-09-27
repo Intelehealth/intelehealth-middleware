@@ -1,6 +1,6 @@
 <configuration>
   <shutdownHook/>
-  <property name="appenderType" value="FILE" />
+  <property name="appenderType" value="STDOUT" />
   <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
     <file>${catalina.base}/logs/Intelehealth.log</file>
     <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">    	

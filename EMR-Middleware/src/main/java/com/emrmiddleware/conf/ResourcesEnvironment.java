@@ -14,7 +14,7 @@ public class ResourcesEnvironment {
 	public String getAPIBaseURL() {
 		String Base_URL = "";
 		
-		String host = "http://"+configProperties.getServer()+":"+configProperties.getPort();
+		String host = configProperties.getServer()+":"+configProperties.getPort();
 		Base_URL=host+"/openmrs/ws/rest/v1/";
 
 		return Base_URL;
@@ -23,7 +23,7 @@ public class ResourcesEnvironment {
 
 	public String getIdGenUrl() {
 		String ID_URL = "";
-		String host = "http://"+configProperties.getServer()+":"+configProperties.getPort();	
+		String host = configProperties.getServer()+":"+configProperties.getPort();	
 		ID_URL=host+"/openmrs/module/idgen/";
 		return ID_URL;
 	}
@@ -32,7 +32,7 @@ public class ResourcesEnvironment {
 	public String getHostPath(){
 		String basepath="";
 		
-		String host = "http://"+configProperties.getSwaggerHost()+":"+configProperties.getPort(); 
+		String host = configProperties.getSwaggerHost()+":"+configProperties.getPort(); 
 		basepath = host+"/EMR-Middleware";
 		return basepath;
 		
