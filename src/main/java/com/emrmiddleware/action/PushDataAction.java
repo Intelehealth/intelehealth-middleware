@@ -1,14 +1,29 @@
 package com.emrmiddleware.action;
 
+import java.sql.Connection;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import com.emrmiddleware.api.dto.EncounterAPIDTO;
 import com.emrmiddleware.api.dto.PatientAPIDTO;
 import com.emrmiddleware.api.dto.PersonAPIDTO;
 import com.emrmiddleware.api.dto.VisitAPIDTO;
+import com.emrmiddleware.conf.DBconfig;
+import com.emrmiddleware.dao.ProviderDAO;
+import com.emrmiddleware.dmo.ProviderDMO;
 import com.emrmiddleware.dto.*;
 import com.emrmiddleware.exception.DAOException;
 import com.emrmiddleware.exception.ActionException;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.springframework.boot.configurationprocessor.json.JSONArray;
+import org.springframework.boot.configurationprocessor.json.JSONException;
+import org.springframework.boot.configurationprocessor.json.JSONObject;
 
 
 public class PushDataAction {
@@ -26,13 +41,14 @@ public class PushDataAction {
 		ArrayList<VisitAPIDTO> visitList;
 		ArrayList<EncounterAPIDTO> encounterList;
 
+
 		PullDataDTO pulldatadto = new PullDataDTO();
 		try {
 			personList = pushdatadto.getPersons();
 			patientList = pushdatadto.getPatients();
 			visitList = pushdatadto.getVisits();
 			encounterList = pushdatadto.getEncounters();
-
+			ArrayList<ProviderDTO> providerlist = pushdatadto.getProviders();
 
 			PersonAction personaction = new PersonAction(authString);
 			PatientAction patientaction = new PatientAction(authString);
@@ -56,7 +72,11 @@ public class PushDataAction {
 				ArrayList<EncounterDTO> encounters = encounteraction.setEncounters(encounterList);
 				pulldatadto.setEncounterlist(encounters);
 			}
-
+			if(providerlist != null)
+			{
+				 
+				pulldatadto.setProviderlist(getProviders());
+			}
 
 
 		} catch (Exception e) {
@@ -65,5 +85,22 @@ public class PushDataAction {
 		}
 		return pulldatadto;
 	}
+
+	private ArrayList<ProviderDTO> getProviders() {
+		SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
+		SqlSession session = sessionfactory.openSession();
+		ArrayList<ProviderDTO> providerlist = new ArrayList<ProviderDTO>();
+
+		try {
+
+			ProviderDMO providerdmo = session.getMapper(ProviderDMO.class);
+			providerlist = providerdmo.getProviders("2006-01-01 00:00");
+		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+		}
+		return providerlist;
+		
+		}
 
 }
