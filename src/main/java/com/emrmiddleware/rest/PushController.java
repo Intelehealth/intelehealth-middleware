@@ -79,12 +79,13 @@ public class PushController {
 
 			ArrayList<ProviderDTO> customProviders = pushdatadto.getProviders();
 			logger.error("Received providers from pushdata DTO");
-			for(ProviderDTO provider : customProviders) {
+			if(!customProviders.isEmpty()) {
+				for (ProviderDTO provider : customProviders) {
 
-				updateAttributes(provider);
+					updateAttributes(provider);
 
+				}
 			}
-
 
 				logger.error("Sending data to push");
 				pulldatadto = pushdataaction.pushData(pushdatadto);
