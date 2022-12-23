@@ -74,8 +74,13 @@ public class PushDataAction {
 			}
 			if(providerlist != null)
 			{
-				 
-				pulldatadto.setProviderlist(getProviders());
+
+				for(ProviderDTO provider : providerlist) {
+					pulldatadto.setProviderlist(getProviders(new Integer(provider.providerId).intValue()));
+
+
+				}
+
 			}
 
 
@@ -86,7 +91,7 @@ public class PushDataAction {
 		return pulldatadto;
 	}
 
-	private ArrayList<ProviderDTO> getProviders() {
+	private ArrayList<ProviderDTO> getProviders(int providerId) {
 		SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
 		SqlSession session = sessionfactory.openSession();
 		ArrayList<ProviderDTO> providerlist = new ArrayList<ProviderDTO>();
@@ -94,7 +99,7 @@ public class PushDataAction {
 		try {
 
 			ProviderDMO providerdmo = session.getMapper(ProviderDMO.class);
-			providerlist = providerdmo.getProviders("2006-01-01 00:00");
+			providerlist = providerdmo.getProviders2(providerId);
 		}
 		catch(Exception e){
 			System.out.println(e.getMessage());
