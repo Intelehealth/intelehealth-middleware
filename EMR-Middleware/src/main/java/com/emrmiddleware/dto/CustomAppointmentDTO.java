@@ -1,4 +1,4 @@
-package com.emrmiddleware.api.dto;
+package com.emrmiddleware.dto;
 
 public class CustomAppointmentDTO {
     public String patientAge;

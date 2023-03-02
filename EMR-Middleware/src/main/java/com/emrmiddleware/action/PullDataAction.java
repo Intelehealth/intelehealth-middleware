@@ -26,7 +26,7 @@ import com.emrmiddleware.exception.DAOException;
 
 public class PullDataAction {
 
-	public PullDataDTO getPullData(String lastpulldatatime, String locationuuid) throws ActionException, DAOException {
+	public PullDataDTO 	getPullData(String lastpulldatatime, String locationuuid) throws ActionException, DAOException {
 
 		PullDataDTO pulldata = new PullDataDTO();
 		PatientDAO patientdao = new PatientDAO();

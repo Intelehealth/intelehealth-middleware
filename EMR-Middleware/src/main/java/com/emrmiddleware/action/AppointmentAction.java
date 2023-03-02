@@ -2,7 +2,6 @@ package com.emrmiddleware.action;
 
 import com.emrmiddleware.api.APIClient;
 import com.emrmiddleware.api.RestAPI;
-import com.emrmiddleware.api.dto.AppointmentDTO;
 import com.emrmiddleware.dto.CustomAppointmentDTO;
 import com.google.gson.Gson;
 import okhttp3.ResponseBody;

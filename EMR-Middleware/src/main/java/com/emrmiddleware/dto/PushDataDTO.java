@@ -2,10 +2,7 @@ package com.emrmiddleware.dto;
 
 import java.util.ArrayList;
 
-import com.emrmiddleware.api.dto.EncounterAPIDTO;
-import com.emrmiddleware.api.dto.PatientAPIDTO;
-import com.emrmiddleware.api.dto.PersonAPIDTO;
-import com.emrmiddleware.api.dto.VisitAPIDTO;
+import com.emrmiddleware.api.dto.*;
 
 public class PushDataDTO {
 	
@@ -14,6 +11,9 @@ public class PushDataDTO {
 	private ArrayList<VisitAPIDTO> visits;
 	private ArrayList<EncounterAPIDTO> encounters;
 	private boolean syncd=true;
+	private ArrayList<ProviderDTO> providers;
+
+	private ArrayList<AppointmentDTO> appointments;
 	
 
 	
@@ -57,6 +57,23 @@ public class PushDataDTO {
 
 	public void setSyncd(boolean syncd) {
 		this.syncd = syncd;
+	}
+
+	public ArrayList<ProviderDTO> getProviders() {
+		return providers;
+	}
+
+	public void setProviders(ArrayList<ProviderDTO> providers) {
+		this.providers = providers;
+	}
+
+
+	public ArrayList<AppointmentDTO> getAppointments() {
+		return appointments;
+	}
+
+	public void setAppointments(ArrayList<AppointmentDTO> appointments) {
+		this.appointments = appointments;
 	}
 
 	

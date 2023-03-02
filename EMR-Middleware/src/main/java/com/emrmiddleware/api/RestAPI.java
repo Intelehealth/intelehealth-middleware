@@ -1,9 +1,7 @@
 package com.emrmiddleware.api;
 
-import com.emrmiddleware.api.dto.EncounterAPIDTO;
-import com.emrmiddleware.api.dto.PatientAPIDTO;
-import com.emrmiddleware.api.dto.PersonAPIDTO;
-import com.emrmiddleware.api.dto.VisitAPIDTO;
+import com.emrmiddleware.api.dto.*;
+import com.emrmiddleware.dto.CustomAppointmentDTO;
 import com.emrmiddleware.dto.PatientDTO;
 
 import okhttp3.ResponseBody;
@@ -49,8 +47,9 @@ public interface RestAPI {
    
    @DELETE("encounter/{uuid}")
    Call<ResponseBody> deleteEncounter(@Path("uuid") String uuid);
-   
-   
-   
+
+
+   @POST("appointment/push")
+   Call<ResponseBody> addAppointment(@Body CustomAppointmentDTO appointmentdto);
 
 }

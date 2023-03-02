@@ -17,7 +17,16 @@ public class ConfigProperties {
 	private String port;
 	InputStream inputStream;
 	private final Logger logger = LoggerFactory.getLogger(ConfigProperties.class);
-	
+
+	public String getMindmapPort() {
+		return mindmapPort;
+	}
+
+	public void setMindmapPort(String mindmapPort) {
+		this.mindmapPort = mindmapPort;
+	}
+
+	private String mindmapPort;
 	public ConfigProperties() {
 		try {
 			getPropValues();
@@ -43,6 +52,7 @@ public class ConfigProperties {
 			serverhost = prop.getProperty("serverhost");
 			swaggerhost = prop.getProperty("swaggerhost");
 			port = prop.getProperty("port");
+			mindmapPort =prop.getProperty("mindmapPort");
 			
 		} catch (Exception e) {
 			logger.error("Exception: " + e);
