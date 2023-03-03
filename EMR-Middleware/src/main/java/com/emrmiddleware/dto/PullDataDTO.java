@@ -18,8 +18,8 @@ public class PullDataDTO {
 	private ArrayList<ProviderAttributeDTO> providerAttributeList;
 	private ArrayList<VisitAttributeTypeDTO> visitAttributeTypeList;
 	private ArrayList<VisitAttributeDTO> visitAttributeList;
-	
-	
+
+	private ArrayList<CustomAppointmentDTO> AppointmentList;
 
 	public ArrayList<VisitAttributeTypeDTO> getVisitAttributeTypeList() {
 		return visitAttributeTypeList;
@@ -132,6 +132,9 @@ public class PullDataDTO {
 	public void setEncounterlist(ArrayList<EncounterDTO> encounterlist) {
 		this.encounterlist = encounterlist;
 	}
-	
-	
+
+	public void setAppointmentList(ArrayList<CustomAppointmentDTO> updatedAppointments) {
+		this.AppointmentList = updatedAppointments;
+	}
 }
+
