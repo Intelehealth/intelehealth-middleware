@@ -12,7 +12,42 @@ import com.emrmiddleware.dto.PatientDTO;
 
 public interface PatientDMO {
 	
-	@Select("SELECT distinct person.uuid as uuid, patient_identifier.identifier as openmrs_id, person_name.given_name as firstname, person_name.middle_name as middlename, person_name.family_name as lastname,person.birthdate as dateofbirth, person_address.address1 as address1 ,person_address.address2 as address2, person_address.city_village as cityvillage, person_address.state_province as stateprovince,person_address.postal_code as postalcode, person_address.country, person.gender,person.dead,person.voided FROM person,patient_identifier,person_name,person_address ,location ,(select distinct person_id from person_attribute where coalesce(date_changed,date_created) >= #{lastchangedtime}) as pa where person.person_id = patient_identifier.patient_id AND  person.person_id = person_name.person_id and person.person_id = person_address.person_id and person.voided=0 and patient_identifier.location_id=location.location_id  and (COALESCE(person.date_changed,person.date_created) >=  #{lastchangedtime} or COALESCE(patient_identifier.date_changed,patient_identifier.date_created)>= #{lastchangedtime} or COALESCE(person_name.date_changed,person_name.date_created)>= #{lastchangedtime} or COALESCE(person_address.date_changed,person_address.date_created)>= #{lastchangedtime} or pa.person_id=person.person_id ) and location.uuid=#{locationuuid}")
+	@Select("SELECT distinct person.uuid as uuid, " +
+            "             pa.person_id, " +
+            "             patient_identifier.identifier as openmrs_id, " +
+            "                            person_name.given_name as firstname, " +
+            "                            person_name.middle_name as middlename, " +
+            "                            ifnull(person_name.family_name, ' ') as lastname, " +
+            "                            person.birthdate as dateofbirth, " +
+            "                            person_address.address1 as address1 , " +
+            "                            person_address.address2 as address2, " +
+            "                            person_address.city_village as cityvillage, " +
+            "                            person_address.state_province as stateprovince, " +
+            "                            person_address.postal_code as postalcode, " +
+            "                            person_address.country, " +
+            "                            person.gender, " +
+            "                            person.dead, " +
+            "                            person.voided " +
+            "            FROM person, " +
+            "             patient_identifier, " +
+            "                            person_name," +
+            "                            person_address , " +
+            "                            location , " +
+            "                            person_attribute as pa " +
+            "            where person.person_id = patient_identifier.patient_id " +
+            "            AND person.person_id = person_name.person_id " +
+            "            and person.person_id = person_address.person_id " +
+            "            and person.voided=0 " +
+            "            and patient_identifier.location_id=location.location_id " +
+            "            and person.person_id = pa.person_id " +
+            "            and person_name.preferred = 1 " +
+            "            and person_address.preferred = 1 " +
+            "            and (COALESCE(person.date_changed,person.date_created) >= #{lastchangedtime} " +
+            "            or COALESCE(patient_identifier.date_changed,patient_identifier.date_created)>= #{lastchangedtime} " +
+            "            or COALESCE(person_name.date_changed,person_name.date_created)>= #{lastchangedtime} " +
+            "            or COALESCE(person_address.date_changed,person_address.date_created)>= #{lastchangedtime} " +
+            "            or COALESCE(pa.date_changed,pa.date_created)>= #{lastchangedtime} ) " +
+            "            and location.uuid=#{locationuuid} ")
 	public ArrayList<PatientDTO> getPatients(@Param("lastchangedtime") String lastpulldatatime,@Param("locationuuid") String locationuuid);
 
     @Select("select uuid as uuid ,name from person_attribute_type where COALESCE(date_changed,date_created) >= #{lastchangedtime}")
