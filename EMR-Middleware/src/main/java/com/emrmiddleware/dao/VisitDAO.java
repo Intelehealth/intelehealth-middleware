@@ -2,7 +2,16 @@ package com.emrmiddleware.dao;
 
 
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
+
+import com.mysql.cj.exceptions.CJConnectionFeatureNotAvailableException;
+import com.mysql.cj.jdbc.ConnectionGroupManager;
+import com.sun.tools.sjavac.server.Sjavac;
+import com.sun.tools.sjavac.server.SjavacServer;
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -19,6 +28,7 @@ import com.emrmiddleware.exception.DAOException;
 public class VisitDAO {
 
 	private final Logger logger = LoggerFactory.getLogger(VisitDAO.class);
+
 	public ArrayList<VisitDTO> getVisits(String lastpulldatatime, String locationuuid) throws DAOException {
 
 		SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
@@ -108,8 +118,44 @@ public class VisitDAO {
 			session.close();
 		}
 	}
-	
-	
 
+
+	/*
+	Method to void all previous visit_holder attribute rows in visit_attribute table
+	for this visit -- Mithun and Zeeshan need this - 03082023
+	 */
+	public void voidVisitHolder(String uuid)  {
+
+
+		String voidVisitHolders = "update visit_attribute set voided=1, " +
+				"date_voided = now(), " +
+				"void_reason = 'Nurse Change' " +
+				"WHERE visit_id = (select visit_id from visit where uuid = ? ) " +
+				"AND attribute_type_id = 7";
+		try {
+
+
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = java.sql.DriverManager.getConnection("jdbc:mysql://localhost:3306/openmrs", "root", "i10hi1c");
+
+			PreparedStatement pstmt = con.prepareStatement(voidVisitHolders);
+
+			pstmt.setString(1,uuid);
+			int jum = pstmt.executeUpdate();
+
+			pstmt.close();
+			con.close();
+
+		} catch(ClassNotFoundException e) {
+			logger.error(e.getMessage(),e);
+
+		}
+		catch (SQLException e ) {
+			logger.error(e.getMessage(),e);
+
+		}
+
+
+	}
 }
 

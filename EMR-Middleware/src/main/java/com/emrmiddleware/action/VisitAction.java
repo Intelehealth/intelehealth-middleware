@@ -3,6 +3,8 @@ package com.emrmiddleware.action;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import com.emrmiddleware.api.dto.AttributeAPIDTO;
+import com.emrmiddleware.dto.VisitAttributeDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,6 +27,8 @@ public class VisitAction {
 	APIClient apiclient;
 	RestAPI restapiintf;
 	String authString;
+
+	final String VISIT_HOLDER_ATTRIBUTE_ID = "a0378be4-d9c6-4cb2-bbf5-777e27a32efc";
 
 	public VisitAction(String auth) {
 		authString = auth;
@@ -107,6 +111,18 @@ public class VisitAction {
 			visitapidto.setPatient(null);// Not allowed to be set in edit for
 											// visit in openmrs
 			logger.info("edit visit value : " + gson.toJson(visitapidto));
+
+			for(AttributeAPIDTO visitAttributeDTO: visitapidto.getAttributes()) {
+				logger.info("VA ::: "+ visitAttributeDTO.getAttributeType());
+				String tmpAttributeType = "";
+				tmpAttributeType = visitAttributeDTO.getAttributeType();
+				if(tmpAttributeType.equals(VISIT_HOLDER_ATTRIBUTE_ID)) {
+					// Void all previous rows for visit's visit holder attribute forcefully
+					// As OpenMRS is not voiding previous rows . 03082023
+					logger.info("Apple");
+					voidVisitHolder(visitapidto.getUuid());
+				}
+			}
 			Call<ResponseBody> callvisit = restapiintf.editVisit(visitapidto.getUuid(), visitapidto);
 			Response<ResponseBody> response = callvisit.execute();
 			if (response.isSuccessful()) {
@@ -126,6 +142,12 @@ public class VisitAction {
 			return false;
 		}
 		return true;
+	}
+
+	private void voidVisitHolder(String uuid) throws DAOException{
+		VisitDAO visitdao = new VisitDAO();
+		visitdao.voidVisitHolder(uuid);
+
 	}
 
 }

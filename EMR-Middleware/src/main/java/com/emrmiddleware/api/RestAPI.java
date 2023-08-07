@@ -1,9 +1,6 @@
 package com.emrmiddleware.api;
 
-import com.emrmiddleware.api.dto.EncounterAPIDTO;
-import com.emrmiddleware.api.dto.PatientAPIDTO;
-import com.emrmiddleware.api.dto.PersonAPIDTO;
-import com.emrmiddleware.api.dto.VisitAPIDTO;
+import com.emrmiddleware.api.dto.*;
 import com.emrmiddleware.dto.PatientDTO;
 
 import okhttp3.ResponseBody;
@@ -49,8 +46,15 @@ public interface RestAPI {
    
    @DELETE("encounter/{uuid}")
    Call<ResponseBody> deleteEncounter(@Path("uuid") String uuid);
-   
-   
+
+//Adding endpoint to void an encounter in case someone sends an empty value for an existing Obs
+@DELETE("obs/{uuid}")
+Call<ResponseBody> deleteObs(@Path("uuid") String uuid);
+
+
+//Adding endpoint to edit an Obs value
+@POST("obs/{uuid}")
+Call <ResponseBody> editObs(@Path("uuid") String uuid, @Body ObsAPIDTO obsapidto);
    
 
 }

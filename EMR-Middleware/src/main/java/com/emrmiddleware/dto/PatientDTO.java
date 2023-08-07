@@ -26,7 +26,17 @@ public class PatientDTO {
 	private String caste;
 	private boolean syncd=true;
 	private int voided;
-	
+
+	public String getCreatoruuid() {
+		return creatoruuid;
+	}
+
+	public void setCreatoruuid(String creatoruuid) {
+		this.creatoruuid = creatoruuid;
+	}
+
+	private String creatoruuid;
+
 	
 	
 	public int getVoided() {

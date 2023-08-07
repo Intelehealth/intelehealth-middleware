@@ -9,6 +9,7 @@ public class PersonAPIDTO {
 	private String birthdate;
 	ArrayList < AttributeAPIDTO > attributes = new ArrayList < AttributeAPIDTO > ();
 	private ArrayList<AddressAPIDTO> addresses = new ArrayList<AddressAPIDTO>();
+
 	private String gender;
 	
 	

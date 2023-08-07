@@ -3,6 +3,7 @@ package com.emrmiddleware.action;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import com.emrmiddleware.dto.ObsDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,6 +12,7 @@ import com.emrmiddleware.api.RestAPI;
 import com.emrmiddleware.api.dto.EncounterAPIDTO;
 import com.emrmiddleware.dao.EncounterDAO;
 import com.emrmiddleware.dto.EncounterDTO;
+import com.emrmiddleware.api.dto.ObsAPIDTO;
 import com.emrmiddleware.exception.ActionException;
 import com.emrmiddleware.exception.DAOException;
 import com.google.gson.Gson;
@@ -156,7 +158,30 @@ public class EncounterAction {
 			encounterapidto.setVoided(null);// Setting voided to null as OpenMrs
 											// does not accept voided in the
 											// json structure
+			//Adding code for finding empty obs starts Jira: EZ-303
+			ArrayList<ObsAPIDTO> obsAPIDTOArrayList = new ArrayList<ObsAPIDTO>();
+
+
+			 for(ObsAPIDTO obsAPIDTO: encounterapidto.getObs()) {
+				 boolean emptyObs = false;
+				 if(obsAPIDTO.getValue().isEmpty()) {
+
+					 Call<ResponseBody> callobs = restapiintf.deleteObs(obsAPIDTO.getUuid()); // Void it
+					 Response<ResponseBody> responseObs = callobs.execute();
+					 obsAPIDTOArrayList.add(obsAPIDTO); // Add to obsList to remove
+				 }
+			 }
+			// Remove empty obs from encounter
+			encounterapidto.getObs().removeAll(obsAPIDTOArrayList);
+
+
+
+			//Adding code for finding empty obs ends Jira: EZ-303
 			logger.info("edit encounter value : " + gson.toJson(encounterapidto));
+
+
+
+
 			Call<ResponseBody> callencounter = restapiintf.editEncounter(encounterapidto.getUuid(), encounterapidto);
 			Response<ResponseBody> response = callencounter.execute();
 			if (response.isSuccessful()) {
