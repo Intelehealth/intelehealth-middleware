@@ -120,18 +120,12 @@ public class VisitDAO {
 	}
 
 
-	/*
-	Method to void all previous visit_holder attribute rows in visit_attribute table
-	for this visit -- Mithun and Zeeshan need this - 03082023
-	 */
-	public void voidVisitHolder(String uuid)  {
-
-
+	public void voidVisitAttribute(String uuid, int attributeId, String voidReason) { // EZ-433
 		String voidVisitHolders = "update visit_attribute set voided=1, " +
 				"date_voided = now(), " +
-				"void_reason = 'Nurse Change' " +
+				"void_reason = ? " +
 				"WHERE visit_id = (select visit_id from visit where uuid = ? ) " +
-				"AND attribute_type_id = 7";
+				"AND attribute_type_id = ?";
 		try {
 
 
@@ -141,21 +135,17 @@ public class VisitDAO {
 			PreparedStatement pstmt = con.prepareStatement(voidVisitHolders);
 
 			pstmt.setString(1,uuid);
+			pstmt.setInt(2,attributeId);
+			pstmt.setString(3,voidReason);
 			int jum = pstmt.executeUpdate();
 
 			pstmt.close();
 			con.close();
 
-		} catch(ClassNotFoundException e) {
+		} catch(ClassNotFoundException | SQLException e) {
 			logger.error(e.getMessage(),e);
 
 		}
-		catch (SQLException e ) {
-			logger.error(e.getMessage(),e);
-
-		}
-
-
 	}
 }
 

@@ -30,6 +30,10 @@ public class VisitAction {
 
 	final String VISIT_HOLDER_ATTRIBUTE_ID = "a0378be4-d9c6-4cb2-bbf5-777e27a32efc";
 
+	final String VISIT_SPECIALITY_ATTRIBUTE_ID = "3f296939-c6d3-4d2e-b8ca-d7f4bfd42c2d";
+
+	final String VISIT_READ_ATTRIBUTE_ID = "2e4b62a5-aa71-43e2-abc9-f4a777697b19";
+
 	public VisitAction(String auth) {
 		authString = auth;
 		apiclient = new APIClient(authString);
@@ -116,11 +120,18 @@ public class VisitAction {
 				logger.info("VA ::: "+ visitAttributeDTO.getAttributeType());
 				String tmpAttributeType = "";
 				tmpAttributeType = visitAttributeDTO.getAttributeType();
-				if(tmpAttributeType.equals(VISIT_HOLDER_ATTRIBUTE_ID)) {
-					// Void all previous rows for visit's visit holder attribute forcefully
-					// As OpenMRS is not voiding previous rows . 03082023
-					logger.info("Apple");
-					voidVisitHolder(visitapidto.getUuid());
+				switch(tmpAttributeType) {
+					case VISIT_HOLDER_ATTRIBUTE_ID: //7
+						voidVisitAttribute(visitapidto.getUuid(),  7, "Nurse Change");
+						break;
+					case VISIT_SPECIALITY_ATTRIBUTE_ID: // 5
+						voidVisitAttribute(visitapidto.getUuid(),  5, "Speciality Change");
+						break;
+					case VISIT_READ_ATTRIBUTE_ID: // 8
+						voidVisitAttribute(visitapidto.getUuid(),  8, "Visit Read");
+						break;
+					default:
+						break;
 				}
 			}
 			Call<ResponseBody> callvisit = restapiintf.editVisit(visitapidto.getUuid(), visitapidto);
@@ -144,9 +155,9 @@ public class VisitAction {
 		return true;
 	}
 
-	private void voidVisitHolder(String uuid) throws DAOException{
+	private void voidVisitAttribute(String uuid, int attribute_id, String voidReason) throws DAOException{
 		VisitDAO visitdao = new VisitDAO();
-		visitdao.voidVisitHolder(uuid);
+		visitdao.voidVisitAttribute(uuid, attribute_id, voidReason);
 
 	}
 
