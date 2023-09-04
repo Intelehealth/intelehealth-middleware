@@ -134,9 +134,9 @@ public class VisitDAO {
 
 			PreparedStatement pstmt = con.prepareStatement(voidVisitHolders);
 
-			pstmt.setString(1,uuid);
-			pstmt.setInt(2,attributeId);
-			pstmt.setString(3,voidReason);
+			pstmt.setString(2,uuid);
+			pstmt.setInt(3,attributeId);
+			pstmt.setString(1,voidReason);
 			int jum = pstmt.executeUpdate();
 
 			pstmt.close();
