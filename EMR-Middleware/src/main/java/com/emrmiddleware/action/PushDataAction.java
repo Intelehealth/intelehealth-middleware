@@ -6,6 +6,7 @@ import com.emrmiddleware.api.dto.EncounterAPIDTO;
 import com.emrmiddleware.api.dto.PatientAPIDTO;
 import com.emrmiddleware.api.dto.PersonAPIDTO;
 import com.emrmiddleware.api.dto.VisitAPIDTO;
+import com.emrmiddleware.dao.VisitDAO;
 import com.emrmiddleware.dto.EncounterDTO;
 import com.emrmiddleware.dto.PatientDTO;
 import com.emrmiddleware.dto.PersonDTO;
@@ -31,6 +32,8 @@ public class PushDataAction {
 		ArrayList<VisitAPIDTO> visitList;
 		ArrayList<EncounterAPIDTO> encounterList;
 		PullDataDTO pulldatadto = new PullDataDTO();
+		VisitDAO visitdao = new VisitDAO();
+		pulldatadto.setPullexecutedtime(visitdao.getDBCurrentTime());//Used by device for syncing purpose
 		try {
 			personList = pushdatadto.getPersons();
 			patientList = pushdatadto.getPatients();

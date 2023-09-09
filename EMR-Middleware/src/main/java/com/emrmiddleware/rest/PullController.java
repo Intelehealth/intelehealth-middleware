@@ -31,13 +31,18 @@ public class PullController {
 	private final Logger logger = LoggerFactory.getLogger(PullController.class);
 	@Context
 	ServletContext context;
-
-	@Path("pulldata/{locationuuid}/{lastpulldate}")
+// Adding pageNo and Limit as per MHM-259 to implement pagination
+	// pageNo - 0 = OFFSET 0 to LIMIT limit
+	// pageNo 1 - OFFSET (pageNo * limit + 1) to LIMIT limit
+	@Path("pulldata/{locationuuid}/{lastpulldate}/{pageno}/{limit}")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	public Response getData(@PathParam("locationuuid") String locationuuid,
-			@PathParam("lastpulldate") String lastpulldatatime, @Context HttpHeaders httpHeaders) {
+			@PathParam("lastpulldate") String lastpulldatatime,
+							@PathParam("pageno") int pageno,
+							@PathParam("limit") int limit,
+							@Context HttpHeaders httpHeaders) {
 
 		ResponseDTO responsedto = new ResponseDTO();
 		PullDataDTO pulldatadto = new PullDataDTO();
@@ -55,7 +60,7 @@ public class PullController {
 			}
 			PullDataAction pulldataaction = new PullDataAction();
 			//Timestamp lastdatapulltime = EmrUtils.getFormatDate(lastpulldatatime);
-			pulldatadto = pulldataaction.getPullData(lastpulldatatime, locationuuid);
+			pulldatadto = pulldataaction.getPullData(lastpulldatatime, locationuuid, pageno, limit);
 			responsedto.setStatus(Resources.OK);
 			responsedto.setData(pulldatadto);
 		} catch (DAOException e) {
