@@ -1,6 +1,3 @@
-/**
- * 
- */
 package org.intelehealth.middleware.services;
 
 import java.sql.Connection;
@@ -8,9 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import javax.sql.DataSource;
-
 import org.intelehealth.middleware.dto.ReturnPullData;
 import org.intelehealth.middleware.dto.VisitDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,16 +17,12 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class PullService {
-
 	@Autowired 
 	MySQLService mySQLService;
-	
 	@Autowired
 	DataSource dataSource;
 	
 	public ReturnPullData gatherData(String locationUUID, String dateFrom) {
-		// TODO Auto-generated method stub
-		
 		ReturnPullData returnPullData = new ReturnPullData();
 		returnPullData.setPullexecutedtime(mySQLService.getCurTime());
 		returnPullData.setPatientlist(mySQLService.getPatients(locationUUID, dateFrom));
@@ -47,7 +38,5 @@ public class PullService {
 		returnPullData.setProviderAttributeTypeList(mySQLService.getProviderAttributeTypeList(dateFrom));
 		returnPullData.setProviderAttributeList(mySQLService.getProviderAttributeList(dateFrom));
 		return returnPullData;
-	
 	}
-
 }
