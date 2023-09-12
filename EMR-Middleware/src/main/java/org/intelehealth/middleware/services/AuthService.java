@@ -55,9 +55,7 @@ private static final Logger LOG = LoggerFactory.getLogger(WebClientFilter.class)
         	return false;
         }
 		
-        
-        
-	}
+  	}
 	
 	public String getSHA512SecurePassword(String originalPassword, String salt) {
 		String transformedPassword="";
