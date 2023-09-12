@@ -8,9 +8,6 @@ public class PatientAttributeDTO {
 	private String person_attribute_type_uuid;
 	private String patientuuid;
 
-
-
-
 	public String getUuid() {
 		return uuid;
 	}
