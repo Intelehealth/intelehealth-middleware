@@ -28,7 +28,7 @@ public class ConstantsService {
 	
 	public static final String OPENMRS_IDGEN_ENDPOINT="/generateIdentifier.form";
 	
-	public static final String MINDMAP_BASE_URL="https://uiux.intelehealth.org:3004/api/appointment";
+	public static final String MINDMAP_BASE_URL="https://localhost:3004/api/appointment";
 	public static final String MINDMAP_ADD_APPOINTMENT_ENDPOINT="/push";
 	
 	
