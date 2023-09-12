@@ -46,16 +46,13 @@ AuthService authService;
 private static final Logger LOG = LoggerFactory.getLogger(WebClientFilter.class);
 
 	public ArrayList<PersonDTO> setPersons(ArrayList<PersonAPIDTO> personList, String authString) {
-		// TODO Auto-generated method stub
-		
+			
 		ArrayList<PersonDTO> persons = new ArrayList<PersonDTO>(); 
 		for ( PersonAPIDTO person : personList) {
-			 
 			boolean isPersonSet = false;
 			if (mysqlService.isPersonExists(person.getUuid())) {
 				isPersonSet=editPersonOpenMRS(person,authString);
 			} else {
-				LOG.debug("444");
 				isPersonSet=addPersonOpenMRS(person,authString);
 			}
 			PersonDTO  persondto = new PersonDTO();
@@ -67,21 +64,17 @@ private static final Logger LOG = LoggerFactory.getLogger(WebClientFilter.class)
 	}
 
 	private boolean addPersonOpenMRS(PersonAPIDTO person, String authString) {
-		// TODO Auto-generated method stub
-		 LOG.debug("44");
+		
 		HttpClient httpClient = HttpClient
 				  .create()
 				  .wiretap("reactor.netty.http.client.HttpClient", 
 						    LogLevel.DEBUG, AdvancedByteBufFormat.TEXTUAL);
-			
 		WebClient webClient = WebClient
 		          .builder()
 		          .defaultHeaders(httpHeaders(authString))
 		          .clientConnector(new ReactorClientHttpConnector(httpClient))
 		          .baseUrl(constantsService.OPENMRS_BASE_URL)
 		          .build();
-		 
-		 LOG.debug(person.toString());
 		
 		ResponseEntity response = webClient.post()
 				.uri(constantsService.OPENMRS_ADD_PERSON_ENDPOINT)
@@ -89,8 +82,7 @@ private static final Logger LOG = LoggerFactory.getLogger(WebClientFilter.class)
 				 .retrieve()
 				 .toEntity(String.class)
 				 .block();
-		
-	    
+			    
 		if (response.getStatusCodeValue() <=399) {
 			return true;
 		}
@@ -98,19 +90,9 @@ private static final Logger LOG = LoggerFactory.getLogger(WebClientFilter.class)
 			LOG.error(response.getStatusCodeValue() + "--" + response.getBody())	;
 			return false;
 		}
-			
-		
-		
-		
-		
 	}
 
- 
-
-	 
-
-	private boolean editPersonOpenMRS(PersonAPIDTO person,String authString) {
-		// TODO Auto-generated method stub
+ 	private boolean editPersonOpenMRS(PersonAPIDTO person,String authString) {
 		HttpClient httpClient = HttpClient
 				  .create()
 				  .wiretap("reactor.netty.http.client.HttpClient", 
@@ -156,17 +138,12 @@ private static final Logger LOG = LoggerFactory.getLogger(WebClientFilter.class)
 		PatientDTO patientdto = null;
 		PatientAPIDTO patientforerror = new PatientAPIDTO();
 		boolean isPatientSet = true;
-		 
 		try {
 			for (PatientAPIDTO patient : patientList) {
 				patientforerror = patient;
 				String openMrsId = "";
-				 
 				PatientDTO patientDTO = mysqlService.getPatient(patient.getPerson());
-				
 				if (patientDTO == null) {
-				 
-							
 					openMrsId = getOpenMrsId(authString);
 					patient.getIdentifiers().get(0).setIdentifier(openMrsId);
 					isPatientSet = addPatientOpenMRS(patient,authString);
@@ -189,7 +166,6 @@ private static final Logger LOG = LoggerFactory.getLogger(WebClientFilter.class)
 	}
 
 	private boolean addPatientOpenMRS(PatientAPIDTO patient,String authString) {
-		// TODO Auto-generated method stub
 		HttpClient httpClient = HttpClient
 				  .create()
 				  .wiretap("reactor.netty.http.client.HttpClient", 
@@ -201,8 +177,6 @@ private static final Logger LOG = LoggerFactory.getLogger(WebClientFilter.class)
 		          .clientConnector(new ReactorClientHttpConnector(httpClient))
 		          .baseUrl(constantsService.OPENMRS_BASE_URL)
 		          .build();
-		 
-		 
 		
 		ResponseEntity response = webClient.post()
 				.uri(constantsService.OPENMRS_ADD_PATIENT_ENDPOINT)
@@ -210,7 +184,6 @@ private static final Logger LOG = LoggerFactory.getLogger(WebClientFilter.class)
 				 .retrieve()
 				 .toEntity(String.class)
 				 .block();
-		
 	    
 		if (response.getStatusCodeValue() <=399) {
 			return true;
@@ -222,9 +195,8 @@ private static final Logger LOG = LoggerFactory.getLogger(WebClientFilter.class)
 	}
 
 	private String getOpenMrsId(String authString) {
-		// TODO Auto-generated method stub
-			String decodedAuth=authService.getUserNameAndPasswordFromHeader(authString);
-		    String username = decodedAuth.substring(0,decodedAuth.indexOf(constantsService.COLON));
+		String decodedAuth=authService.getUserNameAndPasswordFromHeader(authString);
+	        String username = decodedAuth.substring(0,decodedAuth.indexOf(constantsService.COLON));
 	        String password = decodedAuth.substring(decodedAuth.indexOf(constantsService.COLON) + 1);
 	        HttpClient httpClient = HttpClient
 					  .create()
@@ -247,12 +219,10 @@ private static final Logger LOG = LoggerFactory.getLogger(WebClientFilter.class)
 					.bodyToMono(IDGenAPIDTO.class)
 					.block();
 	       String  openmrsid = idgenAPIDTO.getIdentifiers()[0];
-	       
-		return openmrsid;
+	     return openmrsid;
 	}
 
 	public ArrayList<VisitDTO> setVisits(ArrayList<VisitAPIDTO> visitList, String authString) {
-		// TODO Auto-generated method stub
 		ArrayList<VisitDTO> visits = new ArrayList<VisitDTO>();
 		VisitDTO visitdto;
 		VisitAPIDTO visitforerror = new VisitAPIDTO();
@@ -274,15 +244,14 @@ private static final Logger LOG = LoggerFactory.getLogger(WebClientFilter.class)
 		} catch (Exception e) {
 			 
 			LOG.error(e.getMessage(), e);
-			// throw new ActionException(e.getMessage(), e);
 		}
 		return visits;
 	}
 
 	private boolean addVisitOpenMRS(VisitAPIDTO visit,String authString) {
-		// TODO Auto-generated method stub
-		String decodedAuth=authService.getUserNameAndPasswordFromHeader(authString);
-	    String username = decodedAuth.substring(0,decodedAuth.indexOf(constantsService.COLON));
+		
+	String decodedAuth=authService.getUserNameAndPasswordFromHeader(authString);
+	String username = decodedAuth.substring(0,decodedAuth.indexOf(constantsService.COLON));
         String password = decodedAuth.substring(decodedAuth.indexOf(constantsService.COLON) + 1);
         HttpClient httpClient = HttpClient
 				  .create()
@@ -294,10 +263,7 @@ private static final Logger LOG = LoggerFactory.getLogger(WebClientFilter.class)
 		          .clientConnector(new ReactorClientHttpConnector(httpClient))
 		          .baseUrl(constantsService.OPENMRS_BASE_URL)
 		          .build();
-		 LOG.debug(visit.toString());
-		 
-		
-		ResponseEntity response = webClient.post()
+	ResponseEntity response = webClient.post()
 				.uri(constantsService.OPENMRS_ADD_VISIT_ENDPOINT)
 				.bodyValue(visit)
 				 .retrieve()
@@ -309,13 +275,11 @@ private static final Logger LOG = LoggerFactory.getLogger(WebClientFilter.class)
 		else {
 		LOG.error("Error adding visit", visit);
         LOG.error("error in addVisitOpenMRS",response.getBody());
-        
-		return false;
+        	return false;
 		}
 	}
 
 	private boolean editVisitOpenMRS(VisitAPIDTO visit,String authString) {
-		// TODO Auto-generated method stub
 		HttpClient httpClient = HttpClient
 				  .create()
 				  .wiretap("reactor.netty.http.client.HttpClient", 
@@ -345,21 +309,15 @@ private static final Logger LOG = LoggerFactory.getLogger(WebClientFilter.class)
 	}
 
 	private boolean isVisitExists(String uuid) {
-		// TODO Auto-generated method stub
 		boolean isVisitExists = false;
-		 
 		isVisitExists  = mysqlService.isVisitExists(uuid);
-		
 		return isVisitExists;
 	}
 
 	public ArrayList<EncounterDTO> setEncounters(ArrayList<EncounterAPIDTO> encounterList, String authString) {
-		// TODO Auto-generated method stub
 		ArrayList<EncounterDTO> encounters = new ArrayList<EncounterDTO>();
 		EncounterDTO encounterdto;
 		EncounterAPIDTO encounterforerror = new EncounterAPIDTO();
-		
-		 
 		boolean isEncounterPresent = false;
 		try {
 			for (EncounterAPIDTO encounter : encounterList) {
@@ -381,12 +339,10 @@ private static final Logger LOG = LoggerFactory.getLogger(WebClientFilter.class)
 					isEncounterPresent = false;
 				}
 				
-				// isEncounterPresent = isEncounterExists(encounter.getUuid());
 				//Edit Encounter
 				if ((isEncounterPresent) && (isEncounterVoided(encounter) == false)) {
 					isEncounterSet = editEncounterOpenMRS(encounter,authString);
 				}
-
 				//delete encounter
 				if ((isEncounterPresent) && (isEncounterVoided(encounter) == true)) {
 					// check if encounter already is voided in openMRS
@@ -417,7 +373,6 @@ private static final Logger LOG = LoggerFactory.getLogger(WebClientFilter.class)
 	}
 
 	private boolean addEncounterOpenMRS(EncounterAPIDTO encounterapidto, String authString) {
-		// TODO Auto-generated method stub
 		encounterapidto.setVoided(null);
 		HttpClient httpClient = HttpClient
 				  .create()
@@ -448,7 +403,6 @@ private static final Logger LOG = LoggerFactory.getLogger(WebClientFilter.class)
 	}
 
 	private boolean deleteEncounterOpenMRS(EncounterAPIDTO encounterapidto, String authString) {
-		// TODO Auto-generated method stub
 		HttpClient httpClient = HttpClient
 				  .create()
 				  .wiretap("reactor.netty.http.client.HttpClient", 
@@ -477,12 +431,10 @@ private static final Logger LOG = LoggerFactory.getLogger(WebClientFilter.class)
 	}
 
 	private boolean editEncounterOpenMRS(EncounterAPIDTO encounterapidto, String authString) {
-		// TODO Auto-generated method stub
 		HttpClient httpClient = HttpClient
 				  .create()
 				  .wiretap("reactor.netty.http.client.HttpClient", 
 						    LogLevel.DEBUG, AdvancedByteBufFormat.TEXTUAL);
-		
 		WebClient webClient = WebClient
 		          .builder()
 		          .defaultHeaders(httpHeaders(authString))
@@ -507,16 +459,12 @@ private static final Logger LOG = LoggerFactory.getLogger(WebClientFilter.class)
 	}
 
 	private EncounterDTO getEncounter(String uuid) {
-		// TODO Auto-generated method stub
 		EncounterDTO encounterdto = new EncounterDTO();
-				
 		encounterdto = mysqlService.getEncounter(uuid);
 		return encounterdto;
-		
 	}
 
 	private boolean isEncounterVoided(EncounterAPIDTO encounterapidto) {
-		// TODO This method needs to be re-looked into 
 		boolean isVoided = false;
 		if (encounterapidto.getVoided() != null) {
 			if (encounterapidto.getVoided().equals("1"))
@@ -526,7 +474,6 @@ private static final Logger LOG = LoggerFactory.getLogger(WebClientFilter.class)
 	}
 
 	public boolean addAppointmentOpenMRS(ArrayList<CustomAppointmentDTO> customAppointmentDTOArrayList) {
-		// TODO Auto-generated method stub
 		boolean rtnVal = false;
 		for(CustomAppointmentDTO appointment: customAppointmentDTOArrayList) {
 			HttpClient httpClient = HttpClient
