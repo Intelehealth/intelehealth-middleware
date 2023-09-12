@@ -23,8 +23,6 @@ public class PullDataDTO {
 	private ArrayList<VisitAttributeDTO> visitAttributeList;
 	private ArrayList<CustomAppointmentDTO> AppointmentList;
 
-
-
 	public ArrayList<VisitAttributeTypeDTO> getVisitAttributeTypeList() {
 		return visitAttributeTypeList;
 	}
