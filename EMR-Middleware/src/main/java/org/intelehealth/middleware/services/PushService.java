@@ -35,72 +35,46 @@ OpenMRSService openMRSService;
 private static final Logger LOG = LoggerFactory.getLogger(WebClientFilter.class);
 
 	public ReturnPullData returnData(DataTraveller dataTraveller, String authString) {
-		// TODO Auto-generated method stub
 		ReturnPullData returnPullData = new ReturnPullData();
-		 
-		
 		 ArrayList<ProviderDTO> customProviders = dataTraveller.getProviders();
-		 
 		 if(!customProviders.isEmpty() ) {
 				for (ProviderDTO provider : customProviders) {
-
 					mysqlService.updateAttributes(provider);
-
 				}
 			}
-		 
 		 ArrayList<PersonAPIDTO> personList = dataTraveller.getPersons();
 		 if (personList != null) {
-			 LOG.debug("Person found");
-			 
 				ArrayList<PersonDTO> persons = openMRSService.setPersons(personList,authString);
 				returnPullData.setPersonList(persons);
 			}
-		
 		 ArrayList<PatientAPIDTO> patientList = dataTraveller.getPatients();
 		 if (patientList != null ) {
 			 ArrayList<PatientDTO> patients = openMRSService.setPatients(patientList, authString);
 			 returnPullData.setPatientlist(patients);
-			 
 		 }
-		 
 		 ArrayList<VisitAPIDTO> visitList = dataTraveller.getVisits();
 		 if(visitList !=null) {
 			 ArrayList<VisitDTO> visits = openMRSService.setVisits(visitList, authString);
 			 returnPullData.setVisitlist(visits);
 		 }
-		 
 		 ArrayList<EncounterAPIDTO> encounterList = dataTraveller.getEncounters();
 		 if (encounterList != null) {
 			 ArrayList<EncounterDTO> encounters = openMRSService.setEncounters(encounterList, authString);
 			 returnPullData.setEncounterlist(encounters);
 		 }
-		 
 		 ArrayList<ProviderDTO> providerlist =  dataTraveller.getProviders();
 		 if(providerlist !=null) {
 			 for(ProviderDTO provider : providerlist) {
 				 ArrayList<ProviderDTO> providerlist2 = mysqlService.getProviders(provider.providerId);
 				 returnPullData.setProviderlist(providerlist2);
-
 				}
 		 }
-		 
 		 ArrayList<AppointmentDTO> appointmentDTOArrayList = dataTraveller.getAppointments();
 		 if(appointmentDTOArrayList !=null) {
 			 ArrayList<CustomAppointmentDTO> customAppointmentDTOArrayList = mysqlService.updateAppointments(appointmentDTOArrayList);
-
-				boolean b = openMRSService.addAppointmentOpenMRS(customAppointmentDTOArrayList);
-				returnPullData.setAppointmentList(customAppointmentDTOArrayList);
+ 			 boolean b = openMRSService.addAppointmentOpenMRS(customAppointmentDTOArrayList);
+			 returnPullData.setAppointmentList(customAppointmentDTOArrayList);
 		 }
 		return returnPullData;
-		 
 	}
-	
-	
-	
-	 
-	
-	 
-	 
-	
 }
