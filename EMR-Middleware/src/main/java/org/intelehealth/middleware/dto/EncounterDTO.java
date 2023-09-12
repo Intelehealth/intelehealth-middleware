@@ -10,19 +10,6 @@ public class EncounterDTO {
 
 	private String encounter_time;
 
-/*
-
-	public String getEncountertime() {
-		return encountertime;
-	}
-
-	public void setEncountertime(String encountertime) {
-		this.encountertime = encountertime;
-	}
-
-	private String encountertime;
-*/
-
 	public String getEncounter_time() {
 		return encounter_time;
 	}
@@ -31,9 +18,6 @@ public class EncounterDTO {
 		this.encounter_time = encounter_time;
 	}
 
-	 
-	
-	
 	public String getProvider_uuid() {
 		return provider_uuid;
 	}
