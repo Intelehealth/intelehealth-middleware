@@ -193,30 +193,22 @@ public class MySQLService {
 		try (Connection con = dataSource.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(USER_CREDS_QUERY);	){
 
-			//Connection con = dataSource.getConnection();
-
-			//PreparedStatement pstmt = con.prepareStatement(USER_CREDS_QUERY);
 			pstmt.setString(1, username);
-			//ResultSet rst = pstmt.executeQuery();
 			rst = pstmt.executeQuery();
 			rst.next();
 			user.setUsername(rst.getString(1));
 			user.setPassword(rst.getString(2));
 			user.setSalt(rst.getString(3));
 			rst.close();
-			//pstmt.close();
-			//con.close();
-
-
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		
 			LOG.error("Error in findUser ", e.getMessage());
 		}
 		finally {
 			try {
 				rst.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+			
 				e.printStackTrace();
 			}
 			 
@@ -234,20 +226,11 @@ public class MySQLService {
 		ResultSet rs = null;
 		try (Connection con = dataSource.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(VISIT_LIST);){
-		//	Connection con = dataSource.getConnection();
-
-		//	PreparedStatement pstmt = con.prepareStatement(VISIT_LIST);
 			pstmt.setString(1, dateFrom);
 			pstmt.setString(2, dateFrom);
 			pstmt.setString(3, dateFrom);
 			pstmt.setString(4,  locationUUID);
-
-			//ResultSet rs = pstmt.executeQuery();
 			rs = pstmt.executeQuery();
-
-
-
-
 			int counter = 0; 
 			while (rs.next()) {
 				counter = counter + 1; 
@@ -265,11 +248,6 @@ public class MySQLService {
 				visitList.add(visit);
 
 			}
-			//rs.close();
-			//pstmt.close();
-			//con.close();
-
-
 
 		}
 		catch(SQLException e) {
@@ -279,7 +257,6 @@ public class MySQLService {
 			try {
 				rs.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
@@ -289,21 +266,13 @@ public class MySQLService {
 
 
 	public ArrayList<VisitAttributeTypeDTO> getVisitAttributeTypeList( String dateFrom) {
-		// TODO Auto-generated method stub
+
 		ArrayList<VisitAttributeTypeDTO> visitAttributeTypeList = new ArrayList<VisitAttributeTypeDTO>();
 		ResultSet rs = null;
 		try (Connection con = dataSource.getConnection();
 			PreparedStatement pstmt = con.prepareStatement(VISIT_ATTRIBUTE_TYPE_LIST);) {
-//			Connection con = dataSource.getConnection();
-
-//			PreparedStatement pstmt = con.prepareStatement(VISIT_ATTRIBUTE_TYPE_LIST);
 			pstmt.setString(1,  dateFrom);
-
-//			ResultSet rs = pstmt.executeQuery();
 			rs = pstmt.executeQuery();
-
-
-
 			int counter = 0; 
 			while (rs.next()) {
 				counter = counter + 1; 
@@ -311,17 +280,8 @@ public class MySQLService {
 				visitAttribute.setName(rs.getString(2));
 				visitAttribute.setUuid(rs.getString(1));
 				visitAttribute.setRetired(rs.getInt(3));
-
-
 				visitAttributeTypeList.add(visitAttribute);
-
 			}
-
-
-			//rs.close();
-			//pstmt.close();
-			//con.close();
-
 		}
 		catch(SQLException e) {
 			LOG.error("Exception in getVisitAttributeTypeList " +e.getMessage());
@@ -330,7 +290,6 @@ public class MySQLService {
 			try {
 				rs.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
@@ -339,36 +298,24 @@ public class MySQLService {
 	}
 
 	public ArrayList<VisitAttributeDTO> getVisitAttributeList( String locationUUID, String dateFrom) {
-		// TODO Auto-generated method stub
 		ArrayList<VisitAttributeDTO> visitAttributeList = new ArrayList<VisitAttributeDTO>();
 		ResultSet rs = null;
 		try(Connection con = dataSource.getConnection();
 
-				PreparedStatement pstmt = con.prepareStatement(VISIT_ATTRIBUTE_LIST);) {
-//			Connection con = dataSource.getConnection();
-
-	//		PreparedStatement pstmt = con.prepareStatement(VISIT_ATTRIBUTE_LIST);
+			PreparedStatement pstmt = con.prepareStatement(VISIT_ATTRIBUTE_LIST);) {
 			pstmt.setString(1,  dateFrom);
 			pstmt.setString(2,  locationUUID); 
-//			ResultSet rs = pstmt.executeQuery();
 			rs = pstmt.executeQuery();
 			int counter = 0; 
 			while (rs.next()) {
 				counter = counter + 1; 
 				VisitAttributeDTO visitAttribute = new VisitAttributeDTO();
-
 				visitAttribute.setUuid(rs.getString(1));
 				visitAttribute.setVisit_uuid(rs.getString(2));
 				visitAttribute.setValue(rs.getString(3));
 				visitAttribute.setVisit_attribute_type_uuid(rs.getString(4));
-
-
 				visitAttributeList.add(visitAttribute);
-
 			}
-			//rs.close();
-			//pstmt.close();
-			//con.close();
 		}
 		catch(SQLException e) {
 			LOG.error("Exception in getVisitAttributes " +e.getMessage());
@@ -377,7 +324,6 @@ public class MySQLService {
 			try {
 				rs.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -387,40 +333,27 @@ public class MySQLService {
 
 	 
 	public ArrayList<EncounterDTO> getEncounters( String locationUUID, String dateFrom) {
-		// TODO Auto-generated method stub
 		ArrayList<EncounterDTO> encounterList = new ArrayList<EncounterDTO>();
 		ResultSet rs = null;
 		try (Connection con = dataSource.getConnection();
 
 			PreparedStatement pstmt = con.prepareStatement(ENCOUNTER_LIST);){
-			//Connection con = dataSource.getConnection();
-
-			//PreparedStatement pstmt = con.prepareStatement(ENCOUNTER_LIST);
 			pstmt.setString(1,  dateFrom);
 			pstmt.setString(2,  dateFrom);
 			pstmt.setString(3,  locationUUID); 
-			//ResultSet rs = pstmt.executeQuery();
 			rs = pstmt.executeQuery();
 			int counter = 0; 
 			while (rs.next()) {
 				counter = counter + 1; 
 				EncounterDTO encounter = new EncounterDTO();
-
-
 				encounter.setUuid(rs.getString(1));
 				encounter.setEncounter_time(rs.getString(2));
 				encounter.setVisituuid(rs.getString(3));
 				encounter.setEncounter_type_uuid(rs.getString(4));
 				encounter.setProvider_uuid(rs.getString(5));
 				encounter.setVoided(rs.getInt(6));
-
-
 				encounterList.add(encounter);
-
 			}
-			//rs.close();
-			//pstmt.close();
-			//con.close();
 		}
 		catch(SQLException e) {
 			LOG.error("Exception in getEncounters " +e.getMessage());
@@ -429,7 +362,6 @@ public class MySQLService {
 			try {
 				rs.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -437,30 +369,23 @@ public class MySQLService {
 	}
 
 	public ArrayList<PatientDTO> getPatients( String locationUUID, String dateFrom) {
-		// TODO Auto-generated method stub
 		ArrayList<PatientDTO> patientList = new ArrayList<PatientDTO>();
 		ResultSet rs = null;
 
 		try (Connection con = dataSource.getConnection();
 
-				PreparedStatement pstmt = con.prepareStatement(PATIENT_LIST);){
-		//	Connection con = dataSource.getConnection();
-
-		//	PreparedStatement pstmt = con.prepareStatement(PATIENT_LIST);
+			PreparedStatement pstmt = con.prepareStatement(PATIENT_LIST);){
 			pstmt.setString(1,  dateFrom);
 			pstmt.setString(2,  dateFrom);
 			pstmt.setString(3,  dateFrom);
 			pstmt.setString(4,  dateFrom);
 			pstmt.setString(5,  dateFrom);
 			pstmt.setString(6,  locationUUID); 
-		//	ResultSet rs = pstmt.executeQuery();
 			rs = pstmt.executeQuery();
 			int counter = 0; 
 			while (rs.next()) {
 				counter = counter + 1; 
 				PatientDTO patientDTO = new PatientDTO();
-
-
 				patientDTO.setUuid(rs.getString(1));
 				patientDTO.setOpenmrs_id(rs.getString(3));
 				patientDTO.setFirstname(rs.getString(4));
@@ -476,15 +401,9 @@ public class MySQLService {
 				patientDTO.setGender(rs.getString(14));
 				patientDTO.setDead(rs.getInt(15));
 				patientDTO.setVoided(rs.getInt(16));
-
-
-
 				patientList.add(patientDTO);
 
 			}
-			//rs.close();
-			//pstmt.close();
-			//con.close();
 		}
 		catch(SQLException e) {
 			LOG.error("Exception in getPatients " +e.getMessage());
@@ -493,7 +412,6 @@ public class MySQLService {
 			try {
 				rs.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -501,40 +419,21 @@ public class MySQLService {
 	}
 
 	public ArrayList<PatientAttributeTypeDTO> getPatientAttributeTypeList( String dateFrom) {
-		// TODO Auto-generated method stub
 		ArrayList<PatientAttributeTypeDTO> patientAttributeTypeList = new ArrayList<PatientAttributeTypeDTO>();
 		ResultSet rs = null;	
 		try (Connection con = dataSource.getConnection();
 
-				PreparedStatement pstmt = con.prepareStatement(PATIENT_ATTRIBUTE_TYPE_LIST);){
-//			Connection con = dataSource.getConnection();
-
-//			PreparedStatement pstmt = con.prepareStatement(PATIENT_ATTRIBUTE_TYPE_LIST);
+			PreparedStatement pstmt = con.prepareStatement(PATIENT_ATTRIBUTE_TYPE_LIST);){
 			pstmt.setString(1,  dateFrom);
-
-//			ResultSet rs = pstmt.executeQuery();
 			rs = pstmt.executeQuery();
-
-
-
 			int counter = 0; 
 			while (rs.next()) {
 				counter = counter + 1; 
 				PatientAttributeTypeDTO patientAttribute = new PatientAttributeTypeDTO();
 				patientAttribute.setName(rs.getString(2));
 				patientAttribute.setUuid(rs.getString(1));
-
-
-
 				patientAttributeTypeList.add(patientAttribute);
-
 			}
-	//		rs.close();
-	//		pstmt.close();
-	//		con.close();
-
-
-
 		}
 		catch(SQLException e) {
 			LOG.error("Exception in getPatientAttributeTypes " +e.getMessage());
@@ -543,7 +442,6 @@ public class MySQLService {
 			try {
 				rs.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -556,31 +454,20 @@ public class MySQLService {
 		ResultSet rs  = null;
 		try (Connection con = dataSource.getConnection();
 
-				PreparedStatement pstmt = con.prepareStatement(PATIENT_ATTRIBUTE_LIST); ) {
-	//		Connection con = dataSource.getConnection();
-
-	//		PreparedStatement pstmt = con.prepareStatement(PATIENT_ATTRIBUTE_LIST);
+			PreparedStatement pstmt = con.prepareStatement(PATIENT_ATTRIBUTE_LIST); ) {
 			pstmt.setString(1,  dateFrom);
 			pstmt.setString(2,  locationUUID); 
-//			ResultSet rs = pstmt.executeQuery();
 			rs = pstmt.executeQuery();
 			int counter = 0; 
 			while (rs.next()) {
 				counter = counter + 1; 
 				PatientAttributeDTO patientAttribute = new PatientAttributeDTO();
-
 				patientAttribute.setUuid(rs.getString(1));
 				patientAttribute.setPatientuuid(rs.getString(2));
 				patientAttribute.setValue(rs.getString(3));
 				patientAttribute.setPerson_attribute_type_uuid(rs.getString(4));
-
-
 				patientAttributeList.add(patientAttribute);
-
 			}
-			//rs.close();
-			//pstmt.close();
-			//con.close();
 		}
 		catch(SQLException e) {
 			LOG.error("Exception in getPatientAttributes " +e.getMessage());
@@ -589,7 +476,6 @@ public class MySQLService {
 			try {
 				rs.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -603,20 +489,14 @@ public class MySQLService {
 		try (Connection con = dataSource.getConnection();
 
 			PreparedStatement pstmt = con.prepareStatement(OBS_LIST);){
-	//		Connection con = dataSource.getConnection();
-
-		//	PreparedStatement pstmt = con.prepareStatement(OBS_LIST);
 			pstmt.setString(1,  dateFrom);
 			pstmt.setString(3,  locationUUID);
 			pstmt.setString(2,  dateFrom);
-			//ResultSet rs = pstmt.executeQuery();
 			rs = pstmt.executeQuery();
 			int counter = 0; 
 			while (rs.next()) {
 				counter = counter + 1; 
 				ObsDTO obs = new ObsDTO();
-
-
 				obs.setUuid(rs.getString(1));
 				obs.setEncounteruuid(rs.getString(2));
 				obs.setValue(rs.getString(3));
@@ -625,14 +505,8 @@ public class MySQLService {
 				obs.setVoided(rs.getInt(6));
 				obs.setObsServerModifiedDate(rs.getString(7));
 				obs.setComment(rs.getString(8));
-
-
 				obsList.add(obs);
-
 			}
-			//rs.close();
-			//pstmt.close();
-			//con.close();
 		}
 		catch(SQLException e) {
 			LOG.error("Exception in getObs " +e.getMessage());
@@ -641,7 +515,6 @@ public class MySQLService {
 			try {
 				rs.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -649,17 +522,12 @@ public class MySQLService {
 	}
 
 	public ArrayList<LocationDTO> getLocationList(String dateFrom) {
-		// TODO Auto-generated method stub
 		ArrayList<LocationDTO> locationList = new ArrayList<LocationDTO>();
 		ResultSet rs = null;	
 		try (Connection con = dataSource.getConnection();
 
-				PreparedStatement pstmt = con.prepareStatement(LOCATION_LIST);){
-//			Connection con = dataSource.getConnection();
-
-//			PreparedStatement pstmt = con.prepareStatement(LOCATION_LIST);
+			PreparedStatement pstmt = con.prepareStatement(LOCATION_LIST);){
 			pstmt.setString(1,  dateFrom);
-//			ResultSet rs = pstmt.executeQuery();
 			rs = pstmt.executeQuery();
 			int counter = 0; 
 			while (rs.next()) {
@@ -669,7 +537,6 @@ public class MySQLService {
 				location.setLocationuuid(rs.getString(2));
 				location.setRetired(rs.getInt(3));
 				locationList.add(location);
-
 			}
 			rs.close();
 			pstmt.close();
@@ -682,7 +549,6 @@ public class MySQLService {
 			try {
 				rs.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -691,19 +557,10 @@ public class MySQLService {
 	}
 
 	public ArrayList<ProviderDTO> getProviderList(String dateFrom) {
-		// TODO Auto-generated method stub
 		ArrayList<ProviderDTO> providerList = new ArrayList<ProviderDTO>();
 		ResultSet rs = null;
 		try (Connection con = dataSource.getConnection();
-				PreparedStatement pstmt = con.prepareStatement(PROVIDER_LIST);) {
-			//Connection con = dataSource.getConnection();
-
-			//PreparedStatement pstmt = con.prepareStatement(PROVIDER_LIST);
-			//pstmt.setString(1,  dateFrom);
-			//pstmt.setString(2,  dateFrom);
-			//pstmt.setString(3,  dateFrom);
-			//pstmt.setString(4,  dateFrom);
-			//ResultSet rs = pstmt.executeQuery();
+			PreparedStatement pstmt = con.prepareStatement(PROVIDER_LIST);) {
 			rs = pstmt.executeQuery();
 			int counter = 0; 
 			while (rs.next()) {
@@ -723,13 +580,8 @@ public class MySQLService {
 				provider.setCountryCode(rs.getString(12));
 				provider.setRole(rs.getString(13));
 				provider.setVoided(rs.getInt(14));
-
-
 				providerList.add(provider);
 			}
-			//rs.close();
-			//pstmt.close();
-			//con.close();
 		}
 		catch(SQLException e) {
 			LOG.error("Exception in getProviders " +e.getMessage());
@@ -738,7 +590,6 @@ public class MySQLService {
 			try {
 				rs.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -747,32 +598,21 @@ public class MySQLService {
 	}
 
 	public ArrayList<ProviderAttributeTypeDTO> getProviderAttributeTypeList(String dateFrom) {
-		// TODO Auto-generated method stub
 		ArrayList<ProviderAttributeTypeDTO> providerAttributeTypeList = new ArrayList<ProviderAttributeTypeDTO>();
 		ResultSet rs = null;
 		try (Connection con = dataSource.getConnection();
-				PreparedStatement pstmt = con.prepareStatement(PROVIDER_ATTRIBUTE_TYPE_LIST);){
-//			Connection con = dataSource.getConnection();
-
-//			PreparedStatement pstmt = con.prepareStatement(PROVIDER_ATTRIBUTE_TYPE_LIST);
+			PreparedStatement pstmt = con.prepareStatement(PROVIDER_ATTRIBUTE_TYPE_LIST);){
 			pstmt.setString(1,  dateFrom);
-//			ResultSet rs = pstmt.executeQuery();
 			rs = pstmt.executeQuery();
 			int counter = 0; 
 			while (rs.next()) {
 				counter = counter + 1; 
 				ProviderAttributeTypeDTO providerAttributeTypeDTO = new ProviderAttributeTypeDTO();
-
-
 				providerAttributeTypeDTO.setUuid(rs.getString(1));
 				providerAttributeTypeDTO.setName(rs.getString(2));
 				providerAttributeTypeDTO.setRetired(rs.getInt(3));
-
 				providerAttributeTypeList.add(providerAttributeTypeDTO);
 			}
-			//rs.close();
-			//pstmt.close();
-			//con.close();
 		}
 		catch(SQLException e) {
 			LOG.error("Exception in getProviderAttributeTypes " +e.getMessage());
@@ -781,7 +621,6 @@ public class MySQLService {
 			try {
 				rs.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
@@ -791,34 +630,23 @@ public class MySQLService {
 	}
 
 	public ArrayList<ProviderAttributeDTO> getProviderAttributeList(String dateFrom) {
-		// TODO Auto-generated method stub
 		ArrayList<ProviderAttributeDTO> providerAttributeList = new ArrayList<ProviderAttributeDTO>();
 		ResultSet rs = null;
 		try (Connection con = dataSource.getConnection();
-				PreparedStatement pstmt = con.prepareStatement(PROVIDER_ATTRIBUTE_LIST);){
-	//		Connection con = dataSource.getConnection();
-
-	//		PreparedStatement pstmt = con.prepareStatement(PROVIDER_ATTRIBUTE_LIST);
+			PreparedStatement pstmt = con.prepareStatement(PROVIDER_ATTRIBUTE_LIST);){
 			pstmt.setString(1,  dateFrom);
-			//ResultSet rs = pstmt.executeQuery();
 			rs = pstmt.executeQuery();
 			int counter = 0; 
 			while (rs.next()) {
 				counter = counter + 1; 
 				ProviderAttributeDTO providerAttributeDTO = new ProviderAttributeDTO();
-
-
 				providerAttributeDTO.setUuid(rs.getString(1));
 				providerAttributeDTO.setProvideruuid(rs.getString(2));
 				providerAttributeDTO.setAttributetypeuuid(rs.getString(3));
 				providerAttributeDTO.setValue(rs.getString(4));
 				providerAttributeDTO.setVoided(rs.getInt(5));
-
 				providerAttributeList.add(providerAttributeDTO);
 			}
-			//rs.close();
-			//pstmt.close();
-			//con.close();
 		}
 		catch(SQLException e) {
 			LOG.error("Exception in getProviderAttributes " +e.getMessage());
@@ -827,7 +655,6 @@ public class MySQLService {
 			try {
 				rs.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -839,17 +666,10 @@ public class MySQLService {
 		String curTime = null;
 		ResultSet rs = null;
 		try (Connection con = dataSource.getConnection();
-				Statement stmt = con.createStatement();){
-		//	Connection con = dataSource.getConnection();
-		//	Statement stmt = con.createStatement();
-//			ResultSet rs = stmt.executeQuery(CURRENT_TIME);
+			Statement stmt = con.createStatement();){
 			rs = stmt.executeQuery(CURRENT_TIME);
 			rs.next();
 			curTime = rs.getString(1);
-		//	rs.close();
-		//	stmt.close();
-		//	con.close();
-
 		}
 		catch(SQLException e){
 			LOG.error("Exception in getCurTime " +e.getMessage());
@@ -858,22 +678,17 @@ public class MySQLService {
 			try {
 				rs.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		
 		return curTime;
 	}
 
 
 	public void updateAttributes(ProviderDTO provider) {
-		// TODO Auto-generated method stub
 		int providerId = Integer.parseInt(provider.providerId);
 		PreparedStatement pstmt = null;
 		try (Connection con = dataSource.getConnection();) {
-			//Connection con = dataSource.getConnection();
-			
 			if(provider.emailId != null) {
 				pstmt = con.prepareStatement(UPDATEPROVIDEREMAIL);
 				pstmt.setString(1, provider.emailId);
@@ -932,13 +747,6 @@ public class MySQLService {
 				pstmt.setInt(2, providerId);
 				pstmt.executeUpdate();
 			}
-
-
-		//	pstmt.close();
-			//con.close();
-
-
-
 		}  
 		catch(SQLException sqle) {
 			LOG.error("SQL Error while Updating Attributes of Provider" + sqle.getMessage());
@@ -948,7 +756,6 @@ public class MySQLService {
 			try {
 				pstmt.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -956,29 +763,19 @@ public class MySQLService {
 
 
 	public boolean isPersonExists(String uuid) {
-		// TODO Auto-generated method stub
 		boolean ReturnValue = false;
 		ResultSet rst = null;
 		try(Connection con = dataSource.getConnection();
 			PreparedStatement pstmt = con.prepareStatement(PERSON_EXISTS);) {
-		//	Connection con = dataSource.getConnection();
-		//	PreparedStatement pstmt = con.prepareStatement(PERSON_EXISTS);
 			pstmt.setString(1, uuid);
-			//ResultSet rst = pstmt.executeQuery();
 			rst = pstmt.executeQuery();
 			rst.next();
-
 			if(rst.getInt(1) >  0 ) {
 				ReturnValue = true;
 			}
 			else {
 				ReturnValue = false;
 			}
-			//rst.close();
-		//	pstmt.close();
-	//		con.close();
-
-
 		}
 		catch(SQLException sqle) {
 			LOG.error("SQL Error in isPersonExists" + sqle.getMessage());	
@@ -987,7 +784,6 @@ public class MySQLService {
 			try {
 				rst.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -996,19 +792,13 @@ public class MySQLService {
 
 
 	public PatientDTO getPatient(String person) {
-		// TODO Auto-generated method stub
-		 
 		PatientDTO patientDTO  = new PatientDTO(); 
 		ResultSet rst = null;
 		try(Connection con = dataSource.getConnection();
-				PreparedStatement pstmt = con.prepareStatement(PATIENT_EXISTS);) {
-//			Connection con = dataSource.getConnection();
-//			PreparedStatement pstmt = con.prepareStatement(PATIENT_EXISTS);
+			PreparedStatement pstmt = con.prepareStatement(PATIENT_EXISTS);) {
 			pstmt.setString(1, person);
-//			ResultSet rst = pstmt.executeQuery();
 			rst = pstmt.executeQuery();
 			if(rst.next()) {
-				//rst.next();
 				patientDTO.setUuid(rst.getString(1));
 				patientDTO.setOpenmrs_id(rst.getString(2));
 				System.out.println(rst.getString(2));
@@ -1017,22 +807,14 @@ public class MySQLService {
 
 				patientDTO = null;
 			}
-
-
-		//	rst.close();
-	//		pstmt.close();
-	//		con.close();
-
 		}
 		catch(SQLException sqle) {
 			LOG.error("SQL Error in getPatient" + sqle.getMessage());
-
 		}
 		finally {
 			try {
 				rst.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -1041,29 +823,19 @@ public class MySQLService {
 
 
 	public boolean isVisitExists(String uuid) {
-		// TODO Auto-generated method stub
 		boolean ReturnValue = false;
 		ResultSet rst = null;
 		try (Connection con = dataSource.getConnection();
-				PreparedStatement pstmt = con.prepareStatement(VISIT_EXISTS);){
-			//Connection con = dataSource.getConnection();
-			//PreparedStatement pstmt = con.prepareStatement(VISIT_EXISTS);
+			PreparedStatement pstmt = con.prepareStatement(VISIT_EXISTS);){
 			pstmt.setString(1, uuid);
-			//ResultSet rst = pstmt.executeQuery();
 			rst = pstmt.executeQuery();
 			rst.next();
-
 			if(rst.getInt(1) >  0 ) {
 				ReturnValue = true;
 			}
 			else {
 				ReturnValue = false;
 			}
-			//rst.close();
-			//pstmt.close();
-			//con.close();
-
-
 		}
 		catch(SQLException sqle) {
 			LOG.error("SQL Error in isVisitExists" , sqle.getMessage());	
@@ -1072,7 +844,6 @@ public class MySQLService {
 			try {
 				rst.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -1081,15 +852,11 @@ public class MySQLService {
 
 
 	public EncounterDTO getEncounter(String uuid) {
-		// TODO Auto-generated method stub
 		EncounterDTO encounterdto = new EncounterDTO();
 		ResultSet rst = null;	
 		try (Connection con = dataSource.getConnection();
-				PreparedStatement pstmt = con.prepareStatement(ENCOUNTER_EXISTS);) {
-	//		Connection con = dataSource.getConnection();
-	//		PreparedStatement pstmt = con.prepareStatement(ENCOUNTER_EXISTS);
+			PreparedStatement pstmt = con.prepareStatement(ENCOUNTER_EXISTS);) {
 			pstmt.setString(1, uuid);
-	//		ResultSet rst = pstmt.executeQuery();
 			rst = pstmt.executeQuery();
 			if(rst.next())
 			{	
@@ -1099,11 +866,6 @@ public class MySQLService {
 			else {
 				encounterdto = null;
 			}
-			//rst.close();
-			//pstmt.close();
-			//con.close();
-
-
 		}
 		catch(SQLException sqle) {
 			LOG.error("SQL Error in getEncounter " , sqle.getMessage());	
@@ -1112,30 +874,22 @@ public class MySQLService {
 			try {
 				rst.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 		return encounterdto;
 	}
 
-
 	public ArrayList<ProviderDTO> getProviders(String providerId) {
-		// TODO Auto-generated method stub
 		int providerid = Integer.parseInt(providerId);
 		ArrayList<ProviderDTO> providerlist = new ArrayList<ProviderDTO>();
 		ResultSet rst = null;
 		try (Connection con = dataSource.getConnection();
-				PreparedStatement pstmt = con.prepareStatement(PROVIDER_NEW_LIST);) {
+			PreparedStatement pstmt = con.prepareStatement(PROVIDER_NEW_LIST);) {
 			ProviderDTO provider = new ProviderDTO();
-
-//			Connection con = dataSource.getConnection();
-//			PreparedStatement pstmt = con.prepareStatement(PROVIDER_NEW_LIST);
 			pstmt.setInt(1, providerid);
-//			ResultSet rst = pstmt.executeQuery();
 			rst = pstmt.executeQuery();
 			rst.next();
-
 			provider.setUuid(rst.getString(1));
 			provider.setUseruuid(rst.getString(2));
 			provider.setIdentifier(rst.getString(3));
@@ -1151,10 +905,6 @@ public class MySQLService {
 			provider.setRole(rst.getString(13));
 			provider.setVoided(rst.getInt(14));
 			providerlist.add(provider);
-
-			rst.close();
-			pstmt.close();
-			con.close();
 		}
 		catch(SQLException sqle) {
 			LOG.error("Error getting provider Details after Updation in getProviders");
@@ -1163,7 +913,6 @@ public class MySQLService {
 			try {
 				rst.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -1175,73 +924,46 @@ public class MySQLService {
 
 
 	public ArrayList<CustomAppointmentDTO> updateAppointments(ArrayList<AppointmentDTO> appointmentDTOArrayList) {
-		// TODO Auto-generated method stub
+
 		ArrayList<CustomAppointmentDTO> customAppointmentDTOArrayList = new ArrayList<CustomAppointmentDTO>();
 		for(AppointmentDTO appointmentDTO: appointmentDTOArrayList) {
 			CustomAppointmentDTO customAppointmentDTO = new CustomAppointmentDTO();
-
 			customAppointmentDTO.setAppointmentId(appointmentDTO.getAppointmentId());
-
 			customAppointmentDTO.setSlotDay(appointmentDTO.getSlotDay());
-
 			customAppointmentDTO.setSlotDate(appointmentDTO.getSlotDate());
-
 			customAppointmentDTO.setSlotDuration(appointmentDTO.getSlotDuration());
-
 			customAppointmentDTO.setSlotDurationUnit(appointmentDTO.getSlotDurationUnit());
-
 			customAppointmentDTO.setSlotTime(appointmentDTO.getSlotTime());
-
 			customAppointmentDTO.setSpeciality(appointmentDTO.getSpeciality());
-
 			customAppointmentDTO.setUserUuid(appointmentDTO.getUserUuid());
-
 			customAppointmentDTO.setDrName(appointmentDTO.getDrName());
-
 			customAppointmentDTO.setVisitUuid(appointmentDTO.getVisitUuid());
-
 			customAppointmentDTO.setPatientName(appointmentDTO.getPatientName());
-
 			customAppointmentDTO.setOpenMrsId(appointmentDTO.getOpenMrsId());
-
 			customAppointmentDTO.setPatientId(appointmentDTO.getPatientId());
-
 			customAppointmentDTO.setLocationUuid(appointmentDTO.getLocationUuid());
-
 			customAppointmentDTO.setHwUUID(appointmentDTO.getHwUUID());
-
 			customAppointmentDTO.setReason(appointmentDTO.getReason());
-
 			customAppointmentDTO.setVoided(appointmentDTO.getVoided());
 			customAppointmentDTO.setSyncd(false);
 			ResultSet rstPatient = null;
 			ResultSet rstHW = null;
 			try (Connection con = dataSource.getConnection();
-					PreparedStatement pstmtPatient = con.prepareStatement("select gender, TIMESTAMPDIFF(YEAR, birthdate, now()) FROM person WHERE uuid = ? ");
-					PreparedStatement pstmtHealthWorker = con.prepareStatement("select a.gender, ifnull(TIMESTAMPDIFF(YEAR, a.birthdate, now()), 'NA'), concat_ws(' ', b.given_name, b.middle_name, b.family_name) FROM person a, person_name b WHERE a.person_id = b.person_id and a.person_id  = (select person_id from provider where uuid = ?)  ");) {
+				PreparedStatement pstmtPatient = con.prepareStatement("select gender, TIMESTAMPDIFF(YEAR, birthdate, now()) FROM person WHERE uuid = ? ");
+				PreparedStatement pstmtHealthWorker = con.prepareStatement("select a.gender, ifnull(TIMESTAMPDIFF(YEAR, a.birthdate, now()), 'NA'), concat_ws(' ', b.given_name, b.middle_name, b.family_name) FROM person a, person_name b WHERE a.person_id = b.person_id and a.person_id  = (select person_id from provider where uuid = ?)  ");) {
 
-				//Connection con = dataSource.getConnection();
-				//PreparedStatement pstmtPatient = con.prepareStatement("select gender, TIMESTAMPDIFF(YEAR, birthdate, now()) FROM person WHERE uuid = ? ");
-				//PreparedStatement pstmtHealthWorker = con.prepareStatement("select a.gender, ifnull(TIMESTAMPDIFF(YEAR, a.birthdate, now()), 'NA'), concat_ws(' ', b.given_name, b.middle_name, b.family_name) FROM person a, person_name b WHERE a.person_id = b.person_id and a.person_id  = (select person_id from provider where uuid = ?)  ");
 				pstmtPatient.setString(1,  appointmentDTO.getPatientId());
-				//ResultSet rstPatient = pstmtPatient.executeQuery();
 				rstPatient = pstmtPatient.executeQuery();
 				rstPatient.next();
 				customAppointmentDTO.setPatientGender(rstPatient.getString(1));
 				customAppointmentDTO.setPatientAge(rstPatient.getString(2));
 				pstmtHealthWorker.setString(1, appointmentDTO.getHwUUID());
-				//ResultSet rstHW = pstmtHealthWorker.executeQuery();
 				rstHW = pstmtHealthWorker.executeQuery();
 				rstHW.next();
 				customAppointmentDTO.setHwName(rstHW.getString(3));
 				customAppointmentDTO.setHwAge(rstHW.getString(2));
 				customAppointmentDTO.setHwGender(rstHW.getString(1));
 				customAppointmentDTOArrayList.add(customAppointmentDTO);
-				//rstHW.close();
-				//rstPatient.close();
-				//pstmtHealthWorker.close();
-				//pstmtPatient.close();
-				//con.close();
 			}
 			catch(Exception e) {
 				LOG.error("Error in updateAppointments ", e.getMessage());
@@ -1250,20 +972,15 @@ public class MySQLService {
 				try {
 					rstHW.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				try {
 					rstPatient.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
-
-
 		}
 		return customAppointmentDTOArrayList;
 	}
-
 }
