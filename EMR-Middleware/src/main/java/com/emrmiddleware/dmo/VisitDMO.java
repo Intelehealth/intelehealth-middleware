@@ -21,7 +21,7 @@ public interface VisitDMO {
 	@Select("select uuid as uuid ,name,retired from visit_attribute_type where COALESCE(date_changed,date_created) >= #{lastchangedtime}")
 	public ArrayList<VisitAttributeTypeDTO> getVisitAttributeMaster(@Param("lastchangedtime") String lastpulldatatime);
 
-	@Select("select visit_attribute.uuid ,visit.uuid as visit_uuid,visit_attribute.value_reference as value,visit_attribute_type.uuid as visit_attribute_type_uuid from visit,visit_attribute,visit_attribute_type,location where visit_attribute.visit_id=visit.visit_id and visit_attribute.attribute_type_id=visit_attribute_type.visit_attribute_type_id and COALESCE(visit_attribute.date_changed,visit_attribute.date_created)>=#{lastchangedtime} and visit.location_id=location.location_id and location.uuid=#{locationuuid}")
+	@Select("select distinct visit_attribute.uuid ,visit.uuid as visit_uuid,visit_attribute.value_reference as value,visit_attribute_type.uuid as visit_attribute_type_uuid from visit,visit_attribute,visit_attribute_type,location where visit_attribute.visit_id=visit.visit_id and visit_attribute.attribute_type_id=visit_attribute_type.visit_attribute_type_id and COALESCE(visit_attribute.date_changed,visit_attribute.date_created)>=#{lastchangedtime} and visit.location_id=location.location_id and location.uuid=#{locationuuid}") // Added distinct to avoid duplicate issue 09092022 @Satya
 	public ArrayList<VisitAttributeDTO> getVisitAttributes(@Param("lastchangedtime") String lastpulldatatime,
 			@Param("locationuuid") String locationuuid);
 	

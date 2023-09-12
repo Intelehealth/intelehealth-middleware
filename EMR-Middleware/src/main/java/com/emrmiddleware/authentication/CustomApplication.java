@@ -10,7 +10,7 @@ import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 
 
 @ApplicationPath("/")
-public class CustomApplication extends ResourceConfig 
+public class    CustomApplication extends ResourceConfig
 {
     public CustomApplication() 
     { 
