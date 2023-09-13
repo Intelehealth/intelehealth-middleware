@@ -86,6 +86,7 @@ public class PatientAction {
 			UserCredentialDTO userCredentialdto = authenticationUtil.getAuthHeader(authString);
 			Call<ResponseBody> call = restIdapiintf.getOpenMrsId("1", userCredentialdto.getUsername(),
 					userCredentialdto.getPassword());
+
 			Response<ResponseBody> response = call.execute();
 			// IDGenAPIDTO idgenapidto = call.execute();
 			if (response.isSuccessful()) {

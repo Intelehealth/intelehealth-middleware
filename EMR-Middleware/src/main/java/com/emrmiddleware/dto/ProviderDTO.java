@@ -7,6 +7,7 @@ public class ProviderDTO {
 	private String given_name;
 	private String family_name;
 	private int voided;
+
 	
 	public String getUuid() {
 		return uuid;
@@ -38,6 +39,38 @@ public class ProviderDTO {
 	public void setVoided(int voided) {
 		this.voided = voided;
 	}
-	
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public String role;
+
+	public String getUseruuid() {
+		return useruuid;
+	}
+
+	public void setUseruuid(String useruuid) {
+		this.useruuid = useruuid;
+	}
+
+	public String useruuid;
+
+	public int getUserid() {
+		return userid;
+	}
+
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
+
+	public int userid; // Added new property to send provider's user_id from users table
+
+
+
 
 }
