@@ -1,6 +1,10 @@
 package com.emrmiddleware.action;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.slf4j.Logger;
@@ -11,6 +15,7 @@ import com.emrmiddleware.api.RestAPI;
 import com.emrmiddleware.api.dto.EncounterAPIDTO;
 import com.emrmiddleware.dao.EncounterDAO;
 import com.emrmiddleware.dto.EncounterDTO;
+import com.emrmiddleware.api.dto.ObsAPIDTO;
 import com.emrmiddleware.exception.ActionException;
 import com.emrmiddleware.exception.DAOException;
 import com.google.gson.Gson;
@@ -25,7 +30,7 @@ public class EncounterAction {
 	APIClient apiclient;
 	RestAPI restapiintf;
 	String authString;
-
+	final static String ENCOUNTER_VISIT_NOTE = "d7151f82-c1f3-4152-a605-2f9ea7414a79";
 	public EncounterAction(String auth) {
 		authString = auth;
 		apiclient = new APIClient(authString);
@@ -44,7 +49,7 @@ public class EncounterAction {
 			for (EncounterAPIDTO encounter : encounterList) {
 				int voided = 0;
 				boolean isEncounterSet = true;
-				if (isEncounterVoided(encounter) == true) {
+				if (isEncounterVoided(encounter)) {
 					voided = 1;
 				} else {
 					voided = 0;
@@ -54,32 +59,28 @@ public class EncounterAction {
 				EncounterDTO encounterdto_present = new EncounterDTO();
 				encounterdto_present = getEncounter(encounter.getUuid());
 				// to prevent multiple hit to DB
-				if (encounterdto_present != null) {
-					isEncounterPresent = true;
-				} else {
-					isEncounterPresent = false;
-				}
+                isEncounterPresent = encounterdto_present != null;
 				
 				// isEncounterPresent = isEncounterExists(encounter.getUuid());
 				//Edit Encounter
-				if ((isEncounterPresent) && (isEncounterVoided(encounter) == false)) {
+				if ((isEncounterPresent) && (!isEncounterVoided(encounter))) {
 					isEncounterSet = editEncounterOpenMRS(encounter);
 				}
 
 				//delete encounter
-				if ((isEncounterPresent) && (isEncounterVoided(encounter) == true)) {
+				if ((isEncounterPresent) && (isEncounterVoided(encounter))) {
 					// check if encounter already is voided in openMRS
 					if (encounterdto_present.getVoided() == 1) {
 						isEncounterSet = true;
 						voided = 1;
 					} else {
 						isEncounterSet = deleteEncounterOpenMRS(encounter);
-						if (isEncounterSet == true)
+						if (isEncounterSet)
 							voided = 1;
 					}
 				}
 				//Add Encounter
-				if ((isEncounterPresent == false) && (isEncounterVoided(encounter) == false)) {
+				if ((!isEncounterPresent) && (!isEncounterVoided(encounter))) {
 					isEncounterSet = addEncounterOpenMRS(encounter);
 				}
 				encounterdto = new EncounterDTO();
@@ -157,6 +158,11 @@ public class EncounterAction {
 											// does not accept voided in the
 											// json structure
 			logger.info("edit encounter value : " + gson.toJson(encounterapidto));
+
+			if(encounterapidto.getEncounterType().equals(ENCOUNTER_VISIT_NOTE) ){
+				// HibernateLocationDao.getLocation expects location_id from location table not uuid
+				encounterapidto.setLocation(getLocationId(encounterapidto.getLocation()));
+			}
 			Call<ResponseBody> callencounter = restapiintf.editEncounter(encounterapidto.getUuid(), encounterapidto);
 			Response<ResponseBody> response = callencounter.execute();
 			if (response.isSuccessful()) {
@@ -177,7 +183,30 @@ public class EncounterAction {
 		}
 		return true;
 	}
-	
+
+	private String getLocationId(String location) {
+		String intLocation="0";
+		try {
+
+
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = java.sql.DriverManager.getConnection("jdbc:mysql://localhost:3306/openmrs", "root", "i10hi1c");
+			PreparedStatement pstmt = con.prepareStatement("SELECT location_id FROM location where uuid=?");
+			pstmt.setString(1, location);
+			ResultSet resultSet = pstmt.executeQuery();
+			resultSet.next();
+			intLocation = resultSet.getString(1);
+			resultSet.close();
+			pstmt.close();
+			con.close();
+		}
+		catch(ClassNotFoundException | SQLException e) {
+			logger.error(e.getMessage(), e);
+
+		}
+		return intLocation;
+	}
+
 	private boolean deleteEncounterOpenMRS(EncounterAPIDTO encounterapidto) {
 		Gson gson = new Gson();
 		String val = "";
@@ -186,7 +215,7 @@ public class EncounterAction {
 		try {
 			Call<ResponseBody> callencounter = restapiintf.deleteEncounter(encounterapidto.getUuid());
 			Response<ResponseBody> response = callencounter.execute();
-			if (response.isSuccessful() == false) {
+			if (!response.isSuccessful()) {
 				val = response.errorBody().string();
 				logger.error("REST failed : " + val);
 				return false;

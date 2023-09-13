@@ -8,8 +8,8 @@ public class VisitDTO {
 	private String uuid;
 	
 	private String visit_type_uuid;
-	private Date startdate;
-	private Date enddate;
+	private String startdate;
+	private String enddate;
 	private String locationuuid;
 	private String creator_uuid;
 	private boolean syncd=true;
@@ -49,16 +49,16 @@ public class VisitDTO {
 	public void setUuid(String uuid) {
 		this.uuid = uuid;
 	}
-	public Date getStartdate() {
+	public String getStartdate() {
 		return startdate;
 	}
-	public void setStartdate(Date startdate) {
+	public void setStartdate(String startdate) {
 		this.startdate = startdate;
 	}
-	public Date getEnddate() {
+	public String getEnddate() {
 		return enddate;
 	}
-	public void setEnddate(Date enddate) {
+	public void setEnddate(String enddate) {
 		this.enddate = enddate;
 	}
 	

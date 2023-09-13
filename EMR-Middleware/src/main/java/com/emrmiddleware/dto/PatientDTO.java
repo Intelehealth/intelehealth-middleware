@@ -1,7 +1,5 @@
 package com.emrmiddleware.dto;
 
-import java.util.Date;
-
 public class PatientDTO {
 	
 	private String uuid;
@@ -9,7 +7,7 @@ public class PatientDTO {
 	private String firstname;
 	private String middlename;
 	private String lastname;
-	private Date dateofbirth;
+	private String dateofbirth;
 	private String phonenumber;
 	private String address1;
 	private String address2;
@@ -79,10 +77,10 @@ public class PatientDTO {
 		this.lastname = lastname;
 	}
 	
-	public Date getDateofbirth() {
+	public String getDateofbirth() {
 		return dateofbirth;
 	}
-	public void setDateofbirth(Date dateofbirth) {
+	public void setDateofbirth(String dateofbirth) {
 		this.dateofbirth = dateofbirth;
 	}
 	public String getPhonenumber() {

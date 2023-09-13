@@ -33,10 +33,7 @@ public class AuthenticationUtil {
          }
          String salt = userCredentialdto.getSalt();
          String hashpassword = EmrUtils.get_SHA_512_SecurePassword(password, salt);
-         if (hashpassword.equals(userCredentialdto.getPassword()))
-        	 isAuthenticated=true;
-         else
-        	 isAuthenticated=false;
+        isAuthenticated= hashpassword.equals(userCredentialdto.getPassword());
            
         return isAuthenticated;
     } 

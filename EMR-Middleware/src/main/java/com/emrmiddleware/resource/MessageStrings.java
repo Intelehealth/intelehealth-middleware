@@ -7,4 +7,6 @@ public class MessageStrings {
 	
 	public static final String ERROR="ERROR";
 
+	private MessageStrings() {
+	}
 }

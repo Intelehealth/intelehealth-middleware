@@ -38,6 +38,27 @@ public class ProviderDTO {
 	public void setVoided(int voided) {
 		this.voided = voided;
 	}
-	
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public String role;
+
+	public String getUseruuid() {
+		return useruuid;
+	}
+
+	public void setUseruuid(String useruuid) {
+		this.useruuid = useruuid;
+	}
+
+	public String useruuid;
+
+
 
 }

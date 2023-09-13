@@ -37,8 +37,17 @@ public class VisitAttributeDTO {
 	public void setVoided(int voided) {
 		this.voided = voided;
 	}
-	
-	
+
+	public String getVisit_id() {
+		return visit_id;
+	}
+
+	public void setVisit_id(String visit_id) {
+		this.visit_id = visit_id;
+	}
+
+	private String visit_id;
+
 	
 
 }
