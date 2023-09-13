@@ -18,8 +18,28 @@ public class PullDataDTO {
 	private ArrayList<ProviderAttributeDTO> providerAttributeList;
 	private ArrayList<VisitAttributeTypeDTO> visitAttributeTypeList;
 	private ArrayList<VisitAttributeDTO> visitAttributeList;
-	
-	
+
+	public ArrayList<ConceptAttributeTypeDTO> getConceptAttributeTypeList() {
+		return conceptAttributeTypeList;
+	}
+
+	public void setConceptAttributeTypeList(ArrayList<ConceptAttributeTypeDTO> conceptAttributeTypeList) {
+		this.conceptAttributeTypeList = conceptAttributeTypeList;
+	}
+
+	private ArrayList<ConceptAttributeTypeDTO> conceptAttributeTypeList;
+
+	public ArrayList<ConceptAttributeDTO> getConceptAttributeList() {
+		return conceptAttributeList;
+	}
+
+	public void setConceptAttributeList(ArrayList<ConceptAttributeDTO> conceptAttributeList) {
+		this.conceptAttributeList = conceptAttributeList;
+	}
+
+	private ArrayList<ConceptAttributeDTO> conceptAttributeList;
+
+
 
 	public ArrayList<VisitAttributeTypeDTO> getVisitAttributeTypeList() {
 		return visitAttributeTypeList;
@@ -132,6 +152,6 @@ public class PullDataDTO {
 	public void setEncounterlist(ArrayList<EncounterDTO> encounterlist) {
 		this.encounterlist = encounterlist;
 	}
-	
-	
+
+
 }

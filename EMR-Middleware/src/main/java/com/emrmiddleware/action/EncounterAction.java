@@ -11,6 +11,7 @@ import com.emrmiddleware.api.RestAPI;
 import com.emrmiddleware.api.dto.EncounterAPIDTO;
 import com.emrmiddleware.dao.EncounterDAO;
 import com.emrmiddleware.dto.EncounterDTO;
+import com.emrmiddleware.api.dto.ObsAPIDTO;
 import com.emrmiddleware.exception.ActionException;
 import com.emrmiddleware.exception.DAOException;
 import com.google.gson.Gson;
@@ -44,7 +45,7 @@ public class EncounterAction {
 			for (EncounterAPIDTO encounter : encounterList) {
 				int voided = 0;
 				boolean isEncounterSet = true;
-				if (isEncounterVoided(encounter) == true) {
+				if (isEncounterVoided(encounter)) {
 					voided = 1;
 				} else {
 					voided = 0;
@@ -54,32 +55,28 @@ public class EncounterAction {
 				EncounterDTO encounterdto_present = new EncounterDTO();
 				encounterdto_present = getEncounter(encounter.getUuid());
 				// to prevent multiple hit to DB
-				if (encounterdto_present != null) {
-					isEncounterPresent = true;
-				} else {
-					isEncounterPresent = false;
-				}
+                isEncounterPresent = encounterdto_present != null;
 				
 				// isEncounterPresent = isEncounterExists(encounter.getUuid());
 				//Edit Encounter
-				if ((isEncounterPresent) && (isEncounterVoided(encounter) == false)) {
+				if ((isEncounterPresent) && (!isEncounterVoided(encounter))) {
 					isEncounterSet = editEncounterOpenMRS(encounter);
 				}
 
 				//delete encounter
-				if ((isEncounterPresent) && (isEncounterVoided(encounter) == true)) {
+				if ((isEncounterPresent) && (isEncounterVoided(encounter))) {
 					// check if encounter already is voided in openMRS
 					if (encounterdto_present.getVoided() == 1) {
 						isEncounterSet = true;
 						voided = 1;
 					} else {
 						isEncounterSet = deleteEncounterOpenMRS(encounter);
-						if (isEncounterSet == true)
+						if (isEncounterSet)
 							voided = 1;
 					}
 				}
 				//Add Encounter
-				if ((isEncounterPresent == false) && (isEncounterVoided(encounter) == false)) {
+				if ((!isEncounterPresent) && (!isEncounterVoided(encounter))) {
 					isEncounterSet = addEncounterOpenMRS(encounter);
 				}
 				encounterdto = new EncounterDTO();
@@ -186,7 +183,7 @@ public class EncounterAction {
 		try {
 			Call<ResponseBody> callencounter = restapiintf.deleteEncounter(encounterapidto.getUuid());
 			Response<ResponseBody> response = callencounter.execute();
-			if (response.isSuccessful() == false) {
+			if (!response.isSuccessful()) {
 				val = response.errorBody().string();
 				logger.error("REST failed : " + val);
 				return false;

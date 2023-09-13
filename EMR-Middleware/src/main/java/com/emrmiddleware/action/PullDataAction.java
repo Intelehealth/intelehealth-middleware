@@ -2,25 +2,8 @@ package com.emrmiddleware.action;
 
 import java.util.ArrayList;
 
-import com.emrmiddleware.dao.EncounterDAO;
-import com.emrmiddleware.dao.LocationDAO;
-import com.emrmiddleware.dao.ObsDAO;
-import com.emrmiddleware.dao.PatientDAO;
-import com.emrmiddleware.dao.ProviderDAO;
-import com.emrmiddleware.dao.VisitDAO;
-import com.emrmiddleware.dto.EncounterDTO;
-import com.emrmiddleware.dto.LocationDTO;
-import com.emrmiddleware.dto.ObsDTO;
-import com.emrmiddleware.dto.PatientAttributeDTO;
-import com.emrmiddleware.dto.PatientAttributeTypeDTO;
-import com.emrmiddleware.dto.PatientDTO;
-import com.emrmiddleware.dto.ProviderAttributeDTO;
-import com.emrmiddleware.dto.ProviderAttributeTypeDTO;
-import com.emrmiddleware.dto.ProviderDTO;
-import com.emrmiddleware.dto.PullDataDTO;
-import com.emrmiddleware.dto.VisitAttributeDTO;
-import com.emrmiddleware.dto.VisitAttributeTypeDTO;
-import com.emrmiddleware.dto.VisitDTO;
+import com.emrmiddleware.dao.*;
+import com.emrmiddleware.dto.*;
 import com.emrmiddleware.exception.ActionException;
 import com.emrmiddleware.exception.DAOException;
 
@@ -35,6 +18,9 @@ public class PullDataAction {
 		EncounterDAO encounterdao = new EncounterDAO();
 		LocationDAO locationdao = new LocationDAO();
 		ProviderDAO providerdao = new ProviderDAO();
+
+		ConceptDAO conceptdao = new ConceptDAO();
+
 		ArrayList<PatientDTO> patientlist = new ArrayList<PatientDTO>();
 		ArrayList<PatientAttributeTypeDTO> patientAttributeTypeList = new ArrayList<PatientAttributeTypeDTO>();
 		ArrayList<PatientAttributeDTO> patientAttributesList = new ArrayList<PatientAttributeDTO>();
@@ -43,10 +29,17 @@ public class PullDataAction {
 		ArrayList<ObsDTO> obslist = new ArrayList<ObsDTO>();
 		ArrayList<LocationDTO> locationlist = new ArrayList<LocationDTO>();
 		ArrayList<ProviderDTO> providerlist = new ArrayList<ProviderDTO>();
+
+		ArrayList<ConceptDTO> conceptlist = new ArrayList<ConceptDTO>();
+
 		ArrayList<ProviderAttributeTypeDTO> providerAttributeTypeList = new ArrayList<ProviderAttributeTypeDTO>();
 		ArrayList<ProviderAttributeDTO>  providerAttributeList = new ArrayList<ProviderAttributeDTO>();
 		ArrayList<VisitAttributeTypeDTO> visitAttributeTypeList = new ArrayList<VisitAttributeTypeDTO>();
 		ArrayList<VisitAttributeDTO> visitAttributesList = new ArrayList<VisitAttributeDTO>();
+
+		ArrayList<ConceptAttributeTypeDTO> conceptAttributeTypeList = new ArrayList<ConceptAttributeTypeDTO>();
+		ArrayList<ConceptAttributeDTO> conceptAttributesList = new ArrayList<ConceptAttributeDTO>();
+
 		try {
 			pulldata.setPullexecutedtime(visitdao.getDBCurrentTime());//Used by device for syncing purpose
 			patientlist = patientdao.getPatients(lastpulldatatime, locationuuid);
@@ -61,6 +54,12 @@ public class PullDataAction {
 			providerlist = providerdao.getProviders(lastpulldatatime);
 			providerAttributeTypeList = providerdao.getProviderAttributeTypeMaster(lastpulldatatime);
 			providerAttributeList = providerdao.getProviderAttributes(lastpulldatatime);
+			//System.out.print("SGtting concept AttributeType");
+			conceptAttributeTypeList = visitdao.getConceptAttributeTypeMaster(lastpulldatatime);
+			//System.out.print("Srcvd concept AttributeType");
+			//System.out.print("Srcvd concept AttributeType Cpount"+conceptAttributeTypeList.size());
+			conceptAttributesList = visitdao.getConceptAttributes(lastpulldatatime, locationuuid);
+
 			pulldata.setLocationlist(locationlist);
 			pulldata.setPatientlist(patientlist);
 			pulldata.setPatientAttributeTypeListMaster(patientAttributeTypeList);
@@ -73,6 +72,10 @@ public class PullDataAction {
 			pulldata.setVisitAttributeList(visitAttributesList);
 			pulldata.setEncounterlist(encounterlist);
 			pulldata.setObslist(obslist);
+			//System.out.print("Setting concept AttributeType");
+			pulldata.setConceptAttributeTypeList(conceptAttributeTypeList);
+			pulldata.setConceptAttributeList(conceptAttributesList);
+
 			
 			
 		} catch (DAOException e) {

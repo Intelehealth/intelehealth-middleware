@@ -48,7 +48,7 @@ public class PullController {
 			authString= httpHeaders.getHeaderString("authorization");
 			//logger.info("Authorization header is : "+authString);
 			boolean isAuthenticated = authutil.isUserAuthenticated(authString);
-			if ((isAuthenticated == false) || (authString == null)) {
+			if ((!isAuthenticated) || (authString == null)) {
 				logger.error("No Authorization");
 				responsedto.setStatusMessage(Resources.ERROR, Resources.AUTHERROR, Resources.UNABLETOPROCESS);
 				return Response.status(403).entity(gson.toJson(responsedto)).build();
