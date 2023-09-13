@@ -24,7 +24,7 @@ public class ProviderDAO {
 		try {
 
 			ProviderDMO providerdmo = session.getMapper(ProviderDMO.class);
-			providerlist = providerdmo.getProviders(lastpulldatatime);
+			providerlist = providerdmo.getProviders();
 			return providerlist;
 		} catch (PersistenceException e) {
 			logger.error(e.getMessage(),e);

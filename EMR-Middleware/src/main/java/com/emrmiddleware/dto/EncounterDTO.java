@@ -7,7 +7,31 @@ public class EncounterDTO {
 	private String provider_uuid;
 	private boolean syncd=true;
 	private int voided;
-	
+
+	private String encounter_time;
+
+/*
+
+	public String getEncountertime() {
+		return encountertime;
+	}
+
+	public void setEncountertime(String encountertime) {
+		this.encountertime = encountertime;
+	}
+
+	private String encountertime;
+*/
+
+	public String getEncounter_time() {
+		return encounter_time;
+	}
+
+	public void setEncounter_time(String encounter_time) {
+		this.encounter_time = encounter_time;
+	}
+
+	//private String encounter_time;
 	
 	
 	public String getProvider_uuid() {
@@ -46,6 +70,6 @@ public class EncounterDTO {
 	public void setVoided(int voided) {
 		this.voided = voided;
 	}
-	
-	
+
+
 }

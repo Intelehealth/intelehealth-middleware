@@ -1,5 +1,8 @@
 package com.emrmiddleware.dto;
 
+import com.emrmiddleware.api.dto.AppointmentDTO;
+import com.emrmiddleware.authentication.CustomApplication;
+
 import java.util.ArrayList;
 
 public class PullDataDTO {
@@ -18,8 +21,9 @@ public class PullDataDTO {
 	private ArrayList<ProviderAttributeDTO> providerAttributeList;
 	private ArrayList<VisitAttributeTypeDTO> visitAttributeTypeList;
 	private ArrayList<VisitAttributeDTO> visitAttributeList;
-	
-	
+	private ArrayList<CustomAppointmentDTO> AppointmentList;
+
+
 
 	public ArrayList<VisitAttributeTypeDTO> getVisitAttributeTypeList() {
 		return visitAttributeTypeList;
@@ -61,13 +65,13 @@ public class PullDataDTO {
 		this.providerAttributeTypeList = providerAttributeTypeList;
 	}
 
-	public ArrayList<ProviderDTO> getProviderlist() {
-		return providerlist;
-	}
+	//public ArrayList<ProviderDTO> getProviderlist() {
+	//	return providerlist;
+	//}
 
-	public void setProviderlist(ArrayList<ProviderDTO> providerlist) {
-		this.providerlist = providerlist;
-	}
+	//public void setProviderlist(ArrayList<ProviderDTO> providerlist) {
+	//	this.providerlist = providerlist;
+	//}
 
 	public ArrayList<LocationDTO> getLocationlist() {
 		return locationlist;
@@ -132,6 +136,18 @@ public class PullDataDTO {
 	public void setEncounterlist(ArrayList<EncounterDTO> encounterlist) {
 		this.encounterlist = encounterlist;
 	}
-	
-	
+
+
+	public void setProviderlist(ArrayList<ProviderDTO> providerlist) {
+		this.providerlist = providerlist;
+	}
+
+	public ArrayList<ProviderDTO> getProviderlist() {
+		return providerlist;
+	}
+
+
+	public void setAppointmentList(ArrayList<CustomAppointmentDTO> updatedAppointments) {
+		this.AppointmentList = updatedAppointments;
+	}
 }

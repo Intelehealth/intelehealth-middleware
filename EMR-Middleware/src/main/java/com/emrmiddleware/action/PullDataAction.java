@@ -57,10 +57,13 @@ public class PullDataAction {
 			visitAttributesList = visitdao.getVisitAttributes(lastpulldatatime, locationuuid);
 			encounterlist = encounterdao.getEncounters(lastpulldatatime, locationuuid);
 			obslist = obsdao.getObsList(lastpulldatatime, locationuuid);
+
 			locationlist = locationdao.getLocations(lastpulldatatime);
+
 			providerlist = providerdao.getProviders(lastpulldatatime);
 			providerAttributeTypeList = providerdao.getProviderAttributeTypeMaster(lastpulldatatime);
 			providerAttributeList = providerdao.getProviderAttributes(lastpulldatatime);
+
 			pulldata.setLocationlist(locationlist);
 			pulldata.setPatientlist(patientlist);
 			pulldata.setPatientAttributeTypeListMaster(patientAttributeTypeList);

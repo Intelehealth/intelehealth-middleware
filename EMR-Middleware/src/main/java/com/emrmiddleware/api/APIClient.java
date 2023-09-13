@@ -56,4 +56,22 @@ public class APIClient {
 		return retrofit;
 	}
 
+	public Retrofit getMMClient() {
+
+		HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+		interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+		AuthenticationUtil authenticationUtil = new AuthenticationUtil();
+		UserCredentialDTO userCredentialdto = authenticationUtil.getAuthHeader(authString);
+		OkHttpClient client = new OkHttpClient.Builder()
+				.addInterceptor(
+						new BasicAuthInterceptor(userCredentialdto.getUsername(), userCredentialdto.getPassword()))
+				.build();
+		ResourcesEnvironment dbenv = new ResourcesEnvironment();
+		Gson gson = new GsonBuilder().setLenient().create();
+		retrofit = new Retrofit.Builder().baseUrl(dbenv.getMMBaseURL())
+				.addConverterFactory(retrofit2.converter.gson.GsonConverterFactory.create(gson)).client(client).build();
+
+		return retrofit;
+	}
+
 }

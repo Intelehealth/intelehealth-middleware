@@ -37,4 +37,14 @@ public class ResourcesEnvironment {
 		return basepath;
 		
 	}
+
+	public String getMMBaseURL() {
+		String Base_URL = "";
+
+		String host = "https://tf.intelehealth.org:3004";
+		Base_URL=host+"/api/";
+
+		return Base_URL;
+
+	}
 }
