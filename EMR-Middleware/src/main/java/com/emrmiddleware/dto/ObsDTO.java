@@ -9,7 +9,18 @@ public class ObsDTO {
 	private int creator;
 	private String obsServerModifiedDate;
 	private int voided;
-	
+	// Adding comment field for Ezazi obs.comment
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+
+	public String comment;
+
+
 	
 	public String getObsServerModifiedDate() {
 		return obsServerModifiedDate;

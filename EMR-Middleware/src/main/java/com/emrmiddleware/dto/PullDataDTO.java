@@ -18,8 +18,27 @@ public class PullDataDTO {
 	private ArrayList<ProviderAttributeDTO> providerAttributeList;
 	private ArrayList<VisitAttributeTypeDTO> visitAttributeTypeList;
 	private ArrayList<VisitAttributeDTO> visitAttributeList;
-	
-	
+
+	public int getPageNo() {
+		return pageNo;
+	}
+
+	public void setPageNo(int pageNo) {
+		this.pageNo = pageNo;
+	}
+
+	private int pageNo;
+
+	public int getTotalCount() {
+		return totalCount;
+	}
+
+	public void setTotalCount(int totalCount) {
+		this.totalCount = totalCount;
+	}
+
+	private int totalCount;
+
 
 	public ArrayList<VisitAttributeTypeDTO> getVisitAttributeTypeList() {
 		return visitAttributeTypeList;
@@ -132,6 +151,5 @@ public class PullDataDTO {
 	public void setEncounterlist(ArrayList<EncounterDTO> encounterlist) {
 		this.encounterlist = encounterlist;
 	}
-	
-	
+
 }

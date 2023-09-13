@@ -11,6 +11,7 @@ import com.emrmiddleware.api.RestAPI;
 import com.emrmiddleware.api.dto.EncounterAPIDTO;
 import com.emrmiddleware.dao.EncounterDAO;
 import com.emrmiddleware.dto.EncounterDTO;
+import com.emrmiddleware.api.dto.ObsAPIDTO;
 import com.emrmiddleware.exception.ActionException;
 import com.emrmiddleware.exception.DAOException;
 import com.google.gson.Gson;
