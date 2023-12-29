@@ -12,3 +12,5 @@ For a full description of the Intelehealth platform please refer to: http://wiki
 
 In case of any questions or difficulties you can reach out to us through our Slack channel:
 https://join.slack.com/t/intelehealthcommunity/shared_invite/enQtODQ1MzE4NDg2NDk5LWY2NThjN2YwNWY3YzA2MTcyNWJhYjg1NzEyZmNkMDFkNDNhMjlkYWE3OTZhYzJkMzE4MjA5MjE5N2Y4MzMxY2Q.
+
+[Disclaimer](https://github.com/Intelehealth/Middleware/blob/master/HEALTHCARE%20DISCLAIMER.md)
