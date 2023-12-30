@@ -26,6 +26,7 @@ public class PatientDTO {
 	private String caste;
 	private boolean syncd=true;
 	private int voided;
+
 	
 	
 	

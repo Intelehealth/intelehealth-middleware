@@ -24,6 +24,26 @@ public class PullDataDTO {
 	private ArrayList<CustomAppointmentDTO> AppointmentList;
 
 
+	public int getPageNo() {
+		return pageNo;
+	}
+
+	public void setPageNo(int pageNo) {
+		this.pageNo = pageNo;
+	}
+
+	private int pageNo;
+
+	public int getTotalCount() {
+		return totalCount;
+	}
+
+	public void setTotalCount(int totalCount) {
+		this.totalCount = totalCount;
+	}
+
+	private int totalCount;
+
 
 	public ArrayList<VisitAttributeTypeDTO> getVisitAttributeTypeList() {
 		return visitAttributeTypeList;

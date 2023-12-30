@@ -26,7 +26,7 @@ import com.emrmiddleware.exception.DAOException;
 
 public class PullDataAction {
 
-	public PullDataDTO getPullData(String lastpulldatatime, String locationuuid) throws ActionException, DAOException {
+	public PullDataDTO getPullData(String lastpulldatatime, String locationuuid, int pageno, int limit) throws ActionException, DAOException {
 
 		PullDataDTO pulldata = new PullDataDTO();
 		PatientDAO patientdao = new PatientDAO();
@@ -46,13 +46,23 @@ public class PullDataAction {
 		ArrayList<ProviderAttributeTypeDTO> providerAttributeTypeList = new ArrayList<ProviderAttributeTypeDTO>();
 		ArrayList<ProviderAttributeDTO>  providerAttributeList = new ArrayList<ProviderAttributeDTO>();
 		ArrayList<VisitAttributeTypeDTO> visitAttributeTypeList = new ArrayList<VisitAttributeTypeDTO>();
-		ArrayList<VisitAttributeDTO> visitAttributesList = new ArrayList<VisitAttributeDTO>();
-		try {
+		ArrayList<VisitAttributeDTO> visitAttributesList = new ArrayList<VisitAttributeDTO>();//try {
+			int offset = 0 ;
+			if (pageno == 0 )
+			{
+				offset = 0 ;
+			}
+			else {
+				offset = pageno * limit + 1;
+			}
+
+
+			try {
 			pulldata.setPullexecutedtime(visitdao.getDBCurrentTime());//Used by device for syncing purpose
-			patientlist = patientdao.getPatients(lastpulldatatime, locationuuid);
+			patientlist = patientdao.getPatients(lastpulldatatime, locationuuid, offset, limit); // Adding offset and limit);
 			patientAttributeTypeList = patientdao.getPatientAttributeType(lastpulldatatime, locationuuid);
 			patientAttributesList = patientdao.getPatientAttributes(lastpulldatatime, locationuuid);
-			visitlist = visitdao.getVisits(lastpulldatatime, locationuuid);
+			visitlist = visitdao.getVisits(lastpulldatatime, locationuuid, offset, limit); // Adding offset and limit);
 			visitAttributeTypeList = visitdao.getVisitAttributeTypeMaster(lastpulldatatime);
 			visitAttributesList = visitdao.getVisitAttributes(lastpulldatatime, locationuuid);
 			encounterlist = encounterdao.getEncounters(lastpulldatatime, locationuuid);
@@ -76,7 +86,19 @@ public class PullDataAction {
 			pulldata.setVisitAttributeList(visitAttributesList);
 			pulldata.setEncounterlist(encounterlist);
 			pulldata.setObslist(obslist);
-			
+
+				int patientCount = patientdao.getPatientsCount(lastpulldatatime, locationuuid);
+				int visitCount = visitdao.getVisitCount(lastpulldatatime, locationuuid);
+				pulldata.setTotalCount(Math.max(patientCount, visitCount));
+
+				if(offset <= pulldata.getTotalCount()  ) {
+					//if (pulldata.getTotalCount() - offset >= limit)
+					pulldata.setPageNo(pageno + 1);
+
+				}
+				else{
+					pulldata.setPageNo(-1);
+				}
 			
 		} catch (DAOException e) {
 			throw new DAOException(e.getMessage(), e);

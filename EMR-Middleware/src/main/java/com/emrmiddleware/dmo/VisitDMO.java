@@ -11,9 +11,12 @@ import com.emrmiddleware.dto.VisitAttributeTypeDTO;
 
 public interface VisitDMO {
 
-	@Select("select distinct person.uuid as patientuuid,visit.uuid as uuid,visit_type.uuid as visit_type_uuid,visit.date_started as startdate,visit.date_stopped as enddate,location.uuid as locationuuid,users.uuid as creator_uuid,visit.voided from patient, person,visit_type, visit,encounter,obs,location,users where person.person_id=patient.patient_id and visit.creator=users.user_id and visit.patient_id=patient.patient_id and visit.location_id=location.location_id and encounter.visit_id=visit.visit_id and obs.encounter_id=encounter.encounter_id AND visit.visit_type_id=visit_type.visit_type_id and ((coalesce(obs.date_voided,obs.date_created)>=#{lastchangedtime}) or (encounter.date_changed>=#{lastchangedtime}) or (COALESCE(visit.date_changed,visit.date_created)>=#{lastchangedtime})) and location.uuid=#{locationuuid} and visit.voided=0")
+	@Select("select distinct person.uuid as patientuuid,visit.uuid as uuid,visit_type.uuid as visit_type_uuid,visit.date_started as startdate,visit.date_stopped as enddate,location.uuid as locationuuid,users.uuid as creator_uuid,visit.voided from patient, person,visit_type, visit,encounter,obs,location,users where person.person_id=patient.patient_id and visit.creator=users.user_id and visit.patient_id=patient.patient_id and visit.location_id=location.location_id and encounter.visit_id=visit.visit_id and obs.encounter_id=encounter.encounter_id AND visit.visit_type_id=visit_type.visit_type_id and ((coalesce(obs.date_voided,obs.date_created)>=#{lastchangedtime}) or (encounter.date_changed>=#{lastchangedtime}) or (COALESCE(visit.date_changed,visit.date_created)>=#{lastchangedtime})) and location.uuid=#{locationuuid} and visit.voided=0  LIMIT #{limit} OFFSET  #{offset} ")
 	public ArrayList<VisitDTO> getVisits(@Param("lastchangedtime") String lastpulldatatime,
-			@Param("locationuuid") String locationuuid);
+			@Param("locationuuid") String locationuuid,
+										 @Param("offset") int offset, @Param("limit") int limit
+
+	);
 
 	@Select("select uuid from visit where uuid=#{uuid}")
 	public VisitDTO getVisit(@Param("uuid") String uuid);
@@ -27,4 +30,37 @@ public interface VisitDMO {
 	
 	@Select("select now() as currenttime")
 	public String getDBCurrentTime();
+
+
+	// Adding new method visitCount to return total number of records after the lastpulldatatime on that locationuuid
+	@Select("select count(1) FROM (" +
+			" SELECT distinct person.uuid as patientuuid," +
+			"visit.uuid as uuid," +
+			"visit_type.uuid as visit_type_uuid," +
+			"visit.date_started as startdate," +
+			"visit.date_stopped as enddate," +
+			"location.uuid as locationuuid," +
+			"users.uuid as creator_uuid," +
+			"visit.voided from " +
+			"patient, person,visit_type, visit,encounter,obs,location,users " +
+			"where person.person_id=patient.patient_id " +
+			"and visit.creator=users.user_id " +
+			"and visit.patient_id=patient.patient_id" +
+			" and visit.location_id=location.location_id" +
+			" and encounter.visit_id=visit.visit_id " +
+			" and obs.encounter_id=encounter.encounter_id" +
+			" AND visit.visit_type_id=visit_type.visit_type_id " +
+			"and (" +
+			"(" +
+			"coalesce(obs.date_voided,obs.date_created)>=#{lastchangedtime}" +
+			") " +
+			"or (encounter.date_changed>=#{lastchangedtime}) " +
+			"or (" +
+			"COALESCE(visit.date_changed,visit.date_created)>=#{lastchangedtime}" +
+			")" +
+			") " +
+			"and location.uuid=#{locationuuid} " +
+			"and visit.voided=0) t ")
+	public int getVisitCount(@Param("lastchangedtime") String lastpulldatatime,
+							 @Param("locationuuid") String locationuuid);
 }

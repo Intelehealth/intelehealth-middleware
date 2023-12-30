@@ -32,12 +32,15 @@ public class PullController {
 	@Context
 	ServletContext context;
 
-	@Path("pulldata/{locationuuid}/{lastpulldate}")
+	@Path("pulldata/{locationuuid}/{lastpulldate}/{pageno}/{limit}")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	public Response getData(@PathParam("locationuuid") String locationuuid,
-			@PathParam("lastpulldate") String lastpulldatatime, @Context HttpHeaders httpHeaders) {
+			@PathParam("lastpulldate") String lastpulldatatime,
+							@PathParam("pageno") int pageno,
+							@PathParam("limit") int limit,
+							@Context HttpHeaders httpHeaders) {
 
 		ResponseDTO responsedto = new ResponseDTO();
 		PullDataDTO pulldatadto = new PullDataDTO();
@@ -55,7 +58,7 @@ public class PullController {
 			}
 			PullDataAction pulldataaction = new PullDataAction();
 			//Timestamp lastdatapulltime = EmrUtils.getFormatDate(lastpulldatatime);
-			pulldatadto = pulldataaction.getPullData(lastpulldatatime, locationuuid);
+			pulldatadto = pulldataaction.getPullData(lastpulldatatime, locationuuid, pageno, limit);
 			responsedto.setStatus(Resources.OK);
 			responsedto.setData(pulldatadto);
 		} catch (DAOException e) {

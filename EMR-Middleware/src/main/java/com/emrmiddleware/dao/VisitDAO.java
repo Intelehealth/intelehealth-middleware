@@ -19,7 +19,7 @@ import com.emrmiddleware.exception.DAOException;
 public class VisitDAO {
 
 	private final Logger logger = LoggerFactory.getLogger(VisitDAO.class);
-	public ArrayList<VisitDTO> getVisits(String lastpulldatatime, String locationuuid) throws DAOException {
+	public ArrayList<VisitDTO> getVisits(String lastpulldatatime, String locationuuid, int offset, int limit) throws DAOException {
 
 		SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
 		SqlSession session = sessionfactory.openSession();
@@ -27,7 +27,7 @@ public class VisitDAO {
 		try {
 
 			VisitDMO patientdmo = session.getMapper(VisitDMO.class);
-			visitlist = patientdmo.getVisits(lastpulldatatime, locationuuid);
+			visitlist = patientdmo.getVisits(lastpulldatatime, locationuuid, offset, limit ); // Adding offset and limit);
 			return visitlist;
 		} catch (PersistenceException e) {
 			logger.error(e.getMessage(),e);
@@ -108,7 +108,27 @@ public class VisitDAO {
 			session.close();
 		}
 	}
-	
+
+	// new method to return total number of records after the lastpulldatatime on that location  MHM-259
+
+	public int getVisitCount(String lastpulldatatime, String locationuuid) throws DAOException {
+
+		SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
+		SqlSession session = sessionfactory.openSession();
+		int totalCount = 0;
+		try {
+
+			VisitDMO visitdmo = session.getMapper(VisitDMO.class);
+
+			totalCount = visitdmo.getVisitCount(lastpulldatatime, locationuuid);
+			return totalCount;
+		} catch (PersistenceException e) {
+			logger.error(e.getMessage(),e);
+			throw new DAOException(e.getMessage(), e);
+		} finally {
+			session.close();
+		}
+	}
 	
 
 }

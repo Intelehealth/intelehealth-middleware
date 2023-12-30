@@ -13,7 +13,7 @@ import javax.ws.rs.core.Response;
 import com.emrmiddleware.api.dto.*;
 import com.emrmiddleware.dto.*;
 import com.google.gson.JsonObject;
-import com.treblle.spring.annotation.EnableTreblle;
+//import com.treblle.spring.annotation.EnableTreblle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.emrmiddleware.action.PushDataAction;
@@ -35,7 +35,7 @@ import java.util.ArrayList;
 
 @Api("PUSH DATA")
 @Path("push")
-@EnableTreblle
+//@EnableTreblle
 
 
 public class PushController {

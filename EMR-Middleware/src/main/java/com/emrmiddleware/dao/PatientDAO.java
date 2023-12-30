@@ -18,7 +18,7 @@ import com.emrmiddleware.exception.DAOException;
 public class PatientDAO {
 
 	private final Logger logger = LoggerFactory.getLogger(PatientDAO.class);
-	public ArrayList<PatientDTO> getPatients(String lastpulldatatime, String locationuuid) throws DAOException {
+	public ArrayList<PatientDTO> getPatients(String lastpulldatatime, String locationuuid, int offset, int limit) throws DAOException {
 
 		SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
 		SqlSession session = sessionfactory.openSession();
@@ -26,7 +26,7 @@ public class PatientDAO {
 		try {
 
 			PatientDMO patientdmo = session.getMapper(PatientDMO.class);
-			patientlist = patientdmo.getPatients(lastpulldatatime, locationuuid);
+			patientlist = patientdmo.getPatients(lastpulldatatime, locationuuid, offset, limit); // Adding offset and limit);
 			return patientlist;
 		} catch (PersistenceException e) {
 			logger.error(e.getMessage(),e);
@@ -83,6 +83,27 @@ public class PatientDAO {
 			PatientDMO patientdmo = session.getMapper(PatientDMO.class);
 			patientdto = patientdmo.getPatient(personuuid);
 			return patientdto;
+		} catch (PersistenceException e) {
+			logger.error(e.getMessage(),e);
+			throw new DAOException(e.getMessage(), e);
+		} finally {
+			session.close();
+		}
+	}
+
+	// new method to return total number of records after the lastpulldatatime on that location  MHM-259
+
+	public int getPatientsCount(String lastpulldatatime, String locationuuid) throws DAOException {
+
+		SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
+		SqlSession session = sessionfactory.openSession();
+		int totalCount = 0;
+		try {
+
+			PatientDMO patientdmo = session.getMapper(PatientDMO.class);
+
+			totalCount = patientdmo.getPatientsCount(lastpulldatatime, locationuuid);
+			return totalCount;
 		} catch (PersistenceException e) {
 			logger.error(e.getMessage(),e);
 			throw new DAOException(e.getMessage(), e);
