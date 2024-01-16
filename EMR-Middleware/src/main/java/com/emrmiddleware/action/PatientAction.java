@@ -2,7 +2,9 @@ package com.emrmiddleware.action;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
+import com.emrmiddleware.api.dto.IdentifierAPIDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,6 +32,8 @@ public class PatientAction {
 	RestAPI restapiintf;
 	String authString;
 
+	public final static String OPENMRS_ID = "05a29f94-c0ed-11e2-94be-8c13b969e334";
+
 	public PatientAction(String auth) {
 		authString = auth;
 		apiclient = new APIClient(authString);
@@ -52,7 +56,15 @@ public class PatientAction {
 				PatientDTO patientDTO = patientdao.getPatient(patient.getPerson());
 				if (patientDTO == null) {
 					openMrsId = getOpenMrsId();
-					patient.getIdentifiers().get(0).setIdentifier(openMrsId);
+
+					//patient.getIdentifiers().get(0).setIdentifier(openMrsId); Making the code more generic
+					for(IdentifierAPIDTO identifier: patient.getIdentifiers()) {
+						if(Objects.equals(identifier.getIdentifierType(), OPENMRS_ID)) { // Set identifier only for OpenMRS ID
+
+							identifier.setIdentifier(openMrsId);
+						}
+
+					}
 					isPatientSet = addPatientOpenMRS(patient);
 				} else {
 					openMrsId = patientDTO.getOpenmrs_id();

@@ -18,43 +18,56 @@ public interface PatientDMO {
      * or a patient has been voided
      *  26-11-2021 satyadeep-ih
      */
-        @Select("SELECT distinct person.uuid as uuid,\n" +
-                " pa.person_id,\n" +
-                " patient_identifier.identifier as openmrs_id,\n" +
-                "                person_name.given_name as firstname,\n" +
-                "                person_name.middle_name as middlename,\n" +
-                "                ifnull(person_name.family_name, ' ') as lastname,\n" +
-                "                person.birthdate as dateofbirth,\n" +
-                "                person_address.address1 as address1 ,\n" +
-                "                person_address.address2 as address2,\n" +
-                "                person_address.city_village as cityvillage,\n" +
-                "                person_address.state_province as stateprovince,\n" +
-                "                person_address.postal_code as postalcode,\n" +
-                "                person_address.country,\n" +
-                "                person.gender,\n" +
-                "                person.dead,\n" +
-                "                person.voided\n" +
-                "FROM person,\n" +
-                " patient_identifier,\n" +
-                "                person_name,\n" +
-                "                person_address ,\n" +
-                "                location ,\n" +
-                "                person_attribute as pa\n" +
-                "where person.person_id = patient_identifier.patient_id\n" +
-                "AND person.person_id = person_name.person_id\n" +
-                "and person.person_id = person_address.person_id\n" +
-                "and person.voided=0\n" +
-                "and patient_identifier.location_id=location.location_id\n" +
-                "and person.person_id = pa.person_id\n" +
-                "and person_name.preferred = 1\n" +
-                "and person_address.preferred = 1\n" +
-                "and (COALESCE(person.date_changed,person.date_created) >= #{lastchangedtime}\n" +
-                "or COALESCE(patient_identifier.date_changed,patient_identifier.date_created)>= #{lastchangedtime}\n" +
-                "or COALESCE(person_name.date_changed,person_name.date_created)>= #{lastchangedtime}\n" +
-                "or COALESCE(person_address.date_changed,person_address.date_created)>= #{lastchangedtime}\n" +
-                "or COALESCE(pa.date_changed,pa.date_created)>= #{lastchangedtime} )\n" +
-                "and location.uuid=#{locationuuid} " +
-                " LIMIT #{limit}  OFFSET  #{offset} ")
+    /* Modified code to return Abha Number and Abha Address */
+
+        @Select("SELECT 	person.uuid as uuid, "+
+                " pa.person_id, "+
+                " max(case when patient_identifier.identifier_type = 3 then identifier else null end) as openmrs_id, "+
+    " max(case when patient_identifier.identifier_type = 6 then identifier else null end) as abha_number, "+
+    " max(case when patient_identifier.identifier_type = 7 then identifier else null end) as abha_address, "+
+    " person_name.given_name as firstname, " +
+    " person_name.middle_name as middlename, " +
+    " ifnull(person_name.family_name, ' ') as lastname, "+
+    " person.birthdate as dateofbirth, "+
+    " person_address.address1 as address1 , "+
+    " person_address.address2 as address2, "+
+    " person_address.city_village as cityvillage, "+
+    "person_address.state_province as stateprovince, "+
+    " person_address.postal_code as postalcode, "+
+    " person_address.country, "+
+    " person.gender, "+
+    " person.dead, "+
+    " person.voided "+
+    " FROM 	person," +
+            " patient_identifier, "+
+            " person_name, "+
+            " person_address , "+
+            "location , "+
+   " person_attribute as pa "+
+   " where 	person.person_id = patient_identifier.patient_id " +
+   " AND 	person.person_id = person_name.person_id "+
+    " and 	person.person_id = person_address.person_id "+
+    " and 	person.voided=0 "+
+    " and 	patient_identifier.location_id=location.location_id "+
+    " and 	person.person_id = pa.person_id "+
+    " and 	person_name.preferred = 1 "+
+    " and 	person_address.preferred = 1 "+
+    " and 	(COALESCE(person.date_changed,person.date_created) >= #{lastchangedtime}"+
+    " or 		COALESCE(patient_identifier.date_changed,patient_identifier.date_created)>= #{lastchangedtime}"+
+    " or 		COALESCE(person_name.date_changed,person_name.date_created)>= #{lastchangedtime}"+
+    " or 		COALESCE(person_address.date_changed,person_address.date_created)>= #{lastchangedtime}"+
+    " or 		COALESCE(pa.date_changed,pa.date_created)>= #{lastchangedtime} ) "+
+    " and 	location.uuid=#{locationuuid}"+
+    " group by person.uuid, "+
+    " pa.person_id, "+
+    " person_name.given_name , "+
+    " person_name.middle_name, "+
+    " ifnull(person_name.family_name, ' ') , "+
+    " person.birthdate ,     person_address.address1,     person_address.address2 , "+
+    " person_address.city_village ,     person_address.state_province,"+
+    " person_address.postal_code,     person_address.country, "+
+    " person.gender,     person.dead,    person.voided "+
+    " LIMIT #{limit}  OFFSET  #{offset}")
 	public ArrayList<PatientDTO> getPatients(@Param("lastchangedtime") String lastpulldatatime,@Param("locationuuid") String locationuuid, @Param("offset") int offset, @Param("limit") int limit);
 
     @Select("select uuid as uuid ,name from person_attribute_type where COALESCE(date_changed,date_created) >= #{lastchangedtime}")
@@ -65,47 +78,66 @@ public interface PatientDMO {
 
     public ArrayList<PatientAttributeDTO> getPatientAttributes(@Param("lastchangedtime") String lastpulldatatime,@Param("locationuuid") String locationuuid);
     
-    @Select("select person.uuid,patient_identifier.identifier as openmrs_id from patient_identifier,person where person.person_id=patient_identifier.patient_id and person.uuid=#{uuid}")
+    @Select("SELECT A.uuid, " +
+            " max(case when B.identifier_type = 3 then identifier else null end) as openmrs_id, " +
+            " max(case when B.identifier_type = 6 then identifier else null end) as abha_number, " +
+            " max(case when B.identifier_type = 7 then identifier else null end) as abha_address" +
+            "FROM person A " +
+            " JOIN patient_identifier B ON A.person_id = B.patient_id WHERE A.voided = 0" +
+            " AND A.uuid=#{uuid}" +
+            " GROUP BY A.person_id")
     public PatientDTO getPatient(@Param("uuid") String uuid);
 
     // Adding new method patientCount to return total number of records after the lastpulldatatime on that locationuuid
 
-    @Select("SELECT COUNT(1) FROM ( SELECT distinct person.uuid as uuid,\n" +
-            " pa.person_id,\n" +
-            " patient_identifier.identifier as openmrs_id,\n" +
-            "                person_name.given_name as firstname,\n" +
-            "                person_name.middle_name as middlename,\n" +
-            "                ifnull(person_name.family_name, ' ') as lastname,\n" +
-            "                person.birthdate as dateofbirth,\n" +
-            "                person_address.address1 as address1 ,\n" +
-            "                person_address.address2 as address2,\n" +
-            "                person_address.city_village as cityvillage,\n" +
-            "                person_address.state_province as stateprovince,\n" +
-            "                person_address.postal_code as postalcode,\n" +
-            "                person_address.country,\n" +
-            "                person.gender,\n" +
-            "                person.dead,\n" +
-            "                person.voided\n" +
-            "FROM person,\n" +
-            " patient_identifier,\n" +
-            "                person_name,\n" +
-            "                person_address ,\n" +
-            "                location ,\n" +
-            "                person_attribute as pa\n" +
-            "where person.person_id = patient_identifier.patient_id\n" +
-            "AND person.person_id = person_name.person_id\n" +
-            "and person.person_id = person_address.person_id\n" +
-            "and person.voided=0\n" +
-            "and patient_identifier.location_id=location.location_id\n" +
-            "and person.person_id = pa.person_id\n" +
-            "and person_name.preferred = 1\n" +
-            "and person_address.preferred = 1\n" +
-            "and (COALESCE(person.date_changed,person.date_created) >= #{lastchangedtime}\n" +
-            "or COALESCE(patient_identifier.date_changed,patient_identifier.date_created)>= #{lastchangedtime}\n" +
-            "or COALESCE(person_name.date_changed,person_name.date_created)>= #{lastchangedtime}\n" +
-            "or COALESCE(person_address.date_changed,person_address.date_created)>= #{lastchangedtime}\n" +
-            "or COALESCE(pa.date_changed,pa.date_created)>= #{lastchangedtime} )\n" +
-            "and location.uuid=#{locationuuid}) t "
+    @Select("SELECT COUNT(1) FROM ( SELECT 	person.uuid as uuid, "+
+            " pa.person_id, "+
+            " max(case when patient_identifier.identifier_type = 3 then identifier else null end) as openmrs_id, "+
+            " max(case when patient_identifier.identifier_type = 6 then identifier else null end) as abha_number, "+
+            " max(case when patient_identifier.identifier_type = 7 then identifier else null end) as abha_address, "+
+            " person_name.given_name as firstname, " +
+            " person_name.middle_name as middlename, " +
+            " ifnull(person_name.family_name, ' ') as lastname, "+
+            " person.birthdate as dateofbirth, "+
+            " person_address.address1 as address1 , "+
+            " person_address.address2 as address2, "+
+            " person_address.city_village as cityvillage, "+
+            "person_address.state_province as stateprovince, "+
+            " person_address.postal_code as postalcode, "+
+            " person_address.country, "+
+            " person.gender, "+
+            " person.dead, "+
+            " person.voided "+
+            " FROM 	person," +
+            " patient_identifier, "+
+            " person_name, "+
+            " person_address , "+
+            "location , "+
+            " person_attribute as pa "+
+            " where 	person.person_id = patient_identifier.patient_id " +
+            " AND 	person.person_id = person_name.person_id "+
+            " and 	person.person_id = person_address.person_id "+
+            " and 	person.voided=0 "+
+            " and 	patient_identifier.location_id=location.location_id "+
+            " and 	person.person_id = pa.person_id "+
+            " and 	person_name.preferred = 1 "+
+            " and 	person_address.preferred = 1 "+
+            " and 	(COALESCE(person.date_changed,person.date_created) >= #{lastchangedtime}"+
+            " or 		COALESCE(patient_identifier.date_changed,patient_identifier.date_created)>= #{lastchangedtime}"+
+            " or 		COALESCE(person_name.date_changed,person_name.date_created)>= #{lastchangedtime}"+
+            " or 		COALESCE(person_address.date_changed,person_address.date_created)>= #{lastchangedtime}"+
+            " or 		COALESCE(pa.date_changed,pa.date_created)>= #{lastchangedtime} ) "+
+            " and 	location.uuid=#{locationuuid}"+
+            " group by person.uuid, "+
+            " pa.person_id, "+
+            " person_name.given_name , "+
+            " person_name.middle_name, "+
+            " ifnull(person_name.family_name, ' ') , "+
+            " person.birthdate ,     person_address.address1,     person_address.address2 , "+
+            " person_address.city_village ,     person_address.state_province,"+
+            " person_address.postal_code,     person_address.country, "+
+            " person.gender,     person.dead,    person.voided " +
+            " ) t"
     )
     public int getPatientsCount(@Param("lastchangedtime") String lastpulldatatime,@Param("locationuuid") String locationuuid );
 

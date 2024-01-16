@@ -1,5 +1,6 @@
 package com.emrmiddleware.dto;
 
+import javax.annotation.Nullable;
 import java.util.Date;
 
 public class PatientDTO {
@@ -27,7 +28,30 @@ public class PatientDTO {
 	private boolean syncd=true;
 	private int voided;
 
-	
+	@Nullable
+	public String getAbha_number() {
+		return abha_number;
+	}
+
+	public void setAbha_number(@Nullable String abha_number) {
+		this.abha_number = abha_number;
+	}
+
+	@Nullable
+	private String abha_number;
+
+	@Nullable
+	public String getAbha_address() {
+		return abha_address;
+	}
+
+	public void setAbha_address(@Nullable String abha_address) {
+		this.abha_address = abha_address;
+	}
+
+	@Nullable
+	private String abha_address;
+
 	
 	
 	public int getVoided() {
