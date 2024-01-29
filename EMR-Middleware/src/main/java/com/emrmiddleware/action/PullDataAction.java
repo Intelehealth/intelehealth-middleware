@@ -23,6 +23,7 @@ import com.emrmiddleware.dto.VisitAttributeTypeDTO;
 import com.emrmiddleware.dto.VisitDTO;
 import com.emrmiddleware.exception.ActionException;
 import com.emrmiddleware.exception.DAOException;
+import org.slf4j.ILoggerFactory;
 
 public class PullDataAction {
 
@@ -53,9 +54,10 @@ public class PullDataAction {
 				offset = 0 ;
 			}
 			else {
-				offset = pageno * limit + 1;
+				offset = pageno * limit ;
+				//+ 1;
 			}
-
+			System.out.println("Offset = "+ offset + " Limit = "+ limit);
 
 			try {
 			pulldata.setPullexecutedtime(visitdao.getDBCurrentTime());//Used by device for syncing purpose

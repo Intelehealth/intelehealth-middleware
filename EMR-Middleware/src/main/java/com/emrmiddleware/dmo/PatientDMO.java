@@ -54,7 +54,7 @@ public interface PatientDMO {
                 "or COALESCE(person_address.date_changed,person_address.date_created)>= #{lastchangedtime}\n" +
                 "or COALESCE(pa.date_changed,pa.date_created)>= #{lastchangedtime} )\n" +
                 "and location.uuid=#{locationuuid} " +
-                " LIMIT #{limit}  OFFSET  #{offset} ")
+                " LIMIT #{offset}, #{limit} ")
 	public ArrayList<PatientDTO> getPatients(@Param("lastchangedtime") String lastpulldatatime,@Param("locationuuid") String locationuuid, @Param("offset") int offset, @Param("limit") int limit);
 
     @Select("select uuid as uuid ,name from person_attribute_type where COALESCE(date_changed,date_created) >= #{lastchangedtime}")
