@@ -67,7 +67,7 @@ public interface PatientDMO {
     " person_address.city_village ,     person_address.state_province,"+
     " person_address.postal_code,     person_address.country, "+
     " person.gender,     person.dead,    person.voided "+
-    " LIMIT #{limit}  OFFSET  #{offset}")
+    " LIMIT #{offset} , #{limit}")
 	public ArrayList<PatientDTO> getPatients(@Param("lastchangedtime") String lastpulldatatime,@Param("locationuuid") String locationuuid, @Param("offset") int offset, @Param("limit") int limit);
 
     @Select("select uuid as uuid ,name from person_attribute_type where COALESCE(date_changed,date_created) >= #{lastchangedtime}")
@@ -79,10 +79,10 @@ public interface PatientDMO {
     public ArrayList<PatientAttributeDTO> getPatientAttributes(@Param("lastchangedtime") String lastpulldatatime,@Param("locationuuid") String locationuuid);
     
     @Select("SELECT A.uuid, " +
-            " max(case when B.identifier_type = 3 then identifier else null end) as openmrs_id, " +
-            " max(case when B.identifier_type = 6 then identifier else null end) as abha_number, " +
-            " max(case when B.identifier_type = 7 then identifier else null end) as abha_address" +
-            "FROM person A " +
+            " max(case when B.identifier_type = 3 then identifier else 'NA' end) as openmrs_id, " +
+            " max(case when B.identifier_type = 6 then identifier else 'NA' end) as abha_number, " +
+            " max(case when B.identifier_type = 7 then identifier else 'NA' end) as abha_address" +
+            " FROM person A " +
             " JOIN patient_identifier B ON A.person_id = B.patient_id WHERE A.voided = 0" +
             " AND A.uuid=#{uuid}" +
             " GROUP BY A.person_id")

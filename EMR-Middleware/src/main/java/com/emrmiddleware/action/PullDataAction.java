@@ -53,7 +53,8 @@ public class PullDataAction {
 				offset = 0 ;
 			}
 			else {
-				offset = pageno * limit + 1;
+				offset = pageno * limit ;
+				//+ 1;
 			}
 
 
