@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7156ebf3-c797-4e48-b5c3-aed0f2ca27c1" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1jjTfMtqDEx9cou5sGilEj3NyDQ" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7156ebf3-c797-4e48-b5c3-aed0f2ca27c1" name="Default Changelist" comment="" />
+      <created>1604316612759</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1604316612759</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="527" y="84" width="374" height="633" key="#com.intellij.ide.util.MemberChooser" timestamp="1604326164870">
+      <screen x="72" y="27" width="1294" height="741" />
+    </state>
+    <state x="527" y="84" width="374" height="633" key="#com.intellij.ide.util.MemberChooser/72.27.1294.741@72.27.1294.741" timestamp="1604326164870" />
+    <state width="1228" height="159" key="GridCell.Tab.0.bottom" timestamp="1604415339436">
+      <screen x="72" y="27" width="1294" height="741" />
+    </state>
+    <state width="1228" height="159" key="GridCell.Tab.0.bottom/72.27.1294.741@72.27.1294.741" timestamp="1604415339436" />
+    <state width="1228" height="159" key="GridCell.Tab.0.center" timestamp="1604415339435">
+      <screen x="72" y="27" width="1294" height="741" />
+    </state>
+    <state width="1228" height="159" key="GridCell.Tab.0.center/72.27.1294.741@72.27.1294.741" timestamp="1604415339435" />
+    <state width="1228" height="159" key="GridCell.Tab.0.left" timestamp="1604415339435">
+      <screen x="72" y="27" width="1294" height="741" />
+    </state>
+    <state width="1228" height="159" key="GridCell.Tab.0.left/72.27.1294.741@72.27.1294.741" timestamp="1604415339435" />
+    <state width="1228" height="159" key="GridCell.Tab.0.right" timestamp="1604415339436">
+      <screen x="72" y="27" width="1294" height="741" />
+    </state>
+    <state width="1228" height="159" key="GridCell.Tab.0.right/72.27.1294.741@72.27.1294.741" timestamp="1604415339436" />
+  </component>
+</project>
