@@ -10,8 +10,7 @@ import java.util.ArrayList;
 
 import com.mysql.cj.exceptions.CJConnectionFeatureNotAvailableException;
 import com.mysql.cj.jdbc.ConnectionGroupManager;
-import com.sun.tools.sjavac.server.Sjavac;
-import com.sun.tools.sjavac.server.SjavacServer;
+
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;

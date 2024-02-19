@@ -17,7 +17,7 @@ import com.emrmiddleware.api.dto.EncounterProvidersAPIDTO;
 import com.emrmiddleware.api.dto.VisitAPIDTO;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.treblle.spring.annotation.EnableTreblle;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.emrmiddleware.action.PushDataAction;
@@ -40,7 +40,7 @@ import java.util.ArrayList;
 
 @Api("PUSH DATA")
 @Path("push")
-@EnableTreblle
+
 
 
 public class PushController {
