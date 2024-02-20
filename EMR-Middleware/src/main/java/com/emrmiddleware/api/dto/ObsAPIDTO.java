@@ -8,7 +8,16 @@ public class ObsAPIDTO {
     private String uuid;
     private String concept;
     private String value;
-    private String obsDateTime;
+
+    public String getObsDatetime() {
+        return obsDatetime;
+    }
+
+    public void setObsDatetime(String obsDatetime) {
+        this.obsDatetime = obsDatetime;
+    }
+
+    private String obsDatetime;
 
     // Adding comment field for Ezazi obs.comment
     public String getComment() {
@@ -17,14 +26,6 @@ public class ObsAPIDTO {
 
     public void setComment(String comment) {
         this.comment = comment;
-    }
-
-    public String getObsDateTime() {
-        return obsDateTime;
-    }
-
-    public void setObsDateTime(String obsDateTime) {
-        this.obsDateTime = obsDateTime;
     }
 
     public String getUuid() {
