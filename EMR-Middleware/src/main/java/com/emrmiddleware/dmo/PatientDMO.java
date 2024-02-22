@@ -32,6 +32,7 @@ public interface PatientDMO {
             "                person_address.state_province as stateprovince,\n" +
             "                person_address.postal_code as postalcode,\n" +
             "                person_address.country,\n" +
+            "                person.date_created as dateCreated,\n" +
             "                person.gender,\n" +
             "                person.dead,\n" +
             "                person.voided\n" +

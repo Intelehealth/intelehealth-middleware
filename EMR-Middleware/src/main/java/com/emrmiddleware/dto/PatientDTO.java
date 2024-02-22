@@ -27,6 +27,9 @@ public class PatientDTO {
 	private boolean syncd=true;
 	private int voided;
 
+	private String dateCreated;
+
+
 	public String getCreatoruuid() {
 		return creatoruuid;
 	}
