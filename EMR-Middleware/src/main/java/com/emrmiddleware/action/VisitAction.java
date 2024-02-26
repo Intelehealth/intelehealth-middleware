@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import com.emrmiddleware.api.dto.AttributeAPIDTO;
+import com.emrmiddleware.api.dto.ObsAPIDTO;
+import com.emrmiddleware.api.dto.VisitAttributeAPIDTO;
 import com.emrmiddleware.dto.VisitAttributeDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,6 +35,7 @@ public class VisitAction {
 	final String VISIT_SPECIALITY_ATTRIBUTE_ID = "3f296939-c6d3-4d2e-b8ca-d7f4bfd42c2d";
 
 	final String VISIT_READ_ATTRIBUTE_ID = "2e4b62a5-aa71-43e2-abc9-f4a777697b19";
+	final String VISIT_DECISION_PENDING_ID = "2bfbfd6c-7714-4432-a7e8-b0130889c2ff";
 
 	public VisitAction(String auth) {
 		authString = auth;
@@ -116,24 +119,30 @@ public class VisitAction {
 											// visit in openmrs
 			logger.info("edit visit value : " + gson.toJson(visitapidto));
 
+			ArrayList<AttributeAPIDTO> vAttributeAPIDTOArrayList = new ArrayList<AttributeAPIDTO>();
+
 			for(AttributeAPIDTO visitAttributeDTO: visitapidto.getAttributes()) {
-				logger.info("VA ::: "+ visitAttributeDTO.getAttributeType());
-				String tmpAttributeType = "";
-				tmpAttributeType = visitAttributeDTO.getAttributeType();
-				switch(tmpAttributeType) {
-					case VISIT_HOLDER_ATTRIBUTE_ID: //7
-						voidVisitAttribute(visitapidto.getUuid(),  7, "Nurse Change");
-						break;
-					case VISIT_SPECIALITY_ATTRIBUTE_ID: // 5
-						voidVisitAttribute(visitapidto.getUuid(),  5, "Speciality Change");
-						break;
-					case VISIT_READ_ATTRIBUTE_ID: // 8
-						voidVisitAttribute(visitapidto.getUuid(),  8, "Visit Read");
-						break;
-					default:
-						break;
+				//Putting the logic of updating visit attributes EZ-569
+
+				vAttributeAPIDTOArrayList.add(visitAttributeDTO);
+				VisitAttributeAPIDTO vaDTO = new VisitAttributeAPIDTO();
+				vaDTO.setValue(visitAttributeDTO.getValue());
+				Call<ResponseBody> updateVisitAttribute = restapiintf.editVA(visitapidto.getUuid(),
+						visitAttributeDTO.getUuid(),
+						vaDTO );
+				Response<ResponseBody> response = updateVisitAttribute.execute();
+				if (response.isSuccessful()) {
+					val = response.body().string();
+				} else {
+					val = response.errorBody().string();
+					logger.error("REST failed : " + val);
+					return false;
 				}
+				logger.info("Response for edit is : " + val);
 			}
+
+
+			visitapidto.getAttributes().removeAll(vAttributeAPIDTOArrayList);
 			Call<ResponseBody> callvisit = restapiintf.editVisit(visitapidto.getUuid(), visitapidto);
 			Response<ResponseBody> response = callvisit.execute();
 			if (response.isSuccessful()) {
@@ -155,10 +164,5 @@ public class VisitAction {
 		return true;
 	}
 
-	private void voidVisitAttribute(String uuid, int attribute_id, String voidReason) throws DAOException{
-		VisitDAO visitdao = new VisitDAO();
-		visitdao.voidVisitAttribute(uuid, attribute_id, voidReason);
-
-	}
 
 }

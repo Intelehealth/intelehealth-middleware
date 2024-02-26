@@ -37,7 +37,8 @@ public interface RestAPI {
    
    @POST("visit/{uuid}")
    Call<ResponseBody> editVisit(@Path("uuid") String uuid,@Body VisitAPIDTO visitapidto);
-   
+
+
    @POST("encounter")
    Call<ResponseBody> addEncounter(@Body EncounterAPIDTO encounterapidto);
    
@@ -56,5 +57,8 @@ Call<ResponseBody> deleteObs(@Path("uuid") String uuid);
 @POST("obs/{uuid}")
 Call <ResponseBody> editObs(@Path("uuid") String uuid, @Body ObsAPIDTO obsapidto);
    
+
+@POST("visit/{visituuid}/attribute/{attributetypeuuid}")
+Call <ResponseBody> editVA(@Path("visituuid") String visituuid, @Path("attributetypeuuid") String attributetypeuuid, @Body VisitAttributeAPIDTO vaDTO);
 
 }

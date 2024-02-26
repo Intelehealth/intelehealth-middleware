@@ -11,7 +11,17 @@ public class PersonAPIDTO {
 	private ArrayList<AddressAPIDTO> addresses = new ArrayList<AddressAPIDTO>();
 
 	private String gender;
-	
+
+	public String getDateCreated() {
+		return dateCreated;
+	}
+
+	public void setDateCreated(String dateCreated) {
+		this.dateCreated = dateCreated;
+	}
+
+	private String dateCreated;
+
 	
 	public String getGender() {
 		return gender;
