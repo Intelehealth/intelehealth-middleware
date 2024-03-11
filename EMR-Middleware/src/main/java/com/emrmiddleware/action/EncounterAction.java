@@ -3,7 +3,9 @@ package com.emrmiddleware.action;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import com.emrmiddleware.api.dto.VoidAPIDTO;
 import com.emrmiddleware.dto.ObsDTO;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,6 +25,7 @@ import retrofit2.Response;
 
 
 public class EncounterAction {
+	public final String MEDICINE_CONCEPT_UUID = "c38c0c50-2fd2-4ae3-b7ba-7dd25adca4ca";
 	private final Logger logger = LoggerFactory.getLogger(EncounterAction.class);
 	APIClient apiclient;
 	RestAPI restapiintf;
@@ -128,20 +131,19 @@ public class EncounterAction {
 			encounterapidto.setVoided(null);// Setting voided to null as OpenMrs
 											// does not accept voided in the
 											// json structure
-			logger.info("encounter value : " + gson.toJson(encounterapidto));
+			logger.info(String.format("encounter value : %s", gson.toJson(encounterapidto)));
 			Call<ResponseBody> callencounter = restapiintf.addEncounter(encounterapidto);
 			Response<ResponseBody> response = callencounter.execute();
 			if (response.isSuccessful()) {
 				val = response.body().string();
 			} else {
 				val = response.errorBody().string();
-				logger.error("REST failed : " + val);
+				logger.error(String.format("REST failed : %s", val));
 				return false;
 			}
-			logger.info("Response is : " + val);
+			logger.info(String.format("Response is : %s", val));
 		} catch (IOException | NullPointerException e) {
-			// TODO Auto-generated catch block
-			logger.error(e.getMessage(), e);
+	 			logger.error(e.getMessage(), e);
 			return false;
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
@@ -153,7 +155,7 @@ public class EncounterAction {
 	private boolean editEncounterOpenMRS(EncounterAPIDTO encounterapidto) {
 		Gson gson = new Gson();
 		String val = "";
-		
+
 		try {
 			encounterapidto.setVoided(null);// Setting voided to null as OpenMrs
 											// does not accept voided in the
@@ -164,12 +166,25 @@ public class EncounterAction {
 
 			 for(ObsAPIDTO obsAPIDTO: encounterapidto.getObs()) {
 				 boolean emptyObs = false;
-				 if(obsAPIDTO.getValue().isEmpty()) {
-
+				 if(obsAPIDTO.getValue().isEmpty())  {
+					logger.info(String.format("Obs to delete : %s", obsAPIDTO.getUuid()));
 					 Call<ResponseBody> callobs = restapiintf.deleteObs(obsAPIDTO.getUuid()); // Void it
 					 Response<ResponseBody> responseObs = callobs.execute();
-					 obsAPIDTOArrayList.add(obsAPIDTO); // Add to obsList to remove
+
+
+						 obsAPIDTOArrayList.add(obsAPIDTO); // Add to obsList to remove
 				 }
+                 if (!(obsAPIDTO.getComment() == null)) {
+					 if (obsAPIDTO.getComment().equals("Void this")) {
+						 logger.info(String.format("Obs to delete : %s", obsAPIDTO.getUuid()));
+						 Call<ResponseBody> callobs = restapiintf.deleteObs(obsAPIDTO.getUuid()); // Void it
+						 Response<ResponseBody> responseObs = callobs.execute();
+
+
+						 obsAPIDTOArrayList.add(obsAPIDTO); // Add to obsList to remove
+					 }
+				 }
+
 			 }
 			// Remove empty obs from encounter
 			encounterapidto.getObs().removeAll(obsAPIDTOArrayList);
@@ -177,7 +192,7 @@ public class EncounterAction {
 
 
 			//Adding code for finding empty obs ends Jira: EZ-303
-			logger.info("edit encounter value : " + gson.toJson(encounterapidto));
+			logger.info(String.format("edit encounter value : %s", gson.toJson(encounterapidto)));
 
 
 

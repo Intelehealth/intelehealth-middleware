@@ -56,7 +56,9 @@ Call<ResponseBody> deleteObs(@Path("uuid") String uuid);
 //Adding endpoint to edit an Obs value
 @POST("obs/{uuid}")
 Call <ResponseBody> editObs(@Path("uuid") String uuid, @Body ObsAPIDTO obsapidto);
-   
+
+   @POST("obs/{uuid}")
+   Call <ResponseBody> updateObs(@Path("uuid") String uuid, @Body VoidAPIDTO voidapitdto);
 
 @POST("visit/{visituuid}/attribute/{attributetypeuuid}")
 Call <ResponseBody> editVA(@Path("visituuid") String visituuid, @Path("attributetypeuuid") String attributetypeuuid, @Body VisitAttributeAPIDTO vaDTO);

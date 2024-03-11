@@ -1,0 +1,102 @@
+
+{
+java:S2293*"YReplace the type specification in this constructor call with the diamond operator ("<>").(æ¨‰Ôúÿÿÿÿ8ÊÕÿ£ß1
+w
+java:S2293¤"YReplace the type specification in this constructor call with the diamond operator ("<>").(æí¶ô8ËÕÿ£ß1
+L
+java:S1066n"/Merge this if statement with the enclosing one.(“¯®¾8ÌÕÿ£ß1
+M
+java:S1066²"/Merge this if statement with the enclosing one.(ËÇ÷Ê8„ÌÃà1
+’
+java:S1319("pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(­“âôşÿÿÿÿ8ÍÕÿ£ß1
+
+java:S1319("mThe type of "encounterList" should be an interface such as "List" rather than the implementation "ArrayList".(­“âôşÿÿÿÿ8ÍÕÿ£ß1
+l	java:S117;"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğ«Ğ8ÍÕÿ£ß1
+†
+java:S1488w"dImmediately return this expression instead of assigning it to the temporary variable "encounterdto".(Ÿ¼ÿµüÿÿÿÿ8ÎÕÿ£ß1
+y
+java:S2629:"\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(“ôĞÈ8şú¤ß1
+G
+java:S2629†"$Invoke method(s) only conditionally.(€Š„‘ıÿÿÿÿ8¥ó½¨ß1
+B
+java:S2629"$Invoke method(s) only conditionally.(¼ÿ8¸ú¼¨ß1
+G
+java:S2629"$Invoke method(s) only conditionally.(ˆÖÖûÿÿÿÿ8ìî¾¨ß1
+G
+java:S2629ª"$Invoke method(s) only conditionally.(É…œªşÿÿÿÿ8™ûÀ¨ß1
+G
+java:S2629³"$Invoke method(s) only conditionally.(É…œªşÿÿÿÿ8ˆÌÃà1
+B
+java:S2629Ã"$Invoke method(s) only conditionally.(¼Ï§8¢”³¨ß1
+Z
+java:S2629Î"7Use the built-in formatting to construct this argument.(Ãš¡üÿÿÿÿ8ĞÕÿ£ß1
+Z
+java:S2629Ñ"7Use the built-in formatting to construct this argument.(İÖÙ®øÿÿÿÿ8ĞÕÿ£ß1
+
+java:S2629à"\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(Çáë´ıÿÿÿÿ8¡şú¤ß1
+Z
+java:S2629ç"7Use the built-in formatting to construct this argument.(Ãš¡üÿÿÿÿ8ĞÕÿ£ß1
+	java:S116"`Rename this field "MEDICINE_CONCEPT_UUID" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(™²¦·úÿÿÿÿ8ÜÕÿ£ß1
+C
+java:S1170"!Make this final field static too.(™²¦·úÿÿÿÿ8ÜÕÿ£ß1
+t
+java:S3776("RRefactor this method to reduce its Cognitive Complexity from 25 to the 15 allowed.(­“âôşÿÿÿÿ8èÕÿ£ß1
+d
+java:S1854;"HRemove this useless assignment to local variable "encounterdto_present".(ğ«Ğ8éÕÿ£ß1
+¢
+java:S1130)"„Remove the declaration of thrown exception 'com.emrmiddleware.exception.ActionException', as it cannot be thrown from method's body.(‡¾­×8œ‚û¤ß1
+D
+java:S11254"'Remove the unnecessary boolean literal.(Ø„˜8ôÕÿ£ß1
+^
+java:S3457:"AFormat specifiers should be used instead of string concatenation.(“ôĞÈ8´‚û¤ß1
+]	java:S125D"<This block of commented-out lines of code should be removed.(Œ°µïøÿÿÿÿ8öÕÿ£ß1
+I
+java:S1125F"'Remove the unnecessary boolean literal.(³°ììøÿÿÿÿ8öÕÿ£ß1
+I
+java:S1125K"'Remove the unnecessary boolean literal.(¨¾õ­ıÿÿÿÿ8÷Õÿ£ß1
+I
+java:S1125R"'Remove the unnecessary boolean literal.(•«…»şÿÿÿÿ8øÕÿ£ß1
+D
+java:S1125W"'Remove the unnecessary boolean literal.(Á‹Óá8ùÕÿ£ß1
+D
+java:S1125W"'Remove the unnecessary boolean literal.(Á‹Óá8ùÕÿ£ß1
+c
+java:S3457a"AFormat specifiers should be used instead of string concatenation.(ÅÇ±ıÿÿÿÿ8¼‚û¤ß1
+c
+java:S2147”"ECombine this catch with the one at line 145, which has the same body.(”ı¾8€Öÿ£ß1
+b
+java:S1854¬"?Remove this useless assignment to local variable "responseObs".(Š†Ïäùÿÿÿÿ8Ç‚û¤ß1
+b
+java:S1854µ"?Remove this useless assignment to local variable "responseObs".(Š†Ïäùÿÿÿÿ8Ù“ÌÃà1
+c
+java:S2147Ö"ECombine this catch with the one at line 210, which has the same body.(”ı¾8ˆÖÿ£ß1
+P
+java:S1481¨"-Remove this unused "emptyObs" local variable.(¶É×Íøÿÿÿÿ8ŠÖÿ£ß1
+S
+java:S1481¬"0Remove this unused "responseObs" local variable.(Š†Ïäùÿÿÿÿ8Ë‚û¤ß1
+L
+java:S1940±")Use the opposite operator ("!=") instead.(¤ìÎÉıÿÿÿÿ8¾ÑÉÃà1
+S
+java:S1481µ"0Remove this unused "responseObs" local variable.(Š†Ïäùÿÿÿÿ8à“ÌÃà1
+d
+java:S3457Î"AFormat specifiers should be used instead of string concatenation.(Ãš¡üÿÿÿÿ8–Öÿ£ß1
+d
+java:S3457Ñ"AFormat specifiers should be used instead of string concatenation.(İÖÙ®øÿÿÿÿ8—Öÿ£ß1
+U
+java:S1135Ó"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ8—Öÿ£ß1
+d
+java:S3457à"AFormat specifiers should be used instead of string concatenation.(Çáë´ıÿÿÿÿ8Ô‚û¤ß1
+c
+java:S2147ï"ECombine this catch with the one at line 235, which has the same body.(”ı¾8šÖÿ£ß1
+J
+java:S1125å"'Remove the unnecessary boolean literal.(ØÈÖãùÿÿÿÿ8œÖÿ£ß1
+d
+java:S3457ç"AFormat specifiers should be used instead of string concatenation.(Ãš¡üÿÿÿÿ8œÖÿ£ß1
+d
+java:S3457ê"AFormat specifiers should be used instead of string concatenation.(…Ô¬¬şÿÿÿÿ8×‚û¤ß1
+U
+java:S1135ì"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ8ŸÖÿ£ß1
+^
+java:S1128"ARemove this unused import 'com.emrmiddleware.api.dto.VoidAPIDTO'.(—›¶8Ø‚û¤ß1
+V
+java:S1128"9Remove this unused import 'com.emrmiddleware.dto.ObsDTO'.(ç§í8Ø‚û¤ß1

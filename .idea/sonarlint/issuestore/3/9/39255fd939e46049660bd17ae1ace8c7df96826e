@@ -1,0 +1,72 @@
+
+{
+java:S2293O"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ç’¦ ıÿÿÿÿ8ığĞ¦ß1
+k
+java:S1192¡"HDefine a constant instead of duplicating this literal "i10hi1c" 3 times.(Šöÿ‚ûÿÿÿÿ8şğĞ¦ß1
+‡
+java:S1192¡"dDefine a constant instead of duplicating this literal "jdbc:mysql://localhost:3306/openmrs" 3 times.(Šöÿ‚ûÿÿÿÿ8şğĞ¦ß1
+T
+java:S2629B"7Use the built-in formatting to construct this argument.(¤š½8€ñĞ¦ß1
+k
+java:S2095¡"HUse try-with-resources or close this "Connection" in a "finally" clause.(Šöÿ‚ûÿÿÿÿ8õñĞ¦ß1
+m
+java:S2095¢"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Äôèû8õñĞ¦ß1
+m
+java:S2095Õ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Äôèû8õñĞ¦ß1
+k
+java:S2095Ô"HUse try-with-resources or close this "Connection" in a "finally" clause.(Šöÿ‚ûÿÿÿÿ8õñĞ¦ß1
+m
+java:S2095»"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Äôèû8õñĞ¦ß1
+k
+java:S2095º"HUse try-with-resources or close this "Connection" in a "finally" clause.(Šöÿ‚ûÿÿÿÿ8õñĞ¦ß1
+\
+java:S1854J"?Remove this useless assignment to local variable "pulldatadto".(çÉªù8‚òĞ¦ß1
+Y
+java:S1854M"7Remove this useless assignment to local variable "pdd".(¡ÏÔ’øÿÿÿÿ8‚òĞ¦ß1
+Y
+java:S1854L"7Remove this useless assignment to local variable "pdd".(Şÿ®–ùÿÿÿÿ8‚òĞ¦ß1
+W
+java:S1854O"5Remove this useless assignment to local variable "e".(Ç’¦ ıÿÿÿÿ8‚òĞ¦ß1
+^
+java:S3457B"AFormat specifiers should be used instead of string concatenation.(¤š½8“òĞ¦ß1
+I
+java:S1125D"'Remove the unnecessary boolean literal.(•’ŠŒùÿÿÿÿ8“òĞ¦ß1
+J
+java:S1481L"(Remove this unused "pdd" local variable.(Şÿ®–ùÿÿÿÿ8£òĞ¦ß1
+H
+java:S1481O"&Remove this unused "e" local variable.(Ç’¦ ıÿÿÿÿ8­òĞ¦ß1
+c
+java:S3457\"AFormat specifiers should be used instead of string concatenation.(¼¾±Àúÿÿÿÿ8®òĞ¦ß1
+U
+java:S1854x"8Remove this useless assignment to local variable "gson".(şëŒ8²òĞ¦ß1
+F
+java:S1481x")Remove this unused "gson" local variable.(şëŒ8½òĞ¦ß1
+M	java:S106„"+Replace this use of System.out by a logger.(«ÁË³ûÿÿÿÿ8¾òĞ¦ß1
+M	java:S106Š"+Replace this use of System.out by a logger.(Ü­óúÿÿÿÿ8ÀòĞ¦ß1
+^	java:S125"<This block of commented-out lines of code should be removed.(¼á¡”úÿÿÿÿ8ÁòĞ¦ß1
+M	java:S106’"+Replace this use of System.out by a logger.(¶®âùÿÿÿÿ8ÂòĞ¦ß1
+P
+java:S4925 "-Remove this "Class.forName()", it is useless.(¹µÖÁüÿÿÿÿ8ÃòĞ¦ß1
+Y
+java:S6437¡"6Revoke and change this password, as it is compromised.(Šöÿ‚ûÿÿÿÿ8ÃòĞ¦ß1
+M	java:S106«"+Replace this use of System.out by a logger.(´’Æıÿÿÿÿ8ÆòĞ¦ß1
+Y
+java:S6437º"6Revoke and change this password, as it is compromised.(Šöÿ‚ûÿÿÿÿ8ÉòĞ¦ß1
+H	java:S106Å"+Replace this use of System.out by a logger.(è’ê¥8ÊòĞ¦ß1
+Y
+java:S6437Ô"6Revoke and change this password, as it is compromised.(Šöÿ‚ûÿÿÿÿ8ÌòĞ¦ß1
+H	java:S106Ş"+Replace this use of System.out by a logger.(í‘¹Ë8ÍòĞ¦ß1
+Y
+java:S1128"=Remove this unused import 'javax.net.ssl.HttpsURLConnection'.(æÎº08ÎòĞ¦ß1
+b
+java:S1128"FRemove this unused import 'com.emrmiddleware.api.dto.AttributeAPIDTO'.(¸”×/8ÎòĞ¦ß1
+l
+java:S1128"ORemove this unused import 'com.emrmiddleware.api.dto.EncounterProvidersAPIDTO'.(ÊãÖƒ8ÎòĞ¦ß1
+^
+java:S1128"BRemove this unused import 'com.emrmiddleware.api.dto.VisitAPIDTO'.(í©Å8ÎòĞ¦ß1
+U
+java:S1128"8Remove this unused import 'com.google.gson.JsonElement'.(ğ†˜³8ÎòĞ¦ß1
+R
+java:S1128#"0Remove this unused import 'java.io.IOException'.(ªº»Úıÿÿÿÿ8ÎòĞ¦ß1
+X
+java:S1144c"6Remove this unused private "pushNotifications" method.(éú‚’şÿÿÿÿ8ÎòĞ¦ß1

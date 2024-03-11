@@ -1,0 +1,72 @@
+
+t
+java:S2293/"YReplace the type specification in this constructor call with the diamond operator ("<>").(¯İ‚ñşÿÿÿÿ
+o
+java:S2293z"YReplace the type specification in this constructor call with the diamond operator ("<>").(¼Ìô
+j
+java:S1192a"ODefine a constant instead of duplicating this literal "REST failed : " 3 times.(Ãš¡üÿÿÿÿ
+‹
+java:S1319."pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(ñıêéüÿÿÿÿ
+„
+java:S1319."iThe type of "visitList" should be an interface such as "List" rather than the implementation "ArrayList".(ñıêéüÿÿÿÿ
+r
+java:S2629X"\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(´Ÿ¢é
+R
+java:S2629a"7Use the built-in formatting to construct this argument.(Ãš¡üÿÿÿÿ
+R
+java:S2629d"7Use the built-in formatting to construct this argument.(Îòøıÿÿÿÿ
+w
+java:S2629x"\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(ÒÌŞ—ÿÿÿÿÿ
+S
+java:S2629Š"7Use the built-in formatting to construct this argument.(Ãš¡üÿÿÿÿ
+S
+java:S2629"7Use the built-in formatting to construct this argument.(İÖÙ®øÿÿÿÿ
+S
+java:S2629˜"7Use the built-in formatting to construct this argument.(Ãš¡üÿÿÿÿ
+S
+java:S2629›"7Use the built-in formatting to construct this argument.(İÖÙ®øÿÿÿÿ
+~	java:S116!"dRename this field "VISIT_HOLDER_ATTRIBUTE_ID" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›ÌËêøÿÿÿÿ
+‚	java:S116#"hRename this field "VISIT_SPECIALITY_ATTRIBUTE_ID" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õ×¶²úÿÿÿÿ
+|	java:S116%"bRename this field "VISIT_READ_ATTRIBUTE_ID" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ôØ³ ûÿÿÿÿ
+x	java:S116&"dRename this field "VISIT_DECISION_PENDING_ID" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¯­‘n
+<
+java:S1170!"!Make this final field static too.(›ÌËêøÿÿÿÿ
+<
+java:S1170#"!Make this final field static too.(õ×¶²úÿÿÿÿ
+<
+java:S1170%"!Make this final field static too.(ôØ³ ûÿÿÿÿ
+6
+java:S1170&"!Make this final field static too.(¯­‘n
+ 
+java:S1130."„Remove the declaration of thrown exception 'com.emrmiddleware.exception.ActionException', as it cannot be thrown from method's body.(ñıêéüÿÿÿÿ
+W
+java:S3457B"AFormat specifiers should be used instead of string concatenation.(êÜµŞ
+V	java:S125D"<This block of commented-out lines of code should be removed.(¡äı şÿÿÿÿ
+W
+java:S3457X"AFormat specifiers should be used instead of string concatenation.(´Ÿ¢é
+[
+java:S2147i"ECombine this catch with the one at line 101, which has the same body.(”ı¾
+\
+java:S3457a"AFormat specifiers should be used instead of string concatenation.(Ãš¡üÿÿÿÿ
+\
+java:S3457d"AFormat specifiers should be used instead of string concatenation.(Îòøıÿÿÿÿ
+M
+java:S1135f"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ
+\
+java:S2147 "ECombine this catch with the one at line 156, which has the same body.(”ı¾
+\
+java:S3457x"AFormat specifiers should be used instead of string concatenation.(ÒÌŞ—ÿÿÿÿÿ
+]
+java:S3457Š"AFormat specifiers should be used instead of string concatenation.(Ãš¡üÿÿÿÿ
+]
+java:S3457"AFormat specifiers should be used instead of string concatenation.(İÖÙ®øÿÿÿÿ
+]
+java:S3457˜"AFormat specifiers should be used instead of string concatenation.(Ãš¡üÿÿÿÿ
+]
+java:S3457›"AFormat specifiers should be used instead of string concatenation.(İÖÙ®øÿÿÿÿ
+N
+java:S1135"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ
+[
+java:S1128"@Remove this unused import 'com.emrmiddleware.api.dto.ObsAPIDTO'.(Éíˆöûÿÿÿÿ
+Z
+java:S1128	"DRemove this unused import 'com.emrmiddleware.dto.VisitAttributeDTO'.(óóÌ

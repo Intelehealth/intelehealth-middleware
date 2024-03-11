@@ -77,69 +77,13 @@ public class PushController {
 			pdd = pushdatadto;
 
 			ArrayList<EncounterAPIDTO> e = new ArrayList<EncounterAPIDTO>();
-			e = pdd.getEncounters();
-			System.out.println("Number of Encounters" + e.size());
-			if(e.size() > 0) {
 
-				ArrayList<VisitAPIDTO> v = new ArrayList<VisitAPIDTO>();
-				v = pdd.getVisits();
-
-
-				ArrayList<EncounterProvidersAPIDTO> eproviders = new ArrayList<EncounterProvidersAPIDTO>();
-				String providerUID = e.get(0).getEncounterProviders().get(0).getProvider();
-				String[][] notifiers = new String[20][3];
-
-
-				int result = 0;
-				for (int i = 0; i < v.size(); i++) {
-					String patientUID = v.get(i).getPatient();
-					String visitUID = v.get(i).getUuid();
-					ArrayList<AttributeAPIDTO> attribList = new ArrayList<AttributeAPIDTO>();
-					attribList = v.get(i).getAttributes();
-					String speciality = "";
-					//for (int iv = 0; iv < attribList.size(); iv++) {
-
-						//speciality = attribList.get(iv).getValue();
-				//	}
-					int iv = 0 ;
-					speciality = attribList.get(iv).getValue(); // MSF Specific 25102021 Satyadeep
-
-					result = checkVisit(visitUID, patientUID);
-					String patientName = "";
-					String providerString = "";
-					if (result == 0) {
-						patientName = getPatientName(patientUID);
-						providerString = findProvider(providerUID);
-						notifiers[i][0] = speciality;
-						notifiers[i][1] = patientName;
-						notifiers[i][2] = providerString;
-					}
-				}
 
 				pulldatadto = pushdataaction.pushData(pushdatadto);
-				/**
-				 *  Removing Notification part for EMR-Middleware
-				 *  for EMR-Middleware . Satyadeep 19-Jan-20
 
-				pushNotifications(notifiers,v.size());
-				 */
-			//	pushNotifications(notifiers,v.size()); // Added for Ekal Arogya Helpline
-			//	pushNotifications(notifiers,v.size()); // Enabling for Demo-Testing  05-Mar-2021
-				pushNotifications(notifiers,v.size()); // Enabling for demo
 				responsedto.setStatus(Resources.OK);
 				responsedto.setData(pulldatadto);
-			}
-			else {
 
-				pulldatadto = pushdataaction.pushData(pushdatadto);
-				responsedto.setStatus(Resources.OK);
-				responsedto.setData(pulldatadto);
-			}
-
-
-			//pulldatadto = pushdataaction.pushData(pushdatadto);
-			// responsedto.setStatus(Resources.OK);
-			// responsedto.setData(pulldatadto);
 		} catch (DAOException e) {
 			logger.error(Resources.DAOEXCEPTION, e);
 			responsedto.setStatusMessage(Resources.ERROR, Resources.SERVER_ERROR, Resources.UNABLETOPROCESS);

@@ -1,0 +1,11 @@
+
+t
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ü½öÅüÿÿÿÿ
+‹
+java:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(öÝÞîúÿÿÿÿ
+~
+java:S1319"cThe type of "obs" should be an interface such as "List" rather than the implementation "ArrayList".(è®´—ûÿÿÿÿ
+‹
+java:S1319A"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(áïéƒýÿÿÿÿ
+ˆ
+java:S1319D"rThe type of "encounterProviders" should be an interface such as "List" rather than the implementation "ArrayList".(‹¤Ññ
