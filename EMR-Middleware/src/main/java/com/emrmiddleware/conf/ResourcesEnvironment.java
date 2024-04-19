@@ -41,8 +41,9 @@ public class ResourcesEnvironment {
 	public String getMMBaseURL() {
 		String Base_URL = "";
 
-		String host = "https://localhost:3004";
-		Base_URL=host+"/api/";
+		String host;
+        host = "https://demo.intelehealth.org:3004";
+        Base_URL=host+"/api/";
 
 		return Base_URL;
 
