@@ -1,0 +1,44 @@
+
+¶
+java:S1319"nThe type of "appointmentdto" should be an interface such as "List" rather than the implementation "ArrayList".(¹ü“Ûşÿÿÿÿ8«Ê²ìà1J$991b9493-2ae0-45ef-ace3-f65ed2bd43f7
+~
+java:S2629)"\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(¡¨¦Šüÿÿÿÿ8¬ùËòî1
+A
+java:S2629,"$Invoke method(s) only conditionally.(Œ§Å”8¬ùËòî1
+y
+java:S26291"\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(®úºØ8­ùËòî1
+A
+java:S26292"$Invoke method(s) only conditionally.(™Áí·8°ùËòî1
+Y
+java:S26298"7Use the built-in formatting to construct this argument.(Ãš¡üÿÿÿÿ8°ùËòî1
+Y
+java:S2629;"7Use the built-in formatting to construct this argument.(Îòøıÿÿÿÿ8±ùËòî1
+A
+java:S2629@"$Invoke method(s) only conditionally.(™Áí·8±ùËòî1
+Y
+java:S2629F"7Use the built-in formatting to construct this argument.(Ãš¡üÿÿÿÿ8±ùËòî1
+Y
+java:S2629I"7Use the built-in formatting to construct this argument.(Îòøıÿÿÿÿ8±ùËòî1
+N
+java:S11531"1Directly append the argument of String.valueOf().(®úºØ8µùËòî1
+V
+java:S3416"4Update this logger to use "AppointmentAction.class".(É×Â•ùÿÿÿÿ8ıúËòî1
+ƒ	java:S125"<This block of commented-out lines of code should be removed.(†Ò†øÿÿÿÿ8¿Ê²ìà1J$f6c68a12-12af-4256-948b-1cde48077ca5
+a
+java:S2147P"DCombine this catch with the one at line 76, which has the same body.(”ı¾8™ûËòî1
+c
+java:S3457)"AFormat specifiers should be used instead of string concatenation.(¡¨¦Šüÿÿÿÿ8œûËòî1
+^
+java:S34571"AFormat specifiers should be used instead of string concatenation.(®úºØ8ŸûËòî1
+c
+java:S34578"AFormat specifiers should be used instead of string concatenation.(Ãš¡üÿÿÿÿ8£ûËòî1
+c
+java:S3457;"AFormat specifiers should be used instead of string concatenation.(Îòøıÿÿÿÿ8£ûËòî1
+c
+java:S3457F"AFormat specifiers should be used instead of string concatenation.(Ãš¡üÿÿÿÿ8§ûËòî1
+c
+java:S3457I"AFormat specifiers should be used instead of string concatenation.(Îòøıÿÿÿÿ8§ûËòî1
+z
+java:S1135M"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ8ÚÊ²ìà1J$1c05a67e-e482-43e6-bfaf-d7fb0161a49c
+b
+java:S1128"ERemove this unused import 'com.emrmiddleware.api.dto.AppointmentDTO'.(¾šœí8¯ûËòî1

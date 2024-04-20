@@ -1,0 +1,25 @@
+
+¬
+java:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(Òí¨×J$4319194a-a55d-4b7f-b8c1-8dc0fee3888f
+¦
+java:S1319"jThe type of "encounters" should be an interface such as "List" rather than the implementation "ArrayList".(—ÿòÌJ$f81c3376-8ce2-4f82-a50c-7eb7444229fb
+±
+java:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(Ø§ÎºøÿÿÿÿJ$0c62f3b9-a8b6-42ba-9c96-989f37a6b862
+§
+java:S1319"fThe type of "visits" should be an interface such as "List" rather than the implementation "ArrayList".(­ÉÝÉüÿÿÿÿJ$5b13251a-d4db-457c-a4f1-b8b876d6561f
+¬
+java:S1319""pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(àæ€—J$7d700b5e-315f-43cf-b4e7-d9ad20a9984d
+£
+java:S1319&"gThe type of "persons" should be an interface such as "List" rather than the implementation "ArrayList".(“¥ƒºJ$ab4b393d-f621-4596-ba87-62ea9cdcac8c
+¬
+java:S1319+"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(¸ßòŒJ$bc3ba0fc-b65b-452a-8546-b7c5c8a2ccbe
+©
+java:S1319/"hThe type of "patients" should be an interface such as "List" rather than the implementation "ArrayList".(„”À¦úÿÿÿÿJ$2b6ba20a-6325-4a45-803e-a45919f10482
+±
+java:S1319="pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(ÐôàŠúÿÿÿÿJ$c8763131-6b4c-4228-b4f6-0a460aaee158
+¥
+java:S1319A"iThe type of "providers" should be an interface such as "List" rather than the implementation "ArrayList".(å›øÜJ$976fa0f2-52ae-4f3f-9682-c11d89fd2e18
+±
+java:S1319F"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(•çƒòýÿÿÿÿJ$cd3f7491-0a4f-4c1b-a1a1-cac9ef88a27a
+¨
+java:S1319J"lThe type of "appointments" should be an interface such as "List" rather than the implementation "ArrayList".(¿î»ˆJ$06014990-b7eb-4999-b427-5b11fa366e79

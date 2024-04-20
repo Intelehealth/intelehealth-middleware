@@ -1,0 +1,28 @@
+
+•
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(ëïëJ$96959e95-1caa-4bf4-aa1a-132c492b775c
+š
+java:S2293a"YReplace the type specification in this constructor call with the diamond operator ("<>").(ı‰àŠüÿÿÿÿJ$ade7fa81-a964-4fce-92ec-4e1776c7f66b
+›
+java:S2293ª"YReplace the type specification in this constructor call with the diamond operator ("<>").(ëñ±‚üÿÿÿÿJ$84b8db33-c255-4889-a6e7-d8a1ff5179e3
+f
+java:S2095©"HUse try-with-resources or close this "SqlSession" in a "finally" clause.(¹Á…±8¼”Ìòî1
+k
+java:S2095‰"HUse try-with-resources or close this "Connection" in a "finally" clause.(¦éüÿÿÿÿ8»”Ìòî1
+m
+java:S2095‹"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(óˆô8¼”Ìòî1
+r
+java:S2095Š"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ìÿì¶ıÿÿÿÿ8¼”Ìòî1
+v
+java:S1854S"5Remove this useless assignment to local variable "b".(Òâ²ÿûÿÿÿÿJ$8a037857-ffe6-4328-ab6d-078cc4705e47
+w	java:S1254"<This block of commented-out lines of code should be removed.(òú¿£J$7ec2dbed-ccf0-406b-847e-228e9114431c
+V
+java:S2130I"9Use "Integer.parseInt" for this string-to-int conversion.(ß‹ã‰8Ù”Ìòî1
+g
+java:S1481S"&Remove this unused "b" local variable.(Òâ²ÿûÿÿÿÿJ$389dc887-4759-4856-bd91-825ac02b4e07
+o
+java:S4925ˆ"-Remove this "Class.forName()", it is useless.(¹µÖÁüÿÿÿÿJ$754cce0d-0200-48df-8ce0-9d565aa673ff
+x
+java:S6437‰"6Revoke and change this password, as it is compromised.(¦éüÿÿÿÿJ$10c374fd-dd7a-4519-8827-320f46d7e347
+l	java:S106Ÿ"+Replace this use of System.out by a logger.(©şêÜúÿÿÿÿJ$ee5ecbcb-03b2-4e56-9f83-71d6a15ea372
+l	java:S106²"+Replace this use of System.out by a logger.(©şêÜúÿÿÿÿJ$ab9a314e-7ed6-49d5-9406-0839931e3e0a

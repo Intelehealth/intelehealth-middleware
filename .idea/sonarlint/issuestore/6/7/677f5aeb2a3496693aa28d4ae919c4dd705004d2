@@ -1,0 +1,71 @@
+
+¬
+java:S1319G"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(´ĞÖ¤J$b9f8a4e9-00b4-437a-a5cb-5e6e9144eab2
+¬
+java:S1319J"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(º»íÀJ$77251f04-f43d-4f27-ab21-69bc523f3252
+±
+java:S1319O"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(Óûñ„øÿÿÿÿJ$c79230fb-c8b0-4936-915f-d3dfd0353955
+{
+java:S2479":Remove the non-escaped \u0009 character from this literal.(‹šışÿÿÿÿJ$0602814c-9806-4057-99c4-8c69bea95eb3
+v
+java:S2479)":Remove the non-escaped \u0009 character from this literal.(¦À£ŠJ$fb982dd8-58ff-4a31-bf08-896ba7847db8
+u
+java:S2479/":Remove the non-escaped \u0009 character from this literal.(óåJ$e89fd394-26b5-41c4-8cf2-46fd75ebab07
+{
+java:S24790":Remove the non-escaped \u0009 character from this literal.(´á¡îùÿÿÿÿJ$320e1d18-e14f-4c0c-b2b1-3f98b64b554a
+v
+java:S24791":Remove the non-escaped \u0009 character from this literal.(Å§¡ÔJ$14270d11-7590-4210-b0a7-e4fbae8161be
+{
+java:S24792":Remove the non-escaped \u0009 character from this literal.(ìÍÇ€ùÿÿÿÿJ$446d3ffd-2ce6-4c55-b20a-5ceccc9fecdf
+{
+java:S24793":Remove the non-escaped \u0009 character from this literal.(Î‹‡şÿÿÿÿJ$d3f1d3a7-e71d-4d1c-8432-6232f4b00772
+{
+java:S24794":Remove the non-escaped \u0009 character from this literal.(¢İËˆùÿÿÿÿJ$38cb1e26-732f-4a7d-81ce-55f87625900c
+u
+java:S24795":Remove the non-escaped \u0009 character from this literal.(Ê¢´0J$d873e361-e76a-4342-9ffc-f571ee6f2f7b
+{
+java:S24796":Remove the non-escaped \u0009 character from this literal.(¨ÙÓóûÿÿÿÿJ$c27fcd8d-341a-441e-a8de-697066b836db
+{
+java:S24797":Remove the non-escaped \u0009 character from this literal.(ï¬ú§ÿÿÿÿÿJ$2e43a58d-5daa-4afa-9d58-af3f734cbf65
+{
+java:S24798":Remove the non-escaped \u0009 character from this literal.(ÃÕ´—ıÿÿÿÿJ$1abb3faf-8cd9-4c1f-b206-1efedd3a87ae
+v
+java:S24799":Remove the non-escaped \u0009 character from this literal.(ª®¤J$350a0a00-73da-44cd-aa5b-c16e5d0ab239
+v
+java:S2479:":Remove the non-escaped \u0009 character from this literal.(Ÿ­¡ÁJ$04c5dca2-c6d5-48c6-baf7-8f5be32feb26
+v
+java:S2479;":Remove the non-escaped \u0009 character from this literal.(¥Ñª…J$a984c0d0-b30a-4c63-8ce7-2dfc1eac24f6
+v
+java:S2479<":Remove the non-escaped \u0009 character from this literal.(Ş°éÖJ$086d7e9d-c77a-4614-85aa-97449b1e2c66
+{
+java:S2479]":Remove the non-escaped \u0009 character from this literal.(¡ÌÁ†ÿÿÿÿÿJ$5048d27e-efed-47bc-a234-217c121f85ba
+v
+java:S2479o":Remove the non-escaped \u0009 character from this literal.(¦À£ŠJ$b95a6cda-0a42-4f04-a972-5d7afd88b5a0
+u
+java:S2479u":Remove the non-escaped \u0009 character from this literal.(óåJ$6a9cd3d1-1f78-4b9f-a0d7-e866ee7cbf6d
+{
+java:S2479v":Remove the non-escaped \u0009 character from this literal.(´á¡îùÿÿÿÿJ$779f959b-eff4-433c-9d64-56ca59da2e1d
+v
+java:S2479w":Remove the non-escaped \u0009 character from this literal.(Å§¡ÔJ$18647c27-c7d6-408e-9680-535d8f6a3186
+{
+java:S2479x":Remove the non-escaped \u0009 character from this literal.(ìÍÇ€ùÿÿÿÿJ$811114c9-c330-455f-a002-4a6681e94ef0
+{
+java:S2479y":Remove the non-escaped \u0009 character from this literal.(Î‹‡şÿÿÿÿJ$6b56427a-48e2-4846-9942-aba991b218e1
+{
+java:S2479z":Remove the non-escaped \u0009 character from this literal.(¢İËˆùÿÿÿÿJ$5e54645d-47f1-4281-bbb8-ce8f4b17dca7
+u
+java:S2479{":Remove the non-escaped \u0009 character from this literal.(Ê¢´0J$6e4a5a2d-251b-401b-8ca8-761fa4eaf121
+{
+java:S2479|":Remove the non-escaped \u0009 character from this literal.(¨ÙÓóûÿÿÿÿJ$bd3a99f2-d891-4929-b9fd-32fb305edb2a
+{
+java:S2479}":Remove the non-escaped \u0009 character from this literal.(ï¬ú§ÿÿÿÿÿJ$ccd2f15d-4fea-4719-af87-e2fecad4e5e6
+{
+java:S2479~":Remove the non-escaped \u0009 character from this literal.(ÃÕ´—ıÿÿÿÿJ$f4f81bfe-0936-444d-b1ff-a0df800bcb54
+v
+java:S2479":Remove the non-escaped \u0009 character from this literal.(ª®¤J$d5fa54c8-e3bf-406a-86af-73eadfb82d02
+w
+java:S2479€":Remove the non-escaped \u0009 character from this literal.(Ÿ­¡ÁJ$3f5a5360-c20a-4d0c-b35b-a979ac264f6b
+w
+java:S2479":Remove the non-escaped \u0009 character from this literal.(¥Ñª…J$69874104-cb9b-4599-b7bd-edd818006936
+w
+java:S2479‚":Remove the non-escaped \u0009 character from this literal.(Ş°éÖJ$4bc706ef-a7ef-4cd6-8ef5-6e2a93bb033e

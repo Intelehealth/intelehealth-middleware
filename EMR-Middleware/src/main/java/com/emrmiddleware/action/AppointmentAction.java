@@ -41,7 +41,12 @@ public class AppointmentAction {
                 logger.info("appointment value : " + gson.toJson(appointment));
                 if(appointment.getAppointmentId() == 0 ) {
                     Call<ResponseBody> addAppointment = restapiintf.addAppointment(appointment);
+                    logger.info(String.valueOf(addAppointment.request().url()));
+
+
                     Response<ResponseBody> response = addAppointment.execute();
+
+                    logger.info("Appl" + String.valueOf(response.code()));
                     logger.info(response.message());
                     if (response.isSuccessful()) {
                         val = response.body().string();
