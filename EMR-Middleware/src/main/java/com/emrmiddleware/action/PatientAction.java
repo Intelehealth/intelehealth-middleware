@@ -32,7 +32,9 @@ public class PatientAction {
 	RestAPI restapiintf;
 	String authString;
 
-	public final static String OPENMRS_ID = "05a29f94-c0ed-11e2-94be-8c13b969e334";
+	public static final String OPENMRS_ID = "05a29f94-c0ed-11e2-94be-8c13b969e334";
+	public static final String ABHA_NUMBER = "6ad4e308-33aa-4afc-9879-6033d1984876";
+	public static final String ABHA_ADDRESS = "59077d8f-8bee-4a6f-a1a8-64365a297da6";
 
 	public PatientAction(String auth) {
 		authString = auth;
@@ -53,7 +55,12 @@ public class PatientAction {
 				patientforerror = patient;
 				String openMrsId = "";
 				PatientDAO patientdao = new PatientDAO();
+
 				PatientDTO patientDTO = patientdao.getPatient(patient.getPerson());
+
+			/*	if(patient.getIdentifiers().size() > 1  ) {
+					patientDTO = checkWithAbhaNumber(patient.getIdentifiers());
+				}*/
 				if (patientDTO == null) {
 					openMrsId = getOpenMrsId();
 
@@ -66,6 +73,7 @@ public class PatientAction {
 
 					}
 					isPatientSet = addPatientOpenMRS(patient);
+
 				} else {
 					openMrsId = patientDTO.getOpenmrs_id();
 				}
@@ -73,9 +81,10 @@ public class PatientAction {
 				patientdto = new PatientDTO();
 				patientdto.setUuid(patient.getPerson());
 				patientdto.setSyncd(isPatientSet);
-				if (isPatientSet == true)
+				if (isPatientSet)
 					patientdto.setOpenmrs_id(openMrsId);
 				patients.add(patientdto);
+
 			}
 		} catch (Exception e) {
 			//patientdto.setOpenmrs_id("");// Set OpenMRS ID to blank in case of
@@ -85,6 +94,22 @@ public class PatientAction {
 			// throw new ActionException(e.getMessage(), e);
 		} 
 		return patients;
+
+	}
+
+	private PatientDTO checkWithAbhaNumber(ArrayList<IdentifierAPIDTO> identifiers) throws DAOException {
+		String abhaNumber = "";
+		String abhaAddress = "";
+		for(IdentifierAPIDTO identifier: identifiers) {
+			if(Objects.equals(identifier.getIdentifierType(), ABHA_NUMBER))
+				abhaNumber = identifier.getIdentifier();
+			if(Objects.equals(identifier.getIdentifierType(), ABHA_ADDRESS))
+				abhaAddress = identifier.getIdentifier();
+		}
+		PatientDAO patientDao = new PatientDAO();
+		logger.info("checkWithAbhaNumber");
+		logger.debug(abhaNumber+"--"+abhaAddress);
+		return patientDao.getPatientWithABDM(abhaAddress, abhaNumber);
 
 	}
 

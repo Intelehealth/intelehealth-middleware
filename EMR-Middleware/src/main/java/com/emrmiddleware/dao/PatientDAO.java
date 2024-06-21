@@ -2,6 +2,7 @@ package com.emrmiddleware.dao;
 
 import java.util.ArrayList;
 
+import com.emrmiddleware.dto.ExternalPatientDTO;
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -112,4 +113,45 @@ public class PatientDAO {
 		}
 	}
 
+	public PatientDTO getPatientWithABDM(String abhaAddress, String abhaNumber) throws DAOException, PersistenceException {
+		SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
+		SqlSession session = sessionfactory.openSession();
+		PatientDTO patientdto = new PatientDTO();
+		try {
+
+			PatientDMO patientdmo = session.getMapper(PatientDMO.class);
+			patientdto = patientdmo.getPatientWithABDM(abhaNumber);
+			if(patientdto !=null){
+			patientdto.setAbha_address(abhaAddress);
+			patientdto.setAbha_number(abhaNumber);
+			logger.debug("In getPatientWithABDM");
+			logger.debug(patientdto.toString());
+			}return patientdto;
+
+		} finally {
+			session.close();
+		}
+	}
+
+    public ExternalPatientDTO getPersonIdentifiers(String abhaNumber) {
+		SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
+		SqlSession session = sessionfactory.openSession();
+		ExternalPatientDTO patientdto = new ExternalPatientDTO();
+		try {
+			logger.debug("In getPersonIdentifiers");
+			PatientDMO patientdmo = session.getMapper(PatientDMO.class);
+			patientdto = patientdmo.getPersonIdentifiers(abhaNumber);
+			if(patientdto != null ){
+				logger.debug(patientdto.toString());
+			}
+			else {
+				patientdto = new ExternalPatientDTO();
+			}
+
+			return patientdto;
+
+		} finally {
+			session.close();
+		}
+    }
 }

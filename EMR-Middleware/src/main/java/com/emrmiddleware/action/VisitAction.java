@@ -1,6 +1,7 @@
 package com.emrmiddleware.action;
 
 import java.io.IOException;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 
 import org.slf4j.Logger;
@@ -18,6 +19,8 @@ import com.google.gson.Gson;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
+
+import static java.text.MessageFormat.*;
 
 public class VisitAction {
 
@@ -88,7 +91,6 @@ public class VisitAction {
 			}
 			logger.info("Response is : " + val);
 		} catch (IOException | NullPointerException e) {
-			// TODO Auto-generated catch block
 			logger.error(e.getMessage(), e);
 			return false;
 		} catch (Exception e) {
@@ -106,7 +108,7 @@ public class VisitAction {
 		try {
 			visitapidto.setPatient(null);// Not allowed to be set in edit for
 											// visit in openmrs
-			logger.info("edit visit value : " + gson.toJson(visitapidto));
+			logger.info(format("edit visit value : {0}", gson.toJson(visitapidto)));
 			Call<ResponseBody> callvisit = restapiintf.editVisit(visitapidto.getUuid(), visitapidto);
 			Response<ResponseBody> response = callvisit.execute();
 			if (response.isSuccessful()) {

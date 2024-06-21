@@ -1,6 +1,8 @@
 package com.emrmiddleware.dmo;
 
 import java.util.ArrayList;
+
+import com.emrmiddleware.dto.ExternalPatientDTO;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
@@ -31,6 +33,9 @@ public interface PatientDMO {
     " person.birthdate as dateofbirth, "+
     " person_address.address1 as address1 , "+
     " person_address.address2 as address2, "+
+                " person_address.address3 as address3, "+
+                " person_address.address4 as address4, "+
+                " person_address.address5 as address5, "+
     " person_address.city_village as cityvillage, "+
     "person_address.state_province as stateprovince, "+
     " person_address.postal_code as postalcode, "+
@@ -63,7 +68,7 @@ public interface PatientDMO {
     " person_name.given_name , "+
     " person_name.middle_name, "+
     " ifnull(person_name.family_name, ' ') , "+
-    " person.birthdate ,     person_address.address1,     person_address.address2 , "+
+    " person.birthdate ,     person_address.address1,     person_address.address2 ,  person_address.address3,     person_address.address4 ,  person_address.address5, "+
     " person_address.city_village ,     person_address.state_province,"+
     " person_address.postal_code,     person_address.country, "+
     " person.gender,     person.dead,    person.voided "+
@@ -141,4 +146,14 @@ public interface PatientDMO {
     )
     public int getPatientsCount(@Param("lastchangedtime") String lastpulldatatime,@Param("locationuuid") String locationuuid );
 
+    @Select(" SELECT A.uuid, B.identifier FROM person A JOIN patient_identifier B  " +
+            " on A.person_id = B.patient_id WHERE A.voided = 0 AND B.identifier_type = 3 " +
+            " AND B.patient_id in (SELECT patient_id FROM patient_identifier WHERE "+
+            "  identifier = #{abhaNumber}) ")
+    public PatientDTO getPatientWithABDM( @Param("abhaNumber")  String abhaNumber);
+    @Select(" SELECT A.uuid, B.identifier AS openmrsid FROM person A JOIN patient_identifier B  " +
+            " on A.person_id = B.patient_id WHERE A.voided = 0 AND B.identifier_type = 3 " +
+            " AND B.patient_id in (SELECT patient_id FROM patient_identifier WHERE "+
+            "identifier = #{abhaNumber}) ")
+    public ExternalPatientDTO getPersonIdentifiers(@Param("abhaNumber") String abhaNumber);
 }

@@ -2,6 +2,7 @@ package com.emrmiddleware.dto;
 
 import com.emrmiddleware.api.dto.AppointmentDTO;
 import com.emrmiddleware.authentication.CustomApplication;
+import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
 
@@ -23,6 +24,15 @@ public class PullDataDTO {
 	private ArrayList<VisitAttributeDTO> visitAttributeList;
 	private ArrayList<CustomAppointmentDTO> AppointmentList;
 
+	public JsonObject getPropertyContents() {
+		return propertyContents;
+	}
+
+	public void setPropertyContents(JsonObject propertyContents) {
+		this.propertyContents = propertyContents;
+	}
+
+	JsonObject propertyContents; // Added for configurability changes Ref: WEBAPP-74
 
 	public int getPageNo() {
 		return pageNo;

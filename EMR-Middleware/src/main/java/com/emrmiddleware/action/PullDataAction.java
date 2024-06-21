@@ -2,12 +2,8 @@ package com.emrmiddleware.action;
 
 import java.util.ArrayList;
 
-import com.emrmiddleware.dao.EncounterDAO;
-import com.emrmiddleware.dao.LocationDAO;
-import com.emrmiddleware.dao.ObsDAO;
-import com.emrmiddleware.dao.PatientDAO;
-import com.emrmiddleware.dao.ProviderDAO;
-import com.emrmiddleware.dao.VisitDAO;
+import com.emrmiddleware.dao.*;
+import com.emrmiddleware.dao.MindmapDAO;
 import com.emrmiddleware.dto.EncounterDTO;
 import com.emrmiddleware.dto.LocationDTO;
 import com.emrmiddleware.dto.ObsDTO;
@@ -23,6 +19,7 @@ import com.emrmiddleware.dto.VisitAttributeTypeDTO;
 import com.emrmiddleware.dto.VisitDTO;
 import com.emrmiddleware.exception.ActionException;
 import com.emrmiddleware.exception.DAOException;
+import com.google.gson.JsonObject;
 
 public class PullDataAction {
 
@@ -32,6 +29,8 @@ public class PullDataAction {
 		PatientDAO patientdao = new PatientDAO();
 		VisitDAO visitdao = new VisitDAO();
 		ObsDAO obsdao = new ObsDAO();
+		MindmapDAO mindmapDAO = new MindmapDAO();
+
 		EncounterDAO encounterdao = new EncounterDAO();
 		LocationDAO locationdao = new LocationDAO();
 		ProviderDAO providerdao = new ProviderDAO();
@@ -47,6 +46,7 @@ public class PullDataAction {
 		ArrayList<ProviderAttributeDTO>  providerAttributeList = new ArrayList<ProviderAttributeDTO>();
 		ArrayList<VisitAttributeTypeDTO> visitAttributeTypeList = new ArrayList<VisitAttributeTypeDTO>();
 		ArrayList<VisitAttributeDTO> visitAttributesList = new ArrayList<VisitAttributeDTO>();//try {
+		pulldata.setPropertyContents(mindmapDAO.getConfigFile()); // Config file
 			int offset = 0 ;
 			if (pageno == 0 )
 			{
@@ -110,5 +110,7 @@ public class PullDataAction {
 		return pulldata;
 
 	}
+
+
 
 }

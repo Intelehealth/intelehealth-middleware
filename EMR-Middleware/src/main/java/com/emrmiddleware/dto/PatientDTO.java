@@ -14,6 +14,34 @@ public class PatientDTO {
 	private String phonenumber;
 	private String address1;
 	private String address2;
+	private String address3;
+
+	public String getAddress3() {
+		return address3;
+	}
+
+	public void setAddress3(String address3) {
+		this.address3 = address3;
+	}
+
+	public String getAddress4() {
+		return address4;
+	}
+
+	public void setAddress4(String address4) {
+		this.address4 = address4;
+	}
+
+	public String getAddress5() {
+		return address5;
+	}
+
+	public void setAddress5(String address5) {
+		this.address5 = address5;
+	}
+
+	private String address4;
+	private String address5;
 	private String cityvillage;
 	private String stateprovince;
 	private String postalcode;
@@ -186,7 +214,34 @@ public class PatientDTO {
 	public void setCaste(String caste) {
 		this.caste = caste;
 	}
-	
-	
 
+	@Override
+	public String toString() {
+		return "PatientDTO{" +
+				"uuid='" + uuid + '\'' +
+				", openmrs_id='" + openmrs_id + '\'' +
+				", firstname='" + firstname + '\'' +
+				", middlename='" + middlename + '\'' +
+				", lastname='" + lastname + '\'' +
+				", dateofbirth=" + dateofbirth +
+				", phonenumber='" + phonenumber + '\'' +
+				", address1='" + address1 + '\'' +
+				", address2='" + address2 + '\'' +
+				", cityvillage='" + cityvillage + '\'' +
+				", stateprovince='" + stateprovince + '\'' +
+				", postalcode='" + postalcode + '\'' +
+				", country='" + country + '\'' +
+				", gender='" + gender + '\'' +
+				", sdw='" + sdw + '\'' +
+				", dead=" + dead +
+				", occupation='" + occupation + '\'' +
+				", patient_photo='" + patient_photo + '\'' +
+				", economicstatus='" + economicstatus + '\'' +
+				", caste='" + caste + '\'' +
+				", syncd=" + syncd +
+				", voided=" + voided +
+				", abha_number='" + abha_number + '\'' +
+				", abha_address='" + abha_address + '\'' +
+				'}';
+	}
 }
