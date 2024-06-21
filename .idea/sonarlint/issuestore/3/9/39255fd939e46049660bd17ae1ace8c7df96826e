@@ -1,0 +1,70 @@
+
+T
+java:S2629="7Use the built-in formatting to construct this argument.(¤š½8äøÒ²2
+Á
+java:S1192€"¢Define a constant instead of duplicating this literal "UPDATE provider_attribute SET value_reference = ? WHERE attribute_type_id = ? AND provider_id = ?" 3 times.(È‚‡†8éøÒ²2
+m
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ô€«®8ìøÒ²2
+r
+java:S2095¬"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Óİˆ‘øÿÿÿÿ8ëøÒ²2
+l
+java:S2095º"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ò‰ª
+8ëøÒ²2
+m
+java:S2095³"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ôßŞ·8ëøÒ²2
+r
+java:S2095Á"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(€ûš‡úÿÿÿÿ8êøÒ²2
+m
+java:S2095¥"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(æ‚çä8ìøÒ²2
+e
+java:S2095|"HUse try-with-resources or close this "Connection" in a "finally" clause.(ªµ±á8ëøÒ²2
+m
+java:S2095•"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¶†Áó8êøÒ²2
+m
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(éñ¬‹8ëøÒ²2
+]	java:S125"<This block of commented-out lines of code should be removed.(ºíÂÎüÿÿÿÿ8„ùÒ²2
+R
+java:S1144n"5Remove this unused private "updateAttributes" method.(¼™èÆ8ùÒ²2
+\
+java:S1854G"?Remove this useless assignment to local variable "pulldatadto".(çÉªù8”ùÒ²2
+Y
+java:S1854K"7Remove this useless assignment to local variable "pdd".(¡ÏÔ’øÿÿÿÿ8”ùÒ²2
+Y
+java:S1854I"7Remove this useless assignment to local variable "pdd".(Şÿ®–ùÿÿÿÿ8”ùÒ²2
+^
+java:S3457="AFormat specifiers should be used instead of string concatenation.(¤š½8ùÒ²2
+X	java:S125D"<This block of commented-out lines of code should be removed.(ì’µÅ8¤ùÒ²2
+X	java:S125H"<This block of commented-out lines of code should be removed.(’ü½ª8©ùÒ²2
+J
+java:S1481I"(Remove this unused "pdd" local variable.(Şÿ®–ùÿÿÿÿ8¬ùÒ²2
+X	java:S125J"<This block of commented-out lines of code should be removed.(ÍØÍ´8¬ùÒ²2
+X	java:S125N"<This block of commented-out lines of code should be removed.(¤¤ÂÃ8­ùÒ²2
+O
+java:S1481P"-Remove this unused "provider" local variable.(Áí¤¡ùÿÿÿÿ8®ùÒ²2
+]	java:S125R"<This block of commented-out lines of code should be removed.(ŒòßÓıÿÿÿÿ8®ùÒ²2
+X	java:S125Y"<This block of commented-out lines of code should be removed.(ì’µÅ8®ùÒ²2
+X	java:S125["<This block of commented-out lines of code should be removed.(Ñ¿Éí8¯ùÒ²2
+c
+java:S3457d"AFormat specifiers should be used instead of string concatenation.(¼¾±Àúÿÿÿÿ8±ùÒ²2
+O
+java:S4925x"-Remove this "Class.forName()", it is useless.(¹µÖÁüÿÿÿÿ8¶ùÒ²2
+S
+java:S6437|"6Revoke and change this password, as it is compromised.(ªµ±á8·ùÒ²2
+V
+java:S2130}"9Use "Integer.parseInt" for this string-to-int conversion.(øØû•8¸ùÒ²2
+_
+java:S3457Î"AFormat specifiers should be used instead of string concatenation.(èœüâ8ÀùÒ²2
+d
+java:S3457Ñ"AFormat specifiers should be used instead of string concatenation.(€ì¤Œüÿÿÿÿ8ÂùÒ²2
+X
+java:S1128"6Remove this unused import 'com.emrmiddleware.api.dto'.(³¥ˆ¸úÿÿÿÿ8ÃùÒ²2
+T
+java:S1128"7Remove this unused import 'com.google.gson.JsonObject'.(µÊ´½8ÄùÒ²2
+W
+java:S1128"5Remove this unused import 'java.io.DataOutputStream'.(¸Îáíıÿÿÿÿ8ÄùÒ²2
+T
+java:S1128"7Remove this unused import 'java.net.HttpURLConnection'.(¬¬˜­8ÄùÒ²2
+K
+java:S1128")Remove this unused import 'java.net.URL'.(ñìÁ„üÿÿÿÿ8ÄùÒ²2
+K
+java:S1128 "/Remove this unused import 'java.sql.ResultSet'.(ˆóÚw8ÄùÒ²2

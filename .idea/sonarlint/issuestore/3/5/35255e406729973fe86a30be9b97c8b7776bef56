@@ -1,0 +1,54 @@
+
+’
+java:S1319."pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(Ã¼ãÛüÿÿÿÿ8ÅÛÒ²2
+
+java:S1319."kThe type of "patientList" should be an interface such as "List" rather than the implementation "ArrayList".(Ã¼ãÛüÿÿÿÿ8ÆÛÒ²2
+{
+java:S22930"YReplace the type specification in this constructor call with the diamond operator ("<>").(÷ê›Öúÿÿÿÿ8ÇÛÒ²2
+T
+java:S2629o"7Use the built-in formatting to construct this argument.(æóİÈ8ÊÛÒ²2
+Z
+java:S2629ƒ"7Use the built-in formatting to construct this argument.(ìñ©™üÿÿÿÿ8ËÛÒ²2
+Z
+java:S2629ˆ"7Use the built-in formatting to construct this argument.(Ãš¡üÿÿÿÿ8ÍÛÒ²2
+Z
+java:S2629‹"7Use the built-in formatting to construct this argument.(Îòøıÿÿÿÿ8ÍÛÒ²2
+y
+java:S2629›"\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(ÿì‚X8ÍÛÒ²2
+Z
+java:S2629¤"7Use the built-in formatting to construct this argument.(Ãš¡üÿÿÿÿ8ÎÛÒ²2
+Z
+java:S2629§"7Use the built-in formatting to construct this argument.(Îòøıÿÿÿÿ8ÎÛÒ²2
+M
+java:S3416"0Update this logger to use "PatientAction.class".(‚‘¼ú8ÓÛÒ²2
+Z
+java:S1144d"8Remove this unused private "checkWithAbhaNumber" method.(¹ØÒÿÿÿÿÿ8ÖÛÒ²2
+¢
+java:S1130/"„Remove the declaration of thrown exception 'com.emrmiddleware.exception.ActionException', as it cannot be thrown from method's body.(‡¾­×8ÜÛÒ²2
+]	java:S125="<This block of commented-out lines of code should be removed.(¦­âÃùÿÿÿÿ8çÛÒ²2
+^
+java:S3457\"AFormat specifiers should be used instead of string concatenation.(Àæ˜8èÛÒ²2
+]	java:S125^"<This block of commented-out lines of code should be removed.(¡äı şÿÿÿÿ8êÛÒ²2
+^
+java:S3457o"AFormat specifiers should be used instead of string concatenation.(æóİÈ8îÛÒ²2
+c
+java:S2147"ECombine this catch with the one at line 140, which has the same body.(”ı¾8òÛÒ²2
+^	java:S125€"<This block of commented-out lines of code should be removed.(»×†Šÿÿÿÿÿ8ôÛÒ²2
+d
+java:S3457ƒ"AFormat specifiers should be used instead of string concatenation.(ìñ©™üÿÿÿÿ8öÛÒ²2
+d
+java:S3457ˆ"AFormat specifiers should be used instead of string concatenation.(Ãš¡üÿÿÿÿ8øÛÒ²2
+d
+java:S3457‹"AFormat specifiers should be used instead of string concatenation.(Îòøıÿÿÿÿ8ùÛÒ²2
+U
+java:S1135"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ8ùÛÒ²2
+^
+java:S3457›"AFormat specifiers should be used instead of string concatenation.(ÿì‚X8üÛÒ²2
+c
+java:S2147¬"ECombine this catch with the one at line 168, which has the same body.(”ı¾8şÛÒ²2
+d
+java:S3457¤"AFormat specifiers should be used instead of string concatenation.(Ãš¡üÿÿÿÿ8ÜÒ²2
+d
+java:S3457§"AFormat specifiers should be used instead of string concatenation.(Îòøıÿÿÿÿ8ÜÒ²2
+U
+java:S1135©"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ8ƒÜÒ²2

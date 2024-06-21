@@ -1,0 +1,66 @@
+
+²
+java:S1319:"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(¿§Ô8«¬ëô1J$6628776b-2e44-4858-b4cd-0b4bdcf6c54f
+¸
+java:S1319>"vThe type of "visitAttributeTypeList" should be an interface such as "List" rather than the implementation "ArrayList".(«åÈK8¬¬ëô1J$2b50d267-9504-4361-bbb1-9e435729678a
+¸
+java:S1319B"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(­­Íñúÿÿÿÿ8¬¬ëô1J$fd3a607f-c3bc-45fa-927f-160b844d896b
+º
+java:S1319F"rThe type of "visitAttributeList" should be an interface such as "List" rather than the implementation "ArrayList".(äâ¹ıÿÿÿÿÿ8¬¬ëô1J$f9b787d7-138a-4ca1-936c-9a88b4c9b842
+³
+java:S1319J"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(£ËäÆ8¬¬ëô1J$5f80f3e9-8ec8-4ce0-96a1-5775c4e8e331
+¬
+java:S1319N"jThe type of "personList" should be an interface such as "List" rather than the implementation "ArrayList".(¦ÉîL8¬¬ëô1J$a6bc4206-2bbd-40fa-8dce-528a4058c22e
+¸
+java:S1319R"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(½—Í…üÿÿÿÿ8¬¬ëô1J$6361e8d0-63b7-4856-9ec4-fb07976fc523
+¸
+java:S1319V"uThe type of "providerAttributeList" should be an interface such as "List" rather than the implementation "ArrayList".(¬ÅÀ8¬¬ëô1J$4063d3c7-b26c-4f43-9cbc-4e472340abc0
+¸
+java:S1319Z"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(ˆå†úÿÿÿÿ8¬¬ëô1J$7344d537-b775-4947-9e96-94dcac0a5a77
+Á
+java:S1319^"yThe type of "providerAttributeTypeList" should be an interface such as "List" rather than the implementation "ArrayList".(÷¬ûÃøÿÿÿÿ8­¬ëô1J$9377140b-7d27-48f5-ba8e-599643715314
+¸
+java:S1319j"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(ûĞŞøÿÿÿÿ8­¬ëô1J$3be057dd-abae-4f34-a97f-8710766d2491
+´
+java:S1319n"lThe type of "locationlist" should be an interface such as "List" rather than the implementation "ArrayList".(ê£ğÆøÿÿÿÿ8­¬ëô1J$7974ba97-27e7-4a47-85bb-5eb4080315ef
+¸
+java:S1319r"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(²ØË¼ûÿÿÿÿ8­¬ëô1J$07d64d64-c4a9-4c0f-8d37-17453ee824a4
+½
+java:S1319v"uThe type of "patientAttributesList" should be an interface such as "List" rather than the implementation "ArrayList".(¯ñÅÔÿÿÿÿÿ8­¬ëô1J$b0a92e09-1142-49a9-be44-6e1867d4821b
+¸
+java:S1319z"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(¯ÒŠ®ûÿÿÿÿ8­¬ëô1J$335de15d-be01-417c-a5f7-9d3572c5caf7
+Á
+java:S1319~"~The type of "patientAttributeTypeListMaster" should be an interface such as "List" rather than the implementation "ArrayList".(¨´ƒÇ8­¬ëô1J$37322581-2ded-40bb-854c-562544a791de
+¹
+java:S1319Š"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(ÇÜü³ùÿÿÿÿ8­¬ëô1J$9b555962-15f1-4615-8513-c8b6d2aa6f39
+°
+java:S1319"gThe type of "obslist" should be an interface such as "List" rather than the implementation "ArrayList".(“şØûÿÿÿÿ8®¬ëô1J$f7192803-8962-41bd-b334-723c8ba9e780
+´
+java:S1319’"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(ä®ªü8®¬ëô1J$72b30066-9301-4c81-b4d8-de61acb0cb03
+­
+java:S1319–"iThe type of "visitlist" should be an interface such as "List" rather than the implementation "ArrayList".(ƒ•×ì8®¬ëô1J$657c0411-7b27-4dc4-9f65-f973c5ea8671
+¹
+java:S1319š"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(·Àüçúÿÿÿÿ8®¬ëô1J$25e14f57-e104-4188-b090-242e2df1eead
+´
+java:S1319"kThe type of "patientlist" should be an interface such as "List" rather than the implementation "ArrayList".(Ä•Şıÿÿÿÿ8®¬ëô1J$4c9ce7cb-14c0-40d9-936c-29d11a55bc48
+´
+java:S1319¢"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(¦™õ8®¬ëô1J$3a4a4408-8b92-4ebf-b22e-b14160087cc7
+¶
+java:S1319¦"mThe type of "encounterlist" should be an interface such as "List" rather than the implementation "ArrayList".(´ö¹ÿÿÿÿÿ8®¬ëô1J$41116847-c3d9-4d30-b558-1e5db5d751be
+°
+java:S1319«"lThe type of "providerlist" should be an interface such as "List" rather than the implementation "ArrayList".(¿ŒÌ8®¬ëô1J$afad93f9-bea4-4798-ab88-4992c78284f9
+´
+java:S1319¯"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(¡±Ø8®¬ëô1J$db8e6d43-b7ba-41f0-99b2-b4a6533a0604
+¼
+java:S1319´"sThe type of "updatedAppointments" should be an interface such as "List" rather than the implementation "ArrayList".(Ä®ôñÿÿÿÿÿ8¯¬ëô1J$2e2fc8c8-638a-4620-b70a-81e1119f02ca
+›	java:S116"ZRename this field "AppointmentList" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(´æ·38·¬ëô1J$a4b9990e-1e78-4331-84c6-47c9ddd37cf6
+ 
+java:S1450"^Remove the "AppointmentList" field and declare it as a local variable in the relevant methods.(´æ·38º¬ëô1J$59f2124f-b47e-4e20-aa25-68c8906dc68a
+ƒ	java:S125b"<This block of commented-out lines of code should be removed.(ÉŠÅ½øÿÿÿÿ8Â¬ëô1J$08cf9187-0cbd-4a0d-9c24-200b76ab113d
+~	java:S125f"<This block of commented-out lines of code should be removed.(‡ â8Ã¬ëô1J$9d7b383e-b28c-4aa5-aafa-f64a5cfdaef2
+ˆ
+java:S1128"ERemove this unused import 'com.emrmiddleware.api.dto.AppointmentDTO'.(¾šœí8É¬ëô1J$7b23f300-969a-49c3-b379-c7c387047d0c
+’
+java:S1128"ORemove this unused import 'com.emrmiddleware.authentication.CustomApplication'.(¢À•¡8Ê¬ëô1J$b39c024f-8720-4ead-8d04-9d066b10c569
+u
+java:S1068"3Remove this unused "AppointmentList" private field.(´æ·38Ë¬ëô1J$333f8df1-339b-4c8d-86eb-4133c29398b7

@@ -1,0 +1,89 @@
+
+t
+java:S2293&"YReplace the type specification in this constructor call with the diamond operator ("<>").(æ¨‰Ôúÿÿÿÿ
+k
+java:S1192‰"ODefine a constant instead of duplicating this literal "REST failed : " 3 times.(Ãš¡üÿÿÿÿ
+E
+java:S1066j"/Merge this if statement with the enclosing one.(“¯®¾
+‹
+java:S1319$"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(­“âôşÿÿÿÿ
+ˆ
+java:S1319$"mThe type of "encounterList" should be an interface such as "List" rather than the implementation "ArrayList".(­“âôşÿÿÿÿ
+e	java:S1177"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğ«Ğ
+
+java:S1488s"dImmediately return this expression instead of assigning it to the temporary variable "encounterdto".(Ÿ¼ÿµüÿÿÿÿ
+r
+java:S26296"\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(“ôĞÈ
+x
+java:S2629‚"\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(Çáë´ıÿÿÿÿ
+S
+java:S2629‰"7Use the built-in formatting to construct this argument.(Ãš¡üÿÿÿÿ
+S
+java:S2629Œ"7Use the built-in formatting to construct this argument.(Îòøıÿÿÿÿ
+x
+java:S2629 "\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(Ù·½«şÿÿÿÿ
+S
+java:S2629§"7Use the built-in formatting to construct this argument.(Ãš¡üÿÿÿÿ
+S
+java:S2629ª"7Use the built-in formatting to construct this argument.(İÖÙ®øÿÿÿÿ
+x
+java:S2629¹"\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(Çáë´ıÿÿÿÿ
+S
+java:S2629À"7Use the built-in formatting to construct this argument.(Ãš¡üÿÿÿÿ
+m
+java:S3776$"RRefactor this method to reduce its Cognitive Complexity from 25 to the 15 allowed.(­“âôşÿÿÿÿ
+]
+java:S18547"HRemove this useless assignment to local variable "encounterdto_present".(ğ«Ğ
+›
+java:S1130%"„Remove the declaration of thrown exception 'com.emrmiddleware.exception.ActionException', as it cannot be thrown from method's body.(‡¾­×
+=
+java:S11250"'Remove the unnecessary boolean literal.(Ø„˜
+W
+java:S34576"AFormat specifiers should be used instead of string concatenation.(“ôĞÈ
+V	java:S125@"<This block of commented-out lines of code should be removed.(Œ°µïøÿÿÿÿ
+B
+java:S1125B"'Remove the unnecessary boolean literal.(³°ììøÿÿÿÿ
+B
+java:S1125G"'Remove the unnecessary boolean literal.(¨¾õ­ıÿÿÿÿ
+B
+java:S1125N"'Remove the unnecessary boolean literal.(•«…»şÿÿÿÿ
+=
+java:S1125S"'Remove the unnecessary boolean literal.(Á‹Óá
+=
+java:S1125S"'Remove the unnecessary boolean literal.(Á‹Óá
+\
+java:S3457]"AFormat specifiers should be used instead of string concatenation.(ÅÇ±ıÿÿÿÿ
+\
+java:S2147‘"ECombine this catch with the one at line 141, which has the same body.(”ı¾
+]
+java:S3457‚"AFormat specifiers should be used instead of string concatenation.(Çáë´ıÿÿÿÿ
+]
+java:S3457‰"AFormat specifiers should be used instead of string concatenation.(Ãš¡üÿÿÿÿ
+]
+java:S3457Œ"AFormat specifiers should be used instead of string concatenation.(Îòøıÿÿÿÿ
+N
+java:S1135"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ
+\
+java:S2147¯"ECombine this catch with the one at line 171, which has the same body.(”ı¾
+]
+java:S3457 "AFormat specifiers should be used instead of string concatenation.(Ù·½«şÿÿÿÿ
+]
+java:S3457§"AFormat specifiers should be used instead of string concatenation.(Ãš¡üÿÿÿÿ
+]
+java:S3457ª"AFormat specifiers should be used instead of string concatenation.(İÖÙ®øÿÿÿÿ
+N
+java:S1135¬"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ
+]
+java:S3457¹"AFormat specifiers should be used instead of string concatenation.(Çáë´ıÿÿÿÿ
+\
+java:S2147È"ECombine this catch with the one at line 196, which has the same body.(”ı¾
+C
+java:S1125¾"'Remove the unnecessary boolean literal.(ØÈÖãùÿÿÿÿ
+]
+java:S3457À"AFormat specifiers should be used instead of string concatenation.(Ãš¡üÿÿÿÿ
+]
+java:S3457Ã"AFormat specifiers should be used instead of string concatenation.(…Ô¬¬şÿÿÿÿ
+N
+java:S1135Å"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ
+[
+java:S1128"@Remove this unused import 'com.emrmiddleware.api.dto.ObsAPIDTO'.(Éíˆöûÿÿÿÿ

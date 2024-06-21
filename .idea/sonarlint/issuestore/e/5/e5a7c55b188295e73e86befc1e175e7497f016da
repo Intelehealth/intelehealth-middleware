@@ -1,0 +1,12 @@
+
+	java:S112#"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8£İÒ²2J$1feb7d00-85cb-4188-af0f-59456f326dd0
+ˆ	java:S112"FDefine and throw a dedicated exception instead of using a generic one.( ‘Ãñ8£İÒ²2J$17a053e0-ba7e-478c-9af7-28ee21612051
+	java:S112*"FDefine and throw a dedicated exception instead of using a generic one.(ë°Èœşÿÿÿÿ8£İÒ²2J$30d97d42-879a-438e-ad13-bf6b9ef030f4
+§
+java:S1149/"_Replace the synchronized class "StringBuffer" by an unsynchronized one such as "StringBuilder".(¨âàøÿÿÿÿ8¨İÒ²2J$f0c2bb0b-5be2-4c2e-b947-2afd5f36ccba
+Å
+java:S1130"Remove the declaration of thrown exception 'com.emrmiddleware.exception.DAOException', as it cannot be thrown from method's body.( ‘Ãñ8ªİÒ²2J$7c5c47de-9c5e-4bb2-b05f-7285e501939e
+r
+java:S2093,"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ8¹İÒ²2J$66a830d4-1b59-40ff-8c6e-30cf8a888f5e
+r
+java:S1068"*Remove this unused "logger" private field.(Ø¥ ½üÿÿÿÿ8ÊİÒ²2J$b2097927-e2c4-42b7-9ba3-349497d877a8

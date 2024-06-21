@@ -1,0 +1,19 @@
+
+‘	java:S117?"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ìŸ“¦üÿÿÿÿJ$73f5e994-feb7-433c-b812-cbe074307c2f
+Œ	java:S117J"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(÷‰èòJ$c1bdedbb-cd40-4ae5-8ee3-bf1b0d82d760
+‘	java:S117o"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¦Ò‡·ıÿÿÿÿJ$b9d55f78-c7e8-419f-8139-09fe0048d028
+Œ	java:S117Ê"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(´¡`J$31ab94ea-33be-4fcf-b7ee-793ab1a366d6
+	java:S116	"URename this field "openmrs_id" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(™çø¨J$e0616ff0-0f3f-463a-8942-582f218ac91b
+“	java:S1165"XRename this field "patient_photo" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(í»ü…J$3c84523f-80c7-4f78-a033-1a93d89fefb0
+‘	java:S116D"VRename this field "abha_number" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(êÊ›J$68b74f50-9039-4b4a-910a-22e259076afd
+’	java:S116O"WRename this field "abha_address" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(­Åş‰J$24a94088-ce12-485b-a5f8-45e5a881e6ff
+‰	java:S100;"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(óãÃJ$9f1bba0c-871e-47ce-bb1f-a73c7c80c00e
+	java:S100?"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ìŸ“¦üÿÿÿÿJ$72eb16d2-cc3f-4ac0-8113-5979556136af
+	java:S100F"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ßÅ×•úÿÿÿÿJ$4ff9d636-8b1a-47ec-bdff-241491cd88bc
+‰	java:S100J"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(÷‰èòJ$d8ef7935-4652-4679-aa11-284a45898856
+‰	java:S100l"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ü‡ìÈJ$04b5c595-947f-43e2-9aea-d3f2b36d0f62
+	java:S100o"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¦Ò‡·ıÿÿÿÿJ$e4faf813-84f5-447b-992c-610ee1a0c06b
+	java:S100Ç"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ï†¤¦ùÿÿÿÿJ$f68f2dfc-517a-43ab-99b8-f8b03cd73fbf
+‰	java:S100Ê"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(´¡`J$1c3abaf7-c68f-402f-94f7-73cec045ed2f
+w
+java:S1128"6Remove this unused import 'javax.annotation.Nullable'.(—å¨ÍûÿÿÿÿJ$70ec0cfe-a33d-4727-bd03-7ba02cfb54f0

@@ -1,0 +1,44 @@
+
+o
+java:S2293%"YReplace the type specification in this constructor call with the diamond operator ("<>").(âÊú
+†
+java:S1319$"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(‚ĞÊÓ
+€
+java:S1319$"jThe type of "personList" should be an interface such as "List" rather than the implementation "ArrayList".(‚ĞÊÓ
+w
+java:S2629N"\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(òÿÁÛúÿÿÿÿ
+R
+java:S2629W"7Use the built-in formatting to construct this argument.(Ãš¡üÿÿÿÿ
+R
+java:S2629Z"7Use the built-in formatting to construct this argument.(Îòøıÿÿÿÿ
+r
+java:S2629i"\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(ıÆ¯Ö
+R
+java:S2629r"7Use the built-in formatting to construct this argument.(Ãš¡üÿÿÿÿ
+R
+java:S2629u"7Use the built-in formatting to construct this argument.(İÖÙ®øÿÿÿÿ
+›
+java:S1130$"„Remove the declaration of thrown exception 'com.emrmiddleware.exception.ActionException', as it cannot be thrown from method's body.(‚ĞÊÓ
+W
+java:S34578"AFormat specifiers should be used instead of string concatenation.( ³¶–
+V	java:S125:"<This block of commented-out lines of code should be removed.(¡äı şÿÿÿÿ
+\
+java:S3457N"AFormat specifiers should be used instead of string concatenation.(òÿÁÛúÿÿÿÿ
+Z
+java:S2147_"DCombine this catch with the one at line 91, which has the same body.(”ı¾
+\
+java:S3457W"AFormat specifiers should be used instead of string concatenation.(Ãš¡üÿÿÿÿ
+\
+java:S3457Z"AFormat specifiers should be used instead of string concatenation.(Îòøıÿÿÿÿ
+M
+java:S1135\"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ
+W
+java:S3457i"AFormat specifiers should be used instead of string concatenation.(ıÆ¯Ö
+[
+java:S2147z"ECombine this catch with the one at line 118, which has the same body.(”ı¾
+\
+java:S3457r"AFormat specifiers should be used instead of string concatenation.(Ãš¡üÿÿÿÿ
+\
+java:S3457u"AFormat specifiers should be used instead of string concatenation.(İÖÙ®øÿÿÿÿ
+M
+java:S1135w"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ

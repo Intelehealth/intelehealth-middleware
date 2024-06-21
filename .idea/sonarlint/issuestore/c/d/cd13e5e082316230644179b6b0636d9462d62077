@@ -1,0 +1,20 @@
+
+‹
+java:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(çÿ†¢þÿÿÿÿ
+€
+java:S1319"eThe type of "names" should be an interface such as "List" rather than the implementation "ArrayList".(®žÚüûÿÿÿÿ
+†
+java:S1319("pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(‹ÔŒÓ
+…
+java:S1319+"jThe type of "attributes" should be an interface such as "List" rather than the implementation "ArrayList".(ÀÚêëÿÿÿÿÿ
+‹
+java:S1319."pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(ÏŸ§ªÿÿÿÿÿ
+
+java:S13191"iThe type of "addresses" should be an interface such as "List" rather than the implementation "ArrayList".(è„ç‘
+o
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(â’’õ
+t
+java:S2293
+"YReplace the type specification in this constructor call with the diamond operator ("<>").(«“ÏŠþÿÿÿÿ
+t
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÏòÉ©ýÿÿÿÿ

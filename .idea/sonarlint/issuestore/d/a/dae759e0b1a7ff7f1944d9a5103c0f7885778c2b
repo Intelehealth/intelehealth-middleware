@@ -1,0 +1,9 @@
+
+t
+java:S2293)"YReplace the type specification in this constructor call with the diamond operator ("<>").(Æ¿’„ûÿÿÿÿ
+‹
+java:S1319%"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(ßÓò©þÿÿÿÿ
+s
+java:S2139"XEither log this exception and handle it, or rethrow it with some contextual information.(ûÀ¹ßúÿÿÿÿ
+s
+java:S21391"XEither log this exception and handle it, or rethrow it with some contextual information.(ûÀ¹ßúÿÿÿÿ

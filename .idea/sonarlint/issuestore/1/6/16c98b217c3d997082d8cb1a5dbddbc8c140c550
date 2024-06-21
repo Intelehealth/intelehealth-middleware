@@ -1,54 +1,56 @@
 
-š
-java:S2293&"YReplace the type specification in this constructor call with the diamond operator ("<>").(€•èçûÿÿÿÿJ$3230f624-1a12-4e50-90d6-406977fcf91b
-š
-java:S2293'"YReplace the type specification in this constructor call with the diamond operator ("<>").(ØˆÛÅşÿÿÿÿJ$5bb216c7-c9fe-4457-9266-3ad9770fa92c
-•
-java:S2293("YReplace the type specification in this constructor call with the diamond operator ("<>").(ª×ùJ$2886c450-cf4e-4394-ac42-a0c06f20f6c3
-•
-java:S2293)"YReplace the type specification in this constructor call with the diamond operator ("<>").(–Œ©ÌJ$403a69e1-564a-4663-86e3-84541770b00b
-š
-java:S2293*"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÁÎàûÿÿÿÿJ$65cde1dd-94de-4698-9ae1-4e3148ce26a7
-š
-java:S2293+"YReplace the type specification in this constructor call with the diamond operator ("<>").(Æ¿’„ûÿÿÿÿJ$963ce51d-80c8-4267-a351-f56565f45803
-š
-java:S2293,"YReplace the type specification in this constructor call with the diamond operator ("<>").(é’É­øÿÿÿÿJ$81da5e03-ab0a-47c6-bdfb-bd1aaeac77c9
-š
-java:S2293-"YReplace the type specification in this constructor call with the diamond operator ("<>").(ëñ±‚üÿÿÿÿJ$e2197ad6-368e-45cc-8673-c72ee29f19c6
-•
-java:S2293."YReplace the type specification in this constructor call with the diamond operator ("<>").(ˆª¸êJ$495249fb-c54d-4e83-922e-d08de7eed2c5
-š
-java:S2293/"YReplace the type specification in this constructor call with the diamond operator ("<>").(ä€™±ıÿÿÿÿJ$ab13adfa-889f-44b3-83c7-9570a1b2989c
-š
-java:S22930"YReplace the type specification in this constructor call with the diamond operator ("<>").(ñ´Å‡úÿÿÿÿJ$b2cefe51-1deb-4783-aaa2-7951661f67b7
-š
-java:S22931"YReplace the type specification in this constructor call with the diamond operator ("<>").(ôš«ÓûÿÿÿÿJ$12747195-c503-49b9-bf08-aa88c54b83b8
+¡
+java:S2293%"YReplace the type specification in this constructor call with the diamond operator ("<>").(€•èçûÿÿÿÿ8äÀòô1J$e8301003-2a9c-4675-a055-50d79a774857
+¡
+java:S2293&"YReplace the type specification in this constructor call with the diamond operator ("<>").(ØˆÛÅşÿÿÿÿ8åÀòô1J$a4b0b1dd-b1b1-48fa-bcee-6cb5b5d7bb78
+œ
+java:S2293'"YReplace the type specification in this constructor call with the diamond operator ("<>").(ª×ù8çÀòô1J$bd2082ac-f3bd-4fc8-bb62-5542ce593506
+œ
+java:S2293("YReplace the type specification in this constructor call with the diamond operator ("<>").(–Œ©Ì8èÀòô1J$7db7d1fd-08a2-4b45-a654-d42656858527
+¡
+java:S2293)"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÁÎàûÿÿÿÿ8éÀòô1J$9c7ddc17-fce2-487d-8248-987dd0c4654e
+¡
+java:S2293*"YReplace the type specification in this constructor call with the diamond operator ("<>").(Æ¿’„ûÿÿÿÿ8ëÀòô1J$d6b60cf4-66a7-4300-af78-71d00f215718
+¡
+java:S2293+"YReplace the type specification in this constructor call with the diamond operator ("<>").(é’É­øÿÿÿÿ8ëÀòô1J$ff4ad4ba-399a-4edd-8c07-b340c7cf0d96
+¡
+java:S2293,"YReplace the type specification in this constructor call with the diamond operator ("<>").(ëñ±‚üÿÿÿÿ8ëÀòô1J$af964e9a-ac6a-450b-ba71-98874d541018
+œ
+java:S2293-"YReplace the type specification in this constructor call with the diamond operator ("<>").(ˆª¸ê8ëÀòô1J$7b79af87-c5a9-46ff-b0fb-efa6b4f50eb9
+¡
+java:S2293."YReplace the type specification in this constructor call with the diamond operator ("<>").(ä€™±ıÿÿÿÿ8ëÀòô1J$0049de0f-08f9-4dd5-af9f-f6badfd0bafa
+¡
+java:S2293/"YReplace the type specification in this constructor call with the diamond operator ("<>").(ñ´Å‡úÿÿÿÿ8ëÀòô1J$84f1fb3c-aa82-464f-a13a-96a6bb8a3ce5
+¡
+java:S22930"YReplace the type specification in this constructor call with the diamond operator ("<>").(ôš«Óûÿÿÿÿ8ëÀòô1J$37f468a2-468b-4a10-856f-35f5257971b5
+
+java:S18540"GRemove this useless assignment to local variable "visitAttributesList".(ôš«Óûÿÿÿÿ8ûÀòô1J$27d11194-6553-4560-ae2a-cf6c1da9d518
+’
+java:S1854/"JRemove this useless assignment to local variable "visitAttributeTypeList".(ñ´Å‡úÿÿÿÿ8üÀòô1J$c2cc32cf-b374-49ba-9af3-d38b05e75a9c
+‘
+java:S1854."IRemove this useless assignment to local variable "providerAttributeList".(ä€™±ıÿÿÿÿ8şÀòô1J$8fddbd5e-19ac-4289-a21c-083377614cb4
+
+java:S1854-"MRemove this useless assignment to local variable "providerAttributeTypeList".(ˆª¸ê8€Áòô1J$bf4ab945-6ec2-43bd-b7be-ac95611ebbcc
 ˆ
-java:S18541"GRemove this useless assignment to local variable "visitAttributesList".(ôš«ÓûÿÿÿÿJ$52040e51-9c9d-4bc9-b32c-40b771fa6cfa
-‹
-java:S18540"JRemove this useless assignment to local variable "visitAttributeTypeList".(ñ´Å‡úÿÿÿÿJ$378f7871-4b68-436e-93ef-34d282a98f68
-Š
-java:S1854/"IRemove this useless assignment to local variable "providerAttributeList".(ä€™±ıÿÿÿÿJ$eefc1e53-80e6-4658-a0fa-7a6b09e74ab2
+java:S1854,"@Remove this useless assignment to local variable "providerlist".(ëñ±‚üÿÿÿÿ8Áòô1J$45fdb0f9-e993-48d8-a478-c0d93b80bb29
+ˆ
+java:S1854+"@Remove this useless assignment to local variable "locationlist".(é’É­øÿÿÿÿ8ƒÁòô1J$611efb11-8b2d-4b65-8560-5b4f38d08366
+ƒ
+java:S1854*";Remove this useless assignment to local variable "obslist".(Æ¿’„ûÿÿÿÿ8ƒÁòô1J$bc89e0e1-4f01-49d9-8377-a8a280cf0cb2
 ‰
-java:S1854."MRemove this useless assignment to local variable "providerAttributeTypeList".(ˆª¸êJ$e00d3b0c-fcca-4738-885b-8b602f7a9db4
-
-java:S1854-"@Remove this useless assignment to local variable "providerlist".(ëñ±‚üÿÿÿÿJ$3d392546-ac0a-40f0-b88d-3b71a14ebc69
-
-java:S1854,"@Remove this useless assignment to local variable "locationlist".(é’É­øÿÿÿÿJ$2286f216-a4c5-44be-88ec-a52b198bdf34
-|
-java:S1854+";Remove this useless assignment to local variable "obslist".(Æ¿’„ûÿÿÿÿJ$e5107b48-bcfe-4318-96e1-b663cae96d5f
-‚
-java:S1854*"ARemove this useless assignment to local variable "encounterlist".(ÁÎàûÿÿÿÿJ$6fa362c0-4cce-409e-a1db-73c2266c6f14
-y
-java:S1854)"=Remove this useless assignment to local variable "visitlist".(–Œ©ÌJ$b71c043e-f9f0-46d7-8060-20b0c6ea4d78
-…
-java:S1854("IRemove this useless assignment to local variable "patientAttributesList".(ª×ùJ$96333f4b-b1be-4d7c-9100-05cc0f56b573
-
-java:S1854'"LRemove this useless assignment to local variable "patientAttributeTypeList".(ØˆÛÅşÿÿÿÿJ$37f08d40-18a8-4539-bfa4-24c6050eb796
+java:S1854)"ARemove this useless assignment to local variable "encounterlist".(ÁÎàûÿÿÿÿ8ƒÁòô1J$b5b92287-5483-4d81-8570-1641b8c2ae27
 €
-java:S1854&"?Remove this useless assignment to local variable "patientlist".(€•èçûÿÿÿÿJ$2fb5aa0c-96ad-4206-8a04-10efb5b1c861
-|	java:S1251"<This block of commented-out lines of code should be removed.(ôš«ÓûÿÿÿÿJ$bf9fa908-a414-473c-95d5-551bc595c00c
-|	java:S1259"<This block of commented-out lines of code should be removed.(ıÌ‹†úÿÿÿÿJ$81caf5dd-761e-495e-acc0-6567b8e3ede4
-|	java:S125?"<This block of commented-out lines of code should be removed.(Ÿí‰ÉüÿÿÿÿJ$0bee536e-4754-43fd-8486-19ed2c48018f
-|	java:S125B"<This block of commented-out lines of code should be removed.(¬ó˜¬üÿÿÿÿJ$644eb7d2-34a3-4d7b-b424-a9dfd6b24ae1
-w	java:S125`"<This block of commented-out lines of code should be removed.(§ÿËÛJ$cf8adede-231c-4737-9ea0-9ec3c3d70a6a
+java:S1854("=Remove this useless assignment to local variable "visitlist".(–Œ©Ì8ƒÁòô1J$3d15c9b3-ae40-420f-9581-1f77881b4230
+Œ
+java:S1854'"IRemove this useless assignment to local variable "patientAttributesList".(ª×ù8ƒÁòô1J$4e496272-9643-42ef-94b9-67f2668c524a
+”
+java:S1854&"LRemove this useless assignment to local variable "patientAttributeTypeList".(ØˆÛÅşÿÿÿÿ8ƒÁòô1J$5957d5d1-5ba5-4cdf-b0fc-cd1d53ce592a
+‡
+java:S1854%"?Remove this useless assignment to local variable "patientlist".(€•èçûÿÿÿÿ8ƒÁòô1J$450989eb-eeab-495b-9a51-b8dce44c954f
+ƒ	java:S1250"<This block of commented-out lines of code should be removed.(ôš«Óûÿÿÿÿ8Áòô1J$3189b570-7c1e-43e9-9573-394e8777defc
+ƒ	java:S1259"<This block of commented-out lines of code should be removed.(ıÌ‹†úÿÿÿÿ8‘Áòô1J$53c04430-1b45-4e36-b5bd-848f8919d714
+ƒ	java:S125?"<This block of commented-out lines of code should be removed.(Ÿí‰Éüÿÿÿÿ8”Áòô1J$462d1e0d-7250-491b-ba57-5292b2ad60a5
+ƒ	java:S125B"<This block of commented-out lines of code should be removed.(¬ó˜¬üÿÿÿÿ8–Áòô1J$d8778a8c-40f9-47ec-aea0-8773c5952fbf
+~	java:S125`"<This block of commented-out lines of code should be removed.(§ÿËÛ8›Áòô1J$46f2829f-d292-4578-ab2d-a70281b93476
+z
+java:S1128"7Remove this unused import 'com.google.gson.JsonObject'.(µÊ´½8øî××õ1J$41e333e9-a20b-4f27-8863-dfafec1190f9
