@@ -42,7 +42,7 @@ public class ResourcesEnvironment {
 		String Base_URL = "";
 
 		String host;
-        host = "https://bmgf.intelehealth.org:3004";
+        host = "https://dev.intelehealth.org:3004";
         Base_URL=host+"/api/";
 
 		return Base_URL;

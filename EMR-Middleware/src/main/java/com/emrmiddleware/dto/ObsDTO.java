@@ -20,6 +20,7 @@ public class ObsDTO {
 
 	public String comment;
 
+private String interpretation; //Adding for distinguishing diagnsotic concepts from vitals
 
 	
 	public String getObsServerModifiedDate() {
@@ -65,6 +66,13 @@ public class ObsDTO {
 	public void setCreator(int creator) {
 		this.creator = creator;
 	}
-	
 
+
+	public String getInterpretation() {
+		return interpretation;
+	}
+
+	public void setInterpretation(String interpretation) {
+		this.interpretation = interpretation;
+	}
 }

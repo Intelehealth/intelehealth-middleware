@@ -20,6 +20,15 @@ public class ObsAPIDTO {
 
     public String comment;
 
+    public String getInterpretation() {
+        return interpretation;
+    }
+
+    public void setInterpretation(String interpretation) {
+        this.interpretation = interpretation;
+    }
+
+    public String interpretation; // Added for distinguishing diagnostics from vitals
 
     public String getUuid() {
         return uuid;

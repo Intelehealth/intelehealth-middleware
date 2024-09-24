@@ -3,6 +3,8 @@ package com.emrmiddleware.dao;
 
 
 import java.util.ArrayList;
+
+import com.emrmiddleware.dto.*;
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -11,9 +13,6 @@ import org.slf4j.LoggerFactory;
 
 import com.emrmiddleware.conf.DBconfig;
 import com.emrmiddleware.dmo.VisitDMO;
-import com.emrmiddleware.dto.VisitAttributeDTO;
-import com.emrmiddleware.dto.VisitAttributeTypeDTO;
-import com.emrmiddleware.dto.VisitDTO;
 import com.emrmiddleware.exception.DAOException;
 
 public class VisitDAO {
@@ -129,7 +128,47 @@ public class VisitDAO {
 			session.close();
 		}
 	}
-	
+
+	public ArrayList<ConceptAttributeTypeDTO> getConceptAttributeTypeMaster(String lastpulldatatime) throws DAOException {
+
+		SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
+
+		SqlSession session = sessionfactory.openSession();
+		ArrayList<ConceptAttributeTypeDTO> conceptAttributeMasterList= new ArrayList<ConceptAttributeTypeDTO>();
+		try {
+
+			VisitDMO visitdmo = session.getMapper(VisitDMO.class);
+
+			conceptAttributeMasterList = visitdmo.getConceptAttributeTypeMaster(lastpulldatatime);
+
+			return conceptAttributeMasterList;
+		} catch (PersistenceException e) {
+			logger.error(e.getMessage(),e);
+			throw new DAOException(e.getMessage(), e);
+		} finally {
+			session.close();
+		}
+	}
+
+	public ArrayList<ConceptAttributeDTO> getConceptAttributes(String lastpulldatatime) throws DAOException {
+
+		SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
+		SqlSession session = sessionfactory.openSession();
+		ArrayList<ConceptAttributeDTO> conceptAttributesList= new ArrayList<ConceptAttributeDTO>();
+		try {
+
+			VisitDMO visitdmo = session.getMapper(VisitDMO.class);
+
+			conceptAttributesList = visitdmo.getConceptAttributes(lastpulldatatime);
+
+			return conceptAttributesList;
+		} catch (PersistenceException e) {
+			logger.error(e.getMessage(),e);
+			throw new DAOException(e.getMessage(), e);
+		} finally {
+			session.close();
+		}
+	}
 
 }
 

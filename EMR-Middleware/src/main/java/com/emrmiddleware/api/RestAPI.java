@@ -1,9 +1,6 @@
 package com.emrmiddleware.api;
 
-import com.emrmiddleware.api.dto.EncounterAPIDTO;
-import com.emrmiddleware.api.dto.PatientAPIDTO;
-import com.emrmiddleware.api.dto.PersonAPIDTO;
-import com.emrmiddleware.api.dto.VisitAPIDTO;
+import com.emrmiddleware.api.dto.*;
 import com.emrmiddleware.dto.CustomAppointmentDTO;
 import com.emrmiddleware.dto.PatientDTO;
 
@@ -41,6 +38,9 @@ public interface RestAPI {
    
    @POST("visit/{uuid}")
    Call<ResponseBody> editVisit(@Path("uuid") String uuid,@Body VisitAPIDTO visitapidto);
+
+   @POST("visit/{uuid}/attribute")
+   Call<ResponseBody> addVisitAttribute(@Path("uuid") String uuid,@Body AttributeAPIDTO visitattributedto);
    
    @POST("encounter")
    Call<ResponseBody> addEncounter(@Body EncounterAPIDTO encounterapidto);
@@ -57,4 +57,6 @@ public interface RestAPI {
    @POST("appointment/rescheduleAppointment")
    Call<ResponseBody> editAppointment(@Body CustomAppointmentDTO appointmentdto);
 
+   @POST("links/shortLink")
+   Call <ResponseBody> generateShortLink(@Body LinkDTO linkdto);
 }

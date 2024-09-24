@@ -51,7 +51,7 @@ public class EncounterAction {
 					voided = 0;
 				}
 				encounterforerror = encounter;
-				logger.info("Encounter json : " + gson.toJson(encounter));
+				logger.info("Encounter json : {} ",  gson.toJson(encounter));
 				EncounterDTO encounterdto_present = new EncounterDTO();
 				encounterdto_present = getEncounter(encounter.getUuid());
 				// to prevent multiple hit to DB

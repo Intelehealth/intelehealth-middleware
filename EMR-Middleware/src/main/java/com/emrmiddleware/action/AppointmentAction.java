@@ -46,17 +46,17 @@ public class AppointmentAction {
 
                     Response<ResponseBody> response = addAppointment.execute();
 
-                    logger.info("Appl" + String.valueOf(response.code()));
+                  //  logger.info("Appl " + String.valueOf(response.code()));
                     logger.info(response.message());
                     if (response.isSuccessful()) {
                         val = response.body().string();
                         appointment.setSyncd(true);
                     } else {
                         val = response.errorBody().string();
-                        logger.error("REST failed : " + val);
+                        logger.error("REST failed : {}", val);
                         return false;
                     }
-                    logger.info("Response is : " + val);
+                    logger.info(String.format("Response is : %s", val));
                 }
                 else {
                     Call<ResponseBody> addAppointment = restapiintf.editAppointment(appointment);
@@ -67,10 +67,10 @@ public class AppointmentAction {
                         appointment.setSyncd(true);
                     } else {
                         val = response.errorBody().string();
-                        logger.error("REST failed : " + val);
+                        logger.error("REST failed : {}", val);
                         return false;
                     }
-                    logger.info("Response is : " + val);
+                    logger.info("Response is : {} " , val);
                 }
             }
         } catch (IOException | NullPointerException e) {

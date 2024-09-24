@@ -1,9 +1,10 @@
 package com.emrmiddleware.action;
 
 import java.io.IOException;
-import java.text.MessageFormat;
-import java.util.ArrayList;
+import java.util.*;
 
+import com.emrmiddleware.api.dto.AttributeAPIDTO;
+import com.emrmiddleware.api.dto.LinkDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,10 +16,13 @@ import com.emrmiddleware.dto.VisitDTO;
 import com.emrmiddleware.exception.ActionException;
 import com.emrmiddleware.exception.DAOException;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
+
 
 import static java.text.MessageFormat.*;
 
@@ -77,19 +81,29 @@ public class VisitAction {
 	private boolean addVisitOpenMRS(VisitAPIDTO visitapidto) {
 		Gson gson = new Gson();
 		String val = "";
-		logger.info("visit value : " + gson.toJson(visitapidto));
+        logger.info("visit value : {}", gson.toJson(visitapidto));
 
 		try {
 			Call<ResponseBody> callvisit = restapiintf.addVisit(visitapidto);
 			Response<ResponseBody> response = callvisit.execute();
 			if (response.isSuccessful()) {
 				val = response.body().string();
+
+				JsonObject jsonObject = new JsonParser().parse(val).getAsJsonObject();
+				// Assuming the JSON structure is {"key": "value"}
+				String visitUUID = jsonObject.get("uuid").getAsString();
+				logger.info("Visit UUID after insertion {}",visitUUID);
+				LinkAction linkAction = new LinkAction(authString);
+				LinkDTO linkDTO = new LinkDTO();
+				linkDTO.setLink("/i/"+visitUUID);
+				linkAction.genLink(linkDTO);
+
 			} else {
 				val = response.errorBody().string();
-				logger.error("REST failed : " + val);
+				logger.error("REST failed : {}" , val);
 				return false;
 			}
-			logger.info("Response is : " + val);
+			logger.info("Response is : {}",  val);
 		} catch (IOException | NullPointerException e) {
 			logger.error(e.getMessage(), e);
 			return false;
@@ -115,10 +129,10 @@ public class VisitAction {
 				val = response.body().string();
 			} else {
 				val = response.errorBody().string();
-				logger.error("REST failed : " + val);
+				logger.error(String.format("REST failed : %s", val));
 				return false;
 			}
-			logger.info("Response for edit is : " + val);
+            logger.info("Response for edit is : {}", val);
 		} catch (IOException | NullPointerException e) {
 			// TODO Auto-generated catch block
 			logger.error(e.getMessage(), e);
@@ -130,4 +144,17 @@ public class VisitAction {
 		return true;
 	}
 
+
+	public void addSummaryLink(String visitUUID, AttributeAPIDTO attributeAPIDTO) {
+		try{
+			Call<ResponseBody> callvisit = restapiintf.addVisitAttribute(visitUUID, attributeAPIDTO);
+
+		Response<ResponseBody> response = callvisit.execute();
+		String val = response.body().string();
+		logger.info("Response of addSummaryLink is : {}",val);
+		}
+		catch (IOException e){
+			logger.error("Exception in addSummaryLink {}", e.getMessage());
+		}
+	}
 }

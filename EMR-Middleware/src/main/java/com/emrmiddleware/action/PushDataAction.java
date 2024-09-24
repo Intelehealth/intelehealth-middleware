@@ -50,6 +50,7 @@ public class PushDataAction {
 			AppointmentAction appointmentAction = new AppointmentAction(authString);
 
 
+
 			if (personList != null) {
 				ArrayList<PersonDTO> persons = personaction.setPersons(personList);
 				pulldatadto.setPersonList(persons);

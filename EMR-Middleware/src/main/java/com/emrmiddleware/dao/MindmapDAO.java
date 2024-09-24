@@ -26,7 +26,7 @@ public class MindmapDAO {
         try {
            MindmapDMO mindmapDMO = session.getMapper(MindmapDMO.class);
           String fname = mindmapDMO.getConfigFileName();
-          String json =  readUrl("https://bmgf.intelehealth.org:4004/configs/"+fname);
+          String json =  readUrl("https://dev.intelehealth.org:4004/configs/"+fname);
 
             Gson gson = new Gson();
             configFileContent = gson.fromJson(json, JsonObject.class);

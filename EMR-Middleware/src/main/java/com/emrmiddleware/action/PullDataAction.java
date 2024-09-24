@@ -4,19 +4,7 @@ import java.util.ArrayList;
 
 import com.emrmiddleware.dao.*;
 import com.emrmiddleware.dao.MindmapDAO;
-import com.emrmiddleware.dto.EncounterDTO;
-import com.emrmiddleware.dto.LocationDTO;
-import com.emrmiddleware.dto.ObsDTO;
-import com.emrmiddleware.dto.PatientAttributeDTO;
-import com.emrmiddleware.dto.PatientAttributeTypeDTO;
-import com.emrmiddleware.dto.PatientDTO;
-import com.emrmiddleware.dto.ProviderAttributeDTO;
-import com.emrmiddleware.dto.ProviderAttributeTypeDTO;
-import com.emrmiddleware.dto.ProviderDTO;
-import com.emrmiddleware.dto.PullDataDTO;
-import com.emrmiddleware.dto.VisitAttributeDTO;
-import com.emrmiddleware.dto.VisitAttributeTypeDTO;
-import com.emrmiddleware.dto.VisitDTO;
+import com.emrmiddleware.dto.*;
 import com.emrmiddleware.exception.ActionException;
 import com.emrmiddleware.exception.DAOException;
 import com.google.gson.JsonObject;
@@ -45,6 +33,12 @@ public class PullDataAction {
 		ArrayList<ProviderAttributeTypeDTO> providerAttributeTypeList = new ArrayList<ProviderAttributeTypeDTO>();
 		ArrayList<ProviderAttributeDTO>  providerAttributeList = new ArrayList<ProviderAttributeDTO>();
 		ArrayList<VisitAttributeTypeDTO> visitAttributeTypeList = new ArrayList<VisitAttributeTypeDTO>();
+
+		ConceptDAO conceptdao = new ConceptDAO();
+		ArrayList<ConceptDTO> conceptlist = new ArrayList<ConceptDTO>();
+		ArrayList<ConceptAttributeTypeDTO> conceptAttributeTypeList = new ArrayList<ConceptAttributeTypeDTO>();
+		ArrayList<ConceptAttributeDTO> conceptAttributesList = new ArrayList<ConceptAttributeDTO>();
+
 		ArrayList<VisitAttributeDTO> visitAttributesList = new ArrayList<VisitAttributeDTO>();//try {
 		pulldata.setPropertyContents(mindmapDAO.getConfigFile()); // Config file
 			int offset = 0 ;
@@ -75,6 +69,9 @@ public class PullDataAction {
 			providerAttributeTypeList = providerdao.getProviderAttributeTypeMaster(lastpulldatatime);
 			providerAttributeList = providerdao.getProviderAttributes(lastpulldatatime);
 
+			conceptAttributeTypeList = visitdao.getConceptAttributeTypeMaster(lastpulldatatime);
+			conceptAttributesList = visitdao.getConceptAttributes(lastpulldatatime);
+
 			pulldata.setLocationlist(locationlist);
 			pulldata.setPatientlist(patientlist);
 			pulldata.setPatientAttributeTypeListMaster(patientAttributeTypeList);
@@ -87,6 +84,8 @@ public class PullDataAction {
 			pulldata.setVisitAttributeList(visitAttributesList);
 			pulldata.setEncounterlist(encounterlist);
 			pulldata.setObslist(obslist);
+			pulldata.setConceptAttributeTypeList(conceptAttributeTypeList);
+			pulldata.setConceptAttributeList(conceptAttributesList);
 
 				int patientCount = patientdao.getPatientsCount(lastpulldatatime, locationuuid);
 				int visitCount = visitdao.getVisitCount(lastpulldatatime, locationuuid);
