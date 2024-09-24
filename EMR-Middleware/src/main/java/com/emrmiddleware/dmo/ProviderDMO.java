@@ -49,11 +49,7 @@ public interface ProviderDMO {
 			+ "        pr.voided, "
 			+ "        ur.role "
 			+ "order by p.provider_id")
-	//		ArrayList<ProviderDTO> getProviders(@Param("lastchangedtime") String lastpulldatatime);
-	//public ArrayList<ProviderDTO> getProviders(@Param("lastchangedtime") String lastpulldatatime);
 	public ArrayList<ProviderDTO> getProviders();
-
-
 
 	@Select("select uuid as uuid,name,retired from provider_attribute_type where COALESCE(date_changed,date_created)>=#{lastchangedtime}")
 	public ArrayList<ProviderAttributeTypeDTO> getProviderAttributeTypeMaster(@Param("lastchangedtime") String lastpulldatatime);
