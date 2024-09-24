@@ -1,44 +1,44 @@
 
-
-java:S1319"nThe type of "appointmentdto" should be an interface such as "List" rather than the implementation "ArrayList".(¹ü“Ûşÿÿÿÿ8—€Ó²2
-N
-java:S11531"1Directly append the argument of String.valueOf().(®úºØ8™€Ó²2
-~
-java:S2629)"\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(¡¨¦Šüÿÿÿÿ8€Ó²2
-A
-java:S2629,"$Invoke method(s) only conditionally.(Œ§Å”8€Ó²2
-y
-java:S26291"\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(®úºØ8¡€Ó²2
-A
-java:S26292"$Invoke method(s) only conditionally.(™Áí·8¢€Ó²2
-Y
-java:S26298"7Use the built-in formatting to construct this argument.(Ãš¡üÿÿÿÿ8¢€Ó²2
-Y
-java:S2629;"7Use the built-in formatting to construct this argument.(Îòøıÿÿÿÿ8¢€Ó²2
-A
-java:S2629@"$Invoke method(s) only conditionally.(™Áí·8¢€Ó²2
-Y
-java:S2629F"7Use the built-in formatting to construct this argument.(Ãš¡üÿÿÿÿ8¢€Ó²2
-Y
-java:S2629I"7Use the built-in formatting to construct this argument.(Îòøıÿÿÿÿ8¢€Ó²2
-V
-java:S3416"4Update this logger to use "AppointmentAction.class".(É×Â•ùÿÿÿÿ8¢€Ó²2
-]	java:S125"<This block of commented-out lines of code should be removed.(†Ò†øÿÿÿÿ8«€Ó²2
-a
-java:S2147P"DCombine this catch with the one at line 76, which has the same body.(”ı¾8¼€Ó²2
-c
-java:S3457)"AFormat specifiers should be used instead of string concatenation.(¡¨¦Šüÿÿÿÿ8Ê€Ó²2
-^
-java:S34571"AFormat specifiers should be used instead of string concatenation.(®úºØ8Ú€Ó²2
-c
-java:S34578"AFormat specifiers should be used instead of string concatenation.(Ãš¡üÿÿÿÿ8Ş€Ó²2
-c
-java:S3457;"AFormat specifiers should be used instead of string concatenation.(Îòøıÿÿÿÿ8à€Ó²2
-c
-java:S3457F"AFormat specifiers should be used instead of string concatenation.(Ãš¡üÿÿÿÿ8€Ó²2
-c
-java:S3457I"AFormat specifiers should be used instead of string concatenation.(Îòøıÿÿÿÿ8…Ó²2
-T
-java:S1135M"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ8†Ó²2
-b
-java:S1128"ERemove this unused import 'com.emrmiddleware.api.dto.AppointmentDTO'.(¾šœí8‡Ó²2
+¶
+java:S1319"nThe type of "appointmentdto" should be an interface such as "List" rather than the implementation "ArrayList".(¹ü“Ûşÿÿÿÿ8—€Ó²2J$d88b84ab-1a11-43a8-9fd7-48b5e4a1b8e9
+t
+java:S11531"1Directly append the argument of String.valueOf().(®úºØ8™€Ó²2J$c1e375d8-2a61-444e-951f-6a6bb63d1502
+¤
+java:S2629)"\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(¡¨¦Šüÿÿÿÿ8€Ó²2J$f76d99de-4795-4c12-9016-d2ea6cc32427
+g
+java:S2629,"$Invoke method(s) only conditionally.(Œ§Å”8€Ó²2J$5d38b210-61fd-4af6-9d65-26b2bf81b5a5
+Ÿ
+java:S26291"\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(®úºØ8¡€Ó²2J$aaf35f2e-3b4d-4661-a242-c21a032b0f86
+g
+java:S26292"$Invoke method(s) only conditionally.(™Áí·8¢€Ó²2J$e5538a01-f2a1-41a0-ab58-cf3458876586
+
+java:S26298"7Use the built-in formatting to construct this argument.(Ãš¡üÿÿÿÿ8¢€Ó²2J$ba5e5d7c-acfb-4193-ad87-67f4b5f315e7
+
+java:S2629;"7Use the built-in formatting to construct this argument.(Îòøıÿÿÿÿ8¢€Ó²2J$3e1ae604-3467-4277-abcc-a16568950311
+g
+java:S2629@"$Invoke method(s) only conditionally.(™Áí·8¢€Ó²2J$9d899b8e-381f-4d38-b5da-7dd31366dda1
+
+java:S2629F"7Use the built-in formatting to construct this argument.(Ãš¡üÿÿÿÿ8¢€Ó²2J$9cb30b0c-d623-4ecf-a13d-25e4afcb700f
+
+java:S2629I"7Use the built-in formatting to construct this argument.(Îòøıÿÿÿÿ8¢€Ó²2J$2f4a168e-74c3-4d1b-99c1-477cad60921e
+|
+java:S3416"4Update this logger to use "AppointmentAction.class".(É×Â•ùÿÿÿÿ8¢€Ó²2J$18c9fa66-ed89-46b8-a677-07d639c663ae
+ƒ	java:S125"<This block of commented-out lines of code should be removed.(†Ò†øÿÿÿÿ8«€Ó²2J$2f757d3b-f2e2-4731-9f71-ae015399408f
+‡
+java:S2147P"DCombine this catch with the one at line 76, which has the same body.(”ı¾8¼€Ó²2J$42b7410c-fc4e-41da-bd72-1ce5b3da8a8b
+‰
+java:S3457)"AFormat specifiers should be used instead of string concatenation.(¡¨¦Šüÿÿÿÿ8Ê€Ó²2J$d2914cae-0acf-4cf4-a032-f263ee347f52
+„
+java:S34571"AFormat specifiers should be used instead of string concatenation.(®úºØ8Ú€Ó²2J$ff63bbf2-c34a-49e8-b00a-de6dba08b2dc
+‰
+java:S34578"AFormat specifiers should be used instead of string concatenation.(Ãš¡üÿÿÿÿ8Ş€Ó²2J$e6d46515-7947-4db7-8aaf-03158d7d9fba
+‰
+java:S3457;"AFormat specifiers should be used instead of string concatenation.(Îòøıÿÿÿÿ8à€Ó²2J$fa2671f6-f8b8-4a2f-bf64-d7291cd24a98
+‰
+java:S3457F"AFormat specifiers should be used instead of string concatenation.(Ãš¡üÿÿÿÿ8€Ó²2J$23ec0b42-7a5c-4e11-b4ed-2418c5b3ef5e
+‰
+java:S3457I"AFormat specifiers should be used instead of string concatenation.(Îòøıÿÿÿÿ8…Ó²2J$a23a620c-dff6-49c7-b696-83cbbd668972
+z
+java:S1135M"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ8†Ó²2J$5cb59f49-e8c1-407b-b95c-75ab3e7c8da2
+ˆ
+java:S1128"ERemove this unused import 'com.emrmiddleware.api.dto.AppointmentDTO'.(¾šœí8‡Ó²2J$895a5907-ac45-41b7-8ccb-3e366625384f

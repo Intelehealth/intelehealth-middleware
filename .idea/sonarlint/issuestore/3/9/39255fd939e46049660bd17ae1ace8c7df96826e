@@ -3,25 +3,25 @@ T
 java:S2629="7Use the built-in formatting to construct this argument.(¤š½8äøÒ²2
 Á
 java:S1192€"¢Define a constant instead of duplicating this literal "UPDATE provider_attribute SET value_reference = ? WHERE attribute_type_id = ? AND provider_id = ?" 3 times.(È‚‡†8éøÒ²2
-m
-java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ô€«®8ìøÒ²2
-r
-java:S2095¬"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Óİˆ‘øÿÿÿÿ8ëøÒ²2
-l
-java:S2095º"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ò‰ª
-8ëøÒ²2
-m
-java:S2095³"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ôßŞ·8ëøÒ²2
-r
-java:S2095Á"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(€ûš‡úÿÿÿÿ8êøÒ²2
-m
-java:S2095¥"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(æ‚çä8ìøÒ²2
 e
 java:S2095|"HUse try-with-resources or close this "Connection" in a "finally" clause.(ªµ±á8ëøÒ²2
 m
 java:S2095•"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¶†Áó8êøÒ²2
 m
+java:S2095¥"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(æ‚çä8ìøÒ²2
+r
+java:S2095¬"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Óİˆ‘øÿÿÿÿ8ëøÒ²2
+m
+java:S2095³"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ôßŞ·8ëøÒ²2
+m
 java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(éñ¬‹8ëøÒ²2
+r
+java:S2095Á"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(€ûš‡úÿÿÿÿ8êøÒ²2
+m
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ô€«®8ìøÒ²2
+l
+java:S2095º"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ò‰ª
+8ëøÒ²2
 ]	java:S125"<This block of commented-out lines of code should be removed.(ºíÂÎüÿÿÿÿ8„ùÒ²2
 R
 java:S1144n"5Remove this unused private "updateAttributes" method.(¼™èÆ8ùÒ²2
