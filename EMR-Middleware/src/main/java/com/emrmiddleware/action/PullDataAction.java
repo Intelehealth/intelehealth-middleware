@@ -42,16 +42,12 @@ public class PullDataAction {
 		ArrayList<VisitAttributeDTO> visitAttributesList = new ArrayList<VisitAttributeDTO>();//try {
 		pulldata.setPropertyContents(mindmapDAO.getConfigFile()); // Config file
 			int offset = 0 ;
-			if (pageno == 0 )
-			{
+			if (pageno == 0 ) {
 				offset = 0 ;
 			}
 			else {
 				offset = pageno * limit ;
-				//+ 1;
 			}
-
-
 			try {
 			pulldata.setPullexecutedtime(visitdao.getDBCurrentTime());//Used by device for syncing purpose
 			patientlist = patientdao.getPatients(lastpulldatatime, locationuuid, offset, limit); // Adding offset and limit);
@@ -62,16 +58,12 @@ public class PullDataAction {
 			visitAttributesList = visitdao.getVisitAttributes(lastpulldatatime, locationuuid);
 			encounterlist = encounterdao.getEncounters(lastpulldatatime, locationuuid);
 			obslist = obsdao.getObsList(lastpulldatatime, locationuuid);
-
 			locationlist = locationdao.getLocations(lastpulldatatime);
-
 			providerlist = providerdao.getProviders(lastpulldatatime);
 			providerAttributeTypeList = providerdao.getProviderAttributeTypeMaster(lastpulldatatime);
 			providerAttributeList = providerdao.getProviderAttributes(lastpulldatatime);
-
 			conceptAttributeTypeList = visitdao.getConceptAttributeTypeMaster(lastpulldatatime);
 			conceptAttributesList = visitdao.getConceptAttributes(lastpulldatatime);
-
 			pulldata.setLocationlist(locationlist);
 			pulldata.setPatientlist(patientlist);
 			pulldata.setPatientAttributeTypeListMaster(patientAttributeTypeList);
@@ -87,29 +79,21 @@ public class PullDataAction {
 			pulldata.setConceptAttributeTypeList(conceptAttributeTypeList);
 			pulldata.setConceptAttributeList(conceptAttributesList);
 
-				int patientCount = patientdao.getPatientsCount(lastpulldatatime, locationuuid);
-				int visitCount = visitdao.getVisitCount(lastpulldatatime, locationuuid);
-				pulldata.setTotalCount(Math.max(patientCount, visitCount));
+			int patientCount = patientdao.getPatientsCount(lastpulldatatime, locationuuid);
+			int visitCount = visitdao.getVisitCount(lastpulldatatime, locationuuid);
+			pulldata.setTotalCount(Math.max(patientCount, visitCount));
 
-				if(offset <= pulldata.getTotalCount()  ) {
-					//if (pulldata.getTotalCount() - offset >= limit)
+			if(offset <= pulldata.getTotalCount()  ) {
 					pulldata.setPageNo(pageno + 1);
-
-				}
-				else{
+			}
+			else{
 					pulldata.setPageNo(-1);
-				}
-			
+			}
 		} catch (DAOException e) {
 			throw new DAOException(e.getMessage(), e);
 		} catch (Exception e) {
 			throw new ActionException(e.getMessage(), e);
 		}
-
 		return pulldata;
-
 	}
-
-
-
 }
