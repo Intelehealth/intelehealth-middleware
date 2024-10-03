@@ -1,6 +1,6 @@
 package com.emrmiddleware.action;
 
-import java.io.IOException;
+
 import java.util.ArrayList;
 
 import org.slf4j.Logger;
@@ -33,7 +33,7 @@ public class PersonAction {
 		restapiintf = apiclient.getClient().create(RestAPI.class);
 	}
 
-	public ArrayList<PersonDTO> setPersons(ArrayList<PersonAPIDTO> personList) throws DAOException, ActionException {
+	public ArrayList<PersonDTO> setPersons(ArrayList<PersonAPIDTO> personList) throws DAOException {
 		ArrayList<PersonDTO> persons = new ArrayList<PersonDTO>();
 		PersonDTO persondto ;
 		PersonAPIDTO personforerror = new PersonAPIDTO();
@@ -53,9 +53,9 @@ public class PersonAction {
 				persons.add(persondto);
 			}
 		} catch (Exception e) {
-			 logger.error("Error occurred for json string : "+gson.toJson(personforerror));
+			 logger.error("Error occurred for json string : {} ", gson.toJson(personforerror));
 			 logger.error(e.getMessage(),e);
-			//throw new ActionException(e.getMessage(), e);
+
 		}
 		return persons;
 
@@ -75,7 +75,7 @@ public class PersonAction {
 	private boolean addPersonOpenMRS(PersonAPIDTO persondto) {
 		Gson gson = new Gson();
 		String val = "";
-		logger.info("add person value : " + gson.toJson(persondto));
+		logger.info("add person value : {} " , gson.toJson(persondto));
 		
 		try {
 			Call<ResponseBody> callperson = restapiintf.addPerson(persondto);
@@ -84,15 +84,11 @@ public class PersonAction {
 				val = response.body().string();
 			} else {
 				val = response.errorBody().string();
-				logger.error("REST failed : " + val);
+				logger.error("REST failed : {}" , val);
 				return false;
 			}
-			logger.info("Response is : " + val);
-		} catch (IOException | NullPointerException e) {
-			// TODO Auto-generated catch block
-			logger.error(e.getMessage(), e);
-			return false;
-		}catch (Exception e) {
+			logger.info("Response is : {}" , val);
+		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 			return false;
 		}
@@ -102,7 +98,7 @@ public class PersonAction {
 	private boolean editPersonOpenMRS(PersonAPIDTO persondto) {
 		Gson gson = new Gson();
 		String val = "";
-		logger.info("edit person value : " + gson.toJson(persondto));
+		logger.info("edit person value : {}", gson.toJson(persondto));
 		
 		try {
 			Call<ResponseBody> callperson = restapiintf.editPerson(persondto.getUuid(), persondto);
@@ -111,14 +107,10 @@ public class PersonAction {
 				val = response.body().string();
 			} else {
 				val = response.errorBody().string();
-				logger.error("REST failed : " + val);
+				logger.error("REST failed : {}" , val);
 				return false;
 			}
-			logger.info("Response for edit is : " + val);
-		} catch (IOException | NullPointerException e) {
-			// TODO Auto-generated catch block
-			logger.error(e.getMessage(), e);
-			return false;
+			logger.info("Response for edit is : {}" , val);
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 			return false;

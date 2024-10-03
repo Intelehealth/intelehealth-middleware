@@ -1,6 +1,4 @@
 package com.emrmiddleware.action;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -16,7 +14,7 @@ import com.emrmiddleware.authentication.AuthenticationUtil;
 import com.emrmiddleware.dao.PatientDAO;
 import com.emrmiddleware.dto.PatientDTO;
 import com.emrmiddleware.dto.UserCredentialDTO;
-import com.emrmiddleware.exception.ActionException;
+
 import com.emrmiddleware.exception.DAOException;
 import com.google.gson.Gson;
 
@@ -25,7 +23,7 @@ import retrofit2.Call;
 import retrofit2.Response;
 
 public class PatientAction {
-	private final Logger logger = LoggerFactory.getLogger(PersonAction.class);
+	private final Logger logger = LoggerFactory.getLogger(PatientAction.class);
 
 	RestAPI restIdapiintf;
 	APIClient apiclient;
@@ -44,7 +42,7 @@ public class PatientAction {
 	}
 
 	public ArrayList<PatientDTO> setPatients(ArrayList<PatientAPIDTO> patientList)
-			throws DAOException, ActionException {
+			throws DAOException {
 		ArrayList<PatientDTO> patients = new ArrayList<PatientDTO>();
 		PatientDTO patientdto = null;
 		PatientAPIDTO patientforerror = new PatientAPIDTO();
@@ -58,9 +56,6 @@ public class PatientAction {
 
 				PatientDTO patientDTO = patientdao.getPatient(patient.getPerson());
 
-			/*	if(patient.getIdentifiers().size() > 1  ) {
-					patientDTO = checkWithAbhaNumber(patient.getIdentifiers());
-				}*/
 				if (patientDTO == null) {
 					openMrsId = getOpenMrsId();
 
@@ -89,31 +84,15 @@ public class PatientAction {
 		} catch (Exception e) {
 			//patientdto.setOpenmrs_id("");// Set OpenMRS ID to blank in case of
 											// exception
-			logger.error("Error occurred for json string : " + gson.toJson(patientforerror));
+			logger.error("Error occurred for json string : {}" , gson.toJson(patientforerror));
 			logger.error(e.getMessage(), e);
-			// throw new ActionException(e.getMessage(), e);
+
 		} 
 		return patients;
 
 	}
 
-	private PatientDTO checkWithAbhaNumber(ArrayList<IdentifierAPIDTO> identifiers) throws DAOException {
-		String abhaNumber = "";
-		String abhaAddress = "";
-		for(IdentifierAPIDTO identifier: identifiers) {
-			if(Objects.equals(identifier.getIdentifierType(), ABHA_NUMBER))
-				abhaNumber = identifier.getIdentifier();
-			if(Objects.equals(identifier.getIdentifierType(), ABHA_ADDRESS))
-				abhaAddress = identifier.getIdentifier();
-		}
-		PatientDAO patientDao = new PatientDAO();
-		logger.info("checkWithAbhaNumber");
-		logger.debug(abhaNumber+"--"+abhaAddress);
-		return patientDao.getPatientWithABDM(abhaAddress, abhaNumber);
-
-	}
-
-	private String getOpenMrsId() {
+		private String getOpenMrsId() {
 		String openmrsid = "";
 		String val = "";
 		Gson gson = new Gson();
@@ -125,22 +104,18 @@ public class PatientAction {
 					userCredentialdto.getPassword());
 
 			Response<ResponseBody> response = call.execute();
-			// IDGenAPIDTO idgenapidto = call.execute();
+
 			if (response.isSuccessful()) {
 				val = response.body().string();
-				logger.info("Response for ID gen is : " + val);
+				logger.info("Response for ID gen is : {}",  val);
 				IDGenAPIDTO idgenapidto = gson.fromJson(val, IDGenAPIDTO.class);
 				openmrsid = idgenapidto.getIdentifiers()[0];
 			} else {
 				val = response.errorBody().string();
-				logger.error("REST failed : " + val);
+				logger.error("REST failed : {} " , val);
 				return openmrsid;
 			}
-			logger.info("Response is : " + val);
-		} catch (IOException | NullPointerException e) {
-			// TODO Auto-generated catch block
-			logger.error(e.getMessage(), e);
-			return openmrsid;
+			logger.info("Response is : {} ", val);
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 			return openmrsid;
@@ -152,7 +127,7 @@ public class PatientAction {
 	private boolean addPatientOpenMRS(PatientAPIDTO patientdto) {
 		Gson gson = new Gson();
 		String val = "";
-		logger.info("patient value : " + gson.toJson(patientdto));
+		logger.info("patient value : {}" ,  gson.toJson(patientdto));
 
 		try {
 			Call<ResponseBody> callpatient = restapiintf.addPatient(patientdto);
@@ -161,14 +136,10 @@ public class PatientAction {
 				val = response.body().string();
 			} else {
 				val = response.errorBody().string();
-				logger.error("REST failed : " + val);
+				logger.error("REST failed : {} " , val);
 				return false;
 			}
-			logger.info("Response is : " + val);
-		} catch (IOException | NullPointerException e) {
-			// TODO Auto-generated catch block
-			logger.error(e.getMessage(), e);
-			return false;
+			logger.info("Response is : {} " , val);
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 			return false;

@@ -1,7 +1,4 @@
 package com.emrmiddleware.api.dto;
-
-import com.google.gson.annotations.SerializedName;
-
 public class ObsAPIDTO {
 
     private String uuid;

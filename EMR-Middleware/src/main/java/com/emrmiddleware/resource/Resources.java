@@ -12,5 +12,6 @@ public class Resources {
 	public static final String CONTROLLEREXCEPTION="Exception in Controller : ";
 	public static final String UNABLETOPROCESS="unable_to_process_request";
 	public static final String SERVER_ERROR= "Unable to process request. Please try again or Contact System Administrator";
-   
+
+
 }

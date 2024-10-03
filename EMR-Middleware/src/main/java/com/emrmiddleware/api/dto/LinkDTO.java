@@ -15,7 +15,7 @@ public class LinkDTO {
         return type;
     }
 
-    final String type = "visit-summary-verification";
+   static final String type = "visit-summary-verification";
 
 
 }

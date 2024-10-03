@@ -2,7 +2,6 @@ package com.emrmiddleware.action;
 
 import com.emrmiddleware.api.APIClient;
 import com.emrmiddleware.api.RestAPI;
-import com.emrmiddleware.api.dto.AppointmentDTO;
 import com.emrmiddleware.dto.CustomAppointmentDTO;
 import com.google.gson.Gson;
 import okhttp3.ResponseBody;
@@ -11,18 +10,16 @@ import org.slf4j.LoggerFactory;
 import retrofit2.Call;
 import retrofit2.Response;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class AppointmentAction {
 
     String authString;
 
-    private final Logger logger = LoggerFactory.getLogger(EncounterAction.class);
+    private final Logger logger = LoggerFactory.getLogger(AppointmentAction.class);
     APIClient apiclient;
     RestAPI restapiintf;
 
-    //AppointmentDTO appointmentDTO;
     public AppointmentAction(String authString) {
         this.authString = authString;
         apiclient = new APIClient(authString);
@@ -33,12 +30,13 @@ public class AppointmentAction {
         String val = "";
         try {
             for (CustomAppointmentDTO appointment: appointmentdto) {
-                logger.info("appointment value : " + gson.toJson(appointment));
+                String appointmentAsString = gson.toJson(appointment);
+                logger.info("appointment value : {}", appointmentAsString );
                 if(appointment.getAppointmentId() == 0 ) {
                     Call<ResponseBody> addAppointment = restapiintf.addAppointment(appointment);
-                    logger.info(String.valueOf(addAppointment.request().url()));
                     Response<ResponseBody> response = addAppointment.execute();
-                    logger.info(response.message());
+                    String responseMessage = response.message();
+                    logger.info(responseMessage);
                     if (response.isSuccessful()) {
                         val = response.body().string();
                         appointment.setSyncd(true);
@@ -64,9 +62,6 @@ public class AppointmentAction {
                     logger.info("Response is : {} " , val);
                 }
             }
-        } catch (IOException | NullPointerException e) {
-            logger.error(e.getMessage(), e);
-            return false;
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
             return false;

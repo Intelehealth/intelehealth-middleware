@@ -26,7 +26,7 @@ public class VisitDAO {
 		try {
 
 			VisitDMO patientdmo = session.getMapper(VisitDMO.class);
-			visitlist = patientdmo.getVisits(lastpulldatatime, locationuuid, offset, limit ); // Adding offset and limit);
+			visitlist = patientdmo.getVisits(lastpulldatatime, locationuuid, offset, limit );
 			return visitlist;
 		} catch (PersistenceException e) {
 			logger.error(e.getMessage(),e);

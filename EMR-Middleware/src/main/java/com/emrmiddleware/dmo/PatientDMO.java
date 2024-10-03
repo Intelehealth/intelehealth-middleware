@@ -22,7 +22,7 @@ public interface PatientDMO {
      */
     /* Modified code to return Abha Number and Abha Address */
 
-        @Select("SELECT 	person.uuid as uuid, "+
+        @Select("SELECT person.uuid as uuid, "+
                 " pa.person_id, "+
                 " max(case when patient_identifier.identifier_type = 3 then identifier else null end) as openmrs_id, "+
     " max(case when patient_identifier.identifier_type = 6 then identifier else null end) as abha_number, "+

@@ -20,8 +20,6 @@ public class PersonDAO {
 		SqlSession session = sessionfactory.openSession();
 		PersonDTO persondto = new PersonDTO();
 		try {
-
-			System.out.println(personuuid + " :: PERSON UUID");
 			PersonDMO persondmo = session.getMapper(PersonDMO.class);
 			persondto = persondmo.getPerson(personuuid);
 			return persondto;

@@ -27,7 +27,8 @@ public class PatientDAO {
 		try {
 
 			PatientDMO patientdmo = session.getMapper(PatientDMO.class);
-			patientlist = patientdmo.getPatients(lastpulldatatime, locationuuid, offset, limit); // Adding offset and limit);
+			patientlist = patientdmo.getPatients(lastpulldatatime, locationuuid, offset, limit);
+
 			return patientlist;
 		} catch (PersistenceException e) {
 			logger.error(e.getMessage(),e);
@@ -113,7 +114,7 @@ public class PatientDAO {
 		}
 	}
 
-	public PatientDTO getPatientWithABDM(String abhaAddress, String abhaNumber) throws DAOException, PersistenceException {
+	public PatientDTO getPatientWithABDM(String abhaAddress, String abhaNumber) throws  PersistenceException {
 		SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
 		SqlSession session = sessionfactory.openSession();
 		PatientDTO patientdto = new PatientDTO();

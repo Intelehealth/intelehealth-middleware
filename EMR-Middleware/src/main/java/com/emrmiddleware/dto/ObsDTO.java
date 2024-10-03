@@ -1,78 +1,89 @@
 package com.emrmiddleware.dto;
 
 public class ObsDTO {
-	
-	private String uuid;
-	private String encounteruuid;
-	private String conceptuuid;
-	private String value;
-	private int creator;
-	private String obsServerModifiedDate;
-	private int voided;
-	// Adding comment field for Ezazi obs.comment
-	public String getComment() {
-		return comment;
-	}
 
-	public void setComment(String comment) {
-		this.comment = comment;
-	}
+    public String comment;
+    private String uuid;
+    private String encounteruuid;
+    private String conceptuuid;
+    private String value;
+    private int creator;
+    private String obsServerModifiedDate;
+    private int voided;
+    private String conceptsetuuid;
 
-	public String comment;
+    // Adding comment field for Ezazi obs.comment
+    public String getComment() {
+        return comment;
+    }
 
-private String interpretation; //Adding for distinguishing diagnsotic concepts from vitals
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 
-	
-	public String getObsServerModifiedDate() {
-		return obsServerModifiedDate;
-	}
-	public void setObsServerModifiedDate(String obsServerModifiedDate) {
-		this.obsServerModifiedDate = obsServerModifiedDate;
-	}
-	public int getVoided() {
-		return voided;
-	}
-	public void setVoided(int voided) {
-		this.voided = voided;
-	}
-	public String getUuid() {
-		return uuid;
-	}
-	public void setUuid(String uuid) {
-		this.uuid = uuid;
-	}
-	public String getEncounteruuid() {
-		return encounteruuid;
-	}
-	public void setEncounteruuid(String encounteruuid) {
-		this.encounteruuid = encounteruuid;
-	}
-	
-	public String getConceptuuid() {
-		return conceptuuid;
-	}
-	public void setConceptuuid(String conceptuuid) {
-		this.conceptuuid = conceptuuid;
-	}
-	public String getValue() {
-		return value;
-	}
-	public void setValue(String value) {
-		this.value = value;
-	}
-	public int getCreator() {
-		return creator;
-	}
-	public void setCreator(int creator) {
-		this.creator = creator;
-	}
+    public String getConceptsetuuid() {
+        return conceptsetuuid;
+    }
+
+    public void setConceptsetuuid(String conceptsetuuid) {
+        this.conceptsetuuid = conceptsetuuid;
+    }
+
+    public String getObsServerModifiedDate() {
+        return obsServerModifiedDate;
+    }
+
+    public void setObsServerModifiedDate(String obsServerModifiedDate) {
+        this.obsServerModifiedDate = obsServerModifiedDate;
+    }
+
+    public int getVoided() {
+        return voided;
+    }
+
+    public void setVoided(int voided) {
+        this.voided = voided;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
+    public String getEncounteruuid() {
+        return encounteruuid;
+    }
+
+    public void setEncounteruuid(String encounteruuid) {
+        this.encounteruuid = encounteruuid;
+    }
+
+    public String getConceptuuid() {
+        return conceptuuid;
+    }
+
+    public void setConceptuuid(String conceptuuid) {
+        this.conceptuuid = conceptuuid;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    public int getCreator() {
+        return creator;
+    }
+
+    public void setCreator(int creator) {
+        this.creator = creator;
+    }
 
 
-	public String getInterpretation() {
-		return interpretation;
-	}
-
-	public void setInterpretation(String interpretation) {
-		this.interpretation = interpretation;
-	}
 }

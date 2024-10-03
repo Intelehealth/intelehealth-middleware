@@ -4,7 +4,6 @@ import com.emrmiddleware.api.APIClient;
 import com.emrmiddleware.api.RestAPI;
 import com.emrmiddleware.api.dto.AttributeAPIDTO;
 import com.emrmiddleware.api.dto.LinkDTO;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import okhttp3.ResponseBody;
@@ -20,7 +19,6 @@ public class LinkAction {
     APIClient apiclient;
     RestAPI restapiintf;
     String authString;
-    final String SUMMARY_LINK="ca449d30-7a56-4242-b484-9119d0f1589d";
     public LinkAction(String authString) {
         this.authString = authString;
         apiclient = new APIClient(authString);
@@ -34,16 +32,16 @@ public class LinkAction {
             String val = response.body().string();
 
             JsonObject jsonObject = new JsonParser().parse(val).getAsJsonObject();
-            // Assuming the JSON structure is {"key": "value"}
+
             JsonObject hash = jsonObject.get("data").getAsJsonObject();
-            //JsonObject hash = jsonObject.get(1).getAsJsonObject();
             String hashed = hash.get("hash").getAsString();
             String visitUUID = linkDTO.getLink().split("/")[2];
             logger.info("Hash for visit {} is {}",
                     visitUUID,
                     hashed);
             AttributeAPIDTO attributeAPIDTO = new AttributeAPIDTO();
-            attributeAPIDTO.setAttributeType(SUMMARY_LINK);
+
+            attributeAPIDTO.setAttributeType(System.getenv("SUMMARY_LINK"));
             attributeAPIDTO.setValue("/i/"+hashed);
 
             VisitAction visitAction = new VisitAction(authString);

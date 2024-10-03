@@ -7,7 +7,7 @@ import com.emrmiddleware.dao.MindmapDAO;
 import com.emrmiddleware.dto.*;
 import com.emrmiddleware.exception.ActionException;
 import com.emrmiddleware.exception.DAOException;
-import com.google.gson.JsonObject;
+
 
 public class PullDataAction {
 
@@ -34,12 +34,12 @@ public class PullDataAction {
 		ArrayList<ProviderAttributeDTO>  providerAttributeList = new ArrayList<ProviderAttributeDTO>();
 		ArrayList<VisitAttributeTypeDTO> visitAttributeTypeList = new ArrayList<VisitAttributeTypeDTO>();
 
-		ConceptDAO conceptdao = new ConceptDAO();
-		ArrayList<ConceptDTO> conceptlist = new ArrayList<ConceptDTO>();
+
+
 		ArrayList<ConceptAttributeTypeDTO> conceptAttributeTypeList = new ArrayList<ConceptAttributeTypeDTO>();
 		ArrayList<ConceptAttributeDTO> conceptAttributesList = new ArrayList<ConceptAttributeDTO>();
 
-		ArrayList<VisitAttributeDTO> visitAttributesList = new ArrayList<VisitAttributeDTO>();//try {
+		ArrayList<VisitAttributeDTO> visitAttributesList = new ArrayList<VisitAttributeDTO>();
 		pulldata.setPropertyContents(mindmapDAO.getConfigFile()); // Config file
 			int offset = 0 ;
 			if (pageno == 0 ) {
@@ -50,16 +50,16 @@ public class PullDataAction {
 			}
 			try {
 			pulldata.setPullexecutedtime(visitdao.getDBCurrentTime());//Used by device for syncing purpose
-			patientlist = patientdao.getPatients(lastpulldatatime, locationuuid, offset, limit); // Adding offset and limit);
+			patientlist = patientdao.getPatients(lastpulldatatime, locationuuid, offset, limit);
 			patientAttributeTypeList = patientdao.getPatientAttributeType(lastpulldatatime, locationuuid);
 			patientAttributesList = patientdao.getPatientAttributes(lastpulldatatime, locationuuid);
-			visitlist = visitdao.getVisits(lastpulldatatime, locationuuid, offset, limit); // Adding offset and limit);
+			visitlist = visitdao.getVisits(lastpulldatatime, locationuuid, offset, limit);
 			visitAttributeTypeList = visitdao.getVisitAttributeTypeMaster(lastpulldatatime);
 			visitAttributesList = visitdao.getVisitAttributes(lastpulldatatime, locationuuid);
 			encounterlist = encounterdao.getEncounters(lastpulldatatime, locationuuid);
 			obslist = obsdao.getObsList(lastpulldatatime, locationuuid);
 			locationlist = locationdao.getLocations(lastpulldatatime);
-			providerlist = providerdao.getProviders(lastpulldatatime);
+			providerlist = providerdao.getProviders();
 			providerAttributeTypeList = providerdao.getProviderAttributeTypeMaster(lastpulldatatime);
 			providerAttributeList = providerdao.getProviderAttributes(lastpulldatatime);
 			conceptAttributeTypeList = visitdao.getConceptAttributeTypeMaster(lastpulldatatime);

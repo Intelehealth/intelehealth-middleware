@@ -49,15 +49,15 @@ public class PullController {
 		try {
 			AuthenticationUtil authutil = new AuthenticationUtil();	
 			authString= httpHeaders.getHeaderString("authorization");
-			//logger.info("Authorization header is : "+authString);
+
 			boolean isAuthenticated = authutil.isUserAuthenticated(authString);
-			if ((isAuthenticated == false) || (authString == null)) {
+			if (!isAuthenticated || authString == null) {
 				logger.error("No Authorization");
 				responsedto.setStatusMessage(Resources.ERROR, Resources.AUTHERROR, Resources.UNABLETOPROCESS);
 				return Response.status(403).entity(gson.toJson(responsedto)).build();
 			}
 			PullDataAction pulldataaction = new PullDataAction();
-			//Timestamp lastdatapulltime = EmrUtils.getFormatDate(lastpulldatatime);
+
 			pulldatadto = pulldataaction.getPullData(lastpulldatatime, locationuuid, pageno, limit);
 			responsedto.setStatus(Resources.OK);
 			responsedto.setData(pulldatadto);
@@ -66,7 +66,7 @@ public class PullController {
 			responsedto.setStatusMessage(Resources.ERROR, Resources.SERVER_ERROR, Resources.UNABLETOPROCESS);
 			return Response.status(500).entity(gson.toJson(responsedto)).build();
 		} catch (Exception e) {
-			logger.error(Resources.CONTROLLEREXCEPTION + e.getMessage());
+			logger.error(Resources.CONTROLLEREXCEPTION , e.getMessage());
 			responsedto.setStatusMessage(Resources.ERROR, Resources.SERVER_ERROR, Resources.UNABLETOPROCESS);
 			return Response.status(500).entity(gson.toJson(responsedto)).build();
 		}

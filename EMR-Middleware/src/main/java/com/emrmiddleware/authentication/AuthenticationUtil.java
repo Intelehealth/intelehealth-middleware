@@ -21,13 +21,12 @@ public class AuthenticationUtil {
         // Decode the data back to original string
         Base64.Decoder decoder = Base64.getDecoder();
         String dStr = new String(decoder.decode(authInfo)); 
-        // logger.info("Decoded String is : "+dStr);
+
          String[] userParts = dStr.split(":");
          String username = userParts[0];
          String password = userParts[1];
          UserCredentialsDAO userCredentialsdao = new UserCredentialsDAO();
-         UserCredentialDTO userCredentialdto = new UserCredentialDTO();
-         userCredentialdto = userCredentialsdao.getUserCredentail(username);
+        UserCredentialDTO userCredentialdto = userCredentialsdao.getUserCredentail(username);
          if (userCredentialdto==null){
         	 return false;
          }
@@ -48,7 +47,7 @@ public class AuthenticationUtil {
         // Decode the data back to original string
         Base64.Decoder decoder = Base64.getDecoder();
         String dStr = new String(decoder.decode(authInfo)); 
-        // logger.info("Decoded String is : "+dStr);
+
          String[] userParts = dStr.split(":");
          userCredentialdto.setUsername(userParts[0]);
          userCredentialdto.setPassword(userParts[1]);

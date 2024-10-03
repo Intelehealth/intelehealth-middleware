@@ -31,8 +31,8 @@ public class ConfigProperties {
 		try {
 			getPropValues();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			logger.error("Error in Properties File read : "+e.getMessage());
+
+			logger.error("Error in Properties File read : {}" , e.getMessage());
 		}
 	}
 	public void getPropValues() throws IOException {
@@ -54,9 +54,10 @@ public class ConfigProperties {
 			port = prop.getProperty("port");
 			mindmapPort =prop.getProperty("mindmapPort");
 		} catch (Exception e) {
-			logger.error("Exception: " + e);
+			logger.error("Exception: {}",  e.getMessage());
 		} finally {
-			inputStream.close();
+			if (inputStream !=null)
+				inputStream.close();
 		}
 		
 	}

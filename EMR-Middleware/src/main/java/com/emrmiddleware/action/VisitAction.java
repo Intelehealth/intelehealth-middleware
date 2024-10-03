@@ -13,7 +13,7 @@ import com.emrmiddleware.api.RestAPI;
 import com.emrmiddleware.api.dto.VisitAPIDTO;
 import com.emrmiddleware.dao.VisitDAO;
 import com.emrmiddleware.dto.VisitDTO;
-import com.emrmiddleware.exception.ActionException;
+
 import com.emrmiddleware.exception.DAOException;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -39,7 +39,7 @@ public class VisitAction {
 		restapiintf = apiclient.getClient().create(RestAPI.class);
 	}
 
-	public ArrayList<VisitDTO> setVisits(ArrayList<VisitAPIDTO> visitList) throws DAOException, ActionException {
+	public ArrayList<VisitDTO> setVisits(ArrayList<VisitAPIDTO> visitList) throws DAOException {
 		ArrayList<VisitDTO> visits = new ArrayList<VisitDTO>();
 		VisitDTO visitdto;
 		VisitAPIDTO visitforerror = new VisitAPIDTO();
@@ -59,9 +59,9 @@ public class VisitAction {
 				visits.add(visitdto);
 			}
 		} catch (Exception e) {
-			logger.error("Error occurred for json string : " + gson.toJson(visitforerror));
+			logger.error("Error occurred for json string : {}" , gson.toJson(visitforerror));
 			logger.error(e.getMessage(), e);
-			// throw new ActionException(e.getMessage(), e);
+
 		}
 		return visits;
 
@@ -90,7 +90,6 @@ public class VisitAction {
 				val = response.body().string();
 
 				JsonObject jsonObject = new JsonParser().parse(val).getAsJsonObject();
-				// Assuming the JSON structure is {"key": "value"}
 				String visitUUID = jsonObject.get("uuid").getAsString();
 				logger.info("Visit UUID after insertion {}",visitUUID);
 				LinkAction linkAction = new LinkAction(authString);
@@ -104,9 +103,6 @@ public class VisitAction {
 				return false;
 			}
 			logger.info("Response is : {}",  val);
-		} catch (IOException | NullPointerException e) {
-			logger.error(e.getMessage(), e);
-			return false;
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 			return false;
@@ -133,10 +129,6 @@ public class VisitAction {
 				return false;
 			}
             logger.info("Response for edit is : {}", val);
-		} catch (IOException | NullPointerException e) {
-			// TODO Auto-generated catch block
-			logger.error(e.getMessage(), e);
-			return false;
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 			return false;

@@ -16,7 +16,7 @@ import com.emrmiddleware.exception.DAOException;
 
 public class ProviderDAO {
 	private final Logger logger = LoggerFactory.getLogger(ProviderDAO.class);
-	public ArrayList<ProviderDTO> getProviders(String lastpulldatatime) throws DAOException {
+	public ArrayList<ProviderDTO> getProviders() throws DAOException {
 
 		SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
 		SqlSession session = sessionfactory.openSession();
@@ -64,7 +64,7 @@ public class ProviderDAO {
 			providerAttributeList = providerdmo.getProviderAttributes(lastpulldatatime);
 			return providerAttributeList;
 		} catch (PersistenceException e) {
-			logger.error(e.getMessage(),e);
+		//	logger.error(e.getMessage(),e);
 			throw new DAOException(e.getMessage(), e);
 		} finally {
 			session.close();

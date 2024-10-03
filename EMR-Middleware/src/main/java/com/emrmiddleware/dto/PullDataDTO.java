@@ -1,7 +1,6 @@
 package com.emrmiddleware.dto;
 
-import com.emrmiddleware.api.dto.AppointmentDTO;
-import com.emrmiddleware.authentication.CustomApplication;
+
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
@@ -84,14 +83,6 @@ public class PullDataDTO {
     public void setProviderAttributeList(ArrayList<ProviderAttributeDTO> providerAttributeList) {
         this.providerAttributeList = providerAttributeList;
     }
-
-    //public ArrayList<ProviderDTO> getProviderlist() {
-    //	return providerlist;
-    //}
-
-    //public void setProviderlist(ArrayList<ProviderDTO> providerlist) {
-    //	this.providerlist = providerlist;
-    //}
 
     public ArrayList<ProviderAttributeTypeDTO> getProviderAttributeTypeList() {
         return providerAttributeTypeList;

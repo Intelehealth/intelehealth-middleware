@@ -1,6 +1,6 @@
 package com.emrmiddleware.dto;
 
-import javax.annotation.Nullable;
+
 import java.util.Date;
 
 public class PatientDTO {

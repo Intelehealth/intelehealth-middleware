@@ -3,7 +3,7 @@ package com.emrmiddleware.exception;
 public class ActionException extends Exception {
 	private static final long serialVersionUID = 1L;
 	private Throwable thwStack;
-    private String label="unable_to_process_request";
+    private  String label="unable_to_process_request";
 	public ActionException(Exception excp) {
 		super(excp);
 		setThwStack(excp);
@@ -52,7 +52,7 @@ public class ActionException extends Exception {
 	public void setLabel(String label) {
 		this.label = label;
 	}
-	
-	
+
+
 
 }

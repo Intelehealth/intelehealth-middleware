@@ -18,11 +18,15 @@ public interface ObsDMO {
             " select concept.uuid from concept where concept.concept_id=a.value_coded) " +
             " END as value, " +
             " concept.uuid as conceptuuid, " +
+            " IFNULL((SELECT cs_concept.uuid " +
+            " FROM concept_set cs "+
+            " JOIN concept cs_concept ON cs.concept_set = cs_concept.concept_id " +
+            " WHERE cs.concept_id = a.concept_id "+
+            " LIMIT 1),'NA') AS conceptsetuuid, "+
             " a.creator, " +
             " a.voided , " +
             " coalesce(a.date_voided,a.date_created) as obsServerModifiedDate, " +
-            " a.comments as comment, " +
-            " IFNULL(a.interpretation,'NA') AS interpretation " +
+            " a.comments as comment " +
             " from " +
             " obs a, encounter, visit, location, concept " +
             " where a.encounter_id=encounter.encounter_id " +
