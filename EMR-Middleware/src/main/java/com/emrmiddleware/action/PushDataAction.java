@@ -133,6 +133,7 @@ public class PushDataAction {
 
 			customAppointmentDTO.setVoided(appointmentDTO.getVoided());
 			customAppointmentDTO.setSyncd(false);
+<<<<<<< HEAD
 			try (Connection con = DriverManager.getConnection(System.getenv("DBURL"), System.getenv("DBUSER"), System.getenv("DBPASS"));
 				 PreparedStatement pstmtPatient = con.prepareStatement("select gender, TIMESTAMPDIFF(YEAR, birthdate, now()) FROM person WHERE uuid = ? ");
 				 PreparedStatement pstmtHealthWorker = con.prepareStatement("select a.gender, ifnull(TIMESTAMPDIFF(YEAR, a.birthdate, now()), 'NA'), concat_ws(' ', b.given_name, b.middle_name, b.family_name) FROM person a, person_name b WHERE a.person_id = b.person_id and a.person_id  = (select person_id from provider where uuid = ?)  ");
@@ -141,6 +142,13 @@ public class PushDataAction {
 
 
 
+=======
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/XXXXX", "XXXX", "XXXX");
+				PreparedStatement pstmtPatient = con.prepareStatement("select gender, TIMESTAMPDIFF(YEAR, birthdate, now()) FROM person WHERE uuid = ? ");
+				PreparedStatement pstmtHealthWorker = con.prepareStatement("select a.gender, ifnull(TIMESTAMPDIFF(YEAR, a.birthdate, now()), 'NA'), concat_ws(' ', b.given_name, b.middle_name, b.family_name) FROM person a, person_name b WHERE a.person_id = b.person_id and a.person_id  = (select person_id from provider where uuid = ?)  ");
+>>>>>>> 61a8fa010cb2aa4b3fb0306b3217c46cbea043b3
 				pstmtPatient.setString(1,  appointmentDTO.getPatientId());
 				ResultSet rstPatient = pstmtPatient.executeQuery();
 				rstPatient.next();
