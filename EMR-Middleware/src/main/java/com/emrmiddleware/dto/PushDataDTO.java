@@ -57,7 +57,6 @@ public class PushDataDTO {
     }
 
 
-
     public ArrayList<ProviderDTO> getProviders() {
         return providers;
     }

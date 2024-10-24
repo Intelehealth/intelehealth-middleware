@@ -14,9 +14,8 @@ import java.util.ArrayList;
 
 public class AppointmentAction {
 
-    String authString;
-
     private final Logger logger = LoggerFactory.getLogger(AppointmentAction.class);
+    String authString;
     APIClient apiclient;
     RestAPI restapiintf;
 
@@ -25,15 +24,18 @@ public class AppointmentAction {
         apiclient = new APIClient(authString);
         restapiintf = apiclient.getMMClient().create(RestAPI.class);
     }
+
     public boolean addAppointmentOpenMRS(ArrayList<CustomAppointmentDTO> appointmentdto) {
         Gson gson = new Gson();
         String val = "";
         try {
-            for (CustomAppointmentDTO appointment: appointmentdto) {
+            for (CustomAppointmentDTO appointment : appointmentdto) {
                 String appointmentAsString = gson.toJson(appointment);
-                logger.info("appointment value : {}", appointmentAsString );
-                if(appointment.getAppointmentId() == 0 ) {
+                logger.info("appointment value : {}", appointmentAsString);
+                if (appointment.getAppointmentId() == 0) {
+
                     Call<ResponseBody> addAppointment = restapiintf.addAppointment(appointment);
+                    logger.info("URL called {}", addAppointment.request().url());
                     Response<ResponseBody> response = addAppointment.execute();
                     String responseMessage = response.message();
                     logger.info(responseMessage);
@@ -46,8 +48,7 @@ public class AppointmentAction {
                         return false;
                     }
                     logger.info(String.format("Response is : %s", val));
-                }
-                else {
+                } else {
                     Call<ResponseBody> addAppointment = restapiintf.editAppointment(appointment);
                     Response<ResponseBody> response = addAppointment.execute();
                     logger.info(response.message());
@@ -59,7 +60,7 @@ public class AppointmentAction {
                         logger.error("REST failed : {}", val);
                         return false;
                     }
-                    logger.info("Response is : {} " , val);
+                    logger.info("Response is : {} ", val);
                 }
             }
         } catch (Exception e) {

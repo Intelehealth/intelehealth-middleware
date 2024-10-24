@@ -1,6 +1,11 @@
 package com.emrmiddleware.dto;
 
 public class ConceptAttributeDTO {
+    private String uuid;
+    private String concept_uuid;
+    private String value;
+    private String concept_attribute_type_uuid;
+
     public String getUuid() {
         return uuid;
     }
@@ -32,9 +37,4 @@ public class ConceptAttributeDTO {
     public void setConcept_attribute_type_uuid(String concept_attribute_type_uuid) {
         this.concept_attribute_type_uuid = concept_attribute_type_uuid;
     }
-
-    private String uuid;
-    private String concept_uuid;
-    private String value;
-    private String concept_attribute_type_uuid;
 }

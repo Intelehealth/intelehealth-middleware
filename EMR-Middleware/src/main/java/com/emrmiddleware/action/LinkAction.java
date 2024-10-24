@@ -19,13 +19,14 @@ public class LinkAction {
     APIClient apiclient;
     RestAPI restapiintf;
     String authString;
+
     public LinkAction(String authString) {
         this.authString = authString;
         apiclient = new APIClient(authString);
         restapiintf = apiclient.getMMClient().create(RestAPI.class);
     }
 
-    public void genLink(LinkDTO linkDTO)  {
+    public void genLink(LinkDTO linkDTO) {
         try {
             Call<ResponseBody> genLink = restapiintf.generateShortLink(linkDTO);
             Response<ResponseBody> response = genLink.execute();
@@ -42,14 +43,13 @@ public class LinkAction {
             AttributeAPIDTO attributeAPIDTO = new AttributeAPIDTO();
 
             attributeAPIDTO.setAttributeType(System.getenv("SUMMARY_LINK"));
-            attributeAPIDTO.setValue("/i/"+hashed);
+            attributeAPIDTO.setValue("/i/" + hashed);
 
             VisitAction visitAction = new VisitAction(authString);
             visitAction.addSummaryLink(visitUUID, attributeAPIDTO);
 
-        }
-        catch(IOException ioe) {
+        } catch (IOException ioe) {
             logger.error(ioe.getMessage());
         }
-        }
+    }
 }

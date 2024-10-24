@@ -1,6 +1,9 @@
 package com.emrmiddleware.api.dto;
 
 public class LinkDTO {
+    static final String type = "visit-summary-verification";
+    String link;
+
     public String getLink() {
         return link;
     }
@@ -9,13 +12,9 @@ public class LinkDTO {
         this.link = link;
     }
 
-    String link;
-
     public String getType() {
         return type;
     }
-
-   static final String type = "visit-summary-verification";
 
 
 }

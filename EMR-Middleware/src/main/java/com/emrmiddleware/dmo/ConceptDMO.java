@@ -2,7 +2,6 @@ package com.emrmiddleware.dmo;
 
 import com.emrmiddleware.dto.ConceptAttributeDTO;
 import com.emrmiddleware.dto.ConceptAttributeTypeDTO;
-
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 

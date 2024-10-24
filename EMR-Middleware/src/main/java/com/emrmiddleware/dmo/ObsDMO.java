@@ -1,11 +1,10 @@
 package com.emrmiddleware.dmo;
 
-import java.util.ArrayList;
-
+import com.emrmiddleware.dto.ObsDTO;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
-import com.emrmiddleware.dto.ObsDTO;
+import java.util.ArrayList;
 
 public interface ObsDMO {
 
@@ -19,10 +18,11 @@ public interface ObsDMO {
             " END as value, " +
             " concept.uuid as conceptuuid, " +
             " IFNULL((SELECT cs_concept.uuid " +
-            " FROM concept_set cs "+
+            " FROM concept_set cs " +
             " JOIN concept cs_concept ON cs.concept_set = cs_concept.concept_id " +
-            " WHERE cs.concept_id = a.concept_id "+
-            " LIMIT 1),'NA') AS conceptsetuuid, "+
+            " WHERE cs.concept_id = a.concept_id " +
+            " LIMIT 1),'NA') AS conceptsetuuid, " +
+            "'NA' AS interpretation , " +
             " a.creator, " +
             " a.voided , " +
             " coalesce(a.date_voided,a.date_created) as obsServerModifiedDate, " +

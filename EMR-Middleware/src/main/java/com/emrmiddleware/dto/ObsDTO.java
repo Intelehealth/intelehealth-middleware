@@ -11,6 +11,15 @@ public class ObsDTO {
     private String obsServerModifiedDate;
     private int voided;
     private String conceptsetuuid;
+    private String interpretation;
+
+    public String getInterpretation() {
+        return interpretation;
+    }
+
+    public void setInterpretation(String interpretation) {
+        this.interpretation = interpretation;
+    }
 
     // Adding comment field for Ezazi obs.comment
     public String getComment() {

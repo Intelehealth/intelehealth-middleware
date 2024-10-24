@@ -11,6 +11,8 @@ public class ProviderCustomDTO {
     private String given_name;
     private String family_name;
     private int voided;
+    private String dateofbirth;
+
     public String getDateofbirth() {
         return dateofbirth;
     }
@@ -18,9 +20,6 @@ public class ProviderCustomDTO {
     public void setDateofbirth(String dateofbirth) {
         this.dateofbirth = dateofbirth;
     }
-
-    private String dateofbirth;
-
 
     public String getUuid() {
         return uuid;

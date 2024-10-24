@@ -4,6 +4,11 @@ public class ExternalPatientDTO {
     String uuid;
     String openmrsid;
 
+    public ExternalPatientDTO() {
+        this.uuid = "NA";
+        this.openmrsid = "NA";
+    }
+
     public String getUuid() {
         return uuid;
     }
@@ -26,10 +31,5 @@ public class ExternalPatientDTO {
                 "uuid='" + uuid + '\'' +
                 ", Openmrs id='" + openmrsid + '\'' +
                 '}';
-    }
-
-    public ExternalPatientDTO() {
-        this.uuid="NA";
-        this.openmrsid="NA";
     }
 }
