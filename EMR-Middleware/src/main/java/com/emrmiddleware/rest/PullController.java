@@ -42,6 +42,8 @@ public class PullController {
 							@PathParam("limit") int limit,
 							@Context HttpHeaders httpHeaders) {
 
+		System.out.println(lastpulldatatime);
+		System.out.println("pageno::"+pageno);
 		ResponseDTO responsedto = new ResponseDTO();
 		PullDataDTO pulldatadto = new PullDataDTO();
 		 String authString = null;
