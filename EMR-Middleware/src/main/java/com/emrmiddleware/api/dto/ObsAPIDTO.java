@@ -1,15 +1,14 @@
 package com.emrmiddleware.api.dto;
 
-import com.google.gson.annotations.SerializedName;
-
 public class ObsAPIDTO {
 
+    public String comment;
+    public String interpretation; // Added for distinguishing diagnostics from vitals
     private String uuid;
     private String concept;
-
-
     private String value;
-// Adding comment field for Ezazi obs.comment
+
+    // Adding comment field for Ezazi obs.comment
     public String getComment() {
         return comment;
     }
@@ -18,24 +17,34 @@ public class ObsAPIDTO {
         this.comment = comment;
     }
 
-    public String comment;
+    public String getInterpretation() {
+        return interpretation;
+    }
 
+    public void setInterpretation(String interpretation) {
+        this.interpretation = interpretation;
+    }
 
     public String getUuid() {
         return uuid;
     }
+
     public void setUuid(String uuid) {
         this.uuid = uuid;
     }
+
     public String getConcept() {
         return concept;
     }
+
     public void setConcept(String concept) {
         this.concept = concept;
     }
+
     public String getValue() {
         return value;
     }
+
     public void setValue(String value) {
         this.value = value;
     }
