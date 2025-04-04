@@ -1,37 +1,33 @@
 package com.emrmiddleware.exception;
 
 public class DAOException extends Exception {
-	private static final long serialVersionUID = 1L;
-	private Throwable thwStack;
+  private static final long serialVersionUID = 1L;
+  private Throwable thwStack;
 
-	public DAOException(Exception excp) {
-		super(excp);
-		setThwStack(excp);
-		
-	}
+  public DAOException(Exception excp) {
+    super(excp);
+    setThwStack(excp);
+  }
 
-	public DAOException(String msg, Throwable e)
-	{
-		super(msg,e);
-		setThwStack(e);
-		
-	}
-	public DAOException() {
+  public DAOException(String msg, Throwable e) {
+    super(msg, e);
+    setThwStack(e);
+  }
 
-		super();
+  public DAOException() {
 
-	}
+    super();
+  }
 
-	public DAOException(String message) {
-		super(message);
-	}
+  public DAOException(String message) {
+    super(message);
+  }
 
-	public Throwable getThwStack() {
-		return thwStack;
-	}
+  public Throwable getThwStack() {
+    return thwStack;
+  }
 
-	public void setThwStack(Throwable throwable) {
-		thwStack = throwable;
-	}
-
+  public void setThwStack(Throwable throwable) {
+    thwStack = throwable;
+  }
 }
