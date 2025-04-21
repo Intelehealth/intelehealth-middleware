@@ -20,6 +20,11 @@ public interface RestAPI {
   @POST("patients")
   Call<PatientDTO> addPatient(@Body PatientDTO patientdto);
 
+  @GET("patient")
+  Call<PatientDTO>  getPatient(@Query("firstname") String firstname,@Query("middlename") String middlename,
+                               @Query("lastname") String lastname, @Query("gender") String gender,
+                               @Query("dateofbirth") String dateofbirth, @Query("phonenumber") String phoneNumber);
+
   @POST("person")
   Call<ResponseBody> addPerson(@Body PersonAPIDTO persondto);
 

@@ -140,4 +140,19 @@ public class PatientDAO {
       session.close();
     }
   }
+
+  public ArrayList<PatientDTO> searchPatientByParam(String firstname, String middlename, String lastname, String gender, String dob, String telecom) throws DAOException {
+    SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
+    SqlSession session = sessionfactory.openSession();
+    try {
+      PatientDMO patientdmo = session.getMapper(PatientDMO.class);
+      return patientdmo.searchPatientByParam(firstname,middlename,lastname,gender,dob,telecom);
+    } catch (PersistenceException e) {
+      logger.error(e.getMessage(),e);
+      throw new DAOException(e.getMessage(), e);
+    } finally {
+      session.close();
+    }
+  }
+
 }
