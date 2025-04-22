@@ -20,7 +20,7 @@ public interface PatientDMO {
    */
   @Select("SELECT DISTINCT " +
           "  person.uuid AS uuid, " +
-          "  pa.person_id, " +
+          "  pa.person_id as patientid, " +
           "  pi.identifier AS openmrs_id, " +
           "  COALESCE(mpi.identifier, '') AS mpi_id," +
           "  person_name.given_name AS firstname, " +
@@ -29,6 +29,11 @@ public interface PatientDMO {
           "  person.birthdate AS dateofbirth, " +
           "  person_address.address1 AS address1, " +
           "  person_address.address2 AS address2, " +
+          "  person_address.address3 as address3," +
+          "  person_address.address4 as address4,"+
+          "  person_address.address5 as address5, "+
+          "  person_address.address6 as address6,"+
+          "  person_address.county_district as countyDistrict, "+
           "  person_address.city_village AS cityvillage, " +
           "  person_address.state_province AS stateprovince, " +
           "  person_address.postal_code AS postalcode, " +
