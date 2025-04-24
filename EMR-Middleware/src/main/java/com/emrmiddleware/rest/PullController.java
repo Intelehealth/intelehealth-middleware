@@ -79,6 +79,8 @@ public class PullController {
                           @QueryParam("gender") String gender,
                           @QueryParam("dob") String dob,
                           @QueryParam("telecom") String telecom,
+                          @DefaultValue("1") @QueryParam("pageNo") int pageNo,
+                          @DefaultValue("10") @QueryParam("limit") int limit,
                           @Context HttpHeaders httpHeaders) {
 
     System.out.println("fn::" + firstname);
@@ -87,6 +89,9 @@ public class PullController {
     System.out.println("gender::" + gender);
     System.out.println("dob::" + dob);
     System.out.println("telecom::" + telecom);
+    System.out.println("pageNo::" + pageNo);
+    System.out.println("limit::" + limit);
+
     ResponseDTO responsedto = new ResponseDTO();
     PullDataDTO pulldatadto = new PullDataDTO();
     String authString = null;
@@ -111,8 +116,7 @@ public class PullController {
       if (middlename == null || middlename.isEmpty()) middlename = null;
       if (telecom == null || telecom.isEmpty()) telecom = null;
 
-
-      pulldatadto = pulldataaction.getPullData(firstname, middlename, lastname, gender, dob, telecom);
+      pulldatadto = pulldataaction.getPullData(firstname, middlename, lastname, gender, dob, telecom, pageNo, limit);
       responsedto.setStatus(Resources.OK);
       responsedto.setData(pulldatadto);
     } catch (DAOException e) {

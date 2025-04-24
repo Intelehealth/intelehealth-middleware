@@ -175,6 +175,7 @@ public interface PatientDMO {
 
   @Select("SELECT " +
           " DISTINCT p.uuid," +
+          " pa.person_id as patientid, " +
           " pi.identifier AS openmrs_id," +
           " COALESCE(mpi.identifier, '') AS mpi_id," +
           " pn.given_name AS firstname, " +
@@ -207,8 +208,46 @@ public interface PatientDMO {
           " and (SOUNDEX(pn.middle_name) = SOUNDEX(#{middlename}) OR #{middlename} IS NULL) " +
           " and (SOUNDEX(pn.family_name) = SOUNDEX(#{lastname}) OR #{lastname} IS NULL) " +
           " and (p.birthdate = #{dateofbirth} OR #{dateofbirth} IS NULL) " +
-          " and (pa.value = #{telecom} OR #{telecom} IS NULL)")
+          " and (pa.value = #{telecom} OR #{telecom} IS NULL)" +
+          " LIMIT #{offset}, #{limit}")
   ArrayList<PatientDTO> searchPatientByParam(
+          @Param("firstname") String firstname,
+          @Param("middlename") String middlename,
+          @Param("lastname") String lastname,
+          @Param("gender") String gender,
+          @Param("dateofbirth") String dateofbirth,
+          @Param("telecom") String telecom,
+          @Param("offset") int offset,
+          @Param("limit") int limit);
+
+  @Select("SELECT " +
+          " count(DISTINCT p.uuid) total" +
+          " FROM person p " +
+          " JOIN patient_identifier pi " +
+          " ON p.person_id = pi.patient_id " +
+          " JOIN patient_identifier_type pit1 " +
+          " ON pi.identifier_type = pit1.patient_identifier_type_id " +
+          " AND pit1.name = 'OpenMRS ID' " +
+          " LEFT JOIN patient_identifier mpi " +  // Changed from JOIN to LEFT JOIN
+          " ON p.person_id = mpi.patient_id " +
+          " AND mpi.identifier_type = ( " +
+          "        SELECT patient_identifier_type_id " +
+          "        FROM patient_identifier_type " +
+          "        WHERE name = 'MPI' " +
+          "    ) " +
+          " LEFT JOIN person_name pn " +
+          " ON p.person_id = pn.person_id " +
+          " LEFT JOIN person_attribute pa " +
+          " ON pa.person_id = p.person_id " +
+          " AND pa.person_attribute_type_id = 8 " +
+          " WHERE " +
+          " (p.gender = #{gender} OR #{gender} IS NULL) " +
+          " and (SOUNDEX(pn.given_name) = SOUNDEX(#{firstname}) OR #{firstname} IS NULL) " +
+          " and (SOUNDEX(pn.middle_name) = SOUNDEX(#{middlename}) OR #{middlename} IS NULL) " +
+          " and (SOUNDEX(pn.family_name) = SOUNDEX(#{lastname}) OR #{lastname} IS NULL) " +
+          " and (p.birthdate = #{dateofbirth} OR #{dateofbirth} IS NULL) " +
+          " and (pa.value = #{telecom} OR #{telecom} IS NULL)")
+  int searchPatientCountByParam(
           @Param("firstname") String firstname,
           @Param("middlename") String middlename,
           @Param("lastname") String lastname,

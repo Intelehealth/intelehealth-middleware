@@ -391,17 +391,19 @@ private PullDataDTO handleIncrementalPull(final String lastPullDateTime, final S
             .collect(Collectors.joining(",", "(", ")"));
   }
 
-    public PullDataDTO getPullData(String firstname, String middlename, String lastname, String gender, String dob, String telecom) throws ActionException, DAOException {
+    public PullDataDTO getPullData(String firstname, String middlename, String lastname, String gender, String dob, String telecom, int pageNo, int limit) throws ActionException, DAOException {
         PullDataDTO pulldata = new PullDataDTO();
         PatientDAO patientdao = new PatientDAO();
         ArrayList<PatientDTO> patientlist = new ArrayList<PatientDTO>();
         try {
-            patientlist = patientdao.searchPatientByParam(firstname, middlename, lastname, gender, dob, telecom);
+            int offset = (pageNo-1) * limit;
+            HashMap<String, Object> itemMap = patientdao.searchPatientByParam(firstname, middlename, lastname, gender, dob, telecom, offset, limit);
+            patientlist = (ArrayList<PatientDTO>) itemMap.get("searchItem");
+            int count = (int) itemMap.get("totalCount");
             pulldata.setPatientlist(patientlist);
-            if(patientlist.size()>0){
-                pulldata.setPageNo(1);
-                pulldata.setTotalCount(patientlist.size());
-            }
+            pulldata.setPageNo(pageNo);
+            pulldata.setTotalCount(count);
+
         } catch (DAOException e) {
             throw new DAOException(e.getMessage(), e);
         } catch (Exception e) {
