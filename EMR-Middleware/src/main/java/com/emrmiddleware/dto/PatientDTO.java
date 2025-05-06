@@ -6,6 +6,7 @@ public class PatientDTO {
 
   private String uuid;
   private String openmrs_id;
+  private String mpi_id;
   private String firstname;
   private String middlename;
   private String lastname;
@@ -256,5 +257,48 @@ public class PatientDTO {
 
   public void setCaste(String caste) {
     this.caste = caste;
+  }
+
+  public String getMpi_id() {
+    return mpi_id;
+  }
+
+  public void setMpi_id(String mpi_id) {
+    this.mpi_id = mpi_id;
+  }
+
+  @Override
+  public String toString() {
+    return "PatientDTO{" +
+            "uuid='" + uuid + '\'' +
+            ", openmrs_id='" + openmrs_id + '\'' +
+            ", mpi_id='" + mpi_id + '\'' +
+            ", firstname='" + firstname + '\'' +
+            ", middlename='" + middlename + '\'' +
+            ", lastname='" + lastname + '\'' +
+            ", dateofbirth=" + dateofbirth +
+            ", phonenumber='" + phonenumber + '\'' +
+            ", address1='" + address1 + '\'' +
+            ", address2='" + address2 + '\'' +
+            ", address3='" + address3 + '\'' +
+            ", address4='" + address4 + '\'' +
+            ", address5='" + address5 + '\'' +
+            ", countyDistrict='" + countyDistrict + '\'' +
+            ", address6='" + address6 + '\'' +
+            ", cityvillage='" + cityvillage + '\'' +
+            ", stateprovince='" + stateprovince + '\'' +
+            ", postalcode='" + postalcode + '\'' +
+            ", country='" + country + '\'' +
+            ", gender='" + gender + '\'' +
+            ", sdw='" + sdw + '\'' +
+            ", dead=" + dead +
+            ", occupation='" + occupation + '\'' +
+            ", patient_photo='" + patient_photo + '\'' +
+            ", economicstatus='" + economicstatus + '\'' +
+            ", caste='" + caste + '\'' +
+            ", syncd=" + syncd +
+            ", voided=" + voided +
+            ", patientid=" + patientid +
+            '}';
   }
 }

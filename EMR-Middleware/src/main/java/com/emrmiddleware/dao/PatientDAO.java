@@ -7,6 +7,7 @@ import com.emrmiddleware.dto.PatientAttributeTypeDTO;
 import com.emrmiddleware.dto.PatientDTO;
 import com.emrmiddleware.exception.DAOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.stream.Collectors;
 
@@ -140,4 +141,24 @@ public class PatientDAO {
       session.close();
     }
   }
+
+  public HashMap<String, Object>  searchPatientByParam(String firstname, String middlename, String lastname, String gender, String dob, String telecom, int offset, int limit) throws DAOException {
+    SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
+    SqlSession session = sessionfactory.openSession();
+    HashMap<String, Object> itemMap = new HashMap<String, Object>();
+    try {
+      PatientDMO patientdmo = session.getMapper(PatientDMO.class);
+      int count = patientdmo.searchPatientCountByParam(firstname,middlename,lastname,gender,dob,telecom);
+      ArrayList<PatientDTO> items = patientdmo.searchPatientByParam(firstname,middlename,lastname,gender,dob,telecom, offset, limit);
+      itemMap.put("totalCount", count);
+      itemMap.put("searchItem",items);
+      return itemMap;
+    } catch (PersistenceException e) {
+      logger.error(e.getMessage(),e);
+      throw new DAOException(e.getMessage(), e);
+    } finally {
+      session.close();
+    }
+  }
+
 }
