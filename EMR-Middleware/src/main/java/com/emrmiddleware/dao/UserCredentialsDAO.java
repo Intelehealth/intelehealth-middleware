@@ -1,6 +1,5 @@
 package com.emrmiddleware.dao;
 
-
 import com.emrmiddleware.conf.DBconfig;
 import com.emrmiddleware.dmo.UserCredentialsDMO;
 import com.emrmiddleware.dto.UserCredentialDTO;
@@ -13,25 +12,23 @@ import org.slf4j.LoggerFactory;
 
 public class UserCredentialsDAO {
 
-    private final Logger logger = LoggerFactory.getLogger(UserCredentialsDAO.class);
+  private final Logger logger = LoggerFactory.getLogger(UserCredentialsDAO.class);
 
-    public UserCredentialDTO getUserCredentail(String username) throws DAOException {
+  public UserCredentialDTO getUserCredentail(String username) throws DAOException {
 
-        SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
-        SqlSession session = sessionfactory.openSession();
-        UserCredentialDTO userCredentialdto = null;
-        try {
+    SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
+    SqlSession session = sessionfactory.openSession();
+    UserCredentialDTO userCredentialdto = null;
+    try {
 
-            UserCredentialsDMO usercredentialsdmo = session.getMapper(UserCredentialsDMO.class);
-            userCredentialdto = usercredentialsdmo.getUserCredentials(username);
-            return userCredentialdto;
-        } catch (PersistenceException e) {
-            logger.error(e.getMessage(), e);
-            throw new DAOException(e.getMessage(), e);
-        } finally {
-            session.close();
-        }
+      UserCredentialsDMO usercredentialsdmo = session.getMapper(UserCredentialsDMO.class);
+      userCredentialdto = usercredentialsdmo.getUserCredentials(username);
+      return userCredentialdto;
+    } catch (PersistenceException e) {
+      logger.error(e.getMessage(), e);
+      throw new DAOException(e.getMessage(), e);
+    } finally {
+      session.close();
     }
-
-
+  }
 }

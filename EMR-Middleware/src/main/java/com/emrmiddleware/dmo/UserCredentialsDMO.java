@@ -6,7 +6,6 @@ import org.apache.ibatis.annotations.Select;
 
 public interface UserCredentialsDMO {
 
-    @Select("select username,password,salt from users where username=#{username}")
-    UserCredentialDTO getUserCredentials(@Param("username") String username);
-
+  @Select("select username,password,salt from users where username=#{username}")
+  public UserCredentialDTO getUserCredentials(@Param("username") String username);
 }

@@ -2,97 +2,77 @@ package com.emrmiddleware.dto;
 
 public class ObsDTO {
 
-    public String comment;
-    private String uuid;
-    private String encounteruuid;
-    private String conceptuuid;
-    private String value;
-    private int creator;
-    private String obsServerModifiedDate;
-    private int voided;
-    private String conceptsetuuid;
-    private String interpretation;
+  public String comment;
+  private String uuid;
+  private String encounteruuid;
+  private String conceptuuid;
+  private String value;
+  private int creator;
+  private String obsServerModifiedDate;
+  private int voided;
 
-    public String getInterpretation() {
-        return interpretation;
-    }
+  // Adding comment field for Ezazi obs.comment
+  public String getComment() {
+    return comment;
+  }
 
-    public void setInterpretation(String interpretation) {
-        this.interpretation = interpretation;
-    }
+  public void setComment(String comment) {
+    this.comment = comment;
+  }
 
-    // Adding comment field for Ezazi obs.comment
-    public String getComment() {
-        return comment;
-    }
+  public String getObsServerModifiedDate() {
+    return obsServerModifiedDate;
+  }
 
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
+  public void setObsServerModifiedDate(String obsServerModifiedDate) {
+    this.obsServerModifiedDate = obsServerModifiedDate;
+  }
 
-    public String getConceptsetuuid() {
-        return conceptsetuuid;
-    }
+  public int getVoided() {
+    return voided;
+  }
 
-    public void setConceptsetuuid(String conceptsetuuid) {
-        this.conceptsetuuid = conceptsetuuid;
-    }
+  public void setVoided(int voided) {
+    this.voided = voided;
+  }
 
-    public String getObsServerModifiedDate() {
-        return obsServerModifiedDate;
-    }
+  public String getUuid() {
+    return uuid;
+  }
 
-    public void setObsServerModifiedDate(String obsServerModifiedDate) {
-        this.obsServerModifiedDate = obsServerModifiedDate;
-    }
+  public void setUuid(String uuid) {
+    this.uuid = uuid;
+  }
 
-    public int getVoided() {
-        return voided;
-    }
+  public String getEncounteruuid() {
+    return encounteruuid;
+  }
 
-    public void setVoided(int voided) {
-        this.voided = voided;
-    }
+  public void setEncounteruuid(String encounteruuid) {
+    this.encounteruuid = encounteruuid;
+  }
 
-    public String getUuid() {
-        return uuid;
-    }
+  public String getConceptuuid() {
+    return conceptuuid;
+  }
 
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
-    }
+  public void setConceptuuid(String conceptuuid) {
+    this.conceptuuid = conceptuuid;
+  }
 
-    public String getEncounteruuid() {
-        return encounteruuid;
-    }
+  public String getValue() {
+    return value;
+  }
 
-    public void setEncounteruuid(String encounteruuid) {
-        this.encounteruuid = encounteruuid;
-    }
+  public void setValue(String value) {
+    this.value = value;
+  }
 
-    public String getConceptuuid() {
-        return conceptuuid;
-    }
+  public int getCreator() {
+    return creator;
+  }
 
-    public void setConceptuuid(String conceptuuid) {
-        this.conceptuuid = conceptuuid;
-    }
-
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
-    }
-
-    public int getCreator() {
-        return creator;
-    }
-
-    public void setCreator(int creator) {
-        this.creator = creator;
-    }
-
-
+  public void setCreator(int creator) {
+    this.creator = creator;
+  }
 }

@@ -11,65 +11,82 @@ import retrofit2.Retrofit;
 
 public class APIClient {
 
-    String authString;
-    private Retrofit retrofit = null;
+  String authString;
+  private Retrofit retrofit = null;
 
-    public APIClient(String authHeader) {
-        authString = authHeader;
-    }
+  public APIClient(String authHeader) {
+    authString = authHeader;
+  }
 
-    public Retrofit getClient() {
+  public Retrofit getClient() {
 
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        AuthenticationUtil authenticationUtil = new AuthenticationUtil();
-        UserCredentialDTO userCredentialdto = authenticationUtil.getAuthHeader(authString);
-        OkHttpClient client = new OkHttpClient.Builder()
-                .addInterceptor(
-                        new BasicAuthInterceptor(userCredentialdto.getUsername(), userCredentialdto.getPassword()))
-                .build();
-        ResourcesEnvironment dbenv = new ResourcesEnvironment();
-        Gson gson = new GsonBuilder().setLenient().create();
-        retrofit = new Retrofit.Builder().baseUrl(dbenv.getAPIBaseURL())
-                .addConverterFactory(retrofit2.converter.gson.GsonConverterFactory.create(gson)).client(client).build();
+    HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+    interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+    AuthenticationUtil authenticationUtil = new AuthenticationUtil();
+    UserCredentialDTO userCredentialdto = authenticationUtil.getAuthHeader(authString);
+    OkHttpClient client =
+        new OkHttpClient.Builder()
+            .addInterceptor(
+                new BasicAuthInterceptor(
+                    userCredentialdto.getUsername(), userCredentialdto.getPassword()))
+            .build();
+    ResourcesEnvironment dbenv = new ResourcesEnvironment();
+    Gson gson = new GsonBuilder().setLenient().create();
+    retrofit =
+        new Retrofit.Builder()
+            .baseUrl(dbenv.getAPIBaseURL())
+            .addConverterFactory(retrofit2.converter.gson.GsonConverterFactory.create(gson))
+            .client(client)
+            .build();
 
-        return retrofit;
-    }
+    return retrofit;
+  }
 
-    public Retrofit getIdClient() {
+  public Retrofit getIdClient() {
 
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        AuthenticationUtil authenticationUtil = new AuthenticationUtil();
-        UserCredentialDTO userCredentialdto = authenticationUtil.getAuthHeader(authString);
-        OkHttpClient client = new OkHttpClient.Builder()
-                .addInterceptor(
-                        new BasicAuthInterceptor(userCredentialdto.getUsername(), userCredentialdto.getPassword()))
-                .build();
-        ResourcesEnvironment dbenv = new ResourcesEnvironment();
-        Gson gson = new GsonBuilder().setLenient().create();
-        retrofit = new Retrofit.Builder().baseUrl(dbenv.getIdGenUrl())
-                .addConverterFactory(retrofit2.converter.gson.GsonConverterFactory.create(gson)).client(client).build();
+    HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+    interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+    AuthenticationUtil authenticationUtil = new AuthenticationUtil();
+    UserCredentialDTO userCredentialdto = authenticationUtil.getAuthHeader(authString);
+    OkHttpClient client =
+        new OkHttpClient.Builder()
+            .addInterceptor(
+                new BasicAuthInterceptor(
+                    userCredentialdto.getUsername(), userCredentialdto.getPassword()))
+            .build();
+    ResourcesEnvironment dbenv = new ResourcesEnvironment();
+    Gson gson = new GsonBuilder().setLenient().create();
+    retrofit =
+        new Retrofit.Builder()
+            .baseUrl(dbenv.getIdGenUrl())
+            .addConverterFactory(retrofit2.converter.gson.GsonConverterFactory.create(gson))
+            .client(client)
+            .build();
 
-        return retrofit;
-    }
+    return retrofit;
+  }
 
-    public Retrofit getMMClient() {
+  public Retrofit getMMClient() {
 
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        AuthenticationUtil authenticationUtil = new AuthenticationUtil();
-        UserCredentialDTO userCredentialdto = authenticationUtil.getAuthHeader(authString);
-        OkHttpClient client = new OkHttpClient.Builder()
-                .addInterceptor(
-                        new BasicAuthInterceptor(userCredentialdto.getUsername(), userCredentialdto.getPassword()))
-                .build();
-        ResourcesEnvironment dbenv = new ResourcesEnvironment();
-        Gson gson = new GsonBuilder().setLenient().create();
-        retrofit = new Retrofit.Builder().baseUrl(dbenv.getMMBaseURL())
-                .addConverterFactory(retrofit2.converter.gson.GsonConverterFactory.create(gson)).client(client).build();
+    HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+    interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+    AuthenticationUtil authenticationUtil = new AuthenticationUtil();
+    UserCredentialDTO userCredentialdto = authenticationUtil.getAuthHeader(authString);
+    OkHttpClient client =
+        new OkHttpClient.Builder()
+            .addInterceptor(
+                new BasicAuthInterceptor(
+                    userCredentialdto.getUsername(), userCredentialdto.getPassword()))
+            .build();
+    ResourcesEnvironment dbenv = new ResourcesEnvironment();
+    Gson gson = new GsonBuilder().setLenient().create();
+    retrofit =
+        new Retrofit.Builder()
+            .baseUrl(dbenv.getMMBaseURL())
+            .addConverterFactory(retrofit2.converter.gson.GsonConverterFactory.create(gson))
+            .client(client)
+            .build();
 
-        return retrofit;
-    }
-
+    return retrofit;
+  }
 }

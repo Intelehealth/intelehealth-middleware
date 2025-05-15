@@ -4,89 +4,87 @@ import java.util.ArrayList;
 
 public class EncounterAPIDTO {
 
-    private String uuid;
+  private String uuid;
 
-    private String encounterDatetime;
-    private String encounterType;
-    private String visit;
-    private String patient;
+  private String encounterDatetime;
+  private String encounterType;
+  private String visit;
+  private String patient;
 
-    private ArrayList<EncounterProvidersAPIDTO> encounterProviders;
-    private String location;
-    private String voided;
-    private ArrayList<ObsAPIDTO> obs = new ArrayList<ObsAPIDTO>();
+  private ArrayList<EncounterProvidersAPIDTO> encounterProviders;
+  private String location;
+  private String voided;
+  private ArrayList<ObsAPIDTO> obs = new ArrayList<ObsAPIDTO>();
 
-    public ArrayList<ObsAPIDTO> getObs() {
-        return obs;
-    }
+  public ArrayList<ObsAPIDTO> getObs() {
+    return obs;
+  }
 
-    public void setObs(ArrayList<ObsAPIDTO> obs) {
-        this.obs = obs;
-    }
+  public void setObs(ArrayList<ObsAPIDTO> obs) {
+    this.obs = obs;
+  }
 
-    public String getVoided() {
-        return voided;
-    }
+  public String getVoided() {
+    return voided;
+  }
 
-    public void setVoided(String voided) {
-        this.voided = voided;
-    }
+  public void setVoided(String voided) {
+    this.voided = voided;
+  }
 
-    public String getPatient() {
-        return patient;
-    }
+  public String getPatient() {
+    return patient;
+  }
 
-    public void setPatient(String patient) {
-        this.patient = patient;
-    }
+  public void setPatient(String patient) {
+    this.patient = patient;
+  }
 
-    public String getUuid() {
-        return uuid;
-    }
+  public String getUuid() {
+    return uuid;
+  }
 
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
-    }
+  public void setUuid(String uuid) {
+    this.uuid = uuid;
+  }
 
-    public String getEncounterDatetime() {
-        return encounterDatetime;
-    }
+  public String getEncounterDatetime() {
+    return encounterDatetime;
+  }
 
-    public void setEncounterDatetime(String encounterDatetime) {
-        this.encounterDatetime = encounterDatetime;
-    }
+  public void setEncounterDatetime(String encounterDatetime) {
+    this.encounterDatetime = encounterDatetime;
+  }
 
-    public String getEncounterType() {
-        return encounterType;
-    }
+  public String getEncounterType() {
+    return encounterType;
+  }
 
-    public void setEncounterType(String encounterType) {
-        this.encounterType = encounterType;
-    }
+  public void setEncounterType(String encounterType) {
+    this.encounterType = encounterType;
+  }
 
-    public String getVisit() {
-        return visit;
-    }
+  public String getVisit() {
+    return visit;
+  }
 
-    public void setVisit(String visit) {
-        this.visit = visit;
-    }
+  public void setVisit(String visit) {
+    this.visit = visit;
+  }
 
-    public ArrayList<EncounterProvidersAPIDTO> getEncounterProviders() {
-        return encounterProviders;
-    }
+  public ArrayList<EncounterProvidersAPIDTO> getEncounterProviders() {
+    return encounterProviders;
+  }
 
-    public void setEncounterProviders(ArrayList<EncounterProvidersAPIDTO> encounterProviders) {
-        this.encounterProviders = encounterProviders;
-    }
+  public void setEncounterProviders(ArrayList<EncounterProvidersAPIDTO> encounterProviders) {
+    this.encounterProviders = encounterProviders;
+  }
 
-    public String getLocation() {
-        return location;
-    }
+  public String getLocation() {
+    return location;
+  }
 
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-
+  public void setLocation(String location) {
+    this.location = location;
+  }
 }

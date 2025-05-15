@@ -12,23 +12,24 @@ import org.slf4j.LoggerFactory;
 
 public class PersonDAO {
 
-    private final Logger logger = LoggerFactory.getLogger(PersonDAO.class);
+  private final Logger logger = LoggerFactory.getLogger(PersonDAO.class);
 
-    public PersonDTO getPerson(String personuuid) throws DAOException {
+  public PersonDTO getPerson(String personuuid) throws DAOException {
 
-        SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
-        SqlSession session = sessionfactory.openSession();
-        PersonDTO persondto = new PersonDTO();
-        try {
-            PersonDMO persondmo = session.getMapper(PersonDMO.class);
-            persondto = persondmo.getPerson(personuuid);
-            return persondto;
-        } catch (PersistenceException e) {
-            logger.error(e.getMessage(), e);
-            throw new DAOException(e.getMessage(), e);
-        } finally {
-            session.close();
-        }
+    SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
+    SqlSession session = sessionfactory.openSession();
+    PersonDTO persondto = new PersonDTO();
+    try {
+
+      logger.info("PERSON UUID  {} " , personuuid);
+      PersonDMO persondmo = session.getMapper(PersonDMO.class);
+      persondto = persondmo.getPerson(personuuid);
+      return persondto;
+    } catch (PersistenceException e) {
+      logger.error(e.getMessage(), e);
+      throw new DAOException(e.getMessage(), e);
+    } finally {
+      session.close();
     }
-
+  }
 }

@@ -19,11 +19,24 @@
             <pattern>%d{HH:mm:ss.SSS} %-5level %logger{36} [%file:%line] - %msg%n</pattern>
         </encoder>
     </appender>
-    <root level="error">
-        <appender-ref ref="${appenderType}"/>
-    </root>
+    <!--
+    <logger name="com.emrmiddleware.dmo">
+        <level value="debug"/>
+    </logger>
+
+     Add explicit loggers for SQL and MyBatis 
+    <logger name="org.mybatis">
+        <level value="debug"/>
+        <appender-ref ref="STDOUT"/>
+    </logger>
+    <logger name="java.sql">
+        <level value="debug"/>
+        <appender-ref ref="STDOUT"/>
+    </logger>
+    -->
+
     <root level="debug">
-        <appender-ref ref="none"/>
+        <appender-ref ref="${appenderType}"/>
     </root>
     <root level="info">
         <appender-ref ref="${appenderType}"/>

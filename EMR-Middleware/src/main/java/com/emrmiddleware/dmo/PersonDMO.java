@@ -6,6 +6,6 @@ import org.apache.ibatis.annotations.Select;
 
 public interface PersonDMO {
 
-    @Select("SELECT distinct person.uuid as uuid from person where uuid=#{uuid}")
-    PersonDTO getPerson(@Param("uuid") String uuid);
+  @Select("SELECT distinct person.uuid as uuid from person where uuid=#{uuid}")
+  public PersonDTO getPerson(@Param("uuid") String uuid);
 }

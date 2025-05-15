@@ -38,12 +38,9 @@ public class MindmapDAO {
         SqlSession session = sessionfactory.openSession();
         JsonObject configFileContent = new JsonObject();
         try {
-//            MindmapDMO mindmapDMO = session.getMapper(MindmapDMO.class);
-//            String fname = mindmapDMO.getConfigFileName();
-//            String url = System.getenv("CONFIGURL") + fname;
-//            System.out.println("URL: " + url);
-//            String json = readUrl(System.getenv("CONFIGURL") + fname);
-            String json = readUrl("https://intelehealth-production-master.mpower-social.com:4004/api/config/getPublishedConfig");
+            MindmapDMO mindmapDMO = session.getMapper(MindmapDMO.class);
+            String fname = mindmapDMO.getConfigFileName();
+            String json = readUrl(System.getenv("CONFIGURL") + fname);
 
             Gson gson = new Gson();
             configFileContent = gson.fromJson(json, JsonObject.class);
