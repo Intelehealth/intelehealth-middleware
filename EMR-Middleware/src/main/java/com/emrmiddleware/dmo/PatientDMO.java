@@ -12,7 +12,7 @@ import com.emrmiddleware.dto.PatientAttributeTypeDTO;
 import com.emrmiddleware.dto.PatientDTO;
 
 public interface PatientDMO {
-   Logger logger = LoggerFactory.getLogger(PatientDMO.class);
+  Logger logger = LoggerFactory.getLogger(PatientDMO.class);
 
   /**
    * Code for getting patients has been modified to remove deadlocks in case of a patient not having
@@ -75,7 +75,7 @@ public interface PatientDMO {
           @Param("limit") int limit);
 
   @Select(
-      "select uuid as uuid ,name from person_attribute_type where COALESCE(date_changed,date_created) >= #{lastchangedtime} and retired=0")
+          "select uuid as uuid ,name from person_attribute_type where COALESCE(date_changed,date_created) >= #{lastchangedtime} and retired=0")
   public ArrayList<PatientAttributeTypeDTO> getPatientAttributeMaster(
           @Param("lastchangedtime") String lastpulldatatime);
 
@@ -111,7 +111,7 @@ public interface PatientDMO {
           @Param("patientIds") String patientIds);
 
   @Select(
-      "select person.uuid,patient_identifier.identifier as openmrs_id from patient_identifier,person where person.person_id=patient_identifier.patient_id and person.uuid=#{uuid}")
+          "select person.uuid,patient_identifier.identifier as openmrs_id from patient_identifier,person where person.person_id=patient_identifier.patient_id and person.uuid=#{uuid}")
   public PatientDTO getPatient(@Param("uuid") String uuid);
 
   // Adding new method patientCount to return total number of records after the lastpulldatatime on
@@ -183,8 +183,19 @@ public interface PatientDMO {
           " pn.family_name AS lastname, " +
           " p.gender AS gender, " +
           " p.birthdate AS dateofbirth, " +
+          " addr.address1 AS address1, " +
+          " addr.address2 AS address2, " +
+          " addr.address3 as address3," +
+          " addr.address4 as address4,"+
+          " addr.address5 as address5, "+
+          " addr.address6 as address6,"+
+          " addr.county_district as countyDistrict, "+
+          " addr.city_village AS cityvillage, " +
+          " addr.state_province AS stateprovince, " +
+          " addr.postal_code AS postalcode, " +
           " pa.value AS phonenumber " +
           " FROM person p " +
+          " JOIN person_address addr ON p.person_id = addr.person_id " +
           " JOIN patient_identifier pi " +
           " ON p.person_id = pi.patient_id " +
           " JOIN patient_identifier_type pit1 " +
@@ -223,6 +234,7 @@ public interface PatientDMO {
   @Select("SELECT " +
           " count(DISTINCT p.uuid) total" +
           " FROM person p " +
+          " JOIN person_address addr ON p.person_id = addr.person_id " +
           " JOIN patient_identifier pi " +
           " ON p.person_id = pi.patient_id " +
           " JOIN patient_identifier_type pit1 " +
