@@ -193,6 +193,7 @@ public interface PatientDMO {
           " addr.city_village AS cityvillage, " +
           " addr.state_province AS stateprovince, " +
           " addr.postal_code AS postalcode, " +
+          " addr.country, " +
           " pa.value AS phonenumber " +
           " FROM person p " +
           " JOIN person_address addr ON p.person_id = addr.person_id " +
