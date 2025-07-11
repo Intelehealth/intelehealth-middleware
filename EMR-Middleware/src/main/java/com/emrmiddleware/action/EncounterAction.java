@@ -38,7 +38,6 @@ public class EncounterAction {
       for (EncounterAPIDTO encounter : encounterList) {
         encounterForError = encounter;
         logger.info("Encounter json : {}", gson.toJson(encounter));
-
         EncounterDTO encounterDto = processEncounter(encounter);
         encounters.add(encounterDto);
       }
