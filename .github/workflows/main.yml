@@ -24,7 +24,7 @@ jobs:
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
     
     - name: Create db_properties.xml
-      run: |
+      run: 
         mkdir -p src/main/resources
         cat > src/main/resources/db_properties.xml << EOF
         <?xml version="1.0" encoding="UTF-8"?>
