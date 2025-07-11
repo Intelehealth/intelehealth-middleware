@@ -1,9 +1,7 @@
 name: Java CI/CD with WAR Deployment
-
 on:
   push:
     branches: [ "feature-pagination" ]
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -16,8 +14,7 @@ jobs:
       uses: actions/setup-java@v4
       with:
         java-version: '8'
-        distribution: 'temurin'
-    
+        
     - name: Cache Maven dependencies
       uses: actions/cache@v3
       with:
