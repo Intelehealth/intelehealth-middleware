@@ -62,8 +62,7 @@ public class PatientAction {
 				patients.add(patientdto);
 			}
 		} catch (Exception e) {
-			//patientdto.setOpenmrs_id("");// Set OpenMRS ID to blank in case of
-											// exception
+			//patientdto.setOpenmrs_id("");// Set OpenMRS ID to blank in case of  exception
 			logger.error("Error occurred for json string : {}" , gson.toJson(patientforerror));
 			logger.error(e.getMessage(), e);
 
