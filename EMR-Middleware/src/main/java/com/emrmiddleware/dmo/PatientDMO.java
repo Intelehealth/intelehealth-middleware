@@ -18,49 +18,56 @@ public interface PatientDMO {
    * Code for getting patients has been modified to remove deadlocks in case of a patient not having
    * any attribute or a patient has been voided 26-11-2021 satyadeep-ih
    */
-  @Select(
-      "SELECT distinct person.uuid as uuid,\n"
-          + " pa.person_id as patientid,\n"
-          + " patient_identifier.identifier as openmrs_id,\n"
-          + "                person_name.given_name as firstname,\n"
-          + "                person_name.middle_name as middlename,\n"
-          + "                ifnull(person_name.family_name, ' ') as lastname,\n"
-          + "                person.birthdate as dateofbirth,\n"
-          + "                person_address.address1 as address1 ,\n"
-          + "                person_address.address2 as address2,\n"
-              + "                person_address.address3 as address3,\n"
-              + "                person_address.address4 as address4,\n"
-               + " person_address.address5 as address5, "
-              + "                person_address.address6 as address6,\n"
-             + " person_address.county_district as countyDistrict, "
-              + "                person_address.city_village as cityvillage,\n"
-          + "                person_address.state_province as stateprovince,\n"
-          + "                person_address.postal_code as postalcode,\n"
-          + "                person_address.country,\n"
-          + "                person.gender,\n"
-          + "                person.dead,\n"
-          + "                person.voided\n"
-          + "FROM person\n"
-          + "INNER JOIN patient_identifier ON person.person_id = patient_identifier.patient_id\n"
-          + "INNER JOIN person_name ON person.person_id = person_name.person_id\n"
-          + "INNER JOIN person_address ON person.person_id = person_address.person_id\n"
-          + "INNER JOIN location ON patient_identifier.location_id = location.location_id\n"
-          + "INNER JOIN person_attribute pa ON person.person_id = pa.person_id\n"
-          + "WHERE person.voided = 0\n"
-          + "AND person_name.preferred = 1\n"
-          + "AND person_address.preferred = 1\n"
-          + "AND location.uuid = #{locationuuid}\n"
-          + "AND (COALESCE(person.date_changed,person.date_created) >= #{lastchangedtime}\n"
-          + "OR COALESCE(patient_identifier.date_changed,patient_identifier.date_created) >= #{lastchangedtime}\n"
-          + "OR COALESCE(person_name.date_changed,person_name.date_created) >= #{lastchangedtime}\n"
-          + "OR COALESCE(person_address.date_changed,person_address.date_created) >= #{lastchangedtime}\n"
-          + "OR COALESCE(pa.date_changed,pa.date_created) >= #{lastchangedtime})\n"
-          + "AND person.person_id IN (\n"
-          + "    SELECT DISTINCT pa2.person_id\n"
-          + "    FROM person_attribute pa2\n"
-          + "    WHERE pa2.voided = 0\n"
-          + ")\n"
-          + "LIMIT #{offset}, #{limit}")
+  @Select("SELECT DISTINCT " +
+          "  person.uuid AS uuid, " +
+          "  pa.person_id as patientid, " +
+          "  pi.identifier AS openmrs_id, " +
+          "  COALESCE(mpi.identifier, '') AS mpi_id," +
+          "  person_name.given_name AS firstname, " +
+          "  person_name.middle_name AS middlename, " +
+          "  IFNULL(person_name.family_name, ' ') AS lastname, " +
+          "  person.birthdate AS dateofbirth, " +
+          "  person_address.address1 AS address1, " +
+          "  person_address.address2 AS address2, " +
+          "  person_address.address3 as address3," +
+          "  person_address.address4 as address4,"+
+          "  person_address.address5 as address5, "+
+          "  person_address.address6 as address6,"+
+          "  person_address.county_district as countyDistrict, "+
+          "  person_address.city_village AS cityvillage, " +
+          "  person_address.state_province AS stateprovince, " +
+          "  person_address.postal_code AS postalcode, " +
+          "  person_address.country, " +
+          "  person.gender, " +
+          "  person.dead, " +
+          "  person.voided " +
+          "FROM person " +
+          "JOIN patient_identifier pi " +
+          "    ON person.person_id = pi.patient_id " +
+          "JOIN patient_identifier_type pit1 " +
+          "    ON pi.identifier_type = pit1.patient_identifier_type_id " +
+          "    AND pit1.name = 'OpenMRS ID' " +
+          " LEFT JOIN patient_identifier mpi " +  // Changed from JOIN to LEFT JOIN
+          " ON person.person_id = mpi.patient_id " +
+          " AND mpi.identifier_type = ( " +
+          "        SELECT patient_identifier_type_id " +
+          "        FROM patient_identifier_type " +
+          "        WHERE name = 'MPI' " +
+          "    ) " +
+          "JOIN person_name ON person.person_id = person_name.person_id " +
+          "JOIN person_address ON person.person_id = person_address.person_id " +
+          "JOIN location ON pi.location_id = location.location_id " +
+          "JOIN person_attribute pa ON person.person_id = pa.person_id " +
+          "WHERE person.voided = 0 " +
+          "  AND person_name.preferred = 1 " +
+          "  AND person_address.preferred = 1 " +
+          "  AND (COALESCE(person.date_changed, person.date_created) >= #{lastchangedtime} " +
+          "       OR COALESCE(pi.date_changed, pi.date_created) >= #{lastchangedtime} " +
+          "       OR COALESCE(person_name.date_changed, person_name.date_created) >= #{lastchangedtime} " +
+          "       OR COALESCE(person_address.date_changed, person_address.date_created) >= #{lastchangedtime} " +
+          "       OR COALESCE(pa.date_changed, pa.date_created) >= #{lastchangedtime}) " +
+          "  AND location.uuid = #{locationuuid} " +
+          "LIMIT #{offset}, #{limit}")
   public ArrayList<PatientDTO> getPatients(
           @Param("lastchangedtime") String lastpulldatatime,
           @Param("locationuuid") String locationuuid,
@@ -110,50 +117,142 @@ public interface PatientDMO {
   // Adding new method patientCount to return total number of records after the lastpulldatatime on
   // that locationuuid
 
-  @Select("SELECT COUNT(1) FROM (" +
-          " SELECT distinct person.uuid as uuid,\n"
-          + " pa.person_id as patientid,\n"
-          + " patient_identifier.identifier as openmrs_id,\n"
-          + "                person_name.given_name as firstname,\n"
-          + "                person_name.middle_name as middlename,\n"
-          + "                ifnull(person_name.family_name, ' ') as lastname,\n"
-          + "                person.birthdate as dateofbirth,\n"
-          + "                person_address.address1 as address1 ,\n"
-          + "                person_address.address2 as address2,\n"
-              + "                person_address.address3 as address3,\n"
-              + "                person_address.address4 as address4,\n"
-               + " person_address.address5 as address5, "
-              + "                person_address.address6 as address6,\n"
-             + " person_address.county_district as countyDistrict, "
-              + "                person_address.city_village as cityvillage,\n"
-          + "                person_address.state_province as stateprovince,\n"
-          + "                person_address.postal_code as postalcode,\n"
-          + "                person_address.country,\n"
-          + "                person.gender,\n"
-          + "                person.dead,\n"
-          + "                person.voided\n"
-          + "FROM person\n"
-          + "INNER JOIN patient_identifier ON person.person_id = patient_identifier.patient_id\n"
-          + "INNER JOIN person_name ON person.person_id = person_name.person_id\n"
-          + "INNER JOIN person_address ON person.person_id = person_address.person_id\n"
-          + "INNER JOIN location ON patient_identifier.location_id = location.location_id\n"
-          + "INNER JOIN person_attribute pa ON person.person_id = pa.person_id\n"
-          + "WHERE person.voided = 0\n"
-          + "AND person_name.preferred = 1\n"
-          + "AND person_address.preferred = 1\n"
-          + "AND location.uuid = #{locationuuid}\n"
-          + "AND (COALESCE(person.date_changed,person.date_created) >= #{lastchangedtime}\n"
-          + "OR COALESCE(patient_identifier.date_changed,patient_identifier.date_created) >= #{lastchangedtime}\n"
-          + "OR COALESCE(person_name.date_changed,person_name.date_created) >= #{lastchangedtime}\n"
-          + "OR COALESCE(person_address.date_changed,person_address.date_created) >= #{lastchangedtime}\n"
-          + "OR COALESCE(pa.date_changed,pa.date_created) >= #{lastchangedtime})\n"
-          + "AND person.person_id IN (\n"
-          + "    SELECT DISTINCT pa2.person_id\n"
-          + "    FROM person_attribute pa2\n"
-          + "    WHERE pa2.voided = 0\n"
-          + ")"
-          + ") t ")
+  @Select("SELECT COUNT(1) FROM ( " +
+          "    SELECT DISTINCT " +
+          "        person.uuid AS uuid, " +
+          "        pa.person_id, " +
+          "        pi.identifier AS openmrs_id, " +
+          "        COALESCE(mpi.identifier, '') AS mpi_id, " +
+          "        person_name.given_name AS firstname, " +
+          "        person_name.middle_name AS middlename, " +
+          "        IFNULL(person_name.family_name, ' ') AS lastname, " +
+          "        person.birthdate AS dateofbirth, " +
+          "        person_address.address1 AS address1, " +
+          "        person_address.address2 AS address2, " +
+          "        person_address.city_village AS cityvillage, " +
+          "        person_address.state_province AS stateprovince, " +
+          "        person_address.postal_code AS postalcode, " +
+          "        person_address.country, " +
+          "        person.gender, " +
+          "        person.dead, " +
+          "        person.voided " +
+          "    FROM person " +
+          "    JOIN patient_identifier pi " +
+          "        ON person.person_id = pi.patient_id " +
+          "    JOIN patient_identifier_type pit " +
+          "        ON pi.identifier_type = pit.patient_identifier_type_id " +
+          "        AND pit.name = 'OpenMRS ID' " +
+          "    LEFT JOIN patient_identifier mpi " +
+          "        ON person.person_id = mpi.patient_id " +
+          "        AND mpi.identifier_type = ( " +
+          "            SELECT patient_identifier_type_id " +
+          "            FROM patient_identifier_type " +
+          "            WHERE name = 'MPI' " +
+          "        ) " +
+          "    JOIN person_name " +
+          "        ON person.person_id = person_name.person_id " +
+          "    JOIN person_address " +
+          "        ON person.person_id = person_address.person_id " +
+          "    JOIN location " +
+          "        ON pi.location_id = location.location_id " +
+          "    JOIN person_attribute AS pa " +
+          "        ON person.person_id = pa.person_id " +
+          "    WHERE person.voided = 0 " +
+          "        AND person_name.preferred = 1 " +
+          "        AND person_address.preferred = 1 " +
+          "        AND ( " +
+          "            COALESCE(person.date_changed, person.date_created) >= #{lastchangedtime} " +
+          "            OR COALESCE(pi.date_changed, pi.date_created) >= #{lastchangedtime} " +
+          "            OR COALESCE(person_name.date_changed, person_name.date_created) >= #{lastchangedtime} " +
+          "            OR COALESCE(person_address.date_changed, person_address.date_created) >= #{lastchangedtime} " +
+          "            OR COALESCE(pa.date_changed, pa.date_created) >= #{lastchangedtime} " +
+          "        ) " +
+          "        AND location.uuid = #{locationuuid} " +
+          ") t")
   public int getPatientsCount(
           @Param("lastchangedtime") String lastpulldatatime,
           @Param("locationuuid") String locationuuid);
+
+  @Select("SELECT " +
+          " DISTINCT p.uuid," +
+          " pa.person_id as patientid, " +
+          " pi.identifier AS openmrs_id," +
+          " COALESCE(mpi.identifier, '') AS mpi_id," +
+          " pn.given_name AS firstname, " +
+          " pn.middle_name AS middlename, " +
+          " pn.family_name AS lastname, " +
+          " p.gender AS gender, " +
+          " p.birthdate AS dateofbirth, " +
+          " pa.value AS phonenumber " +
+          " FROM person p " +
+          " JOIN patient_identifier pi " +
+          " ON p.person_id = pi.patient_id " +
+          " JOIN patient_identifier_type pit1 " +
+          " ON pi.identifier_type = pit1.patient_identifier_type_id " +
+          " AND pit1.name = 'OpenMRS ID' " +
+          " LEFT JOIN patient_identifier mpi " +  // Changed from JOIN to LEFT JOIN
+          " ON p.person_id = mpi.patient_id " +
+          " AND mpi.identifier_type = ( " +
+          "        SELECT patient_identifier_type_id " +
+          "        FROM patient_identifier_type " +
+          "        WHERE name = 'MPI' " +
+          "    ) " +
+          " LEFT JOIN person_name pn " +
+          " ON p.person_id = pn.person_id " +
+          " LEFT JOIN person_attribute pa " +
+          " ON pa.person_id = p.person_id " +
+          " AND pa.person_attribute_type_id = 8 " +
+          " WHERE " +
+          " (p.gender = #{gender} OR #{gender} IS NULL) " +
+          " and (SOUNDEX(pn.given_name) = SOUNDEX(#{firstname}) OR #{firstname} IS NULL) " +
+          " and (SOUNDEX(pn.middle_name) = SOUNDEX(#{middlename}) OR #{middlename} IS NULL) " +
+          " and (SOUNDEX(pn.family_name) = SOUNDEX(#{lastname}) OR #{lastname} IS NULL) " +
+          " and (p.birthdate = #{dateofbirth} OR #{dateofbirth} IS NULL) " +
+          " and (pa.value = #{telecom} OR #{telecom} IS NULL)" +
+          " LIMIT #{offset}, #{limit}")
+  ArrayList<PatientDTO> searchPatientByParam(
+          @Param("firstname") String firstname,
+          @Param("middlename") String middlename,
+          @Param("lastname") String lastname,
+          @Param("gender") String gender,
+          @Param("dateofbirth") String dateofbirth,
+          @Param("telecom") String telecom,
+          @Param("offset") int offset,
+          @Param("limit") int limit);
+
+  @Select("SELECT " +
+          " count(DISTINCT p.uuid) total" +
+          " FROM person p " +
+          " JOIN patient_identifier pi " +
+          " ON p.person_id = pi.patient_id " +
+          " JOIN patient_identifier_type pit1 " +
+          " ON pi.identifier_type = pit1.patient_identifier_type_id " +
+          " AND pit1.name = 'OpenMRS ID' " +
+          " LEFT JOIN patient_identifier mpi " +  // Changed from JOIN to LEFT JOIN
+          " ON p.person_id = mpi.patient_id " +
+          " AND mpi.identifier_type = ( " +
+          "        SELECT patient_identifier_type_id " +
+          "        FROM patient_identifier_type " +
+          "        WHERE name = 'MPI' " +
+          "    ) " +
+          " LEFT JOIN person_name pn " +
+          " ON p.person_id = pn.person_id " +
+          " LEFT JOIN person_attribute pa " +
+          " ON pa.person_id = p.person_id " +
+          " AND pa.person_attribute_type_id = 8 " +
+          " WHERE " +
+          " (p.gender = #{gender} OR #{gender} IS NULL) " +
+          " and (SOUNDEX(pn.given_name) = SOUNDEX(#{firstname}) OR #{firstname} IS NULL) " +
+          " and (SOUNDEX(pn.middle_name) = SOUNDEX(#{middlename}) OR #{middlename} IS NULL) " +
+          " and (SOUNDEX(pn.family_name) = SOUNDEX(#{lastname}) OR #{lastname} IS NULL) " +
+          " and (p.birthdate = #{dateofbirth} OR #{dateofbirth} IS NULL) " +
+          " and (pa.value = #{telecom} OR #{telecom} IS NULL)")
+  int searchPatientCountByParam(
+          @Param("firstname") String firstname,
+          @Param("middlename") String middlename,
+          @Param("lastname") String lastname,
+          @Param("gender") String gender,
+          @Param("dateofbirth") String dateofbirth,
+          @Param("telecom") String telecom);
+
 }
