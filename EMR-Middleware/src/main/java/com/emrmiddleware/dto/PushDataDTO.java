@@ -1,65 +1,72 @@
 package com.emrmiddleware.dto;
 
+import com.emrmiddleware.api.dto.*;
 import java.util.ArrayList;
 
-import com.emrmiddleware.api.dto.EncounterAPIDTO;
-import com.emrmiddleware.api.dto.PatientAPIDTO;
-import com.emrmiddleware.api.dto.PersonAPIDTO;
-import com.emrmiddleware.api.dto.VisitAPIDTO;
-
 public class PushDataDTO {
-	
-	private ArrayList<PatientAPIDTO> patients;
-	private ArrayList<PersonAPIDTO> persons;
-	private ArrayList<VisitAPIDTO> visits;
-	private ArrayList<EncounterAPIDTO> encounters;
-	private boolean syncd=true;
-	
 
-	
-	public ArrayList<EncounterAPIDTO> getEncounters() {
-		return encounters;
-	}
+  private ArrayList<PatientAPIDTO> patients;
+  private ArrayList<PersonAPIDTO> persons;
+  private ArrayList<VisitAPIDTO> visits;
+  private ArrayList<EncounterAPIDTO> encounters;
+  private boolean syncd = true;
+  private ArrayList<ProviderDTO> providers;
 
-	public void setEncounters(ArrayList<EncounterAPIDTO> encounters) {
-		this.encounters = encounters;
-	}
+  private ArrayList<AppointmentDTO> appointments;
 
-	public ArrayList<VisitAPIDTO> getVisits() {
-		return visits;
-	}
+  public ArrayList<EncounterAPIDTO> getEncounters() {
+    return encounters;
+  }
 
-	public void setVisits(ArrayList<VisitAPIDTO> visits) {
-		this.visits = visits;
-	}
+  public void setEncounters(ArrayList<EncounterAPIDTO> encounters) {
+    this.encounters = encounters;
+  }
 
-	public ArrayList<PersonAPIDTO> getPersons() {
-		return persons;
-	}
+  public ArrayList<VisitAPIDTO> getVisits() {
+    return visits;
+  }
 
-	public void setPersons(ArrayList<PersonAPIDTO> persons) {
-		this.persons = persons;
-	}
+  public void setVisits(ArrayList<VisitAPIDTO> visits) {
+    this.visits = visits;
+  }
 
-	
+  public ArrayList<PersonAPIDTO> getPersons() {
+    return persons;
+  }
 
-	public ArrayList<PatientAPIDTO> getPatients() {
-		return patients;
-	}
+  public void setPersons(ArrayList<PersonAPIDTO> persons) {
+    this.persons = persons;
+  }
 
-	public void setPatients(ArrayList<PatientAPIDTO> patients) {
-		this.patients = patients;
-	}
+  public ArrayList<PatientAPIDTO> getPatients() {
+    return patients;
+  }
 
-	public boolean isSyncd() {
-		return syncd;
-	}
+  public void setPatients(ArrayList<PatientAPIDTO> patients) {
+    this.patients = patients;
+  }
 
-	public void setSyncd(boolean syncd) {
-		this.syncd = syncd;
-	}
+  public boolean isSyncd() {
+    return syncd;
+  }
 
-	
-	
+  public void setSyncd(boolean syncd) {
+    this.syncd = syncd;
+  }
 
+  public ArrayList<ProviderDTO> getProviders() {
+    return providers;
+  }
+
+  public void setProviders(ArrayList<ProviderDTO> providers) {
+    this.providers = providers;
+  }
+
+  public ArrayList<AppointmentDTO> getAppointments() {
+    return appointments;
+  }
+
+  public void setAppointments(ArrayList<AppointmentDTO> appointments) {
+    this.appointments = appointments;
+  }
 }
