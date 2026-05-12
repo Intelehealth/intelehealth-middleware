@@ -1,3 +1,16 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  okhttp3.ResponseBody
+ *  retrofit2.Call
+ *  retrofit2.http.Body
+ *  retrofit2.http.DELETE
+ *  retrofit2.http.GET
+ *  retrofit2.http.POST
+ *  retrofit2.http.Path
+ *  retrofit2.http.Query
+ */
 package com.emrmiddleware.api;
 
 import com.emrmiddleware.api.dto.EncounterAPIDTO;
@@ -16,46 +29,43 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface RestAPI {
+    @POST(value="patients")
+    public Call<PatientDTO> addPatient(@Body PatientDTO var1);
 
-  @POST("patients")
-  Call<PatientDTO> addPatient(@Body PatientDTO patientdto);
+    @POST(value="person")
+    public Call<ResponseBody> addPerson(@Body PersonAPIDTO var1);
 
-  @POST("person")
-  Call<ResponseBody> addPerson(@Body PersonAPIDTO persondto);
+    @POST(value="person/{uuid}")
+    public Call<ResponseBody> editPerson(@Path(value="uuid") String var1, @Body PersonAPIDTO var2);
 
-  @POST("person/{uuid}")
-  Call<ResponseBody> editPerson(@Path("uuid") String uuid, @Body PersonAPIDTO persondto);
+    @POST(value="patient")
+    public Call<ResponseBody> addPatient(@Body PatientAPIDTO var1);
 
-  @POST("patient")
-  Call<ResponseBody> addPatient(@Body PatientAPIDTO patientapidto);
+    @POST(value="person/{uuid}")
+    public Call<ResponseBody> editPerson(@Path(value="uuid") String var1, @Body PatientAPIDTO var2);
 
-  @POST("person/{uuid}")
-  Call<ResponseBody> editPerson(@Path("uuid") String uuid, @Body PatientAPIDTO patientapidto);
+    @GET(value="generateIdentifier.form")
+    public Call<ResponseBody> getOpenMrsId(@Query(value="source") String var1, @Query(value="username") String var2, @Query(value="password") String var3);
 
-  @GET("generateIdentifier.form")
-  Call<ResponseBody> getOpenMrsId(
-          @Query("source") String source,
-          @Query("username") String username,
-          @Query("password") String password);
+    @POST(value="visit")
+    public Call<ResponseBody> addVisit(@Body VisitAPIDTO var1);
 
-  @POST("visit")
-  Call<ResponseBody> addVisit(@Body VisitAPIDTO visitapidto);
+    @POST(value="visit/{uuid}")
+    public Call<ResponseBody> editVisit(@Path(value="uuid") String var1, @Body VisitAPIDTO var2);
 
-  @POST("visit/{uuid}")
-  Call<ResponseBody> editVisit(@Path("uuid") String uuid, @Body VisitAPIDTO visitapidto);
+    @POST(value="encounter")
+    public Call<ResponseBody> addEncounter(@Body EncounterAPIDTO var1);
 
-  @POST("encounter")
-  Call<ResponseBody> addEncounter(@Body EncounterAPIDTO encounterapidto);
+    @POST(value="encounter/{uuid}")
+    public Call<ResponseBody> editEncounter(@Path(value="uuid") String var1, @Body EncounterAPIDTO var2);
 
-  @POST("encounter/{uuid}")
-  Call<ResponseBody> editEncounter(@Path("uuid") String uuid, @Body EncounterAPIDTO visitapidto);
+    @DELETE(value="encounter/{uuid}")
+    public Call<ResponseBody> deleteEncounter(@Path(value="uuid") String var1);
 
-  @DELETE("encounter/{uuid}")
-  Call<ResponseBody> deleteEncounter(@Path("uuid") String uuid);
+    @POST(value="appointment/bookAppointment")
+    public Call<ResponseBody> addAppointment(@Body CustomAppointmentDTO var1);
 
-  @POST("appointment/bookAppointment")
-  Call<ResponseBody> addAppointment(@Body CustomAppointmentDTO appointmentdto);
-
-  @POST("appointment/rescheduleAppointment")
-  Call<ResponseBody> editAppointment(@Body CustomAppointmentDTO appointmentdto);
+    @POST(value="appointment/rescheduleAppointment")
+    public Call<ResponseBody> editAppointment(@Body CustomAppointmentDTO var1);
 }
+
