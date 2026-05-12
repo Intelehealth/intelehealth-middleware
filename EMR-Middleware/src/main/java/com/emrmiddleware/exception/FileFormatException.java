@@ -1,33 +1,36 @@
+/*
+ * Decompiled with CFR 0.152.
+ */
 package com.emrmiddleware.exception;
 
-public class FileFormatException extends Exception {
-  private static final long serialVersionUID = 1L;
-  private Throwable thwStack;
+public class FileFormatException
+extends Exception {
+    private static final long serialVersionUID = 1L;
+    private Throwable thwStack;
 
-  public FileFormatException(String s) {
-    super(s);
-  }
+    public FileFormatException(String s) {
+        super(s);
+    }
 
-  public FileFormatException(String msg, Throwable e) {
-    super(msg, e);
-    setThwStack(e);
-  }
+    public FileFormatException(String msg, Throwable e) {
+        super(msg, e);
+        this.setThwStack(e);
+    }
 
-  public FileFormatException(Exception excp) {
-    super(excp);
-    setThwStack(excp);
-  }
+    public FileFormatException(Exception excp) {
+        super(excp);
+        this.setThwStack(excp);
+    }
 
-  public FileFormatException() {
+    public FileFormatException() {
+    }
 
-    super();
-  }
+    public Throwable getThwStack() {
+        return this.thwStack;
+    }
 
-  public Throwable getThwStack() {
-    return thwStack;
-  }
-
-  public void setThwStack(Throwable throwable) {
-    thwStack = throwable;
-  }
+    public void setThwStack(Throwable throwable) {
+        this.thwStack = throwable;
+    }
 }
+
