@@ -1,170 +1,155 @@
+/*
+ * Decompiled with CFR 0.152.
+ */
 package com.emrmiddleware.dto;
 
-import com.google.gson.JsonObject;
-
+import com.emrmiddleware.dto.CustomAppointmentDTO;
+import com.emrmiddleware.dto.EncounterDTO;
+import com.emrmiddleware.dto.LocationDTO;
+import com.emrmiddleware.dto.ObsDTO;
+import com.emrmiddleware.dto.PatientAttributeDTO;
+import com.emrmiddleware.dto.PatientAttributeTypeDTO;
+import com.emrmiddleware.dto.PatientDTO;
+import com.emrmiddleware.dto.PersonDTO;
+import com.emrmiddleware.dto.ProviderAttributeDTO;
+import com.emrmiddleware.dto.ProviderAttributeTypeDTO;
+import com.emrmiddleware.dto.ProviderDTO;
+import com.emrmiddleware.dto.VisitAttributeDTO;
+import com.emrmiddleware.dto.VisitAttributeTypeDTO;
+import com.emrmiddleware.dto.VisitDTO;
 import java.util.ArrayList;
 
 public class PullDataDTO {
+    private String pullexecutedtime;
+    private ArrayList<PersonDTO> personList;
+    private ArrayList<PatientDTO> patientlist;
+    private ArrayList<PatientAttributeTypeDTO> patientAttributeTypeListMaster;
+    private ArrayList<PatientAttributeDTO> patientAttributesList;
+    private ArrayList<VisitDTO> visitlist;
+    private ArrayList<EncounterDTO> encounterlist;
+    private ArrayList<ObsDTO> obslist;
+    private ArrayList<LocationDTO> locationlist;
+    private ArrayList<ProviderDTO> providerlist;
+    private ArrayList<ProviderAttributeTypeDTO> providerAttributeTypeList;
+    private ArrayList<ProviderAttributeDTO> providerAttributeList;
+    private ArrayList<VisitAttributeTypeDTO> visitAttributeTypeList;
+    private ArrayList<VisitAttributeDTO> visitAttributeList;
+    private ArrayList<CustomAppointmentDTO> AppointmentList;
 
-  private String pullexecutedtime; // This will be used for sync purpose in android device
-  private ArrayList<PersonDTO> personList;
-  private ArrayList<PatientDTO> patientlist;
-  private ArrayList<PatientAttributeTypeDTO> patientAttributeTypeListMaster;
-  private ArrayList<PatientAttributeDTO> patientAttributesList;
-  private ArrayList<VisitDTO> visitlist;
-  private ArrayList<EncounterDTO> encounterlist;
-  private ArrayList<ObsDTO> obslist;
-  private ArrayList<LocationDTO> locationlist;
-  private ArrayList<ProviderDTO> providerlist;
-  private ArrayList<ProviderAttributeTypeDTO> providerAttributeTypeList;
-  private ArrayList<ProviderAttributeDTO> providerAttributeList;
-  private ArrayList<VisitAttributeTypeDTO> visitAttributeTypeList;
-  private ArrayList<VisitAttributeDTO> visitAttributeList;
-  private ArrayList<CustomAppointmentDTO> AppointmentList;
-  private int pageNo;
-  private int totalCount;
+    public ArrayList<VisitAttributeTypeDTO> getVisitAttributeTypeList() {
+        return this.visitAttributeTypeList;
+    }
 
-  public JsonObject getPropertyContents() {
-    return propertyContents;
-  }
+    public void setVisitAttributeTypeList(ArrayList<VisitAttributeTypeDTO> visitAttributeTypeList) {
+        this.visitAttributeTypeList = visitAttributeTypeList;
+    }
 
-  public void setPropertyContents(JsonObject propertyContents) {
-    this.propertyContents = propertyContents;
-  }
+    public ArrayList<VisitAttributeDTO> getVisitAttributeList() {
+        return this.visitAttributeList;
+    }
 
-  JsonObject propertyContents; // Added for configurability changes Ref: WEBAPP-74
+    public void setVisitAttributeList(ArrayList<VisitAttributeDTO> visitAttributeList) {
+        this.visitAttributeList = visitAttributeList;
+    }
 
-  public int getPageNo() {
-    return pageNo;
-  }
+    public ArrayList<PersonDTO> getPersonList() {
+        return this.personList;
+    }
 
-  public void setPageNo(int pageNo) {
-    this.pageNo = pageNo;
-  }
+    public void setPersonList(ArrayList<PersonDTO> personList) {
+        this.personList = personList;
+    }
 
-  public int getTotalCount() {
-    return totalCount;
-  }
+    public ArrayList<ProviderAttributeDTO> getProviderAttributeList() {
+        return this.providerAttributeList;
+    }
 
-  public void setTotalCount(int totalCount) {
-    this.totalCount = totalCount;
-  }
+    public void setProviderAttributeList(ArrayList<ProviderAttributeDTO> providerAttributeList) {
+        this.providerAttributeList = providerAttributeList;
+    }
 
-  public ArrayList<VisitAttributeTypeDTO> getVisitAttributeTypeList() {
-    return visitAttributeTypeList;
-  }
+    public ArrayList<ProviderAttributeTypeDTO> getProviderAttributeTypeList() {
+        return this.providerAttributeTypeList;
+    }
 
-  public void setVisitAttributeTypeList(ArrayList<VisitAttributeTypeDTO> visitAttributeTypeList) {
-    this.visitAttributeTypeList = visitAttributeTypeList;
-  }
+    public void setProviderAttributeTypeList(ArrayList<ProviderAttributeTypeDTO> providerAttributeTypeList) {
+        this.providerAttributeTypeList = providerAttributeTypeList;
+    }
 
-  public ArrayList<VisitAttributeDTO> getVisitAttributeList() {
-    return visitAttributeList;
-  }
+    public ArrayList<LocationDTO> getLocationlist() {
+        return this.locationlist;
+    }
 
-  public void setVisitAttributeList(ArrayList<VisitAttributeDTO> visitAttributeList) {
-    this.visitAttributeList = visitAttributeList;
-  }
+    public void setLocationlist(ArrayList<LocationDTO> locationlist) {
+        this.locationlist = locationlist;
+    }
 
-  public ArrayList<PersonDTO> getPersonList() {
-    return personList;
-  }
+    public ArrayList<PatientAttributeDTO> getPatientAttributesList() {
+        return this.patientAttributesList;
+    }
 
-  public void setPersonList(ArrayList<PersonDTO> personList) {
-    this.personList = personList;
-  }
+    public void setPatientAttributesList(ArrayList<PatientAttributeDTO> patientAttributesList) {
+        this.patientAttributesList = patientAttributesList;
+    }
 
-  public ArrayList<ProviderAttributeDTO> getProviderAttributeList() {
-    return providerAttributeList;
-  }
+    public ArrayList<PatientAttributeTypeDTO> getPatientAttributeTypeListMaster() {
+        return this.patientAttributeTypeListMaster;
+    }
 
-  public void setProviderAttributeList(ArrayList<ProviderAttributeDTO> providerAttributeList) {
-    this.providerAttributeList = providerAttributeList;
-  }
+    public void setPatientAttributeTypeListMaster(ArrayList<PatientAttributeTypeDTO> patientAttributeTypeListMaster) {
+        this.patientAttributeTypeListMaster = patientAttributeTypeListMaster;
+    }
 
-  public ArrayList<ProviderAttributeTypeDTO> getProviderAttributeTypeList() {
-    return providerAttributeTypeList;
-  }
+    public String getPullexecutedtime() {
+        return this.pullexecutedtime;
+    }
 
-  public void setProviderAttributeTypeList(
-      ArrayList<ProviderAttributeTypeDTO> providerAttributeTypeList) {
-    this.providerAttributeTypeList = providerAttributeTypeList;
-  }
+    public void setPullexecutedtime(String pullexecutedtime) {
+        this.pullexecutedtime = pullexecutedtime;
+    }
 
-   public ArrayList<LocationDTO> getLocationlist() {
-    return locationlist;
-  }
+    public ArrayList<ObsDTO> getObslist() {
+        return this.obslist;
+    }
 
-  public void setLocationlist(ArrayList<LocationDTO> locationlist) {
-    this.locationlist = locationlist;
-  }
+    public void setObslist(ArrayList<ObsDTO> obslist) {
+        this.obslist = obslist;
+    }
 
-  public ArrayList<PatientAttributeDTO> getPatientAttributesList() {
-    return patientAttributesList;
-  }
+    public ArrayList<VisitDTO> getVisitlist() {
+        return this.visitlist;
+    }
 
-  public void setPatientAttributesList(ArrayList<PatientAttributeDTO> patientAttributesList) {
-    this.patientAttributesList = patientAttributesList;
-  }
+    public void setVisitlist(ArrayList<VisitDTO> visitlist) {
+        this.visitlist = visitlist;
+    }
 
-  public ArrayList<PatientAttributeTypeDTO> getPatientAttributeTypeListMaster() {
-    return patientAttributeTypeListMaster;
-  }
+    public ArrayList<PatientDTO> getPatientlist() {
+        return this.patientlist;
+    }
 
-  public void setPatientAttributeTypeListMaster(
-      ArrayList<PatientAttributeTypeDTO> patientAttributeTypeListMaster) {
-    this.patientAttributeTypeListMaster = patientAttributeTypeListMaster;
-  }
+    public void setPatientlist(ArrayList<PatientDTO> patientlist) {
+        this.patientlist = patientlist;
+    }
 
-  public String getPullexecutedtime() {
-    return pullexecutedtime;
-  }
+    public ArrayList<EncounterDTO> getEncounterlist() {
+        return this.encounterlist;
+    }
 
-  public void setPullexecutedtime(String pullexecutedtime) {
-    this.pullexecutedtime = pullexecutedtime;
-  }
+    public void setEncounterlist(ArrayList<EncounterDTO> encounterlist) {
+        this.encounterlist = encounterlist;
+    }
 
-  public ArrayList<ObsDTO> getObslist() {
-    return obslist;
-  }
+    public void setProviderlist(ArrayList<ProviderDTO> providerlist) {
+        this.providerlist = providerlist;
+    }
 
-  public void setObslist(ArrayList<ObsDTO> obslist) {
-    this.obslist = obslist;
-  }
+    public ArrayList<ProviderDTO> getProviderlist() {
+        return this.providerlist;
+    }
 
-  public ArrayList<VisitDTO> getVisitlist() {
-    return visitlist;
-  }
-
-  public void setVisitlist(ArrayList<VisitDTO> visitlist) {
-    this.visitlist = visitlist;
-  }
-
-  public ArrayList<PatientDTO> getPatientlist() {
-    return patientlist;
-  }
-
-  public void setPatientlist(ArrayList<PatientDTO> patientlist) {
-    this.patientlist = patientlist;
-  }
-
-  public ArrayList<EncounterDTO> getEncounterlist() {
-    return encounterlist;
-  }
-
-  public void setEncounterlist(ArrayList<EncounterDTO> encounterlist) {
-    this.encounterlist = encounterlist;
-  }
-
-  public ArrayList<ProviderDTO> getProviderlist() {
-    return providerlist;
-  }
-
-  public void setProviderlist(ArrayList<ProviderDTO> providerlist) {
-    this.providerlist = providerlist;
-  }
-
-  public void setAppointmentList(ArrayList<CustomAppointmentDTO> updatedAppointments) {
-    this.AppointmentList = updatedAppointments;
-  }
+    public void setAppointmentList(ArrayList<CustomAppointmentDTO> updatedAppointments) {
+        this.AppointmentList = updatedAppointments;
+    }
 }
+

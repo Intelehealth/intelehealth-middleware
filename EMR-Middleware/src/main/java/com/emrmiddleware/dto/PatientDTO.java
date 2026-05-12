@@ -1,260 +1,226 @@
+/*
+ * Decompiled with CFR 0.152.
+ */
 package com.emrmiddleware.dto;
 
 import java.util.Date;
 
 public class PatientDTO {
+    private String uuid;
+    private String openmrs_id;
+    private String firstname;
+    private String middlename;
+    private String lastname;
+    private Date dateofbirth;
+    private String phonenumber;
+    private String address1;
+    private String address2;
+    private String cityvillage;
+    private String stateprovince;
+    private String postalcode;
+    private String country;
+    private String gender;
+    private String sdw;
+    private int dead;
+    private String occupation;
+    private String patient_photo;
+    private String economicstatus;
+    private String caste;
+    private boolean syncd = true;
+    private int voided;
+    private String creatoruuid;
+    private String datecreated;
 
-  private String uuid;
-  private String openmrs_id;
-  private String firstname;
-  private String middlename;
-  private String lastname;
-  private Date dateofbirth;
-  private String phonenumber;
-  private String address1;
+    public String getCreatoruuid() {
+        return this.creatoruuid;
+    }
 
-  private String address2;
-  private String address3;
-  private String address4;
-  private String address5;
-  private String countyDistrict = "NA";
-  private String address6 = "NA";
-  private String cityvillage;
-  private String stateprovince;
-  private String postalcode;
-  private String country;
-  private String gender;
-  private String sdw;
-  private int dead;
-  private String occupation;
-  private String patient_photo;
-  private String economicstatus;
-  private String caste;
-  private boolean syncd = true;
-  private int voided;
-  private int patientid;
+    public void setCreatoruuid(String creatoruuid) {
+        this.creatoruuid = creatoruuid;
+    }
 
-  public String getAddress3() {
-    return address3;
-  }
+    public String getDatecreated() {
+        return this.datecreated;
+    }
 
-  public void setAddress3(String address3) {
-    this.address3 = address3;
-  }
+    public void setDatecreated(String datecreated) {
+        this.datecreated = datecreated;
+    }
 
-  public String getAddress4() {
-    return address4;
-  }
+    public int getVoided() {
+        return this.voided;
+    }
 
-  public void setAddress4(String address4) {
-    this.address4 = address4;
-  }
+    public void setVoided(int voided) {
+        this.voided = voided;
+    }
 
-  public String getAddress5() {
-    return address5;
-  }
+    public boolean isSyncd() {
+        return this.syncd;
+    }
 
-  public void setAddress5(String address5) {
-    this.address5 = address5;
-  }
+    public void setSyncd(boolean syncd) {
+        this.syncd = syncd;
+    }
 
-  public String getCountyDistrict() {
-    return countyDistrict;
-  }
+    public int getDead() {
+        return this.dead;
+    }
 
-  public void setCountyDistrict(String countyDistrict) {
-    this.countyDistrict = countyDistrict;
-  }
+    public void setDead(int dead) {
+        this.dead = dead;
+    }
 
-  public String getAddress6() {
-    return address6;
-  }
+    public String getUuid() {
+        return this.uuid;
+    }
 
-  public void setAddress6(String address6) {
-    this.address6 = address6;
-  }
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
 
-  public int getPatientid() {
-    return patientid;
-  }
+    public String getOpenmrs_id() {
+        return this.openmrs_id;
+    }
 
-  public void setPatientid(int patientid) {
-    this.patientid = patientid;
-  }
+    public void setOpenmrs_id(String openmrs_id) {
+        this.openmrs_id = openmrs_id;
+    }
 
-  public int getVoided() {
-    return voided;
-  }
+    public String getFirstname() {
+        return this.firstname;
+    }
 
-  public void setVoided(int voided) {
-    this.voided = voided;
-  }
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
 
-  public boolean isSyncd() {
-    return syncd;
-  }
+    public String getMiddlename() {
+        return this.middlename;
+    }
 
-  public void setSyncd(boolean syncd) {
-    this.syncd = syncd;
-  }
+    public void setMiddlename(String middlename) {
+        this.middlename = middlename;
+    }
 
-  public int getDead() {
-    return dead;
-  }
+    public String getLastname() {
+        return this.lastname;
+    }
 
-  public void setDead(int dead) {
-    this.dead = dead;
-  }
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
 
-  public String getUuid() {
-    return uuid;
-  }
+    public Date getDateofbirth() {
+        return this.dateofbirth;
+    }
 
-  public void setUuid(String uuid) {
-    this.uuid = uuid;
-  }
+    public void setDateofbirth(Date dateofbirth) {
+        this.dateofbirth = dateofbirth;
+    }
 
-  public String getOpenmrs_id() {
-    return openmrs_id;
-  }
+    public String getPhonenumber() {
+        return this.phonenumber;
+    }
 
-  public void setOpenmrs_id(String openmrs_id) {
-    this.openmrs_id = openmrs_id;
-  }
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
+    }
 
-  public String getFirstname() {
-    return firstname;
-  }
+    public String getAddress1() {
+        return this.address1;
+    }
 
-  public void setFirstname(String firstname) {
-    this.firstname = firstname;
-  }
+    public void setAddress1(String address1) {
+        this.address1 = address1;
+    }
 
-  public String getMiddlename() {
-    return middlename;
-  }
+    public String getAddress2() {
+        return this.address2;
+    }
 
-  public void setMiddlename(String middlename) {
-    this.middlename = middlename;
-  }
+    public void setAddress2(String address2) {
+        this.address2 = address2;
+    }
 
-  public String getLastname() {
-    return lastname;
-  }
+    public String getCityvillage() {
+        return this.cityvillage;
+    }
 
-  public void setLastname(String lastname) {
-    this.lastname = lastname;
-  }
+    public void setCityvillage(String cityvillage) {
+        this.cityvillage = cityvillage;
+    }
 
-  public Date getDateofbirth() {
-    return dateofbirth;
-  }
+    public String getStateprovince() {
+        return this.stateprovince;
+    }
 
-  public void setDateofbirth(Date dateofbirth) {
-    this.dateofbirth = dateofbirth;
-  }
+    public void setStateprovince(String stateprovince) {
+        this.stateprovince = stateprovince;
+    }
 
-  public String getPhonenumber() {
-    return phonenumber;
-  }
+    public String getPostalcode() {
+        return this.postalcode;
+    }
 
-  public void setPhonenumber(String phonenumber) {
-    this.phonenumber = phonenumber;
-  }
+    public void setPostalcode(String postalcode) {
+        this.postalcode = postalcode;
+    }
 
-  public String getAddress1() {
-    return address1;
-  }
+    public String getCountry() {
+        return this.country;
+    }
 
-  public void setAddress1(String address1) {
-    this.address1 = address1;
-  }
+    public void setCountry(String country) {
+        this.country = country;
+    }
 
-  public String getAddress2() {
-    return address2;
-  }
+    public String getGender() {
+        return this.gender;
+    }
 
-  public void setAddress2(String address2) {
-    this.address2 = address2;
-  }
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 
-  public String getCityvillage() {
-    return cityvillage;
-  }
+    public String getSdw() {
+        return this.sdw;
+    }
 
-  public void setCityvillage(String cityvillage) {
-    this.cityvillage = cityvillage;
-  }
+    public void setSdw(String sdw) {
+        this.sdw = sdw;
+    }
 
-  public String getStateprovince() {
-    return stateprovince;
-  }
+    public String getOccupation() {
+        return this.occupation;
+    }
 
-  public void setStateprovince(String stateprovince) {
-    this.stateprovince = stateprovince;
-  }
+    public void setOccupation(String occupation) {
+        this.occupation = occupation;
+    }
 
-  public String getPostalcode() {
-    return postalcode;
-  }
+    public String getPatient_photo() {
+        return this.patient_photo;
+    }
 
-  public void setPostalcode(String postalcode) {
-    this.postalcode = postalcode;
-  }
+    public void setPatient_photo(String patient_photo) {
+        this.patient_photo = patient_photo;
+    }
 
-  public String getCountry() {
-    return country;
-  }
+    public String getEconomicstatus() {
+        return this.economicstatus;
+    }
 
-  public void setCountry(String country) {
-    this.country = country;
-  }
+    public void setEconomicstatus(String economicstatus) {
+        this.economicstatus = economicstatus;
+    }
 
-  public String getGender() {
-    return gender;
-  }
+    public String getCaste() {
+        return this.caste;
+    }
 
-  public void setGender(String gender) {
-    this.gender = gender;
-  }
-
-  public String getSdw() {
-    return sdw;
-  }
-
-  public void setSdw(String sdw) {
-    this.sdw = sdw;
-  }
-
-  public String getOccupation() {
-    return occupation;
-  }
-
-  public void setOccupation(String occupation) {
-    this.occupation = occupation;
-  }
-
-  public String getPatient_photo() {
-    return patient_photo;
-  }
-
-  public void setPatient_photo(String patient_photo) {
-    this.patient_photo = patient_photo;
-  }
-
-  public String getEconomicstatus() {
-    return economicstatus;
-  }
-
-  public void setEconomicstatus(String economicstatus) {
-    this.economicstatus = economicstatus;
-  }
-
-  public String getCaste() {
-    return caste;
-  }
-
-  public void setCaste(String caste) {
-    this.caste = caste;
-  }
+    public void setCaste(String caste) {
+        this.caste = caste;
+    }
 }
+

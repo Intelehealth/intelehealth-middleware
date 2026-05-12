@@ -1,102 +1,91 @@
+/*
+ * Decompiled with CFR 0.152.
+ */
 package com.emrmiddleware.dto;
 
 import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-
 public class VisitDTO {
+    private String patientuuid;
+    private String uuid;
+    private String visit_type_uuid;
+    private Date startdate;
+    private Date enddate;
+    private String locationuuid;
+    private String creator_uuid;
+    private boolean syncd = true;
+    private int voided;
 
-  private String patientuuid;
-  private String uuid;
+    public int getVoided() {
+        return this.voided;
+    }
 
-  private String visit_type_uuid;
-  
-  private Date startdate;
-  @JsonInclude(JsonInclude.Include.NON_NULL)
-  private Date enddate;
-  private String locationuuid;
-  private String creator_uuid;
-  private boolean syncd = true;
-  private int voided;
-  public int getVisitid() {
-    return visitid;
-  }
+    public void setVoided(int voided) {
+        this.voided = voided;
+    }
 
-  public void setVisitid(int visitid) {
-    this.visitid = visitid;
-  }
+    public boolean isSyncd() {
+        return this.syncd;
+    }
 
-  private int visitid;
+    public void setSyncd(boolean syncd) {
+        this.syncd = syncd;
+    }
 
-  public int getVoided() {
-    return voided;
-  }
+    public String getVisit_type_uuid() {
+        return this.visit_type_uuid;
+    }
 
-  public void setVoided(int voided) {
-    this.voided = voided;
-  }
+    public void setVisit_type_uuid(String visit_type_uuid) {
+        this.visit_type_uuid = visit_type_uuid;
+    }
 
-  public boolean isSyncd() {
-    return syncd;
-  }
+    public String getPatientuuid() {
+        return this.patientuuid;
+    }
 
-  public void setSyncd(boolean syncd) {
-    this.syncd = syncd;
-  }
+    public void setPatientuuid(String patientuuid) {
+        this.patientuuid = patientuuid;
+    }
 
-  public String getVisit_type_uuid() {
-    return visit_type_uuid;
-  }
+    public String getUuid() {
+        return this.uuid;
+    }
 
-  public void setVisit_type_uuid(String visit_type_uuid) {
-    this.visit_type_uuid = visit_type_uuid;
-  }
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
 
-  public String getPatientuuid() {
-    return patientuuid;
-  }
+    public Date getStartdate() {
+        return this.startdate;
+    }
 
-  public void setPatientuuid(String patientuuid) {
-    this.patientuuid = patientuuid;
-  }
+    public void setStartdate(Date startdate) {
+        this.startdate = startdate;
+    }
 
-  public String getUuid() {
-    return uuid;
-  }
+    public Date getEnddate() {
+        return this.enddate;
+    }
 
-  public void setUuid(String uuid) {
-    this.uuid = uuid;
-  }
+    public void setEnddate(Date enddate) {
+        this.enddate = enddate;
+    }
 
-  public Date getStartdate() {
-    return startdate;
-  }
+    public String getLocationuuid() {
+        return this.locationuuid;
+    }
 
-  public void setStartdate(Date startdate) {
-    this.startdate = startdate;
-  }
+    public void setLocationuuid(String locationuuid) {
+        this.locationuuid = locationuuid;
+    }
 
-  public Date getEnddate() {
-    return enddate;
-  }
+    public String getCreator_uuid() {
+        return this.creator_uuid;
+    }
 
-  public void setEnddate(Date enddate) {
-    this.enddate = enddate;
-  }
-
-  public String getLocationuuid() {
-    return locationuuid;
-  }
-
-  public void setLocationuuid(String locationuuid) {
-    this.locationuuid = locationuuid;
-  }
-
-  public String getCreator_uuid() {
-    return creator_uuid;
-  }
-
-  public void setCreator_uuid(String creator_uuid) {
-    this.creator_uuid = creator_uuid;
-  }
+    public void setCreator_uuid(String creator_uuid) {
+        this.creator_uuid = creator_uuid;
+    }
 }
+
