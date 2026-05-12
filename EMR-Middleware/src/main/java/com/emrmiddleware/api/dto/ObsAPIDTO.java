@@ -1,41 +1,44 @@
+/*
+ * Decompiled with CFR 0.152.
+ */
 package com.emrmiddleware.api.dto;
 
 public class ObsAPIDTO {
+    private String uuid;
+    private String concept;
+    private String value;
+    public String comment;
 
-  public String comment;
-  private String uuid;
-  private String concept;
-  private String value;
+    public String getComment() {
+        return this.comment;
+    }
 
-  public String getComment() {
-    return comment;
-  }
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 
-  public void setComment(String comment) {
-    this.comment = comment;
-  }
+    public String getUuid() {
+        return this.uuid;
+    }
 
-  public String getUuid() {
-    return uuid;
-  }
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
 
-  public void setUuid(String uuid) {
-    this.uuid = uuid;
-  }
+    public String getConcept() {
+        return this.concept;
+    }
 
-  public String getConcept() {
-    return concept;
-  }
+    public void setConcept(String concept) {
+        this.concept = concept;
+    }
 
-  public void setConcept(String concept) {
-    this.concept = concept;
-  }
+    public String getValue() {
+        return this.value;
+    }
 
-  public String getValue() {
-    return value;
-  }
-
-  public void setValue(String value) {
-    this.value = value;
-  }
+    public void setValue(String value) {
+        this.value = value;
+    }
 }
+

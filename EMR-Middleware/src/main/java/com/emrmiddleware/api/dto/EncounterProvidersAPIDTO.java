@@ -1,23 +1,26 @@
+/*
+ * Decompiled with CFR 0.152.
+ */
 package com.emrmiddleware.api.dto;
 
 public class EncounterProvidersAPIDTO {
+    private String encounterRole;
+    private String provider;
 
-  private String encounterRole;
-  private String provider;
+    public String getEncounterRole() {
+        return this.encounterRole;
+    }
 
-  public String getEncounterRole() {
-    return encounterRole;
-  }
+    public void setEncounterRole(String encounterRole) {
+        this.encounterRole = encounterRole;
+    }
 
-  public void setEncounterRole(String encounterRole) {
-    this.encounterRole = encounterRole;
-  }
+    public String getProvider() {
+        return this.provider;
+    }
 
-  public String getProvider() {
-    return provider;
-  }
-
-  public void setProvider(String provider) {
-    this.provider = provider;
-  }
+    public void setProvider(String provider) {
+        this.provider = provider;
+    }
 }
+
