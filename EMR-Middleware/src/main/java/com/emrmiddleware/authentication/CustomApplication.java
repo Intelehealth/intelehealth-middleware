@@ -1,25 +1,30 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  javax.ws.rs.ApplicationPath
+ *  org.glassfish.jersey.jsonp.JsonProcessingFeature
+ *  org.glassfish.jersey.server.ResourceConfig
+ *  org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature
+ */
 package com.emrmiddleware.authentication;
 
-import javax.json.stream.JsonGenerator;
 import javax.ws.rs.ApplicationPath;
 import org.glassfish.jersey.jsonp.JsonProcessingFeature;
 import org.glassfish.jersey.server.ResourceConfig;
-import org.glassfish.jersey.server.ServerProperties;
 import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 
-@ApplicationPath("/")
-public class CustomApplication extends ResourceConfig {
-  public CustomApplication() {
-    packages("com.emrmiddleware.rest");
-    packages("com.emrmiddleware.conf");
-    property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true);
-
-    property(ServerProperties.BV_DISABLE_VALIDATE_ON_EXECUTABLE_OVERRIDE_CHECK, true);
-    register(RolesAllowedDynamicFeature.class);
-
-    register(JsonProcessingFeature.class);
-    property(JsonGenerator.PRETTY_PRINTING, true);
-    /*-------------------------------*/
-
-  }
+@ApplicationPath(value="/")
+public class CustomApplication
+extends ResourceConfig {
+    public CustomApplication() {
+        this.packages(new String[]{"com.emrmiddleware.rest"});
+        this.packages(new String[]{"com.emrmiddleware.conf"});
+        this.property("jersey.config.beanValidation.enableOutputValidationErrorEntity.server", true);
+        this.property("jersey.config.beanValidation.disable.validateOnExecutableCheck.server", true);
+        this.register(RolesAllowedDynamicFeature.class);
+        this.register(JsonProcessingFeature.class);
+        this.property("javax.json.stream.JsonGenerator.prettyPrinting", true);
+    }
 }
+
