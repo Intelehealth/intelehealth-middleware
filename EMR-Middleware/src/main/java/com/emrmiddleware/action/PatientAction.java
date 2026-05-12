@@ -1,5 +1,17 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  com.google.gson.Gson
+ *  okhttp3.ResponseBody
+ *  org.slf4j.Logger
+ *  org.slf4j.LoggerFactory
+ *  retrofit2.Call
+ *  retrofit2.Response
+ */
 package com.emrmiddleware.action;
 
+import com.emrmiddleware.action.PersonAction;
 import com.emrmiddleware.api.APIClient;
 import com.emrmiddleware.api.RestAPI;
 import com.emrmiddleware.api.dto.IDGenAPIDTO;
@@ -11,7 +23,9 @@ import com.emrmiddleware.dto.UserCredentialDTO;
 import com.emrmiddleware.exception.ActionException;
 import com.emrmiddleware.exception.DAOException;
 import com.google.gson.Gson;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import okhttp3.ResponseBody;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,110 +33,111 @@ import retrofit2.Call;
 import retrofit2.Response;
 
 public class PatientAction {
-	private final Logger logger = LoggerFactory.getLogger(PatientAction.class);
+    private final Logger logger = LoggerFactory.getLogger(PersonAction.class);
+    RestAPI restIdapiintf;
+    APIClient apiclient;
+    RestAPI restapiintf;
+    String authString;
 
-	RestAPI restIdapiintf;
-	APIClient apiclient;
-	RestAPI restapiintf;
-	String authString;
+    public PatientAction(String auth) {
+        this.authString = auth;
+        this.apiclient = new APIClient(this.authString);
+        this.restapiintf = (RestAPI)this.apiclient.getClient().create(RestAPI.class);
+        this.restIdapiintf = (RestAPI)this.apiclient.getIdClient().create(RestAPI.class);
+    }
 
-	public PatientAction(String auth) {
-		authString = auth;
-		apiclient = new APIClient(authString);
-		restapiintf = apiclient.getClient().create(RestAPI.class);
-		restIdapiintf = apiclient.getIdClient().create(RestAPI.class);
-	}
+    public ArrayList<PatientDTO> setPatients(ArrayList<PatientAPIDTO> patientList) throws DAOException, ActionException {
+        ArrayList<PatientDTO> patients = new ArrayList<PatientDTO>();
+        PatientDTO patientdto = null;
+        PatientAPIDTO patientforerror = new PatientAPIDTO();
+        boolean isPatientSet = true;
+        Gson gson = new Gson();
+        try {
+            Iterator<PatientAPIDTO> iterator = patientList.iterator();
+            while (iterator.hasNext()) {
+                PatientAPIDTO patient;
+                patientforerror = patient = iterator.next();
+                String openMrsId = "";
+                PatientDAO patientdao = new PatientDAO();
+                PatientDTO patientDTO = patientdao.getPatient(patient.getPerson());
+                if (patientDTO == null) {
+                    openMrsId = this.getOpenMrsId();
+                    patient.getIdentifiers().get(0).setIdentifier(openMrsId);
+                    isPatientSet = this.addPatientOpenMRS(patient);
+                } else {
+                    openMrsId = patientDTO.getOpenmrs_id();
+                }
+                patientdto = new PatientDTO();
+                patientdto.setUuid(patient.getPerson());
+                patientdto.setSyncd(isPatientSet);
+                if (isPatientSet) {
+                    patientdto.setOpenmrs_id(openMrsId);
+                }
+                patients.add(patientdto);
+            }
+        }
+        catch (Exception e) {
+            this.logger.error("Error occurred for json string : " + gson.toJson((Object)patientforerror));
+            this.logger.error(e.getMessage(), (Throwable)e);
+        }
+        return patients;
+    }
 
-	public ArrayList<PatientDTO> setPatients(ArrayList<PatientAPIDTO> patientList)
-			throws DAOException, ActionException {
-		ArrayList<PatientDTO> patients = new ArrayList<PatientDTO>();
-		PatientDTO patientdto = null;
-		PatientAPIDTO patientforerror = new PatientAPIDTO();
-		boolean isPatientSet = true;
-		Gson gson = new Gson();
-		try {
-			for (PatientAPIDTO patient : patientList) {
-				patientforerror = patient;
-				String openMrsId = "";
-				PatientDAO patientdao = new PatientDAO();
-				PatientDTO patientDTO = patientdao.getPatient(patient.getPerson());
-				if (patientDTO == null) {
-					openMrsId = getOpenMrsId();
-					patient.getIdentifiers().get(0).setIdentifier(openMrsId);
-					isPatientSet = addPatientOpenMRS(patient);
-				} else {
-					openMrsId = patientDTO.getOpenmrs_id();
-				}
+    private String getOpenMrsId() {
+        String openmrsid = "";
+        String val = "";
+        Gson gson = new Gson();
+        try {
+            AuthenticationUtil authenticationUtil = new AuthenticationUtil();
+            UserCredentialDTO userCredentialdto = authenticationUtil.getAuthHeader(this.authString);
+            Call<ResponseBody> call = this.restIdapiintf.getOpenMrsId("1", userCredentialdto.getUsername(), userCredentialdto.getPassword());
+            Response response = call.execute();
+            if (!response.isSuccessful()) {
+                val = response.errorBody().string();
+                this.logger.error("REST failed : " + val);
+                return openmrsid;
+            }
+            val = ((ResponseBody)response.body()).string();
+            this.logger.info("Response for ID gen is : " + val);
+            IDGenAPIDTO idgenapidto = (IDGenAPIDTO)gson.fromJson(val, IDGenAPIDTO.class);
+            openmrsid = idgenapidto.getIdentifiers()[0];
+            this.logger.info("Response is : " + val);
+        }
+        catch (IOException | NullPointerException e) {
+            this.logger.error(e.getMessage(), (Throwable)e);
+            return openmrsid;
+        }
+        catch (Exception e) {
+            this.logger.error(e.getMessage(), (Throwable)e);
+            return openmrsid;
+        }
+        return openmrsid;
+    }
 
-				patientdto = new PatientDTO();
-				patientdto.setUuid(patient.getPerson());
-				patientdto.setSyncd(isPatientSet);
-				if (isPatientSet)
-					patientdto.setOpenmrs_id(openMrsId);
-				patients.add(patientdto);
-			}
-		} catch (Exception e) {
-			//patientdto.setOpenmrs_id("");// Set OpenMRS ID to blank in case of  exception
-			logger.error("Error occurred for json string : {}" , gson.toJson(patientforerror));
-			logger.error(e.getMessage(), e);
-
-		} 
-		return patients;
-
-	}
-
-	private String getOpenMrsId() {
-		String openmrsid = "";
-		String val = "";
-		Gson gson = new Gson();
-
-		try {
-			AuthenticationUtil authenticationUtil = new AuthenticationUtil();
-			UserCredentialDTO userCredentialdto = authenticationUtil.getAuthHeader(authString);
-			Call<ResponseBody> call = restIdapiintf.getOpenMrsId("1", userCredentialdto.getUsername(),
-					userCredentialdto.getPassword());
-
-			Response<ResponseBody> response = call.execute();
-			if (response.isSuccessful()) {
-				val = response.body().string();
-				logger.info("Response for ID gen is : {}" , val);
-				IDGenAPIDTO idgenapidto = gson.fromJson(val, IDGenAPIDTO.class);
-				openmrsid = idgenapidto.getIdentifiers()[0];
-			} else {
-				val = response.errorBody().string();
-				logger.error("REST failed : {} " , val);
-				return openmrsid;
-			}
-			logger.info("Response is : {} " , val);
-		} catch (Exception e) {
-			logger.error(e.getMessage(), e);
-			return openmrsid;
-		}
-		return openmrsid;
-
-	}
-
-	private boolean addPatientOpenMRS(PatientAPIDTO patientdto) {
-		Gson gson = new Gson();
-		String val = "";
-		logger.info("patient value : {}" , gson.toJson(patientdto));
-
-		try {
-			Call<ResponseBody> callpatient = restapiintf.addPatient(patientdto);
-			Response<ResponseBody> response = callpatient.execute();
-			if (response.isSuccessful()) {
-				val = response.body().string();
-			} else {
-				val = response.errorBody().string();
-				logger.error("REST failed : {} " , val);
-				return false;
-			}
-			logger.info("Response is : {}" , val);
-		} catch (Exception e) {
-			logger.error(e.getMessage(), e);
-			return false;
-		}
-		return true;
-	}
-	
+    private boolean addPatientOpenMRS(PatientAPIDTO patientdto) {
+        Gson gson = new Gson();
+        String val = "";
+        this.logger.info("patient value : " + gson.toJson((Object)patientdto));
+        try {
+            Call<ResponseBody> callpatient = this.restapiintf.addPatient(patientdto);
+            Response response = callpatient.execute();
+            if (!response.isSuccessful()) {
+                val = response.errorBody().string();
+                this.logger.error("REST failed : " + val);
+                return false;
+            }
+            val = ((ResponseBody)response.body()).string();
+            this.logger.info("Response is : " + val);
+        }
+        catch (IOException | NullPointerException e) {
+            this.logger.error(e.getMessage(), (Throwable)e);
+            return false;
+        }
+        catch (Exception e) {
+            this.logger.error(e.getMessage(), (Throwable)e);
+            return false;
+        }
+        return true;
+    }
 }
+

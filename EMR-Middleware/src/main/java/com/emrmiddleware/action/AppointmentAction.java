@@ -1,5 +1,17 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  com.google.gson.Gson
+ *  okhttp3.ResponseBody
+ *  org.slf4j.Logger
+ *  org.slf4j.LoggerFactory
+ *  retrofit2.Call
+ *  retrofit2.Response
+ */
 package com.emrmiddleware.action;
 
+import com.emrmiddleware.action.EncounterAction;
 import com.emrmiddleware.api.APIClient;
 import com.emrmiddleware.api.RestAPI;
 import com.emrmiddleware.dto.CustomAppointmentDTO;
@@ -12,59 +24,57 @@ import retrofit2.Call;
 import retrofit2.Response;
 
 public class AppointmentAction {
+    String authString;
+    private final Logger logger = LoggerFactory.getLogger(EncounterAction.class);
+    APIClient apiclient;
+    RestAPI restapiintf;
 
-  private final Logger logger = LoggerFactory.getLogger(AppointmentAction.class);
-  String authString;
-  APIClient apiclient;
-  RestAPI restapiintf;
-
-  public AppointmentAction(String authString) {
-    this.authString = authString;
-    apiclient = new APIClient(authString);
-    restapiintf = apiclient.getMMClient().create(RestAPI.class);
-  }
-
-  public boolean addAppointmentOpenMRS(ArrayList<CustomAppointmentDTO> appointmentdto) {
-    Gson gson = new Gson();
-    String val = "";
-
-    try {
-
-      for (CustomAppointmentDTO appointment : appointmentdto) {
-        String appointmentString = gson.toJson(appointment);
-        logger.info("appointment value : {}", appointmentString);
-        if (appointment.getAppointmentId() == 0) {
-          Call<ResponseBody> addAppointment = restapiintf.addAppointment(appointment);
-          Response<ResponseBody> response = addAppointment.execute();
-          logger.info(response.message());
-          if (response.isSuccessful()) {
-            val = response.body().string();
-            appointment.setSyncd(true);
-          } else {
-            val = response.errorBody().string();
-            logger.error("REST failed : {} ", val);
-            return false;
-          }
-          logger.info("Response is : {}", val);
-        } else {
-          Call<ResponseBody> addAppointment = restapiintf.editAppointment(appointment);
-          Response<ResponseBody> response = addAppointment.execute();
-          logger.info(response.message());
-          if (response.isSuccessful()) {
-            val = response.body().string();
-            appointment.setSyncd(true);
-          } else {
-            val = response.errorBody().string();
-            logger.error("REST failed : {} ", val);
-            return false;
-          }
-          logger.info("Response is : {}", val);
-        }
-      }
-    } catch (Exception e) {
-      logger.error(e.getMessage(), e);
-      return false;
+    public AppointmentAction(String authString) {
+        this.authString = authString;
+        this.apiclient = new APIClient(authString);
+        this.restapiintf = (RestAPI)this.apiclient.getMMClient().create(RestAPI.class);
     }
-    return true;
-  }
+
+    public boolean addAppointmentOpenMRS(ArrayList<CustomAppointmentDTO> appointmentdto) {
+        Gson gson = new Gson();
+        String val = "";
+        try {
+            for (CustomAppointmentDTO appointment : appointmentdto) {
+                Response response;
+                Call<ResponseBody> addAppointment;
+                this.logger.info("appointment value : " + gson.toJson((Object)appointment));
+                if (appointment.getAppointmentId() == 0) {
+                    addAppointment = this.restapiintf.addAppointment(appointment);
+                    response = addAppointment.execute();
+                    this.logger.info(response.message());
+                    if (!response.isSuccessful()) {
+                        val = response.errorBody().string();
+                        this.logger.error("REST failed : " + val);
+                        return false;
+                    }
+                    val = ((ResponseBody)response.body()).string();
+                    appointment.setSyncd(true);
+                    this.logger.info("Response is : " + val);
+                    continue;
+                }
+                addAppointment = this.restapiintf.editAppointment(appointment);
+                response = addAppointment.execute();
+                this.logger.info(response.message());
+                if (!response.isSuccessful()) {
+                    val = response.errorBody().string();
+                    this.logger.error("REST failed : " + val);
+                    return false;
+                }
+                val = ((ResponseBody)response.body()).string();
+                appointment.setSyncd(true);
+                this.logger.info("Response is : " + val);
+            }
+        }
+        catch (Exception e) {
+            this.logger.error(e.getMessage(), (Throwable)e);
+            return false;
+        }
+        return true;
+    }
 }
+
