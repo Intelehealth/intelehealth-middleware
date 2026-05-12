@@ -1,3 +1,10 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  org.slf4j.Logger
+ *  org.slf4j.LoggerFactory
+ */
 package com.emrmiddleware.conf;
 
 import java.io.FileNotFoundException;
@@ -8,70 +15,69 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class ConfigProperties {
-  private final Logger logger = LoggerFactory.getLogger(ConfigProperties.class);
-  String result = "";
-  InputStream inputStream;
-  private String mybatisDBEnvironment;
-  private String serverhost;
-  private String swaggerhost;
-  private String port;
-  private String mindmapPort;
+    String result = "";
+    private String mybatisDBEnvironment;
+    private String serverhost;
+    private String swaggerhost;
+    private String port;
+    InputStream inputStream;
+    private final Logger logger = LoggerFactory.getLogger(ConfigProperties.class);
+    private String mindmapPort;
 
-  public ConfigProperties() {
-    try {
-      getPropValues();
-    } catch (IOException e) {
-      logger.error("Error in Properties File read : {} ", e.getMessage());
+    public String getMindmapPort() {
+        return this.mindmapPort;
     }
-  }
 
-  public String getMindmapPort() {
-    return mindmapPort;
-  }
-
-  public void setMindmapPort(String mindmapPort) {
-    this.mindmapPort = mindmapPort;
-  }
-
-  public void getPropValues() throws IOException {
-
-    try {
-      Properties prop = new Properties();
-      String propFileName = "config.properties";
-      inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
-
-      if (inputStream != null) {
-        prop.load(inputStream);
-      } else {
-        throw new FileNotFoundException(
-            "property file '" + propFileName + "' not found in the classpath");
-      }
-
-      mybatisDBEnvironment = prop.getProperty("MybatisEnvironmentId");
-      serverhost = prop.getProperty("serverhost");
-      swaggerhost = prop.getProperty("swaggerhost");
-      port = prop.getProperty("port");
-      mindmapPort = prop.getProperty("mindmapPort");
-    } catch (Exception e) {
-      logger.error("Exception: {}", e.getMessage());
-    } finally {
-      inputStream.close();
+    public void setMindmapPort(String mindmapPort) {
+        this.mindmapPort = mindmapPort;
     }
-  }
 
-  public String getDBEnvironment() {
-    return mybatisDBEnvironment;
-  }
+    public ConfigProperties() {
+        try {
+            this.getPropValues();
+        }
+        catch (IOException e) {
+            this.logger.error("Error in Properties File read : " + e.getMessage());
+        }
+    }
 
-  public String getServer() {
-    return serverhost;
-  }
+    public void getPropValues() throws IOException {
+        try {
+            Properties prop = new Properties();
+            String propFileName = "config.properties";
+            this.inputStream = this.getClass().getClassLoader().getResourceAsStream(propFileName);
+            if (this.inputStream == null) {
+                throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
+            }
+            prop.load(this.inputStream);
+            this.mybatisDBEnvironment = prop.getProperty("MybatisEnvironmentId");
+            this.serverhost = prop.getProperty("serverhost");
+            this.swaggerhost = prop.getProperty("swaggerhost");
+            this.port = prop.getProperty("port");
+            this.mindmapPort = prop.getProperty("mindmapPort");
+        }
+        catch (Exception e) {
+            this.logger.error("Exception: " + e);
+        }
+        finally {
+            this.inputStream.close();
+        }
+    }
 
-  public String getSwaggerHost() {
-    return swaggerhost;
-  }
+    public String getDBEnvironment() {
+        return this.mybatisDBEnvironment;
+    }
 
-  public String getPort() {
-    return port;
-  }
+    public String getServer() {
+        return this.serverhost;
+    }
+
+    public String getSwaggerHost() {
+        return this.swaggerhost;
+    }
+
+    public String getPort() {
+        return this.port;
+    }
 }
+
