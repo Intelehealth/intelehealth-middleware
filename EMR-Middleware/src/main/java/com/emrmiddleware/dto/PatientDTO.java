@@ -6,6 +6,7 @@ public class PatientDTO {
 
   private String uuid;
   private String openmrs_id;
+  private String mpi_id;
   private String firstname;
   private String middlename;
   private String lastname;
@@ -257,4 +258,13 @@ public class PatientDTO {
   public void setCaste(String caste) {
     this.caste = caste;
   }
+
+  public String getMpi_id() {
+	return mpi_id;
+  }
+
+  public void setMpi_id(String mpi_id) {
+	this.mpi_id = mpi_id;
+  }
+  
 }

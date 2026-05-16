@@ -1,6 +1,7 @@
 package com.emrmiddleware.dao;
 
 import com.emrmiddleware.conf.DBconfig;
+import com.emrmiddleware.conf.ResourcesEnvironment;
 import com.emrmiddleware.dmo.PatientDMO;
 import com.emrmiddleware.dto.PatientAttributeDTO;
 import com.emrmiddleware.dto.PatientAttributeTypeDTO;
@@ -19,6 +20,7 @@ import org.slf4j.LoggerFactory;
 public class PatientDAO {
 
   private final Logger logger = LoggerFactory.getLogger(PatientDAO.class);
+  private final ResourcesEnvironment resourcesEnvironment = new ResourcesEnvironment();
 
   public ArrayList<PatientDTO> getPatients(
       String lastpulldatatime, String locationuuid, int offset, int limit) throws DAOException {
@@ -31,7 +33,12 @@ public class PatientDAO {
       PatientDMO patientdmo = session.getMapper(PatientDMO.class);
       patientlist =
           patientdmo.getPatients(
-              lastpulldatatime, locationuuid, offset, limit);
+              lastpulldatatime,
+              locationuuid,
+              offset,
+              limit,
+              resourcesEnvironment.getOpenMrsIdentifierTypeName(),
+              resourcesEnvironment.getMpiIdentifierTypeName());
       return patientlist;
     } catch (PersistenceException e) {
       logger.error(e.getMessage(), e);
@@ -109,7 +116,9 @@ public class PatientDAO {
     try {
 
       PatientDMO patientdmo = session.getMapper(PatientDMO.class);
-      patientdto = patientdmo.getPatient(personuuid);
+      patientdto =
+          patientdmo.getPatient(
+              personuuid, resourcesEnvironment.getOpenMrsIdentifierTypeName());
       return patientdto;
     } catch (PersistenceException e) {
       logger.error(e.getMessage(), e);

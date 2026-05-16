@@ -33,6 +33,14 @@ public class ResourcesEnvironment {
     return basepath;
   }
 
+  public String getOpenMrsIdentifierTypeName() {
+    return configProperties.getOpenMrsIdentifierTypeName();
+  }
+
+  public String getMpiIdentifierTypeName() {
+    return configProperties.getMpiIdentifierTypeName();
+  }
+
   public String getMMBaseURL() {
     String Base_URL = "";
 

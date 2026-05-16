@@ -16,6 +16,11 @@ public class ConfigProperties {
   private String swaggerhost;
   private String port;
   private String mindmapPort;
+  private String openMrsIdentifierTypeName;
+  private String mpiIdentifierTypeName;
+
+  private static final String DEFAULT_OPENMRS_IDENTIFIER_TYPE = "OpenMRS ID";
+  private static final String DEFAULT_MPI_IDENTIFIER_TYPE = "MPI";
 
   public ConfigProperties() {
     try {
@@ -52,6 +57,12 @@ public class ConfigProperties {
       swaggerhost = prop.getProperty("swaggerhost");
       port = prop.getProperty("port");
       mindmapPort = prop.getProperty("mindmapPort");
+      openMrsIdentifierTypeName =
+          defaultIfBlank(
+              prop.getProperty("patient.identifier.type.openmrs"), DEFAULT_OPENMRS_IDENTIFIER_TYPE);
+      mpiIdentifierTypeName =
+          defaultIfBlank(
+              prop.getProperty("patient.identifier.type.mpi"), DEFAULT_MPI_IDENTIFIER_TYPE);
     } catch (Exception e) {
       logger.error("Exception: {}", e.getMessage());
     } finally {
@@ -73,5 +84,20 @@ public class ConfigProperties {
 
   public String getPort() {
     return port;
+  }
+
+  public String getOpenMrsIdentifierTypeName() {
+    return defaultIfBlank(openMrsIdentifierTypeName, DEFAULT_OPENMRS_IDENTIFIER_TYPE);
+  }
+
+  public String getMpiIdentifierTypeName() {
+    return defaultIfBlank(mpiIdentifierTypeName, DEFAULT_MPI_IDENTIFIER_TYPE);
+  }
+
+  private static String defaultIfBlank(String value, String defaultValue) {
+    if (value == null || value.trim().isEmpty()) {
+      return defaultValue;
+    }
+    return value.trim();
   }
 }

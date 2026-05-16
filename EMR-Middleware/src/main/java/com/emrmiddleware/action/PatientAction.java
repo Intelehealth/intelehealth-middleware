@@ -3,7 +3,9 @@ package com.emrmiddleware.action;
 import com.emrmiddleware.api.APIClient;
 import com.emrmiddleware.api.RestAPI;
 import com.emrmiddleware.api.dto.IDGenAPIDTO;
+import com.emrmiddleware.api.dto.IdentifierAPIDTO;
 import com.emrmiddleware.api.dto.PatientAPIDTO;
+import com.emrmiddleware.api.dto.SourcePatientIdentifierAPIDTO;
 import com.emrmiddleware.authentication.AuthenticationUtil;
 import com.emrmiddleware.dao.PatientDAO;
 import com.emrmiddleware.dto.PatientDTO;
@@ -19,6 +21,8 @@ import retrofit2.Call;
 import retrofit2.Response;
 
 public class PatientAction {
+	private static final String SOURCE_PATIENT_ID_TYPE = "Source Patient Id";
+
 	private final Logger logger = LoggerFactory.getLogger(PatientAction.class);
 
 	RestAPI restIdapiintf;
@@ -44,6 +48,7 @@ public class PatientAction {
 			for (PatientAPIDTO patient : patientList) {
 				patientforerror = patient;
 				String openMrsId = "";
+				String sourcePatientId = getSourcePatientId(patient);
 				PatientDAO patientdao = new PatientDAO();
 				PatientDTO patientDTO = patientdao.getPatient(patient.getPerson());
 				if (patientDTO == null) {
@@ -54,11 +59,17 @@ public class PatientAction {
 					openMrsId = patientDTO.getOpenmrs_id();
 				}
 
+				if (sourcePatientId != null && !sourcePatientId.trim().isEmpty() && isPatientSet) {
+					isPatientSet = upsertSourcePatientIdentifier(patient.getPerson(), sourcePatientId);
+				}
+
 				patientdto = new PatientDTO();
 				patientdto.setUuid(patient.getPerson());
 				patientdto.setSyncd(isPatientSet);
 				if (isPatientSet)
 					patientdto.setOpenmrs_id(openMrsId);
+				if (sourcePatientId != null)
+					patientdto.setMpi_id(sourcePatientId);
 				patients.add(patientdto);
 			}
 		} catch (Exception e) {
@@ -69,6 +80,19 @@ public class PatientAction {
 		} 
 		return patients;
 
+	}
+
+	private String getSourcePatientId(PatientAPIDTO patient) {
+		if (patient == null || patient.getIdentifiers() == null) {
+			return null;
+		}
+		for (IdentifierAPIDTO identifier : patient.getIdentifiers()) {
+			if (identifier != null
+					&& SOURCE_PATIENT_ID_TYPE.equals(identifier.getIdentifierType())) {
+				return identifier.getIdentifier();
+			}
+		}
+		return null;
 	}
 
 	private String getOpenMrsId() {
@@ -100,6 +124,27 @@ public class PatientAction {
 		}
 		return openmrsid;
 
+	}
+
+	private boolean upsertSourcePatientIdentifier(String patientUuid, String identifierValue) {
+		SourcePatientIdentifierAPIDTO request = new SourcePatientIdentifierAPIDTO();
+		request.setPatientUuid(patientUuid);
+		request.setIdentifierValue(identifierValue);
+
+		try {
+			Call<ResponseBody> call =
+					restapiintf.upsertSourcePatientIdentifier(request);
+			Response<ResponseBody> response = call.execute();
+			if (response.isSuccessful()) {
+				logger.info("Source patient identifier upserted for patient {}", patientUuid);
+				return true;
+			}
+			String error = response.errorBody() != null ? response.errorBody().string() : "";
+			logger.error("Source patient identifier REST failed: {}", error);
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+		}
+		return false;
 	}
 
 	private boolean addPatientOpenMRS(PatientAPIDTO patientdto) {
