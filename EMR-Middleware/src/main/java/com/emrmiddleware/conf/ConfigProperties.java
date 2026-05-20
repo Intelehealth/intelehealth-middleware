@@ -18,9 +18,11 @@ public class ConfigProperties {
   private String mindmapPort;
   private String openMrsIdentifierTypeName;
   private String mpiIdentifierTypeName;
+  private String sourcePatientIdentifierTypeName;
 
   private static final String DEFAULT_OPENMRS_IDENTIFIER_TYPE = "OpenMRS ID";
   private static final String DEFAULT_MPI_IDENTIFIER_TYPE = "MPI";
+  private static final String DEFAULT_SOURCE_PATIENT_IDENTIFIER_TYPE = "Source Patient Id";
 
   public ConfigProperties() {
     try {
@@ -63,6 +65,10 @@ public class ConfigProperties {
       mpiIdentifierTypeName =
           defaultIfBlank(
               prop.getProperty("patient.identifier.type.mpi"), DEFAULT_MPI_IDENTIFIER_TYPE);
+      sourcePatientIdentifierTypeName =
+          defaultIfBlank(
+              prop.getProperty("patient.identifier.type.source"),
+              DEFAULT_SOURCE_PATIENT_IDENTIFIER_TYPE);
     } catch (Exception e) {
       logger.error("Exception: {}", e.getMessage());
     } finally {
@@ -92,6 +98,11 @@ public class ConfigProperties {
 
   public String getMpiIdentifierTypeName() {
     return defaultIfBlank(mpiIdentifierTypeName, DEFAULT_MPI_IDENTIFIER_TYPE);
+  }
+
+  public String getSourcePatientIdentifierTypeName() {
+    return defaultIfBlank(
+        sourcePatientIdentifierTypeName, DEFAULT_SOURCE_PATIENT_IDENTIFIER_TYPE);
   }
 
   private static String defaultIfBlank(String value, String defaultValue) {

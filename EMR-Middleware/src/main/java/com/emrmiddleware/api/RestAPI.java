@@ -2,6 +2,7 @@ package com.emrmiddleware.api;
 
 import com.emrmiddleware.api.dto.EncounterAPIDTO;
 import com.emrmiddleware.api.dto.PatientAPIDTO;
+import com.emrmiddleware.api.dto.PatientUpdateAPIDTO;
 import com.emrmiddleware.api.dto.PersonAPIDTO;
 import com.emrmiddleware.api.dto.SourcePatientIdentifierAPIDTO;
 import com.emrmiddleware.api.dto.VisitAPIDTO;
@@ -29,6 +30,9 @@ public interface RestAPI {
 
   @POST("patient")
   Call<ResponseBody> addPatient(@Body PatientAPIDTO patientapidto);
+
+  @POST("patient/{uuid}")
+  Call<ResponseBody> editPatient(@Path("uuid") String uuid, @Body PatientUpdateAPIDTO patientUpdateDto);
 
   @POST("ihmodule/patient/source-identifier")
   Call<ResponseBody> upsertSourcePatientIdentifier(

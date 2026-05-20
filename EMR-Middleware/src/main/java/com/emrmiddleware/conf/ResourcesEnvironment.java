@@ -41,6 +41,10 @@ public class ResourcesEnvironment {
     return configProperties.getMpiIdentifierTypeName();
   }
 
+  public String getSourcePatientIdentifierTypeName() {
+    return configProperties.getSourcePatientIdentifierTypeName();
+  }
+
   public String getMMBaseURL() {
     String Base_URL = "";
 

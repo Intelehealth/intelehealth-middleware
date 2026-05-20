@@ -1,5 +1,7 @@
 package com.emrmiddleware.action;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -46,6 +48,11 @@ public class PullDataAction {
    * the system performs an initial data pull with comprehensive master data.
    */
   public static final String DATESTRING="2006-08-22 22:21:48";
+
+  private static final DateTimeFormatter PULL_DATETIME_FORMAT =
+      DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+  private static final int PULL_LOOKBACK_MINUTES = 10;
 
   // Shared executor with fixed small thread pool to prevent resource exhaustion
   private static final Executor executor = Executors.newFixedThreadPool(3);
@@ -103,6 +110,13 @@ public PullDataDTO getPullData(final String lastPullDateTime, final String locat
     try {
         logger.info("Starting getPullData with pageNo: {}, limit: {}, lastPullDateTime: {}, locationUuid: {}", 
             pageNo, limit, lastPullDateTime, locationUuid);
+
+        final String queryLastPullDateTime = lastPullDateTime.equals(DATESTRING)
+            ? lastPullDateTime
+            : subtractMinutesFromPullDateTime(lastPullDateTime, PULL_LOOKBACK_MINUTES);
+        if (!queryLastPullDateTime.equals(lastPullDateTime)) {
+            logger.info("Adjusted lastPullDateTime for query: {} -> {}", lastPullDateTime, queryLastPullDateTime);
+        }
         
         if (pageNo == 0) {
             processedVisitIds.clear(); // Reset the set when starting a new pull
@@ -115,8 +129,8 @@ public PullDataDTO getPullData(final String lastPullDateTime, final String locat
         initializeArrays(pullData);
         pullData.setPullexecutedtime(visitDAO.getDBCurrentTime());
 
-        final int patientCount = patientDAO.getPatientsCount(lastPullDateTime, locationUuid);
-        final int visitCount = visitDAO.getVisitCount(lastPullDateTime, locationUuid);
+        final int patientCount = patientDAO.getPatientsCount(queryLastPullDateTime, locationUuid);
+        final int visitCount = visitDAO.getVisitCount(queryLastPullDateTime, locationUuid);
         
         logger.info("Patient count: {}, Visit count: {}", patientCount, visitCount);
         
@@ -140,11 +154,11 @@ public PullDataDTO getPullData(final String lastPullDateTime, final String locat
 
         if (lastPullDateTime.equals(DATESTRING)) {
             logger.info("Performing initial pull");
-            return handleInitialPull(lastPullDateTime, locationUuid, offset, limit, pullData);
+            return handleInitialPull(queryLastPullDateTime, locationUuid, offset, limit, pullData);
         }
 
         logger.info("Performing incremental pull");
-        return handleIncrementalPull(lastPullDateTime, locationUuid, offset, limit, 
+        return handleIncrementalPull(queryLastPullDateTime, locationUuid, offset, limit, 
                 pullData, patientCount, visitCount);
 
     } catch (DAOException | CompletionException e) {
@@ -389,5 +403,10 @@ private PullDataDTO handleIncrementalPull(final String lastPullDateTime, final S
     return ids.stream()
             .map(String::valueOf)
             .collect(Collectors.joining(",", "(", ")"));
+  }
+
+  private static String subtractMinutesFromPullDateTime(String lastPullDateTime, int minutes) {
+    final LocalDateTime dateTime = LocalDateTime.parse(lastPullDateTime, PULL_DATETIME_FORMAT);
+    return dateTime.minusMinutes(minutes).format(PULL_DATETIME_FORMAT);
   }
 }

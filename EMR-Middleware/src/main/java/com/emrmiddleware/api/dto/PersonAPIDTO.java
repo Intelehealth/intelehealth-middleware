@@ -9,6 +9,7 @@ public class PersonAPIDTO {
   private ArrayList<NameAPIDTO> names = new ArrayList<NameAPIDTO>();
   private String birthdate;
   private ArrayList<AddressAPIDTO> addresses = new ArrayList<AddressAPIDTO>();
+  private ArrayList<IdentifierAPIDTO> identifiers;
   private String gender;
 
   public String getGender() {
@@ -65,5 +66,13 @@ public class PersonAPIDTO {
 
   public void addName(NameAPIDTO namedto) {
     this.names.add(namedto);
+  }
+
+  public ArrayList<IdentifierAPIDTO> getIdentifiers() {
+    return identifiers;
+  }
+
+  public void setIdentifiers(ArrayList<IdentifierAPIDTO> identifiers) {
+    this.identifiers = identifiers;
   }
 }
