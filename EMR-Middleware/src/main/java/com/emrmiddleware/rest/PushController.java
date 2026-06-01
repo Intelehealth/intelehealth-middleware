@@ -1,23 +1,4 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  com.google.gson.Gson
- *  com.google.gson.JsonElement
- *  com.google.gson.JsonObject
- *  com.treblle.spring.annotation.EnableTreblle
- *  io.swagger.annotations.Api
- *  javax.servlet.ServletContext
- *  javax.ws.rs.Consumes
- *  javax.ws.rs.POST
- *  javax.ws.rs.Path
- *  javax.ws.rs.Produces
- *  javax.ws.rs.core.Context
- *  javax.ws.rs.core.HttpHeaders
- *  javax.ws.rs.core.Response
- *  org.slf4j.Logger
- *  org.slf4j.LoggerFactory
- */
+
 package com.emrmiddleware.rest;
 
 import com.emrmiddleware.action.PushDataAction;
@@ -57,7 +38,7 @@ import org.slf4j.LoggerFactory;
 
 @Api(value="PUSH DATA")
 @Path(value="push")
-@EnableTreblle
+//@EnableTreblle
 public class PushController {
     private final Logger logger = LoggerFactory.getLogger(PushController.class);
     @Context
