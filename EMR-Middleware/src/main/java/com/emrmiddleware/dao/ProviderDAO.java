@@ -1,12 +1,4 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  org.apache.ibatis.session.SqlSession
- *  org.apache.ibatis.session.SqlSessionFactory
- *  org.slf4j.Logger
- *  org.slf4j.LoggerFactory
- */
+
 package com.emrmiddleware.dao;
 
 import com.emrmiddleware.conf.DBconfig;

@@ -1,19 +1,4 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  com.google.gson.Gson
- *  com.google.gson.GsonBuilder
- *  okhttp3.Interceptor
- *  okhttp3.OkHttpClient
- *  okhttp3.OkHttpClient$Builder
- *  okhttp3.logging.HttpLoggingInterceptor
- *  okhttp3.logging.HttpLoggingInterceptor$Level
- *  retrofit2.Converter$Factory
- *  retrofit2.Retrofit
- *  retrofit2.Retrofit$Builder
- *  retrofit2.converter.gson.GsonConverterFactory
- */
+
 package com.emrmiddleware.api;
 
 import com.emrmiddleware.api.BasicAuthInterceptor;

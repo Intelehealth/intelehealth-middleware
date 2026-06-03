@@ -1,6 +1,4 @@
-/*
- * Decompiled with CFR 0.152.
- */
+
 package com.emrmiddleware.action;
 
 import com.emrmiddleware.dao.EncounterDAO;

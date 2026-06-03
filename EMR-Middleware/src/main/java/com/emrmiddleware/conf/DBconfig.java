@@ -1,16 +1,4 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  org.apache.ibatis.io.Resources
- *  org.apache.ibatis.session.ExecutorType
- *  org.apache.ibatis.session.SqlSession
- *  org.apache.ibatis.session.SqlSessionFactory
- *  org.apache.ibatis.session.SqlSessionFactoryBuilder
- *  org.apache.ibatis.session.TransactionIsolationLevel
- *  org.slf4j.Logger
- *  org.slf4j.LoggerFactory
- */
+
 package com.emrmiddleware.conf;
 
 import com.emrmiddleware.conf.ResourcesEnvironment;

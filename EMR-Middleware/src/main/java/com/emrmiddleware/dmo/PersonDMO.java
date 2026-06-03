@@ -1,10 +1,4 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  org.apache.ibatis.annotations.Param
- *  org.apache.ibatis.annotations.Select
- */
+
 package com.emrmiddleware.dmo;
 
 import com.emrmiddleware.dto.PersonDTO;

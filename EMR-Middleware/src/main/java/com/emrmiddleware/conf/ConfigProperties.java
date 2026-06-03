@@ -1,10 +1,4 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  org.slf4j.Logger
- *  org.slf4j.LoggerFactory
- */
+
 package com.emrmiddleware.conf;
 
 import java.io.FileNotFoundException;

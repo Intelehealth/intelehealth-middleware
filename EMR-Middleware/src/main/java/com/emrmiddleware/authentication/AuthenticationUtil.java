@@ -1,6 +1,3 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package com.emrmiddleware.authentication;
 
 import com.emrmiddleware.dao.UserCredentialsDAO;

@@ -1,6 +1,4 @@
-/*
- * Decompiled with CFR 0.152.
- */
+
 package com.emrmiddleware.conf;
 
 import com.emrmiddleware.conf.ConfigProperties;

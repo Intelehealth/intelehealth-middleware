@@ -1,14 +1,4 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  com.google.gson.Gson
- *  okhttp3.ResponseBody
- *  org.slf4j.Logger
- *  org.slf4j.LoggerFactory
- *  retrofit2.Call
- *  retrofit2.Response
- */
+
 package com.emrmiddleware.action;
 
 import com.emrmiddleware.action.EncounterAction;

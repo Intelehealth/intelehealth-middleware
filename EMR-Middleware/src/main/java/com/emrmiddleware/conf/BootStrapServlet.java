@@ -1,16 +1,4 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  io.swagger.jaxrs.config.BeanConfig
- *  io.swagger.jaxrs.config.SwaggerContextService
- *  io.swagger.models.Swagger
- *  io.swagger.models.auth.BasicAuthDefinition
- *  io.swagger.models.auth.SecuritySchemeDefinition
- *  javax.servlet.ServletConfig
- *  javax.servlet.ServletException
- *  javax.servlet.http.HttpServlet
- */
+
 package com.emrmiddleware.conf;
 
 import com.emrmiddleware.conf.ResourcesEnvironment;

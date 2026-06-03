@@ -1,13 +1,4 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  okhttp3.Credentials
- *  okhttp3.Interceptor
- *  okhttp3.Interceptor$Chain
- *  okhttp3.Request
- *  okhttp3.Response
- */
+
 package com.emrmiddleware.api;
 
 import java.io.IOException;

@@ -1,16 +1,4 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  okhttp3.ResponseBody
- *  retrofit2.Call
- *  retrofit2.http.Body
- *  retrofit2.http.DELETE
- *  retrofit2.http.GET
- *  retrofit2.http.POST
- *  retrofit2.http.Path
- *  retrofit2.http.Query
- */
+
 package com.emrmiddleware.api;
 
 import com.emrmiddleware.api.dto.EncounterAPIDTO;

@@ -1,10 +1,4 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  org.apache.ibatis.session.SqlSession
- *  org.apache.ibatis.session.SqlSessionFactory
- */
+
 package com.emrmiddleware.action;
 
 import com.emrmiddleware.action.AppointmentAction;

@@ -1,12 +1,4 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  javax.ws.rs.ApplicationPath
- *  org.glassfish.jersey.jsonp.JsonProcessingFeature
- *  org.glassfish.jersey.server.ResourceConfig
- *  org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature
- */
+
 package com.emrmiddleware.authentication;
 
 import javax.ws.rs.ApplicationPath;
