@@ -2,6 +2,8 @@ package com.emrmiddleware.rest;
 
 import com.emrmiddleware.action.PullDataAction;
 import com.emrmiddleware.authentication.AuthenticationUtil;
+import com.emrmiddleware.dao.PatientDAO;
+import com.emrmiddleware.dto.MpiIdentifierDTO;
 import com.emrmiddleware.dto.PullDataDTO;
 import com.emrmiddleware.dto.ResponseDTO;
 import com.emrmiddleware.exception.DAOException;
@@ -65,6 +67,54 @@ public class PullController {
       return Response.status(500).entity(gson.toJson(responsedto)).build();
     } catch (Exception e) {
       logger.error("{} {}", Resources.CONTROLLEREXCEPTION ,  e.getMessage());
+      responsedto.setStatusMessage(
+          Resources.ERROR, Resources.SERVER_ERROR, Resources.UNABLETOPROCESS);
+      return Response.status(500).entity(gson.toJson(responsedto)).build();
+    }
+
+    return Response.status(200).entity(gson.toJson(responsedto)).build();
+  }
+
+  @Path("pulldata/mpi/{identifier}")
+  @GET
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response getMpiByPatientIdentifier(
+      @PathParam("identifier") String identifier, @Context HttpHeaders httpHeaders) {
+
+    ResponseDTO responsedto = new ResponseDTO();
+    Gson gson = new Gson();
+    try {
+      AuthenticationUtil authutil = new AuthenticationUtil();
+      String authString = httpHeaders.getHeaderString("authorization");
+
+      boolean isAuthenticated = authutil.isUserAuthenticated(authString);
+      if ((!isAuthenticated) || (authString == null)) {
+        logger.error("No Authorization");
+        responsedto.setStatusMessage(
+            Resources.ERROR, Resources.AUTHERROR, Resources.UNABLETOPROCESS);
+        return Response.status(403).entity(gson.toJson(responsedto)).build();
+      }
+
+      String mpiIdentifier = new PatientDAO().getMpiIdentifierByPatientIdentifier(identifier);
+      if (mpiIdentifier == null || mpiIdentifier.trim().isEmpty()) {
+        responsedto.setStatusMessage(
+            Resources.ERROR,
+            "No patient found with identifier '" + identifier + "' or MPI identifier is not assigned",
+            Resources.UNABLETOPROCESS);
+        return Response.status(404).entity(gson.toJson(responsedto)).build();
+      }
+
+      MpiIdentifierDTO mpiIdentifierDTO = new MpiIdentifierDTO();
+      mpiIdentifierDTO.setMpi(mpiIdentifier);
+      responsedto.setStatus(Resources.OK);
+      responsedto.setData(mpiIdentifierDTO);
+    } catch (DAOException e) {
+      logger.error(Resources.DAOEXCEPTION, e);
+      responsedto.setStatusMessage(
+          Resources.ERROR, Resources.SERVER_ERROR, Resources.UNABLETOPROCESS);
+      return Response.status(500).entity(gson.toJson(responsedto)).build();
+    } catch (Exception e) {
+      logger.error("{} {}", Resources.CONTROLLEREXCEPTION, e.getMessage());
       responsedto.setStatusMessage(
           Resources.ERROR, Resources.SERVER_ERROR, Resources.UNABLETOPROCESS);
       return Response.status(500).entity(gson.toJson(responsedto)).build();

@@ -149,4 +149,19 @@ public class PatientDAO {
       session.close();
     }
   }
+
+  public String getMpiIdentifierByPatientIdentifier(String identifier) throws DAOException {
+    SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
+    SqlSession session = sessionfactory.openSession();
+    try {
+      PatientDMO patientdmo = session.getMapper(PatientDMO.class);
+      return patientdmo.getMpiIdentifierByPatientIdentifier(
+          identifier, resourcesEnvironment.getMpiIdentifierTypeName());
+    } catch (PersistenceException e) {
+      logger.error(e.getMessage(), e);
+      throw new DAOException(e.getMessage(), e);
+    } finally {
+      session.close();
+    }
+  }
 }

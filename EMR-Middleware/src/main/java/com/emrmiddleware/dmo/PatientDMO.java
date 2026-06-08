@@ -46,28 +46,21 @@ public interface PatientDMO {
           + "INNER JOIN patient_identifier_type pit1 "
           + " ON pi.identifier_type = pit1.patient_identifier_type_id "
           + " AND pit1.name = #{openMrsIdentifierTypeName}\n"
-          + "LEFT JOIN patient_identifier mpi ON person.person_id = mpi.patient_id "
+          + "INNER JOIN patient_identifier mpi ON person.person_id = mpi.patient_id "
           + " AND mpi.identifier_type = (\n"
           + "   SELECT patient_identifier_type_id FROM patient_identifier_type "
           + "   WHERE name = #{mpiIdentifierTypeName}\n"
           + " )\n"
-         + " LEFT JOIN patient_identifier source_pi" + ""
-          + " ON person.person_id = source_pi.patient_id" 
-          + " AND source_pi.identifier_type = ("
-          + " SELECT patient_identifier_type_id FROM patient_identifier_type"
-          + "  WHERE name = 'Source Patient Id'"
-          + " )"
-          
+        
           + "INNER JOIN person_name ON person.person_id = person_name.person_id\n"
           + "INNER JOIN person_address ON person.person_id = person_address.person_id\n"
           + "INNER JOIN location ON pi.location_id = location.location_id\n"
-          + "   LEFT JOIN location source_location "
-          + "          ON source_pi.location_id = source_location.location_id "
+          
           + "INNER JOIN person_attribute pa ON person.person_id = pa.person_id\n"
           + "WHERE person.voided = 0\n"
           + "AND person_name.preferred = 1\n"
           + "AND person_address.preferred = 1\n"
-          + "AND (location.uuid = #{locationuuid} or source_location.uuid = #{locationuuid} ) \n"
+          + "AND (location.uuid = #{locationuuid}  ) \n"
           + "AND (COALESCE(person.date_changed,person.date_created) >= #{lastchangedtime}\n"
           + "OR COALESCE(pi.date_changed,pi.date_created) >= #{lastchangedtime}\n"
           + "OR COALESCE(person_name.date_changed,person_name.date_created) >= #{lastchangedtime}\n"
@@ -165,4 +158,13 @@ public interface PatientDMO {
   public int getPatientsCount(
           @Param("lastchangedtime") String lastpulldatatime,
           @Param("locationuuid") String locationuuid);
+
+  @Select(
+      "SELECT mpi.identifier FROM patient_identifier pi2 "
+          + "JOIN patient_identifier mpi ON pi2.patient_id = mpi.patient_id "
+          + "JOIN patient_identifier_type pit ON pit.patient_identifier_type_id = mpi.identifier_type "
+          + "WHERE pi2.identifier = #{identifier} AND pit.name = #{mpiIdentifierTypeName}")
+  String getMpiIdentifierByPatientIdentifier(
+      @Param("identifier") String identifier,
+      @Param("mpiIdentifierTypeName") String mpiIdentifierTypeName);
 }
