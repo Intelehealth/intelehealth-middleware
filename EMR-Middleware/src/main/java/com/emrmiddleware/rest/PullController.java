@@ -3,7 +3,9 @@ package com.emrmiddleware.rest;
 import com.emrmiddleware.action.PullDataAction;
 import com.emrmiddleware.authentication.AuthenticationUtil;
 import com.emrmiddleware.dao.PatientDAO;
+import com.emrmiddleware.dao.PatientSyncLogDAO;
 import com.emrmiddleware.dto.MpiIdentifierDTO;
+import com.emrmiddleware.dto.PatientSyncLogDTO;
 import com.emrmiddleware.dto.PullDataDTO;
 import com.emrmiddleware.dto.ResponseDTO;
 import com.emrmiddleware.exception.DAOException;
@@ -75,11 +77,13 @@ public class PullController {
     return Response.status(200).entity(gson.toJson(responsedto)).build();
   }
 
-  @Path("pulldata/mpi/{identifier}")
+  @Path("pulldata/mpi/{identifier}/{patientUuid}")
   @GET
   @Produces(MediaType.APPLICATION_JSON)
   public Response getMpiByPatientIdentifier(
-      @PathParam("identifier") String identifier, @Context HttpHeaders httpHeaders) {
+      @PathParam("identifier") String identifier,
+      @PathParam("patientUuid") String patientUuid,
+      @Context HttpHeaders httpHeaders) {
 
     ResponseDTO responsedto = new ResponseDTO();
     Gson gson = new Gson();
@@ -95,6 +99,12 @@ public class PullController {
         return Response.status(403).entity(gson.toJson(responsedto)).build();
       }
 
+      if (patientUuid == null || patientUuid.trim().isEmpty()) {
+        responsedto.setStatusMessage(
+            Resources.ERROR, "patientUuid path parameter is required", Resources.UNABLETOPROCESS);
+        return Response.status(400).entity(gson.toJson(responsedto)).build();
+      }
+
       String mpiIdentifier = new PatientDAO().getMpiIdentifierByPatientIdentifier(identifier);
       if (mpiIdentifier == null || mpiIdentifier.trim().isEmpty()) {
         responsedto.setStatusMessage(
@@ -106,6 +116,15 @@ public class PullController {
 
       MpiIdentifierDTO mpiIdentifierDTO = new MpiIdentifierDTO();
       mpiIdentifierDTO.setMpi(mpiIdentifier);
+
+      PatientSyncLogDTO syncLog =
+          new PatientSyncLogDAO().getLatestSyncLogByPatientUuid(patientUuid.trim());
+      if (syncLog != null) {
+        mpiIdentifierDTO.setAttempt_number(syncLog.getAttempt_number());
+        mpiIdentifierDTO.setLast_try(syncLog.getLast_try());
+        mpiIdentifierDTO.setStatus(syncLog.getStatus());
+      }
+
       responsedto.setStatus(Resources.OK);
       responsedto.setData(mpiIdentifierDTO);
     } catch (DAOException e) {

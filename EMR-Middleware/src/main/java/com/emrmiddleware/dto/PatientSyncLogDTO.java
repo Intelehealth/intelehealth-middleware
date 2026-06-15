@@ -1,19 +1,10 @@
 package com.emrmiddleware.dto;
 
-public class MpiIdentifierDTO {
+public class PatientSyncLogDTO {
 
-  private String mpi;
   private Integer attempt_number;
   private String last_try;
   private String status;
-
-  public String getMpi() {
-    return mpi;
-  }
-
-  public void setMpi(String mpi) {
-    this.mpi = mpi;
-  }
 
   public Integer getAttempt_number() {
     return attempt_number;
