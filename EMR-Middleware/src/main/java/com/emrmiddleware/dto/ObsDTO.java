@@ -10,8 +10,16 @@ public class ObsDTO {
     private int creator;
     private String obsServerModifiedDate;
     private int voided;
-    private String obsDatetime;
-    private String creatoruuid;
+    private String conceptsetuuid;
+    private String interpretation;
+
+    public String getInterpretation() {
+        return interpretation;
+    }
+
+    public void setInterpretation(String interpretation) {
+        this.interpretation = interpretation;
+    }
 
     // Adding comment field for Ezazi obs.comment
     public String getComment() {
@@ -22,12 +30,12 @@ public class ObsDTO {
         this.comment = comment;
     }
 
-    public String getObsDatetime() {
-        return obsDatetime;
+    public String getConceptsetuuid() {
+        return conceptsetuuid;
     }
 
-    public void setObsDatetime(String obsDatetime) {
-        this.obsDatetime = obsDatetime;
+    public void setConceptsetuuid(String conceptsetuuid) {
+        this.conceptsetuuid = conceptsetuuid;
     }
 
     public String getObsServerModifiedDate() {

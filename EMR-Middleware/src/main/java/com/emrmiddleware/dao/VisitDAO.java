@@ -1,150 +1,152 @@
 package com.emrmiddleware.dao;
 
 
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.ArrayList;
-
-import com.mysql.cj.exceptions.CJConnectionFeatureNotAvailableException;
-import com.mysql.cj.jdbc.ConnectionGroupManager;
-
+import com.emrmiddleware.conf.DBconfig;
+import com.emrmiddleware.dmo.VisitDMO;
+import com.emrmiddleware.dto.*;
+import com.emrmiddleware.exception.DAOException;
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.emrmiddleware.conf.DBconfig;
-import com.emrmiddleware.dmo.VisitDMO;
-import com.emrmiddleware.dto.VisitAttributeDTO;
-import com.emrmiddleware.dto.VisitAttributeTypeDTO;
-import com.emrmiddleware.dto.VisitDTO;
-import com.emrmiddleware.exception.DAOException;
+import java.util.ArrayList;
 
 public class VisitDAO {
 
-	private final Logger logger = LoggerFactory.getLogger(VisitDAO.class);
+    private final Logger logger = LoggerFactory.getLogger(VisitDAO.class);
 
-	public ArrayList<VisitDTO> getVisits(String lastpulldatatime, String locationuuid) throws DAOException {
+    public ArrayList<VisitDTO> getVisits(String lastpulldatatime, String locationuuid) throws DAOException {
 
-		SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
-		SqlSession session = sessionfactory.openSession();
-		ArrayList<VisitDTO> visitlist = new ArrayList<VisitDTO>();
-		try {
+        SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
+        SqlSession session = sessionfactory.openSession();
+        ArrayList<VisitDTO> visitlist = new ArrayList<VisitDTO>();
+        try {
 
-			VisitDMO patientdmo = session.getMapper(VisitDMO.class);
-			visitlist = patientdmo.getVisits(lastpulldatatime, locationuuid);
-			return visitlist;
-		} catch (PersistenceException e) {
-			logger.error(e.getMessage(),e);
-			throw new DAOException(e.getMessage(), e);
-		} finally {
-			session.close();
-		}
-	}
-	
-	public VisitDTO getVisit(String visituuid) throws DAOException {
+            VisitDMO patientdmo = session.getMapper(VisitDMO.class);
+            visitlist = patientdmo.getVisits(lastpulldatatime, locationuuid);
+            return visitlist;
+        } catch (PersistenceException e) {
+            logger.error(e.getMessage(), e);
+            throw new DAOException(e.getMessage(), e);
+        } finally {
+            session.close();
+        }
+    }
 
-		SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
-		SqlSession session = sessionfactory.openSession();
-		VisitDTO visitdto = new VisitDTO();
-		try {
+    public VisitDTO getVisit(String visituuid) throws DAOException {
 
-			VisitDMO visitdmo = session.getMapper(VisitDMO.class);
-			visitdto = visitdmo.getVisit(visituuid);
-			return visitdto;
-		} catch (PersistenceException e) {
-			logger.error(e.getMessage(),e);
-			throw new DAOException(e.getMessage(), e);
-		} finally {
-			session.close();
-		}
-	}
-	
-	public String getDBCurrentTime() throws DAOException {
+        SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
+        SqlSession session = sessionfactory.openSession();
+        VisitDTO visitdto = new VisitDTO();
+        try {
 
-		SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
-		SqlSession session = sessionfactory.openSession();
-		String currentTime=null;
-		try {
+            VisitDMO visitdmo = session.getMapper(VisitDMO.class);
+            visitdto = visitdmo.getVisit(visituuid);
+            return visitdto;
+        } catch (PersistenceException e) {
+            logger.error(e.getMessage(), e);
+            throw new DAOException(e.getMessage(), e);
+        } finally {
+            session.close();
+        }
+    }
 
-			VisitDMO visitdmo = session.getMapper(VisitDMO.class);
-			currentTime = visitdmo.getDBCurrentTime();
-			return currentTime;
-		} catch (PersistenceException e) {
-			logger.error(e.getMessage(),e);
-			throw new DAOException(e.getMessage(), e);
-		} finally {
-			session.close();
-		}
-	}
-	
-	public ArrayList<VisitAttributeTypeDTO> getVisitAttributeTypeMaster(String lastpulldatatime) throws DAOException {
+    public String getDBCurrentTime() throws DAOException {
 
-		SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
-		SqlSession session = sessionfactory.openSession();
-		ArrayList<VisitAttributeTypeDTO> visitAttributeMasterList= new ArrayList<VisitAttributeTypeDTO>();
-		try {
+        SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
+        SqlSession session = sessionfactory.openSession();
+        String currentTime = null;
+        try {
 
-			VisitDMO visitdmo = session.getMapper(VisitDMO.class);
-			visitAttributeMasterList = visitdmo.getVisitAttributeMaster(lastpulldatatime);
-			return visitAttributeMasterList;
-		} catch (PersistenceException e) {
-			logger.error(e.getMessage(),e);
-			throw new DAOException(e.getMessage(), e);
-		} finally {
-			session.close();
-		}
-	}
-	
-	public ArrayList<VisitAttributeDTO> getVisitAttributes(String lastpulldatatime,String locationuuid) throws DAOException {
+            VisitDMO visitdmo = session.getMapper(VisitDMO.class);
+            currentTime = visitdmo.getDBCurrentTime();
+            return currentTime;
+        } catch (PersistenceException e) {
+            logger.error(e.getMessage(), e);
+            throw new DAOException(e.getMessage(), e);
+        } finally {
+            session.close();
+        }
+    }
 
-		SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
-		SqlSession session = sessionfactory.openSession();
-		ArrayList<VisitAttributeDTO> visitAttributesList= new ArrayList<VisitAttributeDTO>();
-		try {
+    public ArrayList<VisitAttributeTypeDTO> getVisitAttributeTypeMaster(String lastpulldatatime) throws DAOException {
 
-			VisitDMO visitdmo = session.getMapper(VisitDMO.class);
-			visitAttributesList = visitdmo.getVisitAttributes(lastpulldatatime, locationuuid);
-			return visitAttributesList;
-		} catch (PersistenceException e) {
-			logger.error(e.getMessage(),e);
-			throw new DAOException(e.getMessage(), e);
-		} finally {
-			session.close();
-		}
-	}
+        SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
+        SqlSession session = sessionfactory.openSession();
+        ArrayList<VisitAttributeTypeDTO> visitAttributeMasterList = new ArrayList<VisitAttributeTypeDTO>();
+        try {
 
+            VisitDMO visitdmo = session.getMapper(VisitDMO.class);
+            visitAttributeMasterList = visitdmo.getVisitAttributeMaster(lastpulldatatime);
+            return visitAttributeMasterList;
+        } catch (PersistenceException e) {
+            logger.error(e.getMessage(), e);
+            throw new DAOException(e.getMessage(), e);
+        } finally {
+            session.close();
+        }
+    }
 
-	public void voidVisitAttribute(String uuid, int attributeId, String voidReason) { // EZ-433
-		String voidVisitHolders = "update visit_attribute set voided=1, " +
-				"date_voided = now(), " +
-				"void_reason = ? " +
-				"WHERE visit_id = (select visit_id from visit where uuid = ? ) " +
-				"AND attribute_type_id = ?";
-		try {
+    public ArrayList<VisitAttributeDTO> getVisitAttributes(String lastpulldatatime, String locationuuid) throws DAOException {
 
+        SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
+        SqlSession session = sessionfactory.openSession();
+        ArrayList<VisitAttributeDTO> visitAttributesList = new ArrayList<VisitAttributeDTO>();
+        try {
 
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection con = java.sql.DriverManager.getConnection("jdbc:mysql://localhost:3306/openmrs", "root", "i10hi1c");
+            VisitDMO visitdmo = session.getMapper(VisitDMO.class);
+            visitAttributesList = visitdmo.getVisitAttributes(lastpulldatatime, locationuuid);
+            return visitAttributesList;
+        } catch (PersistenceException e) {
+            logger.error(e.getMessage(), e);
+            throw new DAOException(e.getMessage(), e);
+        } finally {
+            session.close();
+        }
+    }
 
-			PreparedStatement pstmt = con.prepareStatement(voidVisitHolders);
+    public ArrayList<ConceptAttributeTypeDTO> getConceptAttributeTypeMaster(String lastpulldatatime) throws DAOException {
 
-			pstmt.setString(2,uuid);
-			pstmt.setInt(3,attributeId);
-			pstmt.setString(1,voidReason);
-			int jum = pstmt.executeUpdate();
+        SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
 
-			pstmt.close();
-			con.close();
+        SqlSession session = sessionfactory.openSession();
+        ArrayList<ConceptAttributeTypeDTO> conceptAttributeMasterList = new ArrayList<ConceptAttributeTypeDTO>();
+        try {
 
-		} catch(ClassNotFoundException | SQLException e) {
-			logger.error(e.getMessage(),e);
+            VisitDMO visitdmo = session.getMapper(VisitDMO.class);
 
-		}
-	}
+            conceptAttributeMasterList = visitdmo.getConceptAttributeTypeMaster(lastpulldatatime);
+
+            return conceptAttributeMasterList;
+        } catch (PersistenceException e) {
+            logger.error(e.getMessage(), e);
+            throw new DAOException(e.getMessage(), e);
+        } finally {
+            session.close();
+        }
+    }
+
+    public ArrayList<ConceptAttributeDTO> getConceptAttributes(String lastpulldatatime) throws DAOException {
+
+        SqlSessionFactory sessionfactory = DBconfig.getSessionFactory();
+        SqlSession session = sessionfactory.openSession();
+        ArrayList<ConceptAttributeDTO> conceptAttributesList = new ArrayList<ConceptAttributeDTO>();
+        try {
+
+            VisitDMO visitdmo = session.getMapper(VisitDMO.class);
+
+            conceptAttributesList = visitdmo.getConceptAttributes(lastpulldatatime);
+
+            return conceptAttributesList;
+        } catch (PersistenceException e) {
+            logger.error(e.getMessage(), e);
+            throw new DAOException(e.getMessage(), e);
+        } finally {
+            session.close();
+        }
+    }
+
 }
 

@@ -8,26 +8,13 @@ public class VisitDTO {
     private String uuid;
 
     private String visit_type_uuid;
-    private String startdate;
-    //private Date startDate;
-    private String enddate;
-    //private Date endtDate;
+    private Date startdate;
+    private Date enddate;
     private String locationuuid;
     private String creator_uuid;
     private boolean syncd = true;
     private int voided;
 
-    public void setStartdate(String startdate) {
-        this.startdate = startdate;
-    }
-
-    public String getEnddate() {
-        return enddate;
-    }
-
-    public void setEnddate(String enddate) {
-        this.enddate = enddate;
-    }
 
     public int getVoided() {
         return voided;
@@ -69,18 +56,22 @@ public class VisitDTO {
     public void setUuid(String uuid) {
         this.uuid = uuid;
     }
-	/*public Date getStartdate() {
-		return startdate;
-	}
-	public void setStartdate(Date startdate) {
-		this.startdate = startdate;
-	}
-	public Date getEnddate() {
-		return enddate;
-	}
-	public void setEnddate(Date enddate) {
-		this.enddate = enddate;
-	}*/
+
+    public Date getStartdate() {
+        return startdate;
+    }
+
+    public void setStartdate(Date startdate) {
+        this.startdate = startdate;
+    }
+
+    public Date getEnddate() {
+        return enddate;
+    }
+
+    public void setEnddate(Date enddate) {
+        this.enddate = enddate;
+    }
 
     public String getLocationuuid() {
         return locationuuid;
