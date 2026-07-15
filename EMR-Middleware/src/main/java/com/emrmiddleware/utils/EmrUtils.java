@@ -23,6 +23,7 @@ public class EmrUtils {
 
   public static String get_SHA_512_SecurePassword(String passwordToHash, String salt) {
     try {
+      //Message Digest Issue
       MessageDigest md = MessageDigest.getInstance("SHA-512");
       String input = passwordToHash + salt;
       byte[] messageDigest = md.digest(input.getBytes());
